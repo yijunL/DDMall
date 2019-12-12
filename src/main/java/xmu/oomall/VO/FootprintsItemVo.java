@@ -1,11 +1,11 @@
 package xmu.oomall.VO;
 
-import xmu.oomall.dao.FootPrintItem;
+import xmu.oomall.domain.FootprintItem;
 import xmu.oomall.domain.Goods;
 /**
  * admin端的 GET /footprints 请求VO
  */
-public class FootPrintsItemVo {
+public class FootprintsItemVo {
     /**
      * 商品
      */
@@ -15,7 +15,7 @@ public class FootPrintsItemVo {
     /**
      * 足迹
      */
-    private FootPrintItem footPrintItem;
+    private FootprintItem footPrintItem;
 
     public Goods getGoods() {
         return goods;
@@ -25,11 +25,11 @@ public class FootPrintsItemVo {
         this.goods = goods;
     }
 
-    public FootPrintItem getFootPrintItem() {
+    public FootprintItem getFootPrintItem() {
         return footPrintItem;
     }
 
-    public void setFootPrintItem(FootPrintItem footPrintItem) {
+    public void setFootprintItem(FootprintItem footPrintItem) {
         this.footPrintItem = footPrintItem;
     }
 }
