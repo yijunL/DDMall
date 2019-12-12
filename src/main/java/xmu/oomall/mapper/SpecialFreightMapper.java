@@ -1,6 +1,6 @@
 package xmu.oomall.mapper;
 
-import xmu.oomall.dao.SpecialFreight;
+import xmu.oomall.domain.SpecialFreight;
 
 public interface SpecialFreightMapper {
     int deleteByPrimaryKey(Long id);
