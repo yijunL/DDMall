@@ -9,36 +9,36 @@ import java.time.LocalDateTime;
 
 /**
  * @Author: 数据库与对象模型标准组
- * @Description:被分享明细
+ * @Description:评论
  * @Data:Created in 14:50 2019/12/11
  **/
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public class BeSharedItem {
-
+public class CommentPo {
     private Integer id;
     /**
-     * 分享者的id
+     * 发表评论的用户的id
      */
-    private Integer sharerId;
+    private Integer userId;
     /**
-     * 被分享者的id
+     * 发表评论的内容
      */
-    private Integer beSharedUserId;
+    private String content;
     /**
-     * 状态 0：表示分享成功 1：表示成功购买且未退货
+     * 评论的状态 0：未审核 1：审核通过 2：审核失败
      */
     private Integer statusCode;
     /**
-     * 分享成功时的时间
+     * 发表评论的星级（1-5）
      */
-    private LocalDateTime birthTime;
+    private Integer star;
     /**
-     * 分享的商品id
+     * 评论的产品的id
      */
-    private Integer goodsId;
+    private Integer productId;
+
     private LocalDateTime gmtCreate;
     private LocalDateTime gmtModified;
     private Boolean beDeleted;

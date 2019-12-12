@@ -9,29 +9,24 @@ import java.time.LocalDateTime;
 
 /**
  * @Author: 数据库与对象模型标准组
- * @Description:管理员信息
+ * @Description:收藏明细
  * @Data:Created in 14:50 2019/12/11
  **/
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Admin {
+public class CollectItemPo {
     private Integer id;
     /**
-     * 管理员名称
-     */
-    private String username;
+    *商品id
+    */
+    private Integer goodsId;
     /**
-     * 管理员密码
-     */
-    private String password;
-    /**
-     * 角色id
-     */
-    private Integer roleId;
+    *用户id
+    */
+    private Integer userId;
+
     private LocalDateTime gmtCreate;
     private LocalDateTime gmtModified;
-    private Boolean beDeleted;
-
 }

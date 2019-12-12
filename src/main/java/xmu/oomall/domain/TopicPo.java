@@ -9,27 +9,26 @@ import java.time.LocalDateTime;
 
 /**
  * @Author: 数据库与对象模型标准组
- * @Description:管理员信息
- * @Data:Created in 14:50 2019/12/11
+ * @Description: 专题信息
+ * @Date: Created in 16:00 2019/12/11
  **/
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Admin {
+public class TopicPo {
+
     private Integer id;
     /**
-     * 管理员名称
+     * 专题图片的url的list
+     * JSON格式: {"pictures":[xxx,xxx]}, xxx为图片的url
      */
-    private String username;
+    private String picUrlList;
     /**
-     * 管理员密码
+     * 专题的内容
      */
-    private String password;
-    /**
-     * 角色id
-     */
-    private Integer roleId;
+    private String content;
+
     private LocalDateTime gmtCreate;
     private LocalDateTime gmtModified;
     private Boolean beDeleted;

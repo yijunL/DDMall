@@ -9,38 +9,38 @@ import java.time.LocalDateTime;
 
 /**
  * @Author: 数据库与对象模型标准组
- * @Description:被分享明细
+ * @Description:团购规则信息
  * @Data:Created in 14:50 2019/12/11
  **/
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public class BeSharedItem {
-
+public class GrouponRulePo {
     private Integer id;
     /**
-     * 分享者的id
+     * 团购开始时间
      */
-    private Integer sharerId;
+    private LocalDateTime startTime;
     /**
-     * 被分享者的id
+     * 团购结束时间
      */
-    private Integer beSharedUserId;
+    private LocalDateTime endTime;
     /**
-     * 状态 0：表示分享成功 1：表示成功购买且未退货
+     * 判断团购是否还在进行中
      */
-    private Integer statusCode;
+    private Boolean statusCode;
     /**
-     * 分享成功时的时间
+     * 团购等级（满多少人组团多少折扣）
+     * JSON格式: {"strategy": [{"lowerbound":xxx, "upperbound":xxx, "rate":xxx}]}, xxx为具体数值
      */
-    private LocalDateTime birthTime;
+    private String grouponLevelStragety;
     /**
-     * 分享的商品id
+     * 团购商品id
      */
     private Integer goodsId;
+
     private LocalDateTime gmtCreate;
     private LocalDateTime gmtModified;
     private Boolean beDeleted;
-
 }

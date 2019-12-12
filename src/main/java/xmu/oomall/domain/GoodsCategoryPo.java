@@ -1,5 +1,6 @@
 package xmu.oomall.domain;
 
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,36 +10,27 @@ import java.time.LocalDateTime;
 
 /**
  * @Author: 数据库与对象模型标准组
- * @Description:被分享明细
+ * @Description:商品种类的信息
  * @Data:Created in 14:50 2019/12/11
  **/
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public class BeSharedItem {
-
+public class GoodsCategoryPo {
     private Integer id;
     /**
-     * 分享者的id
+     * 种类的名称
      */
-    private Integer sharerId;
+    private String name;
     /**
-     * 被分享者的id
+     * 该种类的父种类ID
      */
-    private Integer beSharedUserId;
+    private Integer pid;
     /**
-     * 状态 0：表示分享成功 1：表示成功购买且未退货
+     * 二级目录的pic
      */
-    private Integer statusCode;
-    /**
-     * 分享成功时的时间
-     */
-    private LocalDateTime birthTime;
-    /**
-     * 分享的商品id
-     */
-    private Integer goodsId;
+    private String picUrl;
     private LocalDateTime gmtCreate;
     private LocalDateTime gmtModified;
     private Boolean beDeleted;

@@ -9,29 +9,27 @@ import java.time.LocalDateTime;
 
 /**
  * @Author: 数据库与对象模型标准组
- * @Description:管理员信息
+ * @Description:足迹信息
  * @Data:Created in 14:50 2019/12/11
  **/
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Admin {
+public class FootprintItemPo {
     private Integer id;
-    /**
-     * 管理员名称
-     */
-    private String username;
-    /**
-     * 管理员密码
-     */
-    private String password;
-    /**
-     * 角色id
-     */
-    private Integer roleId;
-    private LocalDateTime gmtCreate;
-    private LocalDateTime gmtModified;
-    private Boolean beDeleted;
 
+    /**
+    *创建时间
+    */
+    private LocalDateTime birthTime;
+    /**
+    *用户id
+    */
+    private Integer userId;
+    /**
+    *商品id
+    */
+    private Integer goodsId;
+    private LocalDateTime gmtCreate;
 }

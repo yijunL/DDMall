@@ -9,29 +9,32 @@ import java.time.LocalDateTime;
 
 /**
  * @Author: 数据库与对象模型标准组
- * @Description:管理员信息
- * @Data:Created in 14:50 2019/12/11
+ * @Description: 购物车明细
+ * @Date: Created in 14:30 2019/12/11
  **/
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Admin {
+public class CartItemPo {
     private Integer id;
     /**
-     * 管理员名称
+     * 购物车归属的用户id
      */
-    private String username;
+    private Integer userId;
     /**
-     * 管理员密码
+     * 货品ID
      */
-    private String password;
+    private Integer productId;
     /**
-     * 角色id
+     * 是否选中，0未选中，1已选中
      */
-    private Integer roleId;
+    private Boolean beCheck;
+    /**
+     * 数量
+     */
+    private Integer number;
     private LocalDateTime gmtCreate;
     private LocalDateTime gmtModified;
-    private Boolean beDeleted;
 
 }
