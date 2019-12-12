@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="xmu.oomall.mapper.DefaultPieceFreightMapper" >
-  <resultMap id="BaseResultMap" type="xmu.oomall.dao.DefaultPieceFreight" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="destination" property="destination" jdbcType="VARCHAR" />
-    <result column="require_days" property="requireDays" jdbcType="VARCHAR" />
-    <result column="unit_rate" property="unitRate" jdbcType="DECIMAL" />
-    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
-    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
-    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xmu.oomall.mapper.DefaultPieceFreightMapper">
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.DefaultPieceFreight">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="destination" jdbcType="VARCHAR" property="destination" />
+    <result column="require_days" jdbcType="VARCHAR" property="requireDays" />
+    <result column="unit_rate" jdbcType="DECIMAL" property="unitRate" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, destination, require_days, unit_rate, gmt_create, gmt_modified, is_deleted
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from default_piece_freight
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from default_piece_freight
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xmu.oomall.dao.DefaultPieceFreight" >
+  <insert id="insert" parameterType="xmu.oomall.dao.DefaultPieceFreight">
     insert into default_piece_freight (id, destination, require_days, 
       unit_rate, gmt_create, gmt_modified, 
       is_deleted)
@@ -31,80 +31,645 @@
       #{unitRate,jdbcType=DECIMAL}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
       #{isDeleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="xmu.oomall.dao.DefaultPieceFreight" >
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.DefaultPieceFreight">
     insert into default_piece_freight
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="destination != null" >
+      <if test="destination != null">
         destination,
       </if>
-      <if test="requireDays != null" >
+      <if test="requireDays != null">
         require_days,
       </if>
-      <if test="unitRate != null" >
+      <if test="unitRate != null">
         unit_rate,
       </if>
-      <if test="gmtCreate != null" >
+      <if test="gmtCreate != null">
         gmt_create,
       </if>
-      <if test="gmtModified != null" >
+      <if test="gmtModified != null">
         gmt_modified,
       </if>
-      <if test="isDeleted != null" >
+      <if test="isDeleted != null">
         is_deleted,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="destination != null" >
+      <if test="destination != null">
         #{destination,jdbcType=VARCHAR},
       </if>
-      <if test="requireDays != null" >
+      <if test="requireDays != null">
         #{requireDays,jdbcType=VARCHAR},
       </if>
-      <if test="unitRate != null" >
+      <if test="unitRate != null">
         #{unitRate,jdbcType=DECIMAL},
       </if>
-      <if test="gmtCreate != null" >
+      <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
       </if>
-      <if test="gmtModified != null" >
+      <if test="gmtModified != null">
         #{gmtModified,jdbcType=TIMESTAMP},
       </if>
-      <if test="isDeleted != null" >
+      <if test="isDeleted != null">
         #{isDeleted,jdbcType=BIT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.DefaultPieceFreight" >
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.DefaultPieceFreight">
     update default_piece_freight
-    <set >
-      <if test="destination != null" >
+    <set>
+      <if test="destination != null">
         destination = #{destination,jdbcType=VARCHAR},
       </if>
-      <if test="requireDays != null" >
+      <if test="requireDays != null">
         require_days = #{requireDays,jdbcType=VARCHAR},
       </if>
-      <if test="unitRate != null" >
+      <if test="unitRate != null">
         unit_rate = #{unitRate,jdbcType=DECIMAL},
       </if>
-      <if test="gmtCreate != null" >
+      <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       </if>
-      <if test="gmtModified != null" >
+      <if test="gmtModified != null">
         gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
       </if>
-      <if test="isDeleted != null" >
+      <if test="isDeleted != null">
         is_deleted = #{isDeleted,jdbcType=BIT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.DefaultPieceFreight" >
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    update default_piece_freight
+    set destination = #{destination,jdbcType=VARCHAR},
+      require_days = #{requireDays,jdbcType=VARCHAR},
+      unit_rate = #{unitRate,jdbcType=DECIMAL},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.DefaultPieceFreight">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="destination" jdbcType="VARCHAR" property="destination" />
+    <result column="require_days" jdbcType="VARCHAR" property="requireDays" />
+    <result column="unit_rate" jdbcType="DECIMAL" property="unitRate" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, destination, require_days, unit_rate, gmt_create, gmt_modified, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from default_piece_freight
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from default_piece_freight
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    insert into default_piece_freight (id, destination, require_days, 
+      unit_rate, gmt_create, gmt_modified, 
+      is_deleted)
+    values (#{id,jdbcType=BIGINT}, #{destination,jdbcType=VARCHAR}, #{requireDays,jdbcType=VARCHAR}, 
+      #{unitRate,jdbcType=DECIMAL}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    insert into default_piece_freight
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="destination != null">
+        destination,
+      </if>
+      <if test="requireDays != null">
+        require_days,
+      </if>
+      <if test="unitRate != null">
+        unit_rate,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="destination != null">
+        #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="requireDays != null">
+        #{requireDays,jdbcType=VARCHAR},
+      </if>
+      <if test="unitRate != null">
+        #{unitRate,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    update default_piece_freight
+    <set>
+      <if test="destination != null">
+        destination = #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="requireDays != null">
+        require_days = #{requireDays,jdbcType=VARCHAR},
+      </if>
+      <if test="unitRate != null">
+        unit_rate = #{unitRate,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    update default_piece_freight
+    set destination = #{destination,jdbcType=VARCHAR},
+      require_days = #{requireDays,jdbcType=VARCHAR},
+      unit_rate = #{unitRate,jdbcType=DECIMAL},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.DefaultPieceFreight">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="destination" jdbcType="VARCHAR" property="destination" />
+    <result column="require_days" jdbcType="VARCHAR" property="requireDays" />
+    <result column="unit_rate" jdbcType="DECIMAL" property="unitRate" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, destination, require_days, unit_rate, gmt_create, gmt_modified, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from default_piece_freight
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from default_piece_freight
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    insert into default_piece_freight (id, destination, require_days, 
+      unit_rate, gmt_create, gmt_modified, 
+      is_deleted)
+    values (#{id,jdbcType=BIGINT}, #{destination,jdbcType=VARCHAR}, #{requireDays,jdbcType=VARCHAR}, 
+      #{unitRate,jdbcType=DECIMAL}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    insert into default_piece_freight
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="destination != null">
+        destination,
+      </if>
+      <if test="requireDays != null">
+        require_days,
+      </if>
+      <if test="unitRate != null">
+        unit_rate,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="destination != null">
+        #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="requireDays != null">
+        #{requireDays,jdbcType=VARCHAR},
+      </if>
+      <if test="unitRate != null">
+        #{unitRate,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    update default_piece_freight
+    <set>
+      <if test="destination != null">
+        destination = #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="requireDays != null">
+        require_days = #{requireDays,jdbcType=VARCHAR},
+      </if>
+      <if test="unitRate != null">
+        unit_rate = #{unitRate,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    update default_piece_freight
+    set destination = #{destination,jdbcType=VARCHAR},
+      require_days = #{requireDays,jdbcType=VARCHAR},
+      unit_rate = #{unitRate,jdbcType=DECIMAL},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.DefaultPieceFreight">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="destination" jdbcType="VARCHAR" property="destination" />
+    <result column="require_days" jdbcType="VARCHAR" property="requireDays" />
+    <result column="unit_rate" jdbcType="DECIMAL" property="unitRate" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, destination, require_days, unit_rate, gmt_create, gmt_modified, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from default_piece_freight
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from default_piece_freight
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    insert into default_piece_freight (id, destination, require_days, 
+      unit_rate, gmt_create, gmt_modified, 
+      is_deleted)
+    values (#{id,jdbcType=BIGINT}, #{destination,jdbcType=VARCHAR}, #{requireDays,jdbcType=VARCHAR}, 
+      #{unitRate,jdbcType=DECIMAL}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    insert into default_piece_freight
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="destination != null">
+        destination,
+      </if>
+      <if test="requireDays != null">
+        require_days,
+      </if>
+      <if test="unitRate != null">
+        unit_rate,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="destination != null">
+        #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="requireDays != null">
+        #{requireDays,jdbcType=VARCHAR},
+      </if>
+      <if test="unitRate != null">
+        #{unitRate,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    update default_piece_freight
+    <set>
+      <if test="destination != null">
+        destination = #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="requireDays != null">
+        require_days = #{requireDays,jdbcType=VARCHAR},
+      </if>
+      <if test="unitRate != null">
+        unit_rate = #{unitRate,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    update default_piece_freight
+    set destination = #{destination,jdbcType=VARCHAR},
+      require_days = #{requireDays,jdbcType=VARCHAR},
+      unit_rate = #{unitRate,jdbcType=DECIMAL},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.DefaultPieceFreight">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="destination" jdbcType="VARCHAR" property="destination" />
+    <result column="require_days" jdbcType="VARCHAR" property="requireDays" />
+    <result column="unit_rate" jdbcType="DECIMAL" property="unitRate" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, destination, require_days, unit_rate, gmt_create, gmt_modified, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from default_piece_freight
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from default_piece_freight
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    insert into default_piece_freight (id, destination, require_days, 
+      unit_rate, gmt_create, gmt_modified, 
+      is_deleted)
+    values (#{id,jdbcType=BIGINT}, #{destination,jdbcType=VARCHAR}, #{requireDays,jdbcType=VARCHAR}, 
+      #{unitRate,jdbcType=DECIMAL}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    insert into default_piece_freight
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="destination != null">
+        destination,
+      </if>
+      <if test="requireDays != null">
+        require_days,
+      </if>
+      <if test="unitRate != null">
+        unit_rate,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="destination != null">
+        #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="requireDays != null">
+        #{requireDays,jdbcType=VARCHAR},
+      </if>
+      <if test="unitRate != null">
+        #{unitRate,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    update default_piece_freight
+    <set>
+      <if test="destination != null">
+        destination = #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="requireDays != null">
+        require_days = #{requireDays,jdbcType=VARCHAR},
+      </if>
+      <if test="unitRate != null">
+        unit_rate = #{unitRate,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    update default_piece_freight
+    set destination = #{destination,jdbcType=VARCHAR},
+      require_days = #{requireDays,jdbcType=VARCHAR},
+      unit_rate = #{unitRate,jdbcType=DECIMAL},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.DefaultPieceFreight">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="destination" jdbcType="VARCHAR" property="destination" />
+    <result column="require_days" jdbcType="VARCHAR" property="requireDays" />
+    <result column="unit_rate" jdbcType="DECIMAL" property="unitRate" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, destination, require_days, unit_rate, gmt_create, gmt_modified, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from default_piece_freight
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from default_piece_freight
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    insert into default_piece_freight (id, destination, require_days, 
+      unit_rate, gmt_create, gmt_modified, 
+      is_deleted)
+    values (#{id,jdbcType=BIGINT}, #{destination,jdbcType=VARCHAR}, #{requireDays,jdbcType=VARCHAR}, 
+      #{unitRate,jdbcType=DECIMAL}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    insert into default_piece_freight
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="destination != null">
+        destination,
+      </if>
+      <if test="requireDays != null">
+        require_days,
+      </if>
+      <if test="unitRate != null">
+        unit_rate,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="destination != null">
+        #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="requireDays != null">
+        #{requireDays,jdbcType=VARCHAR},
+      </if>
+      <if test="unitRate != null">
+        #{unitRate,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.DefaultPieceFreight">
+    update default_piece_freight
+    <set>
+      <if test="destination != null">
+        destination = #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="requireDays != null">
+        require_days = #{requireDays,jdbcType=VARCHAR},
+      </if>
+      <if test="unitRate != null">
+        unit_rate = #{unitRate,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.DefaultPieceFreight">
     update default_piece_freight
     set destination = #{destination,jdbcType=VARCHAR},
       require_days = #{requireDays,jdbcType=VARCHAR},

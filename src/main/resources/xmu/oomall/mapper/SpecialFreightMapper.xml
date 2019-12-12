@@ -1,31 +1,31 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="xmu.oomall.mapper.SpecialFreightMapper" >
-  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="first_num_piece" property="firstNumPiece" jdbcType="SMALLINT" />
-    <result column="first_num_piece_price" property="firstNumPiecePrice" jdbcType="DECIMAL" />
-    <result column="continue_num_piece" property="continueNumPiece" jdbcType="SMALLINT" />
-    <result column="continue_num_piece_price" property="continueNumPiecePrice" jdbcType="DECIMAL" />
-    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
-    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
-    <result column="is_deleted" property="isDeleted" jdbcType="BIT" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xmu.oomall.mapper.SpecialFreightMapper">
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
+    <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
+    <result column="continue_num_piece" jdbcType="SMALLINT" property="continueNumPiece" />
+    <result column="continue_num_piece_price" jdbcType="DECIMAL" property="continueNumPiecePrice" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, first_num_piece, first_num_piece_price, continue_num_piece, continue_num_piece_price, 
     gmt_create, gmt_modified, is_deleted
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from special_freight
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from special_freight
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight" >
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
     insert into special_freight (id, first_num_piece, first_num_piece_price, 
       continue_num_piece, continue_num_piece_price, 
       gmt_create, gmt_modified, is_deleted
@@ -35,89 +35,724 @@
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight" >
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
     insert into special_freight
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="firstNumPiece != null" >
+      <if test="firstNumPiece != null">
         first_num_piece,
       </if>
-      <if test="firstNumPiecePrice != null" >
+      <if test="firstNumPiecePrice != null">
         first_num_piece_price,
       </if>
-      <if test="continueNumPiece != null" >
+      <if test="continueNumPiece != null">
         continue_num_piece,
       </if>
-      <if test="continueNumPiecePrice != null" >
+      <if test="continueNumPiecePrice != null">
         continue_num_piece_price,
       </if>
-      <if test="gmtCreate != null" >
+      <if test="gmtCreate != null">
         gmt_create,
       </if>
-      <if test="gmtModified != null" >
+      <if test="gmtModified != null">
         gmt_modified,
       </if>
-      <if test="isDeleted != null" >
+      <if test="isDeleted != null">
         is_deleted,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="firstNumPiece != null" >
+      <if test="firstNumPiece != null">
         #{firstNumPiece,jdbcType=SMALLINT},
       </if>
-      <if test="firstNumPiecePrice != null" >
+      <if test="firstNumPiecePrice != null">
         #{firstNumPiecePrice,jdbcType=DECIMAL},
       </if>
-      <if test="continueNumPiece != null" >
+      <if test="continueNumPiece != null">
         #{continueNumPiece,jdbcType=SMALLINT},
       </if>
-      <if test="continueNumPiecePrice != null" >
+      <if test="continueNumPiecePrice != null">
         #{continueNumPiecePrice,jdbcType=DECIMAL},
       </if>
-      <if test="gmtCreate != null" >
+      <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
       </if>
-      <if test="gmtModified != null" >
+      <if test="gmtModified != null">
         #{gmtModified,jdbcType=TIMESTAMP},
       </if>
-      <if test="isDeleted != null" >
+      <if test="isDeleted != null">
         #{isDeleted,jdbcType=BIT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight" >
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
     update special_freight
-    <set >
-      <if test="firstNumPiece != null" >
+    <set>
+      <if test="firstNumPiece != null">
         first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
       </if>
-      <if test="firstNumPiecePrice != null" >
+      <if test="firstNumPiecePrice != null">
         first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
       </if>
-      <if test="continueNumPiece != null" >
+      <if test="continueNumPiece != null">
         continue_num_piece = #{continueNumPiece,jdbcType=SMALLINT},
       </if>
-      <if test="continueNumPiecePrice != null" >
+      <if test="continueNumPiecePrice != null">
         continue_num_piece_price = #{continueNumPiecePrice,jdbcType=DECIMAL},
       </if>
-      <if test="gmtCreate != null" >
+      <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       </if>
-      <if test="gmtModified != null" >
+      <if test="gmtModified != null">
         gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
       </if>
-      <if test="isDeleted != null" >
+      <if test="isDeleted != null">
         is_deleted = #{isDeleted,jdbcType=BIT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight" >
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+    update special_freight
+    set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
+      first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
+      continue_num_piece = #{continueNumPiece,jdbcType=SMALLINT},
+      continue_num_piece_price = #{continueNumPiecePrice,jdbcType=DECIMAL},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
+    <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
+    <result column="continue_num_piece" jdbcType="SMALLINT" property="continueNumPiece" />
+    <result column="continue_num_piece_price" jdbcType="DECIMAL" property="continueNumPiecePrice" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, first_num_piece, first_num_piece_price, continue_num_piece, continue_num_piece_price, 
+    gmt_create, gmt_modified, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from special_freight
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from special_freight
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+    insert into special_freight (id, first_num_piece, first_num_piece_price, 
+      continue_num_piece, continue_num_piece_price, 
+      gmt_create, gmt_modified, is_deleted
+      )
+    values (#{id,jdbcType=BIGINT}, #{firstNumPiece,jdbcType=SMALLINT}, #{firstNumPiecePrice,jdbcType=DECIMAL}, 
+      #{continueNumPiece,jdbcType=SMALLINT}, #{continueNumPiecePrice,jdbcType=DECIMAL}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+    insert into special_freight
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="firstNumPiece != null">
+        first_num_piece,
+      </if>
+      <if test="firstNumPiecePrice != null">
+        first_num_piece_price,
+      </if>
+      <if test="continueNumPiece != null">
+        continue_num_piece,
+      </if>
+      <if test="continueNumPiecePrice != null">
+        continue_num_piece_price,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="firstNumPiece != null">
+        #{firstNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="firstNumPiecePrice != null">
+        #{firstNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="continueNumPiece != null">
+        #{continueNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="continueNumPiecePrice != null">
+        #{continueNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+    update special_freight
+    <set>
+      <if test="firstNumPiece != null">
+        first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="firstNumPiecePrice != null">
+        first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="continueNumPiece != null">
+        continue_num_piece = #{continueNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="continueNumPiecePrice != null">
+        continue_num_piece_price = #{continueNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+    update special_freight
+    set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
+      first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
+      continue_num_piece = #{continueNumPiece,jdbcType=SMALLINT},
+      continue_num_piece_price = #{continueNumPiecePrice,jdbcType=DECIMAL},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
+    <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
+    <result column="continue_num_piece" jdbcType="SMALLINT" property="continueNumPiece" />
+    <result column="continue_num_piece_price" jdbcType="DECIMAL" property="continueNumPiecePrice" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, first_num_piece, first_num_piece_price, continue_num_piece, continue_num_piece_price, 
+    gmt_create, gmt_modified, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from special_freight
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from special_freight
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+    insert into special_freight (id, first_num_piece, first_num_piece_price, 
+      continue_num_piece, continue_num_piece_price, 
+      gmt_create, gmt_modified, is_deleted
+      )
+    values (#{id,jdbcType=BIGINT}, #{firstNumPiece,jdbcType=SMALLINT}, #{firstNumPiecePrice,jdbcType=DECIMAL}, 
+      #{continueNumPiece,jdbcType=SMALLINT}, #{continueNumPiecePrice,jdbcType=DECIMAL}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+    insert into special_freight
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="firstNumPiece != null">
+        first_num_piece,
+      </if>
+      <if test="firstNumPiecePrice != null">
+        first_num_piece_price,
+      </if>
+      <if test="continueNumPiece != null">
+        continue_num_piece,
+      </if>
+      <if test="continueNumPiecePrice != null">
+        continue_num_piece_price,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="firstNumPiece != null">
+        #{firstNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="firstNumPiecePrice != null">
+        #{firstNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="continueNumPiece != null">
+        #{continueNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="continueNumPiecePrice != null">
+        #{continueNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+    update special_freight
+    <set>
+      <if test="firstNumPiece != null">
+        first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="firstNumPiecePrice != null">
+        first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="continueNumPiece != null">
+        continue_num_piece = #{continueNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="continueNumPiecePrice != null">
+        continue_num_piece_price = #{continueNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+    update special_freight
+    set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
+      first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
+      continue_num_piece = #{continueNumPiece,jdbcType=SMALLINT},
+      continue_num_piece_price = #{continueNumPiecePrice,jdbcType=DECIMAL},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
+    <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
+    <result column="continue_num_piece" jdbcType="SMALLINT" property="continueNumPiece" />
+    <result column="continue_num_piece_price" jdbcType="DECIMAL" property="continueNumPiecePrice" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, first_num_piece, first_num_piece_price, continue_num_piece, continue_num_piece_price, 
+    gmt_create, gmt_modified, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from special_freight
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from special_freight
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+    insert into special_freight (id, first_num_piece, first_num_piece_price, 
+      continue_num_piece, continue_num_piece_price, 
+      gmt_create, gmt_modified, is_deleted
+      )
+    values (#{id,jdbcType=BIGINT}, #{firstNumPiece,jdbcType=SMALLINT}, #{firstNumPiecePrice,jdbcType=DECIMAL}, 
+      #{continueNumPiece,jdbcType=SMALLINT}, #{continueNumPiecePrice,jdbcType=DECIMAL}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+    insert into special_freight
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="firstNumPiece != null">
+        first_num_piece,
+      </if>
+      <if test="firstNumPiecePrice != null">
+        first_num_piece_price,
+      </if>
+      <if test="continueNumPiece != null">
+        continue_num_piece,
+      </if>
+      <if test="continueNumPiecePrice != null">
+        continue_num_piece_price,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="firstNumPiece != null">
+        #{firstNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="firstNumPiecePrice != null">
+        #{firstNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="continueNumPiece != null">
+        #{continueNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="continueNumPiecePrice != null">
+        #{continueNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+    update special_freight
+    <set>
+      <if test="firstNumPiece != null">
+        first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="firstNumPiecePrice != null">
+        first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="continueNumPiece != null">
+        continue_num_piece = #{continueNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="continueNumPiecePrice != null">
+        continue_num_piece_price = #{continueNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+    update special_freight
+    set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
+      first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
+      continue_num_piece = #{continueNumPiece,jdbcType=SMALLINT},
+      continue_num_piece_price = #{continueNumPiecePrice,jdbcType=DECIMAL},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
+    <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
+    <result column="continue_num_piece" jdbcType="SMALLINT" property="continueNumPiece" />
+    <result column="continue_num_piece_price" jdbcType="DECIMAL" property="continueNumPiecePrice" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, first_num_piece, first_num_piece_price, continue_num_piece, continue_num_piece_price, 
+    gmt_create, gmt_modified, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from special_freight
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from special_freight
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+    insert into special_freight (id, first_num_piece, first_num_piece_price, 
+      continue_num_piece, continue_num_piece_price, 
+      gmt_create, gmt_modified, is_deleted
+      )
+    values (#{id,jdbcType=BIGINT}, #{firstNumPiece,jdbcType=SMALLINT}, #{firstNumPiecePrice,jdbcType=DECIMAL}, 
+      #{continueNumPiece,jdbcType=SMALLINT}, #{continueNumPiecePrice,jdbcType=DECIMAL}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+    insert into special_freight
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="firstNumPiece != null">
+        first_num_piece,
+      </if>
+      <if test="firstNumPiecePrice != null">
+        first_num_piece_price,
+      </if>
+      <if test="continueNumPiece != null">
+        continue_num_piece,
+      </if>
+      <if test="continueNumPiecePrice != null">
+        continue_num_piece_price,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="firstNumPiece != null">
+        #{firstNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="firstNumPiecePrice != null">
+        #{firstNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="continueNumPiece != null">
+        #{continueNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="continueNumPiecePrice != null">
+        #{continueNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+    update special_freight
+    <set>
+      <if test="firstNumPiece != null">
+        first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="firstNumPiecePrice != null">
+        first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="continueNumPiece != null">
+        continue_num_piece = #{continueNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="continueNumPiecePrice != null">
+        continue_num_piece_price = #{continueNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+    update special_freight
+    set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
+      first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
+      continue_num_piece = #{continueNumPiece,jdbcType=SMALLINT},
+      continue_num_piece_price = #{continueNumPiecePrice,jdbcType=DECIMAL},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
+    <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
+    <result column="continue_num_piece" jdbcType="SMALLINT" property="continueNumPiece" />
+    <result column="continue_num_piece_price" jdbcType="DECIMAL" property="continueNumPiecePrice" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, first_num_piece, first_num_piece_price, continue_num_piece, continue_num_piece_price, 
+    gmt_create, gmt_modified, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from special_freight
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from special_freight
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+    insert into special_freight (id, first_num_piece, first_num_piece_price, 
+      continue_num_piece, continue_num_piece_price, 
+      gmt_create, gmt_modified, is_deleted
+      )
+    values (#{id,jdbcType=BIGINT}, #{firstNumPiece,jdbcType=SMALLINT}, #{firstNumPiecePrice,jdbcType=DECIMAL}, 
+      #{continueNumPiece,jdbcType=SMALLINT}, #{continueNumPiecePrice,jdbcType=DECIMAL}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+    insert into special_freight
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="firstNumPiece != null">
+        first_num_piece,
+      </if>
+      <if test="firstNumPiecePrice != null">
+        first_num_piece_price,
+      </if>
+      <if test="continueNumPiece != null">
+        continue_num_piece,
+      </if>
+      <if test="continueNumPiecePrice != null">
+        continue_num_piece_price,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="firstNumPiece != null">
+        #{firstNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="firstNumPiecePrice != null">
+        #{firstNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="continueNumPiece != null">
+        #{continueNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="continueNumPiecePrice != null">
+        #{continueNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+    update special_freight
+    <set>
+      <if test="firstNumPiece != null">
+        first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="firstNumPiecePrice != null">
+        first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="continueNumPiece != null">
+        continue_num_piece = #{continueNumPiece,jdbcType=SMALLINT},
+      </if>
+      <if test="continueNumPiecePrice != null">
+        continue_num_piece_price = #{continueNumPiecePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
     update special_freight
     set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
       first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
