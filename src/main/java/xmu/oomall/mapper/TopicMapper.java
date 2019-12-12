@@ -1,6 +1,6 @@
 package xmu.oomall.mapper;
 
-import xmu.oomall.dao.Topic;
+import xmu.oomall.domain.Topic;
 
 public interface TopicMapper {
     int deleteByPrimaryKey(Long id);
