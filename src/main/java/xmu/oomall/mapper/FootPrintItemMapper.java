@@ -1,17 +1,17 @@
 package xmu.oomall.mapper;
 
-import xmu.oomall.dao.FootPrintItem;
+import xmu.oomall.domain.FootprintItem;
 
 public interface FootPrintItemMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(FootPrintItem record);
+    int insert(FootprintItem record);
 
-    int insertSelective(FootPrintItem record);
+    int insertSelective(FootprintItem record);
 
-    FootPrintItem selectByPrimaryKey(Long id);
+    FootprintItem selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(FootPrintItem record);
+    int updateByPrimaryKeySelective(FootprintItem record);
 
-    int updateByPrimaryKey(FootPrintItem record);
+    int updateByPrimaryKey(FootprintItem record);
 }
