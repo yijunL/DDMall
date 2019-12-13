@@ -10,9 +10,4 @@ import java.util.List;
 
 @Service
 public class FreightServiceImpl implements FreightService {
-
-    @Override
-    public List<DefaultFreight> getDefaultFreights() {
-        List<DefaultFreightPo> defaultFreightPoList=DefaultFreightDao.getDefaultFreights();
-    }
 }
