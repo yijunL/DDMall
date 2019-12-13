@@ -1,4 +1,4 @@
-package xmu.oomall.VO;
+package xmu.oomall.controller.VO;
 
 import java.util.List;
 import xmu.oomall.domain.*;

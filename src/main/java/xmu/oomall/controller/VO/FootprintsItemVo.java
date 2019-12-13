@@ -1,4 +1,4 @@
-package xmu.oomall.VO;
+package xmu.oomall.controller.VO;
 
 import xmu.oomall.domain.FootprintItem;
 import xmu.oomall.domain.Goods;

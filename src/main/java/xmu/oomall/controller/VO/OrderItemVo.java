@@ -1,7 +1,5 @@
-package xmu.oomall.VO;
+package xmu.oomall.controller.VO;
 import xmu.oomall.domain.*;
-
-import java.util.List;
 
 public class OrderItemVo {
     /**

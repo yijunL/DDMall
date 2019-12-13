@@ -1,4 +1,4 @@
-package xmu.oomall.VO;
+package xmu.oomall.controller.VO;
 import org.graalvm.compiler.nodes.memory.address.AddressNode;
 import org.junit.jupiter.api.Order;
 import xmu.oomall.domain.*;

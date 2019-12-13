@@ -8,11 +8,15 @@ import javax.validation.constraints.NotNull;
 @RestController
 @RequestMapping("/admin-freightSerice")// /wx/order
 
-public interface FreightController {
+public class FreightController {
 
 
     @GetMapping("/defaultFreights")
-    public Object getDefaultFreights();
+    public Object getDefaultFreights()
+    {
+
+    }
+
 
 
     @GetMapping("/specialFreight")
