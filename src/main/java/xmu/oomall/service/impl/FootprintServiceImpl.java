@@ -1,9 +1,9 @@
-package xmu.oomall.service;
+package xmu.oomall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
-import xmu.oomall.controller.vo.GoodsVo;
+import xmu.oomall.vo.GoodsVo;
 import xmu.oomall.domain.*;
 import xmu.oomall.dao.*;
 import xmu.oomall.service.GoodsService;

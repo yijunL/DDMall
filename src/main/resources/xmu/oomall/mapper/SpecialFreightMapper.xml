@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="xmu.oomall.mapper.SpecialFreightMapper">
-  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreightDao">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
     <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
@@ -25,7 +25,7 @@
     delete from special_freight
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight (id, first_num_piece, first_num_piece_price, 
       continue_num_piece, continue_num_piece_price, 
       gmt_create, gmt_modified, is_deleted
@@ -35,7 +35,7 @@
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -90,7 +90,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     <set>
       <if test="firstNumPiece != null">
@@ -117,7 +117,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
       first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
@@ -128,7 +128,7 @@
       is_deleted = #{isDeleted,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreightDao">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
     <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
@@ -152,7 +152,7 @@
     delete from special_freight
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight (id, first_num_piece, first_num_piece_price, 
       continue_num_piece, continue_num_piece_price, 
       gmt_create, gmt_modified, is_deleted
@@ -162,7 +162,7 @@
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -217,7 +217,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     <set>
       <if test="firstNumPiece != null">
@@ -244,7 +244,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
       first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
@@ -255,7 +255,7 @@
       is_deleted = #{isDeleted,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreightDao">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
     <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
@@ -279,7 +279,7 @@
     delete from special_freight
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight (id, first_num_piece, first_num_piece_price, 
       continue_num_piece, continue_num_piece_price, 
       gmt_create, gmt_modified, is_deleted
@@ -289,7 +289,7 @@
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -344,7 +344,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     <set>
       <if test="firstNumPiece != null">
@@ -371,7 +371,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
       first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
@@ -382,7 +382,7 @@
       is_deleted = #{isDeleted,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreightDao">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
     <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
@@ -406,7 +406,7 @@
     delete from special_freight
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight (id, first_num_piece, first_num_piece_price, 
       continue_num_piece, continue_num_piece_price, 
       gmt_create, gmt_modified, is_deleted
@@ -416,7 +416,7 @@
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -471,7 +471,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     <set>
       <if test="firstNumPiece != null">
@@ -498,7 +498,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
       first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
@@ -509,7 +509,7 @@
       is_deleted = #{isDeleted,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreightDao">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
     <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
@@ -533,7 +533,7 @@
     delete from special_freight
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight (id, first_num_piece, first_num_piece_price, 
       continue_num_piece, continue_num_piece_price, 
       gmt_create, gmt_modified, is_deleted
@@ -543,7 +543,7 @@
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -598,7 +598,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     <set>
       <if test="firstNumPiece != null">
@@ -625,7 +625,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
       first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
@@ -636,7 +636,7 @@
       is_deleted = #{isDeleted,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreightDao">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
     <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
@@ -660,7 +660,7 @@
     delete from special_freight
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight (id, first_num_piece, first_num_piece_price, 
       continue_num_piece, continue_num_piece_price, 
       gmt_create, gmt_modified, is_deleted
@@ -670,7 +670,7 @@
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -725,7 +725,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     <set>
       <if test="firstNumPiece != null">
@@ -752,7 +752,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
       first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
@@ -763,7 +763,7 @@
       is_deleted = #{isDeleted,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreightDao">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
     <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
@@ -787,7 +787,7 @@
     delete from special_freight
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight (id, first_num_piece, first_num_piece_price, 
       continue_num_piece, continue_num_piece_price, 
       gmt_create, gmt_modified, is_deleted
@@ -797,7 +797,7 @@
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -852,7 +852,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     <set>
       <if test="firstNumPiece != null">
@@ -879,7 +879,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
       first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
@@ -890,7 +890,7 @@
       is_deleted = #{isDeleted,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreightDao">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
     <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
@@ -914,7 +914,7 @@
     delete from special_freight
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight (id, first_num_piece, first_num_piece_price, 
       continue_num_piece, continue_num_piece_price, 
       gmt_create, gmt_modified, is_deleted
@@ -924,7 +924,7 @@
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -979,7 +979,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     <set>
       <if test="firstNumPiece != null">
@@ -1006,7 +1006,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
       first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},
@@ -1017,7 +1017,7 @@
       is_deleted = #{isDeleted,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreight">
+  <resultMap id="BaseResultMap" type="xmu.oomall.dao.SpecialFreightDao">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="first_num_piece" jdbcType="SMALLINT" property="firstNumPiece" />
     <result column="first_num_piece_price" jdbcType="DECIMAL" property="firstNumPiecePrice" />
@@ -1041,7 +1041,7 @@
     delete from special_freight
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insert" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight (id, first_num_piece, first_num_piece_price, 
       continue_num_piece, continue_num_piece_price, 
       gmt_create, gmt_modified, is_deleted
@@ -1051,7 +1051,7 @@
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <insert id="insertSelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     insert into special_freight
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -1106,7 +1106,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKeySelective" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     <set>
       <if test="firstNumPiece != null">
@@ -1133,7 +1133,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreight">
+  <update id="updateByPrimaryKey" parameterType="xmu.oomall.dao.SpecialFreightDao">
     update special_freight
     set first_num_piece = #{firstNumPiece,jdbcType=SMALLINT},
       first_num_piece_price = #{firstNumPiecePrice,jdbcType=DECIMAL},

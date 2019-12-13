@@ -1,4 +1,4 @@
 package xmu.oomall.service;
 
-public class FreightService {
+public interface FreightService {
 }
