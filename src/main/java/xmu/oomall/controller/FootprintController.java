@@ -48,12 +48,12 @@ public class FootprintController {
     }
 
     /**
-     * 用户删除足迹
+     * 管理员查看足迹
      *
      * @return List<FootprintItemPo>
      */
     @GetMapping("/admin/footprints")
-    public Object listFootprint() {
+    public Object listAllFootprint() {
         return null;
     }
 }

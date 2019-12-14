@@ -36,12 +36,12 @@ public interface FootprintService {
      * @param id：Integer
      * @return Response.ok()
      */
-    public Object deleteFootprintById (Integer id);
+    public Boolean deleteFootprintById (Integer id);
 
     /**
      * 用户删除足迹
      *
      * @return List<FootprintItemPo>
      */
-    public List<FootprintItemPo> listFootprint();
+    public List<FootprintItemPo> listAllFootprint();
 }

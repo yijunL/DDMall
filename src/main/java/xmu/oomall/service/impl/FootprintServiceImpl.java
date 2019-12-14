@@ -27,7 +27,8 @@ public class FootprintServiceImpl implements FootprintService {
      */
     @Override
     public List<FootprintItemPo> listFootprintByCondition(Integer page, Integer limit) {
-        return null;
+        List<FootprintItemPo> footprintItemPos = footprintDAO.selectByCondition(page, limit);
+        return footprintItemPos;
     }
 
     /**
@@ -37,17 +38,18 @@ public class FootprintServiceImpl implements FootprintService {
      * @return Response.ok()
      */
     @Override
-    public Object deleteFootprintById (Integer id) {
-        return null;
+    public Boolean deleteFootprintById (Integer id) {
+        return footprintDAO.deleteFootprintById(id);
     }
 
     /**
-     * 用户删除足迹
+     * 管理员查看足迹
      *
      * @return List<FootprintItemPo>
      */
     @Override
-    public List<FootprintItemPo> listFootprint() {
-        return null;
+    public List<FootprintItemPo> listAllFootprint() {
+        List<FootprintItemPo> footprintItemPos = footprintDAO.selectAll();
+        return footprintItemPos;
     }
 }
