@@ -67,7 +67,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <!-- mybatis代码生成插件 -->
 
         </plugins>
     </build>
