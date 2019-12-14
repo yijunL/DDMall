@@ -1,4 +1,4 @@
-package xmu.oomall.dao;
+package xmu.oomall.service;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.exceptions.verification.MoreThanAllowedActualInvocations;
@@ -6,18 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import xmu.oomall.OomallApplication;
+import xmu.oomall.domain.DefaultFreight;
 import xmu.oomall.domain.DefaultFreightPo;
+import xmu.oomall.service.FreightService;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class DefaultFreightDaoTest {
+public class FreightServiceTest {
     @Autowired
-    private DefaultFreightDao defaultFreightDao;
+    private FreightService freightService;
 
     @Test
-    public void defaultFreightDaoTest()
+    public void freightServiceTest()
     {
-        defaultFreightDao.deleteDefaultFreight(1);
+        freightService.deleteDefaultFreight(1);
     }
 }
