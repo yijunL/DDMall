@@ -6,8 +6,7 @@ import xmu.oomall.domain.DefaultFreightPo;
 
 @Mapper
 @Component
-public interface DefaultFreightMapper {
+public interface SpecialFreightMapper {
 
-    void deleteDefaultFreight(Integer id);
 
 }

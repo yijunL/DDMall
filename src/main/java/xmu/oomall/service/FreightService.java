@@ -10,32 +10,28 @@ import java.util.List;
 
 @Service
 public interface FreightService {
-    @GetMapping("/defaultFreights")
-    public Object getDefaultFreights();
 
+    public Object getDefaultFreights(Integer limit,Integer page);
 
-    @GetMapping("/specialFreight")
-    public Object getSpecialFreight();
+    public Object addDefaultFreight(DefaultFreight defaultFreight);
 
+    public Object updateDefaultFreight(Integer id,DefaultFreight defaultFreight);
 
-    @PostMapping("/defaultFreights")
-    public Object addDefaultFreights(DefaultPieceFreight defaultPieceFreight);
+    public void deleteDefaultFreight(Integer id);
 
-    @PostMapping("/specialFreight")
-    public Object addSpecialFreight(SpecialFreight specialFreight);
+    public Object getDefaultPieceFreight(Integer limit,Integer page);
 
-    @DeleteMapping("/defaultFreights/{id}")
-    public Object deleteDefaultFreight(@PathVariable Integer id);
+    public Object addDefaultPieceFreight(DefaultPieceFreight defaultPieceFreight);
 
-    @DeleteMapping("/specialFreights/{id}")
-    public Object deleteSpecialFreight(@PathVariable Integer id);
+    public Object updateDefaultPieceFreight(Integer id,DefaultPieceFreight defaultPieceFreight);
 
-    @PutMapping("/specialFreights/{id}")
-    public Object updateSpecialFreight(@PathVariable Integer id,@RequestBody SpecialFreight specialFreight);
+    public void deleteDefaultPieceFreight(Integer id);
 
-    @DeleteMapping("/defaultFreights/{id}")
-    public Object updateDefaultFreight(@PathVariable Integer id,@RequestBody DefaultPieceFreight defaultPieceFreight);
+    public Object getSpecialFreights(Integer limit,Integer page);
 
-    @GetMapping("/freight/{orderid}")
-    public Integer getFreight(@PathVariable("orderid") String orderId);
+    public Object addSpecialFreight(SpecialFreight specialFreights);
+
+    public Object updateSpecialFreights(Integer id,SpecialFreight specialFreight);
+
+    public void deleteSpecialFreights(Integer id);
 }

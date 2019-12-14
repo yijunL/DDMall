@@ -17,4 +17,7 @@ public class DefaultFreightDao {
         return defaultFreightMapper.selectByPrimaryKey(id);
     }
 
+    public void deleteDefaultFreight(Integer id) {
+
+    }
 }
