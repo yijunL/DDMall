@@ -8,5 +8,5 @@ import xmu.oomall.domain.DefaultFreightPo;
 @Component
 public interface DefaultFreightMapper {
 
-    DefaultFreightPo selectByPrimaryKey(Long id);
+    DefaultFreightPo selectByPrimaryKey(Integer id);
 }

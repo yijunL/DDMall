@@ -13,8 +13,8 @@ public class DefaultFreightDao {
     @Autowired
     private DefaultFreightMapper defaultFreightMapper;
 
-    public int getDefaultFreights(){
-        return 1;
+    public DefaultFreightPo getDefaultFreights(Integer id){
+        return defaultFreightMapper.selectByPrimaryKey(id);
     }
 
 }

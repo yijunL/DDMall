@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import xmu.oomall.OomallApplication;
+import xmu.oomall.domain.DefaultFreightPo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,8 +18,8 @@ public class DefaultFreightDaoTest {
     @Test
     public void test()
     {
-        int a=defaultFreightDao.getDefaultFreights();
-        assertEquals(a, 1);
+        DefaultFreightPo defaultFreightPo =defaultFreightDao.getDefaultFreights(1);
+        assertEquals(defaultFreightPo.getId(), 1);
     }
 
 
