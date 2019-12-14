@@ -44,7 +44,7 @@ public class FootprintController {
      */
     @DeleteMapping("/footprints/{id}")
     public Object deleteFootprintById (@RequestParam Integer id) {
-        return null;
+        return footprintService.deleteFootprintById(id);
     }
 
     /**
