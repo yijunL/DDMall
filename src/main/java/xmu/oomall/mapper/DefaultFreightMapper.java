@@ -9,5 +9,5 @@ import xmu.oomall.domain.DefaultFreightPo;
 public interface DefaultFreightMapper {
 
     void deleteDefaultFreight(Integer id);
-
+    //void updateDefaultFreight(Integer id,DefaultFreightPo defaultFreightPo);
 }
