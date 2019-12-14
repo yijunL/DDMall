@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @Author Bexasusual
- * @Description: FootprintController
+ * @Description: FootprintMapper
  * @create 2019/12/14 13:30
  */
 @Mapper

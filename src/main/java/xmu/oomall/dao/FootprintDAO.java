@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * @Author Bexasusual
- * @Description: FootprintController
+ * @Description: FootprintDAO
  * @create 2019/12/14 13:30
  */
 @Repository
