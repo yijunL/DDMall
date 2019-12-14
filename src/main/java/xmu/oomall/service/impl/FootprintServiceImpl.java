@@ -2,7 +2,7 @@ package xmu.oomall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xmu.oomall.dao.FootprintDAO;
+import xmu.oomall.dao.FootprintDao;
 import xmu.oomall.domain.*;
 import xmu.oomall.service.FootprintService;
 
@@ -16,7 +16,8 @@ import java.util.List;
 
 @Service
 public class FootprintServiceImpl implements FootprintService {
-    @Autowired FootprintDAO footprintDAO;
+    @Autowired
+    FootprintDao footprintDao;
 
     /**
      * 用户获取足迹列表
@@ -27,7 +28,7 @@ public class FootprintServiceImpl implements FootprintService {
      */
     @Override
     public List<FootprintItemPo> listFootprintByCondition(Integer page, Integer limit) {
-        List<FootprintItemPo> footprintItemPos = footprintDAO.selectByCondition(page, limit);
+        List<FootprintItemPo> footprintItemPos = footprintDao.selectByCondition(page, limit);
         return footprintItemPos;
     }
 
@@ -39,7 +40,7 @@ public class FootprintServiceImpl implements FootprintService {
      */
     @Override
     public Boolean deleteFootprintById (Integer id) {
-        return footprintDAO.deleteFootprintById(id);
+        return footprintDao.deleteFootprintById(id);
     }
 
     /**
@@ -49,7 +50,7 @@ public class FootprintServiceImpl implements FootprintService {
      */
     @Override
     public List<FootprintItemPo> listAllFootprint() {
-        List<FootprintItemPo> footprintItemPos = footprintDAO.selectAll();
+        List<FootprintItemPo> footprintItemPos = footprintDao.selectAll();
         return footprintItemPos;
     }
 }

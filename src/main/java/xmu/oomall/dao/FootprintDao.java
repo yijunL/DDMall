@@ -14,7 +14,7 @@ import java.util.List;
  * @create 2019/12/14 13:30
  */
 @Repository
-public class FootprintDAO {
+public class FootprintDao {
     @Autowired
     private FootprintMapper footprintMapper;
 
