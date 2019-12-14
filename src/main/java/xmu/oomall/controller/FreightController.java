@@ -10,7 +10,7 @@ import xmu.oomall.service.FreightService;
 
 import javax.validation.constraints.NotNull;
 @RestController
-@RequestMapping("/admin-freightSerice")// /wx/order
+@RequestMapping("/admin-freightService")// /wx/order
 
 public class FreightController {
     @Autowired
