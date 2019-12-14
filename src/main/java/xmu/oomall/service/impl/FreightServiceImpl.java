@@ -1,5 +1,6 @@
 package xmu.oomall.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xmu.oomall.dao.DefaultFreightDao;
 import xmu.oomall.domain.DefaultFreight;
@@ -12,6 +13,9 @@ import java.util.List;
 
 @Service
 public class FreightServiceImpl implements FreightService {
+    @Autowired
+    private DefaultFreightDao defaultFreightDao;
+
     @Override
     public Object getDefaultFreights(Integer limit, Integer page) {
         return null;
