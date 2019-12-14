@@ -42,7 +42,7 @@ public class FootprintController {
      * @param id：Integer
      * @return Response.ok()
      */
-    @GetMapping("/footprints/{id}")
+    @DeleteMapping("/footprints/{id}")
     public Object deleteFootprintById (@RequestParam Integer id) {
         return null;
     }
