@@ -33,7 +33,7 @@ public class FreightServiceImpl implements FreightService {
 
     @Override
     public void deleteDefaultFreight(Integer id) {
-
+        defaultFreightDao.deleteDefaultFreight(id);
     }
 
     @Override

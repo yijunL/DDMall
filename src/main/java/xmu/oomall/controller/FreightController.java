@@ -1,16 +1,20 @@
 package xmu.oomall.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import xmu.oomall.domain.DefaultFreight;
 import xmu.oomall.domain.DefaultPieceFreight;
 import xmu.oomall.domain.SpecialFreight;
 import org.springframework.web.bind.annotation.*;
 import xmu.oomall.domain.SpecialFreight;
+import xmu.oomall.service.FreightService;
 
 import javax.validation.constraints.NotNull;
 @RestController
 @RequestMapping("/admin-freightSerice")// /wx/order
 
 public class FreightController {
+    @Autowired
+    private FreightService freightService;
 
     //    GET
     //    获取默认运费规则
@@ -49,7 +53,7 @@ public class FreightController {
     Pathvariable (id)*/
     @DeleteMapping("/defaultFreights/{id}")
     public void deleteDefaultFreight(@PathVariable Integer id){
-
+        freightService.deleteDefaultFreight(id);
     }
 
 
