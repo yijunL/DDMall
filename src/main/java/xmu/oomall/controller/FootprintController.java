@@ -28,7 +28,7 @@ public class FootprintController {
      *
      * @param page：Integer
      * @param limit：Integer
-     * @return List<FootprintItem>
+     * @return List<FootprintItemPo>
      */
     @GetMapping("/footprints")
     public Object listFootprintByCondition(@RequestParam Integer page,
@@ -50,7 +50,7 @@ public class FootprintController {
     /**
      * 用户删除足迹
      *
-     * @return List<FootprintItem>
+     * @return List<FootprintItemPo>
      */
     @GetMapping("/admin/footprints")
     public Object listFootprint() {

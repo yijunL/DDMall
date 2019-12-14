@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import xmu.oomall.controller.FootprintController;
+import xmu.oomall.domain.FootprintItem;
+import xmu.oomall.domain.FootprintItemPo;
+
+import java.util.List;
 
 /**
  * @Author Bexasusual
@@ -22,9 +26,9 @@ public interface FootprintService {
      *
      * @param page：Integer
      * @param limit：Integer
-     * @return List<FootprintItem>
+     * @return List<FootprintItemPo>
      */
-    public Object listFootprintByCondition(Integer page, Integer limit);
+    public List<FootprintItemPo> listFootprintByCondition(Integer page, Integer limit);
 
     /**
      * 用户删除足迹
@@ -37,7 +41,7 @@ public interface FootprintService {
     /**
      * 用户删除足迹
      *
-     * @return List<FootprintItem>
+     * @return List<FootprintItemPo>
      */
-    public Object listFootprint();
+    public List<FootprintItemPo> listFootprint();
 }

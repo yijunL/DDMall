@@ -23,10 +23,10 @@ public class FootprintServiceImpl implements FootprintService {
      *
      * @param page：Integer
      * @param limit：Integer
-     * @return List<FootprintItem>
+     * @return List<FootprintItemPo>
      */
     @Override
-    public Object listFootprintByCondition(Integer page, Integer limit) {
+    public List<FootprintItemPo> listFootprintByCondition(Integer page, Integer limit) {
         return null;
     }
 
@@ -44,10 +44,10 @@ public class FootprintServiceImpl implements FootprintService {
     /**
      * 用户删除足迹
      *
-     * @return List<FootprintItem>
+     * @return List<FootprintItemPo>
      */
     @Override
-    public Object listFootprint() {
+    public List<FootprintItemPo> listFootprint() {
         return null;
     }
 }
