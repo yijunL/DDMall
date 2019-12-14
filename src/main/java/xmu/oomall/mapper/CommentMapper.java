@@ -1,15 +1,12 @@
 package xmu.oomall.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
+import xmu.oomall.domain.CommentPo;
 
-/**
- * @author KingKong
- * @Description: CommentMapper
- * @create 2019/12/14 23:13
- */
+import java.util.List;
 
 @Mapper
-@Component
-public class CommentMapper {
+public interface CommentMapper {
+    List<CommentPo> selectByProductId(Integer id);
+
 }

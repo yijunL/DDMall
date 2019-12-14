@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xmu.oomall.dao.CommentDao;
 import xmu.oomall.domain.Comment;
+import xmu.oomall.domain.CommentPo;
 import xmu.oomall.service.CommentService;
 
 import java.util.List;
@@ -23,7 +24,8 @@ public class CommentServicempl implements CommentService {
 
 
     @Override
-    public List<Comment> getCommentsById(Integer id) {
-        return null;
+    public List<CommentPo> getCommentsById(Integer id) {
+        List<CommentPo> commentsOfProduct = commentDao.selectByProductId(id);
+        return commentsOfProduct;
     }
 }

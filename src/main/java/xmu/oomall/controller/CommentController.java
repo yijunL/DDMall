@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import xmu.oomall.domain.CommentPo;
 import xmu.oomall.service.CommentService;
+
+import java.util.List;
 
 /**
  * @author KingKong
@@ -29,7 +32,7 @@ public class CommentController {
      * @return List<Comment>
      */
     @GetMapping("/product/{id}/comments")
-    public Object getCommentsById(@RequestParam Integer id)
+    public List<CommentPo> getCommentsById(@RequestParam Integer id)
     {
         return commentService.getCommentsById(id);
     }

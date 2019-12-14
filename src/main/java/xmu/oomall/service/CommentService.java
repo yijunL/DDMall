@@ -2,6 +2,7 @@ package xmu.oomall.service;
 
 import org.springframework.stereotype.Service;
 import xmu.oomall.domain.Comment;
+import xmu.oomall.domain.CommentPo;
 
 import java.util.List;
 
@@ -19,6 +20,6 @@ public interface CommentService {
      * @param id
      * @return List<Comment>
      */
-    public List<Comment> getCommentsById(Integer id);
+    public List<CommentPo> getCommentsById(Integer id);
 
 }
