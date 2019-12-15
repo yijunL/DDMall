@@ -26,9 +26,9 @@ public interface FootprintService {
      *
      * @param page：Integer
      * @param limit：Integer
-     * @return List<FootprintItemPo>
+     * @return List<FootprintItem>
      */
-    public List<FootprintItemPo> listFootprintByCondition(Integer page, Integer limit);
+    public List<FootprintItem> listFootprintsByPage(Integer page, Integer limit);
 
     /**
      * 用户删除足迹
@@ -41,7 +41,7 @@ public interface FootprintService {
     /**
      * 用户删除足迹
      *
-     * @return List<FootprintItemPo>
+     * @return List<FootprintItem>
      */
-    public List<FootprintItemPo> listAllFootprint();
+    public List<FootprintItem> listFootprintsByCondition();
 }

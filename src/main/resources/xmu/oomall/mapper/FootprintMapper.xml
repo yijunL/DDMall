@@ -3,6 +3,6 @@
 <mapper namespace="xmu.oomall.mapper.FootprintMapper">
     <update id="deleteByUserId" parameterType="Integer">
         delete from footprint_item
-        where user_id = #{id}
+        where id = #{id}
     </update>
 </mapper>

@@ -24,12 +24,12 @@ public class FootprintServiceImpl implements FootprintService {
      *
      * @param page：Integer
      * @param limit：Integer
-     * @return List<FootprintItemPo>
+     * @return List<FootprintItem>
      */
     @Override
-    public List<FootprintItemPo> listFootprintByCondition(Integer page, Integer limit) {
-        List<FootprintItemPo> footprintItemPos = footprintDao.selectByCondition(page, limit);
-        return footprintItemPos;
+    public List<FootprintItem> listFootprintsByPage(Integer page, Integer limit) {
+        List<FootprintItem> footprintItems = footprintDao.selectByPage(page, limit);
+        return footprintItems;
     }
 
     /**
@@ -46,11 +46,11 @@ public class FootprintServiceImpl implements FootprintService {
     /**
      * 管理员查看足迹
      *
-     * @return List<FootprintItemPo>
+     * @return List<FootprintItem>
      */
     @Override
-    public List<FootprintItemPo> listAllFootprint() {
-        List<FootprintItemPo> footprintItemPos = footprintDao.selectAll();
-        return footprintItemPos;
+    public List<FootprintItem> listFootprintsByCondition() {
+        List<FootprintItem> footprintItems = footprintDao.selectByCondition();
+        return footprintItems;
     }
 }

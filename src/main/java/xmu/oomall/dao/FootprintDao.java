@@ -1,5 +1,6 @@
 package xmu.oomall.dao;
 
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import xmu.oomall.domain.*;
@@ -23,11 +24,12 @@ public class FootprintDao {
      *
      * @param page：Integer
      * @param limit：Integer
-     * @return List<FootprintItemPo>
+     * @return List<FootprintItem>
      */
-    public List<FootprintItemPo> selectByCondition(Integer page, Integer limit) {
-        List<FootprintItemPo> footprintItemPos = footprintMapper.selectByCondition(page, limit);
-        return footprintItemPos;
+    public List<FootprintItem> selectByPage(Integer page, Integer limit) {
+        PageHelper.startPage(page, limit); //use page-helper
+        List<FootprintItem> footprintItems = footprintMapper.select();
+        return footprintItems;
     }
 
     /**
@@ -43,10 +45,10 @@ public class FootprintDao {
     /**
      * 管理员查看足迹
      *
-     * @return List<FootprintItemPo>
+     * @return List<FootprintItem>
      */
-    public List<FootprintItemPo> selectAll() {
-        List<FootprintItemPo> footprintItemPos = footprintMapper.selectAll();
-        return footprintItemPos;
+    public List<FootprintItem> selectByCondition() {
+        List<FootprintItem> footprintItems = footprintMapper.selectAll();
+        return footprintItems;
     }
 }
