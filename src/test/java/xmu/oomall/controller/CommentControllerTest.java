@@ -4,6 +4,7 @@ package xmu.oomall.controller;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import xmu.oomall.domain.Comment;
 import xmu.oomall.domain.CommentPo;
 
 import java.util.List;
@@ -15,6 +16,6 @@ public class CommentControllerTest {
 
     @Test
     public void commentControllerTest(){
-          List<CommentPo> commentPoList=commentController.getCommentsById(1);
+          commentController.getCommentsById(1);
     }
 }

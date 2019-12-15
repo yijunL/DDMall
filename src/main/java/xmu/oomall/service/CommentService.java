@@ -16,10 +16,11 @@ import java.util.List;
 public interface CommentService {
 
     /**
+     *用户获取产品下评论列表
      *
      * @param id
      * @return List<Comment>
      */
-    public List<CommentPo> getCommentsById(Integer id);
+    public List<Comment> getCommentsById(Integer id);
 
 }

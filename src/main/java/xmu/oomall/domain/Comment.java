@@ -19,4 +19,5 @@ public class Comment extends CommentPo {
     private User user;
 
     private ProductPo productPo;
+
 }

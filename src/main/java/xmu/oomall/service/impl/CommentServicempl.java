@@ -23,9 +23,15 @@ public class CommentServicempl implements CommentService {
     CommentDao commentDao;
 
 
+    /**
+     * 用户获取产品下评论列表
+     *
+     * @param id
+     * @return
+     */
     @Override
-    public List<CommentPo> getCommentsById(Integer id) {
-        List<CommentPo> commentsOfProduct = commentDao.selectByProductId(id);
+    public List<Comment> getCommentsById(Integer id) {
+        List<Comment> commentsOfProduct = commentDao.selectByProductId(id);
         return commentsOfProduct;
     }
 }
