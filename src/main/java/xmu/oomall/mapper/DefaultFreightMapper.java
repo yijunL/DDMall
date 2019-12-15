@@ -1,13 +1,12 @@
 package xmu.oomall.mapper;
-
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
+import org.apache.ibatis.annotations.Param;
 import xmu.oomall.domain.DefaultFreightPo;
 
-@Mapper
-@Component
 public interface DefaultFreightMapper {
-
     void deleteDefaultFreight(Integer id);
-    //void updateDefaultFreight(Integer id,DefaultFreightPo defaultFreightPo);
+
+
+    DefaultFreightPo findAllById(@Param("id")Integer id);
+
+
 }
