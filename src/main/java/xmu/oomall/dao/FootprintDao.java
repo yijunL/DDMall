@@ -80,6 +80,6 @@ public class FootprintDao {
         for(FootprintItemPo footprintItemPo : footprintItemPoList) {
             footprintItemList.add(footprintItem(footprintItemPo));
         }
-        return null;
+        return footprintItemList;
     }
 }
