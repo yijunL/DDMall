@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import xmu.oomall.domain.*;
 import xmu.oomall.mapper.FootprintMapper;
+import xmu.oomall.util.Copyer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,8 @@ public class FootprintDao {
      */
     public List<FootprintItem> selectByPage(Integer page, Integer limit) {
         PageHelper.startPage(page, limit); //use page-helper
-        List<FootprintItem> footprintItems = footprintMapper.select();
+        List<FootprintItemPo> footprintItemPos = footprintMapper.select();
+        List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
         return footprintItems;
     }
 
@@ -48,7 +50,36 @@ public class FootprintDao {
      * @return List<FootprintItem>
      */
     public List<FootprintItem> selectByCondition() {
-        List<FootprintItem> footprintItems = footprintMapper.selectAll();
+        List<FootprintItemPo> footprintItemPos = footprintMapper.selectByCondition();
+        List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
         return footprintItems;
+    }
+
+    /**
+     * 将FootprintItemPo对象转换为FootprintItem
+     *
+     * @param footprintItemPo: FootprintItemPo
+     * @return FootprintItem
+     */
+    private FootprintItem footprintItem(FootprintItemPo footprintItemPo) {
+        FootprintItem footprintItem = new FootprintItem();
+        return Copyer.Copy(footprintItemPo, footprintItem) ? footprintItem : null;
+    }
+
+    /**
+     * 将List<FootprintItemPo>转换为List<FootprintItem>
+     *
+     * @param footprintItemPoList: FootprintItemPo
+     * @return FootprintItem
+     */
+    private List<FootprintItem> footprintItemList(List<FootprintItemPo> footprintItemPoList) {
+        if(footprintItemPoList == null){
+            return null;
+        }
+        List<FootprintItem> footprintItemList = new ArrayList<>();
+        for(FootprintItemPo footprintItemPo : footprintItemPoList) {
+            footprintItemList.add(footprintItem(footprintItemPo));
+        }
+        return null;
     }
 }

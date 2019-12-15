@@ -18,9 +18,9 @@ public interface FootprintMapper {
     /**
      * 用户获取足迹列表
      *
-     * @return List<FootprintItem>
+     * @return List<FootprintItemPo>
      */
-    List<FootprintItem> select();
+    List<FootprintItemPo> select();
 
     /**
      * 用户删除足迹
@@ -33,7 +33,7 @@ public interface FootprintMapper {
     /**
      * 管理员查看足迹
      *
-     * @return List<FootprintItem>
+     * @return List<FootprintItemPo>
      */
-    List<FootprintItem> selectAll();
+    List<FootprintItemPo> selectByCondition();
 }
