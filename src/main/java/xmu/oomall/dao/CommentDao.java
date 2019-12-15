@@ -32,6 +32,11 @@ public class CommentDao {
         return commentsList(commentsOfProduct);
     }
 
+    /**
+     * 将commentPo列表转换成comment列表
+     *
+     * @return commentsList
+     */
     private List<Comment> commentsList(List<CommentPo> commentPos){
         List<Comment> comments=new ArrayList<Comment>();
         for(CommentPo commentPo:commentPos){
@@ -40,6 +45,11 @@ public class CommentDao {
         return comments;
     }
 
+    /**
+     *将commentPo转换成comment
+     *
+     * @return comments
+     */
     private Comment comments(CommentPo commentPo){
         Comment comment = new Comment();
         return Copyer.Copy(commentPo,comment)?comment:null;
