@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @Author Bexasusual
- * @Description: FootprintController
+ * @Description: FootprintMapper
  * @create 2019/12/14 13:30
  */
 @Mapper
@@ -18,11 +18,9 @@ public interface FootprintMapper {
     /**
      * 用户获取足迹列表
      *
-     * @param page：Integer
-     * @param limit：Integer
      * @return List<FootprintItemPo>
      */
-    List<FootprintItemPo> selectByCondition(Integer page, Integer limit);
+    List<FootprintItemPo> select();
 
     /**
      * 用户删除足迹
@@ -37,5 +35,5 @@ public interface FootprintMapper {
      *
      * @return List<FootprintItemPo>
      */
-    List<FootprintItemPo> selectAll();
+    List<FootprintItemPo> selectByCondition();
 }

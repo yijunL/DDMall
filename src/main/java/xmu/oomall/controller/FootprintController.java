@@ -28,10 +28,10 @@ public class FootprintController {
      *
      * @param page：Integer
      * @param limit：Integer
-     * @return List<FootprintItemPo>
+     * @return List<FootprintItem>
      */
     @GetMapping("/footprints")
-    public Object listFootprintByCondition(@RequestParam Integer page,
+    public Object listFootprintsByPage(@RequestParam Integer page,
                                            @RequestParam Integer limit) {
         return null;
     }
@@ -43,17 +43,17 @@ public class FootprintController {
      * @return Response.ok()
      */
     @DeleteMapping("/footprints/{id}")
-    public Object deleteFootprintById (@RequestParam Integer id) {
+    public Object deleteFootprintById (@PathVariable Integer id) {
         return footprintService.deleteFootprintById(id);
     }
 
     /**
      * 管理员查看足迹
      *
-     * @return List<FootprintItemPo>
+     * @return List<FootprintItem>
      */
     @GetMapping("/admin/footprints")
-    public Object listAllFootprint() {
+    public Object listFootprintsByCondition() {
         return null;
     }
 }

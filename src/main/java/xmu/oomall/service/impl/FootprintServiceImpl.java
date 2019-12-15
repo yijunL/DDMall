@@ -2,7 +2,7 @@ package xmu.oomall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xmu.oomall.dao.FootprintDAO;
+import xmu.oomall.dao.FootprintDao;
 import xmu.oomall.domain.*;
 import xmu.oomall.service.FootprintService;
 
@@ -10,25 +10,26 @@ import java.util.List;
 
 /**
  * @Author Bexasusual
- * @Description: FootprintController
+ * @Description: FootprintServiceImpl
  * @create 2019/12/14 13:30
  */
 
 @Service
 public class FootprintServiceImpl implements FootprintService {
-    @Autowired FootprintDAO footprintDAO;
+    @Autowired
+    FootprintDao footprintDao;
 
     /**
      * 用户获取足迹列表
      *
      * @param page：Integer
      * @param limit：Integer
-     * @return List<FootprintItemPo>
+     * @return List<FootprintItem>
      */
     @Override
-    public List<FootprintItemPo> listFootprintByCondition(Integer page, Integer limit) {
-        List<FootprintItemPo> footprintItemPos = footprintDAO.selectByCondition(page, limit);
-        return footprintItemPos;
+    public List<FootprintItem> listFootprintsByPage(Integer page, Integer limit) {
+        List<FootprintItem> footprintItems = footprintDao.selectByPage(page, limit);
+        return footprintItems;
     }
 
     /**
@@ -39,17 +40,17 @@ public class FootprintServiceImpl implements FootprintService {
      */
     @Override
     public Boolean deleteFootprintById (Integer id) {
-        return footprintDAO.deleteFootprintById(id);
+        return footprintDao.deleteFootprintById(id);
     }
 
     /**
      * 管理员查看足迹
      *
-     * @return List<FootprintItemPo>
+     * @return List<FootprintItem>
      */
     @Override
-    public List<FootprintItemPo> listAllFootprint() {
-        List<FootprintItemPo> footprintItemPos = footprintDAO.selectAll();
-        return footprintItemPos;
+    public List<FootprintItem> listFootprintsByCondition() {
+        List<FootprintItem> footprintItems = footprintDao.selectByCondition();
+        return footprintItems;
     }
 }
