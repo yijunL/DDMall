@@ -1,13 +1,12 @@
 package xmu.oomall.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import xmu.oomall.domain.DefaultFreight;
-import xmu.oomall.domain.DefaultPieceFreight;
-import xmu.oomall.domain.SpecialFreight;
+import xmu.oomall.domain.*;
 import org.springframework.web.bind.annotation.*;
 import xmu.oomall.domain.SpecialFreight;
 import xmu.oomall.service.FreightService;
 
+import javax.print.attribute.standard.Destination;
 import javax.validation.constraints.NotNull;
 @RestController
 @RequestMapping("/admin-freightService")// /wx/order
@@ -30,9 +29,9 @@ public class FreightController {
     /defaultFreights
     新增默认运费规则
     requestbody defaultFreights
-    return defaultFreights*/
+    return defaultFreightsPo*/
     @PostMapping("/defaultFreights")
-    public Object addDefaultFreight(@RequestBody DefaultFreight defaultFreight)
+    public Object addDefaultFreight(@RequestBody DefaultFreightPo defaultFreightPo)
     {
         return null;
     }
@@ -40,10 +39,10 @@ public class FreightController {
     /*PUT
     /defaultFreights/{id}
     修改默认运费规则
-    pathvariable (id)  requestbody (defaultFreights)
-    return defaultFreights*/
+    pathvariable (id)  requestbody (defaultFreightsPo)
+    return defaultFreightsPo*/
     @PutMapping("/defaultFreights/{id}")
-    public Object updateDefaultFreight(@PathVariable Integer id,@RequestBody DefaultFreight defaultFreight){
+    public Object updateDefaultFreight(@PathVariable Integer id,@RequestBody DefaultFreightPo defaultFreightPo){
         return null;
     }
 
@@ -59,7 +58,7 @@ public class FreightController {
 
     //    GET
     //    获取默认运费规则(按件计)
-    //return List<defaultFreights>
+    //return List<defaultFreightsPo>
     @GetMapping("/defaultPieceFreight ")
     public Object getDefaultPieceFreight(@RequestParam Integer limit,@RequestParam Integer page)
     {
@@ -67,11 +66,14 @@ public class FreightController {
     }
 
 
-    /*    POST
-    /defaultPieceFreight
-    新增默认运费规则(按件计)
-    requestbody defaultFreights
-    return DefaultPieceFreight*/
+//    post
+// /defaultPieceFreights
+//            新增默认比率
+//
+//    Destination
+//            unitRate
+//    requireDays
+
     @PostMapping("/defaultPieceFreight")
     public Object addDefaultPieceFreight(@RequestBody DefaultPieceFreight defaultPieceFreight)
     {

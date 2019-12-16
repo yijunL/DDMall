@@ -25,7 +25,6 @@ public class DefaultFreightPo {
      * eg. {"dest": [1, 2, 3, 4, 5]}
      */
     private String destination;
-
     /**
      * 快递重量模板中快递首重0.5kg的价格
      */
