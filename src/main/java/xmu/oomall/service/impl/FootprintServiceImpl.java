@@ -53,4 +53,16 @@ public class FootprintServiceImpl implements FootprintService {
         List<FootprintItem> footprintItems = footprintDao.selectByCondition();
         return footprintItems;
     }
+
+    /**
+     * 内部接口：提供给Goods模块，增加用户足迹
+     *
+     * @param userId: Integer
+     * @param footprintItemPo: FootprintItemPo
+     * @return FootprintItemPo
+     */
+    @Override
+    public FootprintItemPo addFootprint(Integer userId, FootprintItemPo footprintItemPo) {
+        return footprintDao.addFootprint(userId, footprintItemPo);
+    }
 }

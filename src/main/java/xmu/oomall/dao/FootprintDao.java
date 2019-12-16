@@ -56,6 +56,19 @@ public class FootprintDao {
     }
 
     /**
+     * 内部接口：提供给Goods模块，增加用户足迹
+     *
+     * @param userId: Integer
+     * @param footprintItemPo: FootprintItemPo
+     * @return FootprintItemPo
+     */
+    public FootprintItemPo addFootprint(Integer userId, FootprintItemPo footprintItemPo) { //需在controller层进行合法性判断
+        footprintItemPo.setUserId(userId);
+        if (footprintMapper.insertSelective(footprintItemPo) > 0) return footprintItemPo;
+        else return  null;
+    }
+
+    /**
      * 将FootprintItemPo对象转换为FootprintItem
      *
      * @param footprintItemPo: FootprintItemPo
