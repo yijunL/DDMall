@@ -3,6 +3,7 @@ package xmu.oomall.service;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import xmu.oomall.domain.DefaultFreight;
+import xmu.oomall.domain.DefaultFreightPo;
 import xmu.oomall.domain.DefaultPieceFreight;
 import xmu.oomall.domain.SpecialFreight;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Service
 public interface FreightService {
 
-    public Object getDefaultFreights(Integer limit,Integer page);
+    public List<DefaultFreight> getDefaultFreights(Integer limit, Integer page);
 
     public Object addDefaultFreight(DefaultFreight defaultFreight);
 

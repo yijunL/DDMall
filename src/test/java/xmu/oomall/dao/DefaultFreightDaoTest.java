@@ -8,6 +8,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import xmu.oomall.OomallApplication;
 import xmu.oomall.domain.DefaultFreightPo;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -15,9 +17,15 @@ public class DefaultFreightDaoTest {
     @Autowired
     private DefaultFreightDao defaultFreightDao;
 
+//    @Test
+//    public void deleteTest()
+//    {
+//        defaultFreightDao.deleteDefaultFreight(1);
+//    }
     @Test
-    public void defaultFreightDaoTest()
+    public void findAllTest()
     {
-        defaultFreightDao.deleteDefaultFreight(1);
+        List<DefaultFreightPo> defaultFreightPoList=defaultFreightDao.getDefaultFreights();
+        assertEquals(defaultFreightPoList.get(0).getId(),1);
     }
 }

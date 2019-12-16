@@ -9,39 +9,52 @@ import xmu.oomall.service.FreightService;
 
 import javax.print.attribute.standard.Destination;
 import javax.validation.constraints.NotNull;
+import java.util.List;
+
 @RestController
 @RequestMapping("/admin-freightService")// /wx/order
+
+/**
+ * @Author YijunL
+ * @Description: FootprintController
+ * @create 2019/12/12 13:30
+ */
 
 public class FreightController {
     @Autowired
     private FreightService freightService;
 
-    //    GET
-    //    获取默认运费规则
-    //return List<defaultFreights>
+    /**
+     * @Description: 获取所有默认运费模板
+     * @param limit
+     * @param page
+     * @return List<DefaultFreightPo>
+     */
     @GetMapping("/defaultFreights")
-    public Object getDefaultFreights(@RequestParam Integer limit,@RequestParam Integer page)
+    public List<DefaultFreightPo> getDefaultFreights(@RequestParam Integer limit, @RequestParam Integer page)
     {
+
         return null;
     }
 
 
-    /*    POST
-    /defaultFreights
-    新增默认运费规则
-    requestbody defaultFreights
-    return defaultFreightsPo*/
-    @PostMapping("/defaultFreights")
+    /**
+     * @Description: 添加一个运费模板
+     * @param defaultFreightPo
+     * @return
+     */
+    @PostMapping("/defaultFreightsPo")
     public Object addDefaultFreight(@RequestBody DefaultFreightPo defaultFreightPo)
     {
         return null;
     }
 
-    /*PUT
-    /defaultFreights/{id}
-    修改默认运费规则
-    pathvariable (id)  requestbody (defaultFreightsPo)
-    return defaultFreightsPo*/
+    /**
+     * 更新默认运费模板
+     * @param id
+     * @param defaultFreightPo
+     * @return
+     */
     @PutMapping("/defaultFreights/{id}")
     public Object updateDefaultFreight(@PathVariable Integer id,@RequestBody DefaultFreightPo defaultFreightPo){
         return null;
@@ -103,10 +116,11 @@ public class FreightController {
     }
 
 
-
-    //    GET
-    //    获取特殊运费规则
-    //return specialFreights
+    /**
+     * @Description: 获取特殊运费模板
+     * @param id
+     * @return SpecialFreight
+     */
     @GetMapping("/specialFreights/{id}")
     public SpecialFreight getSpecialFreights(@PathVariable Integer id)
     {

@@ -3,14 +3,15 @@ package xmu.oomall.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import xmu.oomall.domain.SpecialFreight;
-import xmu.oomall.mapper.SpecialFreightMapper;
+import xmu.oomall.mapper.OomallSpecialFreightMapper;
 
 @Repository
 public class SpecialFreightDao {
     @Autowired
-    SpecialFreightMapper specialFreightMapper;
+    OomallSpecialFreightMapper oomallSpecialFreightMapper;
 
     public SpecialFreight getSpecialFreights(Integer id) {
-        return specialFreightMapper.findAllById(id);
+        return oomallSpecialFreightMapper.findAllById(id);
     }
+
 }

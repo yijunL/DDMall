@@ -23,8 +23,8 @@ public class FreightServiceImpl implements FreightService {
     private DefaultPieceFreightDao defaultPieceFreightDao;
 
     @Override
-    public Object getDefaultFreights(Integer limit, Integer page) {
-        return null;
+    public List<DefaultFreight> getDefaultFreights(Integer limit, Integer page) {
+        return defaultFreightDao.getDefaultFreights();
     }
 
     @Override
