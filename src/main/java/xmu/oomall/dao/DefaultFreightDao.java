@@ -22,10 +22,15 @@ public class DefaultFreightDao {
     }
 
     public List<DefaultFreightPo> getDefaultFreights(Integer page,Integer limit){
-
-        PageHelper.startPage(page, limit);
-        return oomallDefaultFreightMapper.findAllByBeDeletedLessThan(1);
+        int begin=(page-1)*limit;
+        int end=begin+limit;
+        List<DefaultFreightPo>defaultFreightPoList= oomallDefaultFreightMapper.findAllByBeDeletedLessThan(1);
+        if(defaultFreightPoList.size()<end)      //处于最后一页时
+            return defaultFreightPoList.subList(begin,defaultFreightPoList.size());
+        else
+            return defaultFreightPoList.subList(begin,end);
     }
+
 
 
 

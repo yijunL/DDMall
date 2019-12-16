@@ -25,7 +25,7 @@ public class DefaultFreightDaoTest {
     @Test
     public void findAllTest()
     {
-        List<DefaultFreightPo> defaultFreightPoList=defaultFreightDao.getDefaultFreights(1,2);
-        assertEquals(defaultFreightPoList.get(0).getId(),1);
+        List<DefaultFreightPo> defaultFreightPoList=defaultFreightDao.getDefaultFreights(2,2);
+        assertEquals(defaultFreightPoList.get(0).getId(),3);
     }
 }
