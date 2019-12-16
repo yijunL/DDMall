@@ -27,8 +27,8 @@ public class FootprintServiceImpl implements FootprintService {
      * @return List<FootprintItem>
      */
     @Override
-    public List<FootprintItem> listFootprintsByPage(Integer page, Integer limit) {
-        List<FootprintItem> footprintItems = footprintDao.selectByPage(page, limit);
+    public List<FootprintItem> listFootprintsByUserId(Integer page, Integer limit) {
+        List<FootprintItem> footprintItems = footprintDao.selectByUserId(page, limit);
         return footprintItems;
     }
 
