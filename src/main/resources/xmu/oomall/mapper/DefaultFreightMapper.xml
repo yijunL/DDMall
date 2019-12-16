@@ -23,7 +23,7 @@
     over100_price, over300_price, require_days, gmt_create, gmt_modified, is_deleted
   </sql>
     <update id="deleteDefaultFreight" parameterType="Integer">
-        update default_freight
+        update oomall_default_freight
         set is_deleted=1
         where id = #{id}
     </update>
@@ -32,7 +32,7 @@
   <select id="findAllById" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
-    from default_freight
+    from oomall_default_freight
     where id=#{id,jdbcType=BIGINT}
   </select>
   <!--    &lt;update id="updateDefaultFreight" parameterType="Integer"&gt;-->

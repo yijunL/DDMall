@@ -16,7 +16,7 @@
       <arg column="is_deleted" javaType="java.lang.Boolean" jdbcType="BIT"/>
     </constructor>
   </resultMap>
-  
+
   
   <resultMap id="BaseResultMap" type="xmu.oomall.domain.CommentPo" autoMapping="true">
     <!--@mbg.generated-->
@@ -43,7 +43,7 @@
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
-    from comment
+    from oomall_comment
     where product_id = #{id,jdbcType=BIGINT}
   </select>
 
@@ -51,7 +51,7 @@
   <select id="findAllByProductId" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
-    from comment
+    from oomall_comment
     where product_id=#{productId}
   </select>
 

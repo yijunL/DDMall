@@ -15,11 +15,11 @@
     id, gmt_create, birth_time, user_id, goods_id
   </sql>
     <delete id="deleteByUserId" parameterType="java.lang.Integer">
-        delete from footprint_item
+        delete from oomall_footprint_item
         where id = #{id}
     </delete>
     <select id="selectByCondition" resultType="xmu.oomall.domain.FootprintItemPo">
-        select from footprint_item
+        select from oomall_footprint_item
         <trim>
             <if test="userId != null || goodsId != null">
                 where
