@@ -7,7 +7,7 @@ import xmu.oomall.domain.CommentPo;
 import java.util.List;
 
 @Mapper
-public interface CommentMapper {
+public interface OomallCommentMapper {
 
 
     /**
@@ -33,6 +33,17 @@ public interface CommentMapper {
      * @return 0:失败 1：成功
      */
     int deleteById(@Param("id")Integer id);
+
+    /**
+     * 管理员审核单条评论
+     *
+     * @param updated
+     * @param id
+     * @return
+     */
+    int updateById(@Param("updated")CommentPo updated,@Param("id")Integer id);
+
+
 
 
 
