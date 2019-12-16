@@ -20,7 +20,7 @@ public class DefaultFreightDao {
         return oomallDefaultFreightMapper.deleteDefaultFreight(id);
     }
 
-    public List<DefaultFreightPo> getDefaultFreights(){
+    public List<DefaultFreightPo> getDefaultFreights(Integer limit,Integer page){
         return oomallDefaultFreightMapper.findAllByBeDeletedLessThan(1);
     }
 

@@ -34,7 +34,7 @@ public class FreightController {
     public List<DefaultFreightPo> getDefaultFreights(@RequestParam Integer limit, @RequestParam Integer page)
     {
 
-        return null;
+        return freightService.getDefaultFreights(1,2);
     }
 
 

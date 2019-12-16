@@ -21,7 +21,7 @@ public class FreightServiceImpl implements FreightService {
 
     @Override
     public List<DefaultFreightPo> getDefaultFreights(Integer limit, Integer page) {
-        return defaultFreightDao.getDefaultFreights();
+        return defaultFreightDao.getDefaultFreights(limit,page);
     }
 
     @Override
