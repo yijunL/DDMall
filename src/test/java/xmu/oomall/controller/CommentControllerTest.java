@@ -27,8 +27,8 @@ public class CommentControllerTest {
         commentPo.setStatusCode(0);
         commentPo.setUserId(333);
 
-          //commentController.addComment(commentPo);
+        //  commentController.addComment(commentPo);
 
-          System.out.println(commentController.deleteComment(111));
+         System.out.println(commentController.deleteComment(111));
     }
 }

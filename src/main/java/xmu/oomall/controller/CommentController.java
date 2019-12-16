@@ -1,6 +1,7 @@
 package xmu.oomall.controller;
 
 
+import org.apache.tomcat.util.http.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xmu.oomall.domain.Comment;
@@ -35,6 +36,10 @@ public class CommentController {
     @GetMapping("/product/{id}/comments")
     public Object getCommentsById(@RequestParam Integer id)
     {
+        if(id==null){
+            //401
+
+        }
         List<Comment> commentPoList=commentService.getCommentsById(id);
        /* User user=userService.getUserById(commentPoList.get(0).getUserId());
         ProductPo productPo=productService.getProductPoById(id);
@@ -51,7 +56,7 @@ public class CommentController {
      * @param commentPo
      * @return 0:失败 1：成功
      */
-    @PostMapping("/product/{id}/comments")
+    @PostMapping("/product/{id}/comments")//id是否需要？
     public Object addComment(@RequestBody CommentPo commentPo){
         return commentService.addComment(commentPo);
     }

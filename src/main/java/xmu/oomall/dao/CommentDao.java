@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import xmu.oomall.domain.Comment;
 import xmu.oomall.domain.CommentPo;
-import xmu.oomall.mapper.CommentMapper;
+import xmu.oomall.mapper.OomallCommentMapper;
 import xmu.oomall.util.Copyer;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.List;
 @Repository
 public class CommentDao {
     @Autowired
-    private CommentMapper commentMapper;
+    private OomallCommentMapper commentMapper;
 
     /**
      * 用户获取产品下评论列表
@@ -54,6 +54,10 @@ public class CommentDao {
         if(commentMapper.deleteById(id)>0)
             return 1;
         else return 0;
+    }
+
+    public Comment updateComment(CommentPo commentPo,Integer id){
+        return null;
     }
 
 
