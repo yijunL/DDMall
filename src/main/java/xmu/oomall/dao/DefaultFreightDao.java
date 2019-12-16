@@ -1,5 +1,6 @@
 package xmu.oomall.dao;
 
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import xmu.oomall.domain.DefaultFreight;
@@ -20,7 +21,9 @@ public class DefaultFreightDao {
         return oomallDefaultFreightMapper.deleteDefaultFreight(id);
     }
 
-    public List<DefaultFreightPo> getDefaultFreights(Integer limit,Integer page){
+    public List<DefaultFreightPo> getDefaultFreights(Integer page,Integer limit){
+
+        PageHelper.startPage(page, limit);
         return oomallDefaultFreightMapper.findAllByBeDeletedLessThan(1);
     }
 
