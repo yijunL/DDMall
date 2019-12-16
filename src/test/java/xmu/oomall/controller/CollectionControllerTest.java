@@ -8,26 +8,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 import xmu.oomall.OomallApplication;
 import xmu.oomall.domain.DefaultFreight;
 import xmu.oomall.domain.DefaultFreightPo;
-import xmu.oomall.domain.FootprintItemPo;
 import xmu.oomall.service.FreightService;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class FootprintControllerTest {
+public class CollectionControllerTest {
     @Autowired
-    private FootprintController footprintController;
-
-//    @Test
-//    public void footprintControllerTest() {
-//        footprintController.deleteFootprintById(1);
-//    }
+    private CollectionController collectionController;
 
     @Test
-    void setFootprintController() {
-        FootprintItemPo footprintItemPo = new FootprintItemPo();
-        footprintItemPo.setGoodsId(12);
-        footprintItemPo.setId(99);
-        footprintController.addFootprint(177, footprintItemPo);
+    public void CollectionControllerTest()
+    {
+        collectionController.deleteCollection(1);
     }
 }

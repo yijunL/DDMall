@@ -56,4 +56,15 @@ public class FootprintController {
     public Object listFootprintsByCondition() {
         return null;
     }
+
+    /**
+     * 内部接口：提供给Goods模块，增加足迹
+     *
+     * @param
+     */
+    @PostMapping("/footprints")
+    public Object addFootprint(@PathVariable Integer userId, @RequestBody FootprintItemPo footprintItemPo) {
+        if(userId == null || footprintItemPo == null) return null; //返回响应值
+        return footprintService.addFootprint(userId, footprintItemPo);
+    }
 }
