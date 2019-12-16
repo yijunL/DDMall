@@ -5,10 +5,7 @@ import org.springframework.stereotype.Service;
 import xmu.oomall.dao.DefaultFreightDao;
 import xmu.oomall.dao.DefaultPieceFreightDao;
 import xmu.oomall.dao.SpecialFreightDao;
-import xmu.oomall.domain.DefaultFreight;
-import xmu.oomall.domain.DefaultFreightPo;
-import xmu.oomall.domain.DefaultPieceFreight;
-import xmu.oomall.domain.SpecialFreight;
+import xmu.oomall.domain.*;
 import xmu.oomall.service.FreightService;
 
 import java.util.List;
@@ -23,19 +20,20 @@ public class FreightServiceImpl implements FreightService {
     private DefaultPieceFreightDao defaultPieceFreightDao;
 
     @Override
-    public Object getDefaultFreights(Integer limit, Integer page) {
+    public List<DefaultFreightPo> getDefaultFreights(Integer page, Integer limit) {
+        return defaultFreightDao.getDefaultFreights(page,limit);
+    }
+
+    @Override
+    public DefaultFreightPo addDefaultFreight(DefaultFreightPo defaultFreightPo) {
         return null;
     }
 
     @Override
-    public Object addDefaultFreight(DefaultFreight defaultFreight) {
+    public DefaultFreightPo updateDefaultFreight(Integer id, DefaultFreightPo DefaultFreightPo) {
         return null;
     }
 
-    @Override
-    public Object updateDefaultFreight(Integer id, DefaultFreight defaultFreight) {
-        return null;
-    }
 
     @Override
     public boolean deleteDefaultFreight(Integer id) {
@@ -43,17 +41,17 @@ public class FreightServiceImpl implements FreightService {
     }
 
     @Override
-    public Object getDefaultPieceFreight(Integer limit, Integer page) {
+    public DefaultPieceFreightPo getDefaultPieceFreight(Integer page, Integer limit) {
         return null;
     }
 
     @Override
-    public Object addDefaultPieceFreight(DefaultPieceFreight defaultPieceFreight) {
+    public DefaultPieceFreightPo addDefaultPieceFreight(DefaultPieceFreightPo defaultPieceFreightPo) {
         return null;
     }
 
     @Override
-    public Object updateDefaultPieceFreight(Integer id, DefaultPieceFreight defaultPieceFreight) {
+    public DefaultPieceFreightPo updateDefaultPieceFreight(Integer id, DefaultPieceFreightPo defaultPieceFreightPo) {
         return null;
     }
 
@@ -64,16 +62,21 @@ public class FreightServiceImpl implements FreightService {
 
     @Override
     public SpecialFreight getSpecialFreights(Integer id) {
+        return specialFreightDao.getSpecialFreights(id);
+    }
+
+    @Override
+    public List<SpecialFreight> getAllSpecialFreight(Integer page, Integer limit) {
         return null;
     }
 
     @Override
-    public Object addSpecialFreight(SpecialFreight specialFreights) {
+    public SpecialFreight addSpecialFreight(SpecialFreight specialFreights) {
         return null;
     }
 
     @Override
-    public Object updateSpecialFreights(Integer id, SpecialFreight specialFreight) {
+    public SpecialFreight updateSpecialFreights(Integer id, SpecialFreight specialFreight) {
         return null;
     }
 
@@ -81,4 +84,6 @@ public class FreightServiceImpl implements FreightService {
     public boolean deleteSpecialFreights(Integer id) {
         return false;
     }
+
+
 }

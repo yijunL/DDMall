@@ -1,4 +1,4 @@
-package xmu.oomall.dao;
+package xmu.oomall.controller;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.exceptions.verification.MoreThanAllowedActualInvocations;
@@ -6,26 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import xmu.oomall.OomallApplication;
+import xmu.oomall.domain.DefaultFreight;
 import xmu.oomall.domain.DefaultFreightPo;
-
-import java.util.List;
+import xmu.oomall.service.FreightService;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class DefaultFreightDaoTest {
+public class CollectionControllerTest {
     @Autowired
-    private DefaultFreightDao defaultFreightDao;
+    private CollectionController collectionController;
 
-//    @Test
-//    public void deleteTest()
-//    {
-//        defaultFreightDao.deleteDefaultFreight(1);
-//    }
     @Test
-    public void findAllTest()
+    public void CollectionControllerTest()
     {
-        List<DefaultFreightPo> defaultFreightPoList=defaultFreightDao.getDefaultFreights(2,2);
-        assertEquals(defaultFreightPoList.get(0).getId(),3);
+        collectionController.deleteCollection(1);
     }
 }
