@@ -20,11 +20,53 @@ public class DefaultFreightDao {
         return oomallDefaultFreightMapper.deleteDefaultFreight(id);
     }
 
-    public List<DefaultFreight> getDefaultFreights(){
-
-        List<DefaultFreightPo> defaultFreightListPo= oomallDefaultFreightMapper.findAllByBeDeletedLessThan(1);
-        return changeDefaultFreightList(defaultFreightListPo);
+    public List<DefaultFreightPo> getDefaultFreights(){
+        return oomallDefaultFreightMapper.findAllByBeDeletedLessThan(1);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public DefaultFreight changeDefaultFreight(DefaultFreightPo defaultFreightPo){
         DefaultFreight defaultFreight=new DefaultFreight();

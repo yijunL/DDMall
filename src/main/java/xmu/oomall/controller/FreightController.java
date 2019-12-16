@@ -41,10 +41,10 @@ public class FreightController {
     /**
      * @Description: 添加一个运费模板
      * @param defaultFreightPo
-     * @return
+     * @return DefaultFreightPo
      */
     @PostMapping("/defaultFreightsPo")
-    public Object addDefaultFreight(@RequestBody DefaultFreightPo defaultFreightPo)
+    public DefaultFreightPo addDefaultFreight(@RequestBody DefaultFreightPo defaultFreightPo)
     {
         return null;
     }
@@ -53,63 +53,64 @@ public class FreightController {
      * 更新默认运费模板
      * @param id
      * @param defaultFreightPo
-     * @return
+     * @return DefaultFreightPo
      */
     @PutMapping("/defaultFreights/{id}")
-    public Object updateDefaultFreight(@PathVariable Integer id,@RequestBody DefaultFreightPo defaultFreightPo){
+    public DefaultFreightPo updateDefaultFreight(@PathVariable Integer id,@RequestBody DefaultFreightPo defaultFreightPo){
         return null;
     }
 
-    /*    DELETE
-    /defaultFreights/{id}
-    删除默认运费规则
-    Pathvariable (id)*/
+    /**
+     * 删除默认运费模板
+     * @param id
+     * @return boolean
+     */
     @DeleteMapping("/defaultFreights/{id}")
     public boolean deleteDefaultFreight(@PathVariable Integer id){
         return freightService.deleteDefaultFreight(id);
     }
 
 
-
-
-    //    GET
-    //    获取默认运费规则(按件计)
-    //return List<defaultFreightsPo>
+    /**
+     * 获取默认计件运费模板
+     * @param limit
+     * @param page
+     * @return List<DefaultPieceFreightPo>
+     */
     @GetMapping("/defaultPieceFreight ")
-    public Object getDefaultPieceFreight(@RequestParam Integer limit,@RequestParam Integer page)
+    public List<DefaultPieceFreightPo> getDefaultPieceFreight(@RequestParam Integer limit,@RequestParam Integer page)
     {
         return null;
     }
 
 
-//    post
-// /defaultPieceFreights
-//            新增默认比率
-//
-//    Destination
-//            unitRate
-//    requireDays
-
+    /**
+     * 新增默认计件运费模板
+     * @param defaultPieceFreightPo
+     * @return DefaultPieceFreightPo
+     */
     @PostMapping("/defaultPieceFreightPo")
-    public Object addDefaultPieceFreight(@RequestBody DefaultPieceFreightPo defaultPieceFreightPo)
+    public DefaultPieceFreightPo addDefaultPieceFreight(@RequestBody DefaultPieceFreightPo defaultPieceFreightPo)
     {
         return null;
     }
 
-    /*PUT
-    /defaultPieceFreight/{id}
-    修改默认运费规则(按件计)
-    pathvariable (id)  requestbody (defaultFreightsPo)
-    return DefaultPieceFreightPo*/
+    /**
+     * 修改默认计件运费模板
+     * @param id
+     * @param defaultPieceFreightPo
+     * @return
+     */
     @PutMapping("/defaultPieceFreight/{id}")
-    public Object updateDefaultPieceFreight(@PathVariable Integer id,@RequestBody DefaultPieceFreightPo defaultPieceFreightPo){
+    public DefaultPieceFreightPo updateDefaultPieceFreight(@PathVariable Integer id,@RequestBody DefaultPieceFreightPo defaultPieceFreightPo){
         return null;
     }
 
-    /*    DELETE
-    /defaultPieceFreight/{id}
-    删除默认运费规则(按件计)
-    Pathvariable (id)*/
+    /**
+     * 删除默认计件运费模板
+     * @param id
+     * @return boolean
+     */
     @DeleteMapping("/defaultPieceFreight/{id}")
     public boolean deleteDefaultPieceFreight(@PathVariable Integer id){
         return freightService.deleteDefaultFreight(id);
@@ -117,7 +118,7 @@ public class FreightController {
 
 
     /**
-     * @Description: 获取特殊运费模板
+     * @Description: 通过id获取特殊运费模板
      * @param id
      * @return SpecialFreight
      */
@@ -127,32 +128,44 @@ public class FreightController {
         return freightService.getSpecialFreights(id);
     }
 
-
-    /*    POST
-    /specialFreights
-    新增默认运费规则
-    requestbody specialFreights
-    return specialFreights*/
-    @PostMapping("/specialFreights")
-    public Object addSpecialFreight(@RequestBody SpecialFreight specialFreights)
+    /**
+     * 获取所有特殊运费模板
+     * @return List<SpecialFreight>
+     */
+    @GetMapping("/specialFreights")
+    public List<SpecialFreight> getAllSpecialFreights()
     {
         return null;
     }
 
-    /*PUT
-    /specialFreights/{id}
-    修改默认运费规则
-    pathvariable (id)  requestbody (specialFreight)
-    return specialFreight*/
-    @PutMapping("/specialFreights/{id}")
-    public Object updateSpecialFreights(@PathVariable Integer id,@RequestBody SpecialFreight specialFreight){
+
+    /**
+     * 添加特殊运费模板
+     * @param specialFreights
+     * @return SpecialFreight
+     */
+    @PostMapping("/specialFreights")
+    public SpecialFreight addSpecialFreight(@RequestBody SpecialFreight specialFreights)
+    {
         return null;
     }
 
-    /*    DELETE
-    /specialFreights/{id}
-    删除默认运费规则
-    Pathvariable (id)*/
+    /**
+     * 更新特殊运费模板
+     * @param id
+     * @param specialFreight
+     * @return SpecialFreight
+     */
+    @PutMapping("/specialFreights/{id}")
+    public SpecialFreight updateSpecialFreights(@PathVariable Integer id,@RequestBody SpecialFreight specialFreight){
+        return null;
+    }
+
+    /**
+     * 删除特殊运费模板
+     * @param id
+     * @return boolean
+     */
     @DeleteMapping("/specialFreights/{id}")
     public boolean deleteSpecialFreights(@PathVariable Integer id){
         return freightService.deleteSpecialFreights(id);

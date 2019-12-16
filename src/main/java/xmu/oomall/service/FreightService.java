@@ -2,37 +2,36 @@ package xmu.oomall.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
-import xmu.oomall.domain.DefaultFreight;
-import xmu.oomall.domain.DefaultFreightPo;
-import xmu.oomall.domain.DefaultPieceFreight;
-import xmu.oomall.domain.SpecialFreight;
+import xmu.oomall.domain.*;
 
 import java.util.List;
 
 @Service
 public interface FreightService {
 
-    public List<DefaultFreight> getDefaultFreights(Integer limit, Integer page);
+    public List<DefaultFreightPo> getDefaultFreights(Integer limit, Integer page);
 
-    public Object addDefaultFreight(DefaultFreight defaultFreight);
+    public DefaultFreightPo addDefaultFreight(DefaultFreightPo defaultFreightPo);
 
-    public Object updateDefaultFreight(Integer id,DefaultFreight defaultFreight);
+    public DefaultFreightPo updateDefaultFreight(Integer id,DefaultFreightPo DefaultFreightPo);
 
     public boolean deleteDefaultFreight(Integer id);
 
-    public Object getDefaultPieceFreight(Integer limit,Integer page);
+    public DefaultPieceFreightPo getDefaultPieceFreight(Integer limit, Integer page);
 
-    public Object addDefaultPieceFreight(DefaultPieceFreight defaultPieceFreight);
+    public DefaultPieceFreightPo addDefaultPieceFreight(DefaultPieceFreightPo defaultPieceFreightPo);
 
-    public Object updateDefaultPieceFreight(Integer id,DefaultPieceFreight defaultPieceFreight);
+    public DefaultPieceFreightPo updateDefaultPieceFreight(Integer id,DefaultPieceFreightPo defaultPieceFreightPo);
 
     public boolean deleteDefaultPieceFreight(Integer id);
 
     public SpecialFreight getSpecialFreights(Integer id);
 
-    public Object addSpecialFreight(SpecialFreight specialFreights);
+    public List<SpecialFreight> getAllSpecialFreight();
 
-    public Object updateSpecialFreights(Integer id,SpecialFreight specialFreight);
+    public SpecialFreight addSpecialFreight(SpecialFreight specialFreights);
+
+    public SpecialFreight updateSpecialFreights(Integer id,SpecialFreight specialFreight);
 
     public boolean deleteSpecialFreights(Integer id);
 }
