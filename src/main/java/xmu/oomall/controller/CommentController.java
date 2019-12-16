@@ -2,10 +2,7 @@ package xmu.oomall.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xmu.oomall.domain.Comment;
 import xmu.oomall.domain.CommentPo;
 import xmu.oomall.domain.ProductPo;
@@ -46,7 +43,24 @@ public class CommentController {
         for(int i=0;i<commentPoList.size();i++){
             comment= new Comment(user,productPo,commentPoList.get(i));*/
        return commentPoList;
-
     }
+
+    /**
+     * 用户在产品下发表评论
+     *
+     * @param commentPo
+     * @return 0:失败 1：成功
+     */
+    @PostMapping("/product/{id}/comments")
+    public Object addComment(@RequestBody CommentPo commentPo){
+        return commentService.addComment(commentPo);
+    }
+
+
+    @DeleteMapping("/comments/{id}")
+    public Object deleteComment(@RequestParam Integer id){
+        return commentService.deleteComment(id);
+    }
+
 
 }

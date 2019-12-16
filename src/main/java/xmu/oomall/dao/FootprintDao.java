@@ -49,8 +49,8 @@ public class FootprintDao {
      *
      * @return List<FootprintItem>
      */
-    public List<FootprintItem> selectByCondition() {
-        List<FootprintItemPo> footprintItemPos = footprintMapper.selectByCondition();
+    public List<FootprintItem> selectByCondition() { //need to be updated
+        List<FootprintItemPo> footprintItemPos = footprintMapper.selectByCondition("1", "1");
         List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
         return footprintItems;
     }

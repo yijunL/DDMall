@@ -1,20 +1,8 @@
 package xmu.oomall.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-import xmu.oomall.domain.*;
+import org.apache.ibatis.annotations.Param;import xmu.oomall.domain.FootprintItemPo;import java.util.List;
 
-import java.util.List;
-
-/**
- * @Author Bexasusual
- * @Description: FootprintMapper
- * @create 2019/12/14 13:30
- */
-@Mapper
-@Component
 public interface FootprintMapper {
-
     /**
      * 用户获取足迹列表
      *
@@ -35,5 +23,5 @@ public interface FootprintMapper {
      *
      * @return List<FootprintItemPo>
      */
-    List<FootprintItemPo> selectByCondition();
+    List<FootprintItemPo> selectByCondition(@Param("userId") String userId, @Param("goodsId") String goodsId);
 }
