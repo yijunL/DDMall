@@ -44,4 +44,13 @@ public interface FootprintService {
      * @return List<FootprintItem>
      */
     public List<FootprintItem> listFootprintsByCondition();
+
+    /**
+     * 内部接口：提供给Goods模块，增加用户足迹
+     *
+     * @param userId: Integer
+     * @param footprintItemPo: FootprintItemPo
+     * @return FootprintItemPo
+     */
+    public FootprintItemPo addFootprint(Integer userId, FootprintItemPo footprintItemPo);
 }
