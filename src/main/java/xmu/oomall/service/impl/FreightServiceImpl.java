@@ -3,6 +3,8 @@ package xmu.oomall.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xmu.oomall.dao.DefaultFreightDao;
+import xmu.oomall.dao.DefaultPieceFreightDao;
+import xmu.oomall.dao.SpecialFreightDao;
 import xmu.oomall.domain.DefaultFreight;
 import xmu.oomall.domain.DefaultFreightPo;
 import xmu.oomall.domain.DefaultPieceFreight;
@@ -15,6 +17,10 @@ import java.util.List;
 public class FreightServiceImpl implements FreightService {
     @Autowired
     private DefaultFreightDao defaultFreightDao;
+    @Autowired
+    private SpecialFreightDao specialFreightDao;
+    @Autowired
+    private DefaultPieceFreightDao defaultPieceFreightDao;
 
     @Override
     public Object getDefaultFreights(Integer limit, Integer page) {
@@ -32,8 +38,8 @@ public class FreightServiceImpl implements FreightService {
     }
 
     @Override
-    public void deleteDefaultFreight(Integer id) {
-        defaultFreightDao.deleteDefaultFreight(id);
+    public boolean deleteDefaultFreight(Integer id) {
+        return defaultFreightDao.deleteDefaultFreight(id);
     }
 
     @Override
@@ -52,12 +58,12 @@ public class FreightServiceImpl implements FreightService {
     }
 
     @Override
-    public void deleteDefaultPieceFreight(Integer id) {
-
+    public boolean deleteDefaultPieceFreight(Integer id) {
+        return false;
     }
 
     @Override
-    public Object getSpecialFreights(Integer limit, Integer page) {
+    public SpecialFreight getSpecialFreights(Integer id) {
         return null;
     }
 
@@ -72,7 +78,7 @@ public class FreightServiceImpl implements FreightService {
     }
 
     @Override
-    public void deleteSpecialFreights(Integer id) {
-
+    public boolean deleteSpecialFreights(Integer id) {
+        return false;
     }
 }

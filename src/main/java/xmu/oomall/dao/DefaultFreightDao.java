@@ -13,7 +13,7 @@ public class DefaultFreightDao {
     @Autowired
     private DefaultFreightMapper defaultFreightMapper;
 
-    public void deleteDefaultFreight(Integer id) {
-        defaultFreightMapper.deleteDefaultFreight(id);
+    public boolean deleteDefaultFreight(Integer id) {
+        return defaultFreightMapper.deleteDefaultFreight(id);
     }
 }

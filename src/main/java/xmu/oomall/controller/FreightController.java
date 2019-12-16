@@ -1,5 +1,6 @@
 package xmu.oomall.controller;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.springframework.beans.factory.annotation.Autowired;
 import xmu.oomall.domain.*;
 import org.springframework.web.bind.annotation.*;
@@ -51,9 +52,11 @@ public class FreightController {
     删除默认运费规则
     Pathvariable (id)*/
     @DeleteMapping("/defaultFreights/{id}")
-    public void deleteDefaultFreight(@PathVariable Integer id){
-        freightService.deleteDefaultFreight(id);
+    public boolean deleteDefaultFreight(@PathVariable Integer id){
+        return freightService.deleteDefaultFreight(id);
     }
+
+
 
 
     //    GET
@@ -74,8 +77,8 @@ public class FreightController {
 //            unitRate
 //    requireDays
 
-    @PostMapping("/defaultPieceFreight")
-    public Object addDefaultPieceFreight(@RequestBody DefaultPieceFreight defaultPieceFreight)
+    @PostMapping("/defaultPieceFreightPo")
+    public Object addDefaultPieceFreight(@RequestBody DefaultPieceFreightPo defaultPieceFreightPo)
     {
         return null;
     }
@@ -83,10 +86,10 @@ public class FreightController {
     /*PUT
     /defaultPieceFreight/{id}
     修改默认运费规则(按件计)
-    pathvariable (id)  requestbody (defaultFreights)
-    return DefaultPieceFreight*/
+    pathvariable (id)  requestbody (defaultFreightsPo)
+    return DefaultPieceFreightPo*/
     @PutMapping("/defaultPieceFreight/{id}")
-    public Object updateDefaultPieceFreight(@PathVariable Integer id,@RequestBody DefaultPieceFreight defaultPieceFreight){
+    public Object updateDefaultPieceFreight(@PathVariable Integer id,@RequestBody DefaultPieceFreightPo defaultPieceFreightPo){
         return null;
     }
 
@@ -95,18 +98,19 @@ public class FreightController {
     删除默认运费规则(按件计)
     Pathvariable (id)*/
     @DeleteMapping("/defaultPieceFreight/{id}")
-    public void deleteDefaultPieceFreight(@PathVariable Integer id){
+    public boolean deleteDefaultPieceFreight(@PathVariable Integer id){
+        return freightService.deleteDefaultFreight(id);
     }
 
 
 
     //    GET
     //    获取特殊运费规则
-    //return List<specialFreights>
-    @GetMapping("/specialFreights")
-    public Object getSpecialFreights(@RequestParam Integer limit,@RequestParam Integer page)
+    //return specialFreights
+    @GetMapping("/specialFreights/{id}")
+    public SpecialFreight getSpecialFreights(@PathVariable Integer id)
     {
-        return null;
+        return freightService.getSpecialFreights(id);
     }
 
 
@@ -136,7 +140,7 @@ public class FreightController {
     删除默认运费规则
     Pathvariable (id)*/
     @DeleteMapping("/specialFreights/{id}")
-    public void deleteSpecialFreights(@PathVariable Integer id){
-
+    public boolean deleteSpecialFreights(@PathVariable Integer id){
+        return freightService.deleteSpecialFreights(id);
     }
 }
