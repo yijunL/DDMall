@@ -36,7 +36,7 @@ public interface FootprintService {
      * @param id：Integer
      * @return Response.ok()
      */
-    public Boolean deleteFootprintById (Integer id);
+    public int deleteFootprintById (Integer id);
 
     /**
      * 用户删除足迹

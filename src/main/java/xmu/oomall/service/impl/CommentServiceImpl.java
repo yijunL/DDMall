@@ -26,12 +26,14 @@ public class CommentServiceImpl implements CommentService {
     /**
      * 用户获取产品下评论列表
      *
+     * @param limit
+     * @param page
      * @param id
      * @return
      */
     @Override
-    public List<Comment> getCommentsById(Integer id) {
-        List<Comment> commentsOfProduct = commentDao.selectByProductId(id);
+    public List<Comment> getCommentsById(Integer limit,Integer page,Integer id) {
+        List<Comment> commentsOfProduct = commentDao.selectByProductId(limit,page,id);
         return commentsOfProduct;
     }
 
@@ -55,7 +57,8 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public int deleteComment(Integer id){
         Comment comment=commentDao.selectComment(id);
-        if(comment!=null){
+        //数据库有此comment并且还未被删除
+        if(comment!=null&&!comment.getBeDeleted()){
             if(commentDao.deleteComment(id)){
                 return 1;
             }

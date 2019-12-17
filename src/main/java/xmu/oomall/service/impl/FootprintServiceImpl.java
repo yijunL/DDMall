@@ -39,8 +39,11 @@ public class FootprintServiceImpl implements FootprintService {
      * @return Response.ok()
      */
     @Override
-    public Boolean deleteFootprintById (Integer id) {
-        return footprintDao.deleteFootprintById(id);
+    public int deleteFootprintById (Integer id) {
+        if(footprintDao.deleteFootprintById(id) > 0) { //or == 1
+            return 1;
+        }
+        return 0;
     }
 
     /**

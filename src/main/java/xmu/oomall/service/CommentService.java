@@ -21,7 +21,7 @@ public interface CommentService {
      * @param id
      * @return List<Comment>
      */
-    public List<Comment> getCommentsById(Integer id);
+    public List<Comment> getCommentsById(Integer limit,Integer page,Integer id);
 
     /**
      * 用户在产品下发表评论

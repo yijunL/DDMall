@@ -26,12 +26,12 @@ public class FreightServiceImpl implements FreightService {
 
     @Override
     public DefaultFreightPo addDefaultFreight(DefaultFreightPo defaultFreightPo) {
-        return null;
+        return defaultFreightDao.addDefaultFreight(defaultFreightPo);
     }
 
     @Override
     public DefaultFreightPo updateDefaultFreight(Integer id, DefaultFreightPo DefaultFreightPo) {
-        return null;
+        return defaultFreightDao.updateDefaultFreight(id,DefaultFreightPo);
     }
 
 
@@ -84,7 +84,7 @@ public class FreightServiceImpl implements FreightService {
 
     @Override
     public boolean deleteSpecialFreights(Integer id) {
-        return false;
+        return specialFreightDao.deleteSpecialFreight(id);
     }
 
 

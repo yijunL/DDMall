@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xmu.oomall.domain.*;
 import xmu.oomall.service.FootprintService;
+import xmu.oomall.util.ResponseUtil;
 
 import java.util.List;
 
@@ -44,7 +45,15 @@ public class FootprintController {
      */
     @DeleteMapping("/footprints/{id}")
     public Object deleteFootprintById (@PathVariable Integer id) {
-        return footprintService.deleteFootprintById(id);
+        if(id==null) {
+            return ResponseUtil.badArgument();
+        } else {
+            if(footprintService.deleteFootprintById(id) == 0){
+                return ResponseUtil.badArgumentValue();
+            } else{
+                return ResponseUtil.ok();
+            }
+        }
     }
 
     /**
