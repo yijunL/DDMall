@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import xmu.oomall.domain.*;
-import xmu.oomall.mapper.FootprintMapper;
+import xmu.oomall.mapper.OomallFootprintMapper;
 import xmu.oomall.util.Copyer;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.List;
 @Repository
 public class FootprintDao {
     @Autowired
-    private FootprintMapper footprintMapper;
+    private OomallFootprintMapper oomallFootprintMapper;
 
     /**
      * 用户获取足迹列表
@@ -29,7 +29,8 @@ public class FootprintDao {
      */
     public List<FootprintItem> selectByUserId(Integer page, Integer limit) {
         PageHelper.startPage(page, limit); //use page-helper
-        List<FootprintItemPo> footprintItemPos = footprintMapper.select();
+        Integer userId = 1; //从网关获取用户id
+        List<FootprintItemPo> footprintItemPos = oomallFootprintMapper.selectAllByUserId(userId); //
         List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
         return footprintItems;
     }
@@ -40,8 +41,8 @@ public class FootprintDao {
      * @param id：Integer
      * @return Response.ok()
      */
-    public boolean deleteFootprintById (Integer id) {
-        return (footprintMapper.deleteByUserId(id) == 1);
+    public int deleteFootprintById (Integer id) {
+        return oomallFootprintMapper.deleteById(id);
     }
 
     /**
@@ -50,7 +51,7 @@ public class FootprintDao {
      * @return List<FootprintItem>
      */
     public List<FootprintItem> selectByCondition() { //need to be updated
-        List<FootprintItemPo> footprintItemPos = footprintMapper.selectByCondition("1", "1");
+        List<FootprintItemPo> footprintItemPos = oomallFootprintMapper.selectByCondition("1", "1");
         List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
         return footprintItems;
     }
@@ -64,7 +65,7 @@ public class FootprintDao {
      */
     public FootprintItemPo addFootprint(Integer userId, FootprintItemPo footprintItemPo) { //需在controller层进行合法性判断
         footprintItemPo.setUserId(userId);
-        if (footprintMapper.insertSelective(footprintItemPo) > 0) return footprintItemPo;
+        if (oomallFootprintMapper.insertSelective(footprintItemPo) > 0) return footprintItemPo;
         else return  null;
     }
 

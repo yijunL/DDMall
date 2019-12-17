@@ -1,13 +1,10 @@
 package xmu.oomall.dao;
 
-import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import xmu.oomall.domain.*;
-import xmu.oomall.mapper.AfterSaleMapper;
-import xmu.oomall.util.Copyer;
+import xmu.oomall.mapper.OomallAfterSaleMapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +15,7 @@ import java.util.List;
 @Repository
 public class AfterSaleDao {
     @Autowired
-    private AfterSaleMapper afterSaleMapper;
+    private OomallAfterSaleMapper oomallAfterSaleMapper;
 
     /**
      * 管理员根据orderId查询售后服务列表
