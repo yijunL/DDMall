@@ -74,12 +74,13 @@ public class FreightServiceImpl implements FreightService {
 
     @Override
     public SpecialFreight addSpecialFreight(SpecialFreight specialFreights) {
-        return null;
+        return specialFreightDao.addSpecialFreight(specialFreights);
     }
 
     @Override
-    public SpecialFreight updateSpecialFreights(Integer id, SpecialFreight specialFreight) {
-        return null;
+    public SpecialFreight updateSpecialFreights(Integer id, SpecialFreight specialFreight)
+    {
+        return specialFreightDao.updateSpecialFreight(specialFreight,id);
     }
 
     @Override

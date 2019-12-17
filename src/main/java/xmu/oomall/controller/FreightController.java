@@ -6,6 +6,7 @@ import xmu.oomall.domain.*;
 import org.springframework.web.bind.annotation.*;
 import xmu.oomall.domain.SpecialFreight;
 import xmu.oomall.service.FreightService;
+import xmu.oomall.util.ResponseUtil;
 
 import javax.print.attribute.standard.Destination;
 import javax.validation.constraints.NotNull;
@@ -31,10 +32,16 @@ public class FreightController {
      * @return List<DefaultFreightPo>
      */
     @GetMapping("/defaultFreights")
-    public List<DefaultFreightPo> getDefaultFreights(@RequestParam Integer page, @RequestParam Integer limit)
+    public Object getDefaultFreights(@RequestParam Integer page, @RequestParam Integer limit)
     {
+        if(page==null||limit==null)
+            return ResponseUtil.badArgument();
+        List<DefaultFreightPo>defaultFreightPoList= freightService.getDefaultFreights(page,limit);
+        if(defaultFreightPoList==null||defaultFreightPoList.isEmpty())
+            return ResponseUtil.badArgumentValue();
+        else
+            return ResponseUtil.ok(defaultFreightPoList);
 
-        return freightService.getDefaultFreights(page,limit);
     }
 
 
@@ -44,9 +51,16 @@ public class FreightController {
      * @return DefaultFreightPo
      */
     @PostMapping("/defaultFreightsPo")
-    public DefaultFreightPo addDefaultFreight(@RequestBody DefaultFreightPo defaultFreightPo)
+    public Object addDefaultFreight(@RequestBody DefaultFreightPo defaultFreightPo)
     {
-        return freightService.addDefaultFreight(defaultFreightPo);
+        if(defaultFreightPo==null)
+            return ResponseUtil.badArgument();
+        DefaultFreightPo defaultFreightPo1=freightService.addDefaultFreight(defaultFreightPo);
+
+        if(defaultFreightPo==null)
+            return ResponseUtil.updatedDataFailed();
+        else
+            return ResponseUtil.ok(defaultFreightPo1);
     }
 
     /**
@@ -56,8 +70,15 @@ public class FreightController {
      * @return DefaultFreightPo
      */
     @PutMapping("/defaultFreights/{id}")
-    public DefaultFreightPo updateDefaultFreight(@PathVariable Integer id,@RequestBody DefaultFreightPo defaultFreightPo){
-        return freightService.updateDefaultFreight(id,defaultFreightPo);
+    public Object updateDefaultFreight(@PathVariable Integer id,@RequestBody DefaultFreightPo defaultFreightPo){
+
+        if(id==null || defaultFreightPo==null)
+            return ResponseUtil.badArgument();
+        DefaultFreightPo defaultFreightPo1=freightService.updateDefaultFreight(id,defaultFreightPo);
+        if(defaultFreightPo==null)
+            return ResponseUtil.updatedDataFailed();
+        else
+            return ResponseUtil.ok(defaultFreightPo1);
     }
 
     /**
@@ -66,8 +87,13 @@ public class FreightController {
      * @return boolean
      */
     @DeleteMapping("/defaultFreights/{id}")
-    public boolean deleteDefaultFreight(@PathVariable Integer id){
-        return freightService.deleteDefaultFreight(id);
+    public Object deleteDefaultFreight(@PathVariable Integer id){
+        if(id==null)
+            return ResponseUtil.badArgument();
+        if(freightService.deleteDefaultFreight(id))
+            return ResponseUtil.ok();
+        else
+            return ResponseUtil.updatedDataFailed();
     }
 
 
@@ -112,8 +138,8 @@ public class FreightController {
      * @return boolean
      */
     @DeleteMapping("/defaultPieceFreight/{id}")
-    public boolean deleteDefaultPieceFreight(@PathVariable Integer id){
-        return freightService.deleteDefaultFreight(id);
+    public Object deleteDefaultPieceFreight(@PathVariable Integer id){
+        return null;
     }
 
 
@@ -123,9 +149,15 @@ public class FreightController {
      * @return SpecialFreight
      */
     @GetMapping("/specialFreights/{id}")
-    public SpecialFreight getSpecialFreights(@PathVariable Integer id)
+    public Object getSpecialFreights(@PathVariable Integer id)
     {
-        return freightService.getSpecialFreights(id);
+        if(id==null)
+            return ResponseUtil.badArgument();
+        SpecialFreight specialFreight= freightService.getSpecialFreights(id);
+        if(specialFreight==null)
+            return ResponseUtil.badArgumentValue();
+        else
+            return ResponseUtil.ok(specialFreight);
     }
 
     /**
@@ -135,9 +167,15 @@ public class FreightController {
      * @return List<SpecialFreight>
      */
     @GetMapping("/specialFreights")
-    public List<SpecialFreight> getAllSpecialFreights(@RequestParam Integer page,@RequestParam Integer limit)
+    public Object getAllSpecialFreights(@RequestParam Integer page,@RequestParam Integer limit)
     {
-        return freightService.getAllSpecialFreight(page,limit);
+        if(page==null||limit==null)
+            return ResponseUtil.badArgument();
+        List<SpecialFreight> specialFreightList= freightService.getAllSpecialFreight(page,limit);
+        if(specialFreightList==null|| specialFreightList.isEmpty())
+            return ResponseUtil.badArgumentValue();
+        else
+            return ResponseUtil.ok(specialFreightList);
     }
 
 
@@ -147,9 +185,15 @@ public class FreightController {
      * @return SpecialFreight
      */
     @PostMapping("/specialFreights")
-    public SpecialFreight addSpecialFreight(@RequestBody SpecialFreight specialFreights)
+    public Object addSpecialFreight(@RequestBody SpecialFreight specialFreights)
     {
-        return null;
+        if(specialFreights==null)
+            return ResponseUtil.badArgument();
+        SpecialFreight specialFreight=freightService.addSpecialFreight(specialFreights);
+        if(specialFreight==null)
+            return ResponseUtil.badArgumentValue();
+        else
+            return ResponseUtil.ok(specialFreight);
     }
 
     /**
@@ -159,8 +203,17 @@ public class FreightController {
      * @return SpecialFreight
      */
     @PutMapping("/specialFreights/{id}")
-    public SpecialFreight updateSpecialFreights(@PathVariable Integer id,@RequestBody SpecialFreight specialFreight){
-        return null;
+    public Object updateSpecialFreights(@PathVariable Integer id,@RequestBody SpecialFreight specialFreight){
+        if(id==null||specialFreight==null)
+            return ResponseUtil.badArgument();
+        else
+        {
+            SpecialFreight specialFreight1=freightService.updateSpecialFreights(id,specialFreight);
+            if(specialFreight==null)
+                return ResponseUtil.updatedDataFailed();
+            else
+                return ResponseUtil.ok(specialFreight1);
+        }
     }
 
     /**
@@ -169,8 +222,13 @@ public class FreightController {
      * @return boolean
      */
     @DeleteMapping("/specialFreights/{id}")
-    public boolean deleteSpecialFreights(@PathVariable Integer id){
-        return freightService.deleteSpecialFreights(id);
+    public Object deleteSpecialFreights(@PathVariable Integer id){
+        if(id==null)
+            return ResponseUtil.badArgument();
+        if(freightService.deleteSpecialFreights(id))
+            return ResponseUtil.ok();
+        else
+            return ResponseUtil.updatedDataFailed();
     }
 
 
