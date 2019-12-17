@@ -37,11 +37,11 @@ public class DefaultFreightDaoTest {
     {
         DefaultFreightPo defaultFreightPo=new DefaultFreightPo();
         defaultFreightPo.setRequireDays("1-3");
-        BigDecimal testdec =new BigDecimal(88);
-        defaultFreightPo.setOver10Price(new BigDecimal(8));
+        BigDecimal testdec =new BigDecimal("88.00");
+        defaultFreightPo.setOver10Price(new BigDecimal("8.00"));
         defaultFreightPo.setOver50Price(testdec);
-        defaultFreightDao.updateDefaultFreight(1,defaultFreightPo);
-        //assertEquals(defaultFreightDao.getById(1).getOver50Price(),testdec);
+        DefaultFreightPo defaultFreightPo1= defaultFreightDao.updateDefaultFreight(1,defaultFreightPo);
+        assertEquals(defaultFreightPo1.getOver50Price(),testdec);
     }
 
 }
