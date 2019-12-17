@@ -21,9 +21,8 @@ public class CollectionServiceImpl implements CollectionService {
      * @return
      */
     @Override
-    public List<CollectItem> getCollectionList(Integer userId, Integer page, Integer limit){
-        List<CollectItem> collectItemPoList= collectionDao.selectAllColltections(userId,page,limit);
-        return collectItemPoList;
+    public List<CollectItemPo> getCollectionList(Integer userId, Integer page, Integer limit){
+        return collectionDao.getColltectionList(userId, page, limit);
     };
 
     /**

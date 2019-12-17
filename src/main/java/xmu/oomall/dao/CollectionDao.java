@@ -7,6 +7,7 @@ import xmu.oomall.domain.CollectItem;
 import xmu.oomall.domain.CollectItemPo;
 import xmu.oomall.mapper.OomallCollectItemMapper;
 import xmu.oomall.util.Copyer;
+import xmu.oomall.util.PageCut;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 public class CollectionDao {
 
     @Autowired
-    private OomallCollectItemMapper collectionMapper;
+    private OomallCollectItemMapper oomallCollectItemMapper;
 
 
     /**
@@ -26,10 +27,9 @@ public class CollectionDao {
      * @param limit：Integer
      * @return List<CollectItem>
      */
-    public List<CollectItem> selectAllColltections(Integer userId,Integer page,Integer limit)
+    public List<CollectItemPo> getColltectionList(Integer userId,Integer page,Integer limit)
     {
-        List<CollectItemPo> collectItemPoList= collectionMapper.findAllById(userId);
-        return collectItemList(collectItemPoList);
+        return (List<CollectItemPo>) PageCut.pageCut(oomallCollectItemMapper.findAllById(userId),page,limit);
     }
 
     /**
@@ -40,7 +40,7 @@ public class CollectionDao {
      */
     public boolean deleteCollection(Integer id) {
 
-        return collectionMapper.deleteById(id);
+        return oomallCollectItemMapper.deleteById(id);
     }
 
     /**

@@ -26,10 +26,9 @@ public class CollectionController {
      * @return List<CollectItem>
      */
     @GetMapping("/collections")
-    public List<CollectItem> getCollectionList(@RequestParam Integer userId, @RequestParam Integer page,
+    public List<CollectItemPo> getCollectionList(@RequestParam Integer userId, @RequestParam Integer page,
                                                @RequestParam Integer limit) {
-        List<CollectItem> collectItemList=collectionService.getCollectionList(userId,page,limit);
-        return collectItemList;
+        return collectionService.getCollectionList(userId, page, limit);
     }
 
     /**

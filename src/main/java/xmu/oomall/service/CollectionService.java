@@ -18,7 +18,7 @@ public interface CollectionService {
      * @param limit
      * @return
      */
-    public List<CollectItem> getCollectionList(Integer userId, Integer page, Integer limit);
+    public List<CollectItemPo> getCollectionList(Integer userId, Integer page, Integer limit);
 
     /**
      *
