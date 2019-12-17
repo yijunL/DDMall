@@ -37,6 +37,7 @@ public class FreightServiceImpl implements FreightService {
 
     @Override
     public boolean deleteDefaultFreight(Integer id) {
+
         return defaultFreightDao.deleteDefaultFreight(id);
     }
 
@@ -62,12 +63,13 @@ public class FreightServiceImpl implements FreightService {
 
     @Override
     public SpecialFreight getSpecialFreights(Integer id) {
+
         return specialFreightDao.getSpecialFreights(id);
     }
 
     @Override
     public List<SpecialFreight> getAllSpecialFreight(Integer page, Integer limit) {
-        return null;
+        return specialFreightDao.getAllSpecialFreights(page,limit);
     }
 
     @Override

@@ -1,12 +1,12 @@
 package xmu.oomall.dao;
 
-import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import xmu.oomall.domain.DefaultFreight;
 import xmu.oomall.domain.DefaultFreightPo;
 import xmu.oomall.mapper.OomallDefaultFreightMapper;
 import xmu.oomall.util.Copyer;
+import xmu.oomall.util.PageCut;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,19 +21,9 @@ public class DefaultFreightDao {
         return oomallDefaultFreightMapper.deleteDefaultFreight(id);
     }
 
-    public List<DefaultFreightPo> getDefaultFreights(Integer page,Integer limit){
-        int begin=(page-1)*limit;
-        int end=begin+limit;
-        List<DefaultFreightPo>defaultFreightPoList= oomallDefaultFreightMapper.findAllByBeDeletedLessThan(1);
-        if(defaultFreightPoList.size()<end)      //处于最后一页时
-            return defaultFreightPoList.subList(begin,defaultFreightPoList.size());
-        else
-            return defaultFreightPoList.subList(begin,end);
+    public List<DefaultFreightPo> getDefaultFreights(Integer page, Integer limit){
+        return (List<DefaultFreightPo>) PageCut.pageCut(oomallDefaultFreightMapper.findAllByBeDeletedLessThan(1),page,limit);
     }
-
-
-
-
 
 
 

@@ -137,7 +137,7 @@ public class FreightController {
     @GetMapping("/specialFreights")
     public List<SpecialFreight> getAllSpecialFreights(@RequestParam Integer page,@RequestParam Integer limit)
     {
-        return null;
+        return freightService.getAllSpecialFreight(page,limit);
     }
 
 
