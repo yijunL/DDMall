@@ -1,5 +1,6 @@
 package xmu.oomall.dao;
 
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import xmu.oomall.domain.Comment;
@@ -7,6 +8,7 @@ import xmu.oomall.domain.CommentPo;
 import xmu.oomall.mapper.OomallCommentMapper;
 import xmu.oomall.util.Copyer;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,13 +26,19 @@ public class CommentDao {
     /**
      * 用户获取产品下评论列表
      *
+     * @param limit
+     * @param page
      * @param id
      * @return
      */
-    public List<Comment> selectByProductId(Integer id){
+    public List<Comment> selectByProductId(Integer limit,Integer page,Integer id){
+        PageHelper.startPage(limit,page);
         List<CommentPo> commentsOfProduct = commentMapper.findAllByProductId(id);
         return commentsList(commentsOfProduct);
     }
+
+
+
 
     /**
      * 用户在产品下发表评论
@@ -39,9 +47,9 @@ public class CommentDao {
      * @return 0：失败 1：成功
      */
     public int addComment(CommentPo commentPo){
-        if(commentMapper.insertSelective(commentPo)>0)
-            return 1;
-        else return 0;
+        commentPo.setGmtCreate(LocalDateTime.now());
+        commentPo.setGmtModified(LocalDateTime.now());
+        return commentMapper.insertSelective(commentPo);
     }
 
     /**
@@ -54,7 +62,12 @@ public class CommentDao {
         return commentMapper.deleteById(id)==1;
     }
 
-
+    /**
+     * 根据Id获取评论
+     *
+     * @param id
+     * @return comment
+     */
     public Comment selectComment(Integer id){
         CommentPo commentPo=commentMapper.selectAllById(id);
         return comments(commentPo);

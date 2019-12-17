@@ -31,16 +31,21 @@ public class CommentController {
      * 用户获取产品下评论列表
      *
      * @param id
+     * @param page
+     * @param limit
      * @return List<Comment>
      */
+    //记得判断productid是否合法(Userid可能也要)
     @GetMapping("/product/{id}/comments")
-    public Object getCommentsById(@RequestParam Integer id)//
+    public Object getCommentsById(@RequestParam Integer id,
+                                  @RequestParam Integer page,
+                                  @RequestParam Integer limit)
     {
         if(id==null){
             //401
             return ResponseUtil.badArgument();
         } else{
-            List<Comment> commentPoList=commentService.getCommentsById(id);
+            List<Comment> commentPoList=commentService.getCommentsById(limit,page,id);
             if(commentPoList==null){
                 //402
                 return ResponseUtil.badArgumentValue();

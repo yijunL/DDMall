@@ -16,19 +16,22 @@ public class CommentControllerTest {
 
     @Test
     public void commentControllerTest(){
-          commentController.getCommentsById(1);
+
+
+
+        //commentController.getCommentsById(1);
         //44,55,"yukeyishishabi",0,4,77,null,null,0
         CommentPo commentPo= new CommentPo();
         commentPo.setBeDeleted(false);
         commentPo.setContent("yukeyishishabi");
-        commentPo.setId(111);
+        commentPo.setId(11);
         commentPo.setProductId(222);
         commentPo.setStar(4);
         commentPo.setStatusCode(0);
         commentPo.setUserId(333);
 
-        //  commentController.addComment(commentPo);
+         commentController.addComment(commentPo);
 
-         System.out.println(commentController.deleteComment(111));
+        // System.out.println(commentController.deleteComment(112));
     }
 }
