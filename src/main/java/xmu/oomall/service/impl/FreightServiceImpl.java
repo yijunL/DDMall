@@ -20,8 +20,8 @@ public class FreightServiceImpl implements FreightService {
     private DefaultPieceFreightDao defaultPieceFreightDao;
 
     @Override
-    public List<DefaultFreightPo> getDefaultFreights(Integer limit, Integer page) {
-        return defaultFreightDao.getDefaultFreights(limit,page);
+    public List<DefaultFreightPo> getDefaultFreights(Integer page, Integer limit) {
+        return defaultFreightDao.getDefaultFreights(page,limit);
     }
 
     @Override
@@ -37,11 +37,12 @@ public class FreightServiceImpl implements FreightService {
 
     @Override
     public boolean deleteDefaultFreight(Integer id) {
+
         return defaultFreightDao.deleteDefaultFreight(id);
     }
 
     @Override
-    public DefaultPieceFreightPo getDefaultPieceFreight(Integer limit, Integer page) {
+    public DefaultPieceFreightPo getDefaultPieceFreight(Integer page, Integer limit) {
         return null;
     }
 
@@ -62,12 +63,13 @@ public class FreightServiceImpl implements FreightService {
 
     @Override
     public SpecialFreight getSpecialFreights(Integer id) {
+
         return specialFreightDao.getSpecialFreights(id);
     }
 
     @Override
-    public List<SpecialFreight> getAllSpecialFreight() {
-        return null;
+    public List<SpecialFreight> getAllSpecialFreight(Integer page, Integer limit) {
+        return specialFreightDao.getAllSpecialFreights(page,limit);
     }
 
     @Override

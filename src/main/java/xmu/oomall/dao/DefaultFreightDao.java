@@ -6,6 +6,7 @@ import xmu.oomall.domain.DefaultFreight;
 import xmu.oomall.domain.DefaultFreightPo;
 import xmu.oomall.mapper.OomallDefaultFreightMapper;
 import xmu.oomall.util.Copyer;
+import xmu.oomall.util.PageCut;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +21,9 @@ public class DefaultFreightDao {
         return oomallDefaultFreightMapper.deleteDefaultFreight(id);
     }
 
-    public List<DefaultFreightPo> getDefaultFreights(Integer limit,Integer page){
-        return oomallDefaultFreightMapper.findAllByBeDeletedLessThan(1);
+    public List<DefaultFreightPo> getDefaultFreights(Integer page, Integer limit){
+        return (List<DefaultFreightPo>) PageCut.pageCut(oomallDefaultFreightMapper.findAllByBeDeletedLessThan(1),page,limit);
     }
-
-
-
 
 
 

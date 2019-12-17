@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public interface FreightService {
 
-    public List<DefaultFreightPo> getDefaultFreights(Integer limit, Integer page);
+    public List<DefaultFreightPo> getDefaultFreights(Integer page, Integer limit);
 
     public DefaultFreightPo addDefaultFreight(DefaultFreightPo defaultFreightPo);
 
@@ -17,7 +17,7 @@ public interface FreightService {
 
     public boolean deleteDefaultFreight(Integer id);
 
-    public DefaultPieceFreightPo getDefaultPieceFreight(Integer limit, Integer page);
+    public DefaultPieceFreightPo getDefaultPieceFreight(Integer page, Integer limit);
 
     public DefaultPieceFreightPo addDefaultPieceFreight(DefaultPieceFreightPo defaultPieceFreightPo);
 
@@ -27,7 +27,7 @@ public interface FreightService {
 
     public SpecialFreight getSpecialFreights(Integer id);
 
-    public List<SpecialFreight> getAllSpecialFreight();
+    public List<SpecialFreight> getAllSpecialFreight(Integer page, Integer limit);
 
     public SpecialFreight addSpecialFreight(SpecialFreight specialFreights);
 

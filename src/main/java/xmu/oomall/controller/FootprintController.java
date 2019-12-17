@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("footprintService")
+@RequestMapping("footprints") //!!
 public class FootprintController {
     private static final Logger logger = LoggerFactory.getLogger(FootprintController.class);
 
@@ -31,8 +31,8 @@ public class FootprintController {
      * @return List<FootprintItem>
      */
     @GetMapping("/footprints")
-    public Object listFootprintsByPage(@RequestParam Integer page,
-                                           @RequestParam Integer limit) {
+    public Object listFootprintsByUserId(@RequestParam Integer page,
+                                         @RequestParam Integer limit) {
         return null;
     }
 

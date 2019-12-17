@@ -48,12 +48,16 @@ public class CommentDao {
      * 管理员删除评论
      *
      * @param id
-     * @return 0：失败 1：成功
+     * @return true:删除成功  false:删除失败
      */
-    public int deleteComment(Integer id){
-        if(commentMapper.deleteById(id)>0)
-            return 1;
-        else return 0;
+    public boolean deleteComment(Integer id){
+        return commentMapper.deleteById(id)==1;
+    }
+
+
+    public Comment selectComment(Integer id){
+        CommentPo commentPo=commentMapper.selectAllById(id);
+        return comments(commentPo);
     }
 
     public Comment updateComment(CommentPo commentPo,Integer id){
@@ -83,6 +87,7 @@ public class CommentDao {
         Comment comment = new Comment();
         return Copyer.Copy(commentPo,comment)?comment:null;
     }
+
 
 
 

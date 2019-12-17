@@ -31,10 +31,10 @@ public class FreightController {
      * @return List<DefaultFreightPo>
      */
     @GetMapping("/defaultFreights")
-    public List<DefaultFreightPo> getDefaultFreights(@RequestParam Integer limit, @RequestParam Integer page)
+    public List<DefaultFreightPo> getDefaultFreights(@RequestParam Integer page, @RequestParam Integer limit)
     {
 
-        return freightService.getDefaultFreights(1,2);
+        return freightService.getDefaultFreights(page,limit);
     }
 
 
@@ -78,7 +78,7 @@ public class FreightController {
      * @return List<DefaultPieceFreightPo>
      */
     @GetMapping("/defaultPieceFreight ")
-    public List<DefaultPieceFreightPo> getDefaultPieceFreight(@RequestParam Integer limit,@RequestParam Integer page)
+    public List<DefaultPieceFreightPo> getDefaultPieceFreight(@RequestParam Integer page,@RequestParam Integer limit)
     {
         return null;
     }
@@ -130,12 +130,14 @@ public class FreightController {
 
     /**
      * 获取所有特殊运费模板
+     * @param page
+     * @param limit
      * @return List<SpecialFreight>
      */
     @GetMapping("/specialFreights")
-    public List<SpecialFreight> getAllSpecialFreights()
+    public List<SpecialFreight> getAllSpecialFreights(@RequestParam Integer page,@RequestParam Integer limit)
     {
-        return null;
+        return freightService.getAllSpecialFreight(page,limit);
     }
 
 

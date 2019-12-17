@@ -27,7 +27,7 @@ public class FootprintDao {
      * @param limit：Integer
      * @return List<FootprintItem>
      */
-    public List<FootprintItem> selectByPage(Integer page, Integer limit) {
+    public List<FootprintItem> selectByUserId(Integer page, Integer limit) {
         PageHelper.startPage(page, limit); //use page-helper
         List<FootprintItemPo> footprintItemPos = footprintMapper.select();
         List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
