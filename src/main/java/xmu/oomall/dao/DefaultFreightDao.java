@@ -19,15 +19,14 @@ public class DefaultFreightDao {
     private OomallDefaultFreightMapper oomallDefaultFreightMapper;
 
     public boolean deleteDefaultFreight(Integer id) {
-        if(oomallDefaultFreightMapper.deleteDefaultFreight(id)==1) {
-            LocalDateTime now = LocalDateTime.now();
-            DefaultFreightPo defaultFreightPo=new DefaultFreightPo();
-            defaultFreightPo.setGmtModified(now);
-            oomallDefaultFreightMapper.updateById(defaultFreightPo,id);
-            return true;
-        }
-        else
+
+        DefaultFreightPo defaultFreightPo=new DefaultFreightPo();
+        defaultFreightPo.setGmtModified(LocalDateTime.now());
+        defaultFreightPo.setBeDeleted(true);
+        if(oomallDefaultFreightMapper.updateById(defaultFreightPo,id)==0)  //没有更新任何元素
             return false;
+        else
+            return true;
     }
 
     public DefaultFreightPo getById(Integer id)
@@ -44,8 +43,7 @@ public class DefaultFreightDao {
     public DefaultFreightPo updateDefaultFreight(Integer id,DefaultFreightPo defaultFreightPo){
         if(defaultFreightPo.getId()!=null)
             return null;                        //id不允许有值，即不能修改id
-        LocalDateTime now = LocalDateTime.now();
-        defaultFreightPo.setGmtModified(now);
+        defaultFreightPo.setGmtModified(LocalDateTime.now());
         oomallDefaultFreightMapper.updateById(defaultFreightPo,id);
         return oomallDefaultFreightMapper.findAllById(id);
 
@@ -54,8 +52,7 @@ public class DefaultFreightDao {
     public DefaultFreightPo addDefaultFreight(DefaultFreightPo defaultFreightPo){
         if(defaultFreightPo.getId()!=null)    //插入的po不能有id
             return null;
-        LocalDateTime now = LocalDateTime.now();
-        defaultFreightPo.setGmtCreate(now);
+        defaultFreightPo.setGmtCreate(LocalDateTime.now());
         oomallDefaultFreightMapper.insertSelective(defaultFreightPo);
         return defaultFreightPo;
     }
