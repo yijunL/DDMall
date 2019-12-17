@@ -40,7 +40,7 @@ public class FootprintDao {
      * 用户删除足迹
      *
      * @param id：Integer
-     * @return Response.ok()
+     * @return 0 or 1
      */
     public int deleteFootprintById (Integer id) {
         return oomallFootprintMapper.deleteById(id);

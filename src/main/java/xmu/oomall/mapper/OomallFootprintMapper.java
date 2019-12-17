@@ -35,8 +35,6 @@ public interface OomallFootprintMapper {
      */
     FootprintItemPo selectAllById(@Param("id")Integer id);
 
-
-
     /**
      * 内部接口：提供给Goods模块，增加用户足迹
      *
