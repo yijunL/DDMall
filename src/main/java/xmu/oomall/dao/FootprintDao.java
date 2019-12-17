@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * @Author Bexasusual
- * @Description: FootprintDAO
+ * @Description: FootprintDao
  * @create 2019/12/14 13:30
  */
 @Repository
