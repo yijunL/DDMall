@@ -18,16 +18,16 @@ public class FootprintControllerTest {
     @Autowired
     private FootprintController footprintController;
 
-//    @Test
-//    public void footprintControllerTest() {
-//        footprintController.deleteFootprintById(1);
-//    }
-
     @Test
-    void setFootprintController() {
-        FootprintItemPo footprintItemPo = new FootprintItemPo();
-        footprintItemPo.setGoodsId(12);
-        footprintItemPo.setId(99);
-        footprintController.addFootprint(177, footprintItemPo);
+    public void footprintControllerTest() {
+        footprintController.deleteFootprintById(1);
     }
+
+//    @Test
+//    void setFootprintController() {
+//        FootprintItemPo footprintItemPo = new FootprintItemPo();
+//        footprintItemPo.setGoodsId(12);
+//        footprintItemPo.setId(99);
+//        footprintController.addFootprint(177, footprintItemPo);
+//    }
 }

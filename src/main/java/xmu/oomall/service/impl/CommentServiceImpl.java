@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @Service
-public class CommentServicempl implements CommentService {
+public class CommentServiceImpl implements CommentService {
     @Autowired
     CommentDao commentDao;
 
@@ -53,5 +53,13 @@ public class CommentServicempl implements CommentService {
      * @return 0：失败 1：成功
      */
     @Override
-    public int deleteComment(Integer id){return commentDao.deleteComment(id);}
+    public int deleteComment(Integer id){
+        Comment comment=commentDao.selectComment(id);
+        if(comment!=null){
+            if(commentDao.deleteComment(id)){
+                return 1;
+            }
+        }
+        return 0;
+    }
 }
