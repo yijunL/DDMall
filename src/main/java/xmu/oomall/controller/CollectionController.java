@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xmu.oomall.dao.CollectionDao;
 import xmu.oomall.domain.*;
 import xmu.oomall.service.CollectionService;
 
@@ -38,8 +39,9 @@ public class CollectionController {
      * @return collectItemPo
      */
     @PostMapping("/collections")
-    public Object addCollection(@RequestBody CollectItemPo collectItemPo) {
-        return null;
+    public CollectItemPo addCollection(@RequestBody CollectItemPo collectItemPo) {
+
+        return collectionService.addCollection(collectItemPo);
     }
 
     /**
