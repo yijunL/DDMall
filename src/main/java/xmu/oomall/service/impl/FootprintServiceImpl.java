@@ -49,11 +49,15 @@ public class FootprintServiceImpl implements FootprintService {
     /**
      * 管理员查看足迹
      *
+     * @param userName: String
+     * @param goodsName: String
+     * @param page: Integer
+     * @param limit: Integer
      * @return List<FootprintItem>
      */
     @Override
-    public List<FootprintItem> listFootprintsByCondition() {
-        List<FootprintItem> footprintItems = footprintDao.selectByCondition();
+    public List<FootprintItem> listFootprintsByCondition(String userName, String goodsName, Integer page, Integer limit) {
+        List<FootprintItem> footprintItems = footprintDao.selectByCondition(userName, goodsName, page, limit);
         return footprintItems;
     }
 

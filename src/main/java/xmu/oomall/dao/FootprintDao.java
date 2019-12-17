@@ -7,6 +7,7 @@ import xmu.oomall.domain.*;
 import xmu.oomall.mapper.OomallFootprintMapper;
 import xmu.oomall.util.Copyer;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,10 +49,16 @@ public class FootprintDao {
     /**
      * 管理员查看足迹
      *
+     * @param userName: String
+     * @param goodsName: String
+     * @param page: Integer
+     * @param limit: Integer
      * @return List<FootprintItem>
      */
-    public List<FootprintItem> selectByCondition() { //need to be updated
-        List<FootprintItemPo> footprintItemPos = oomallFootprintMapper.selectByCondition("1", "1");
+    public List<FootprintItem> selectByCondition(String userName, String goodsName, Integer page, Integer limit) { //need to be updated
+        Integer userId = Integer.valueOf(userName), goodsId = Integer.valueOf(goodsName); //调用其他服务，查询获取对应的userId和goodsId
+        PageHelper.startPage(page, limit);
+        List<FootprintItemPo> footprintItemPos = oomallFootprintMapper.selectByCondition(userId, goodsId);
         List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
         return footprintItems;
     }
@@ -64,9 +71,16 @@ public class FootprintDao {
      * @return FootprintItemPo
      */
     public FootprintItemPo addFootprint(Integer userId, FootprintItemPo footprintItemPo) { //需在controller层进行合法性判断
-        footprintItemPo.setUserId(userId);
-        if (oomallFootprintMapper.insertSelective(footprintItemPo) > 0) return footprintItemPo;
-        else return  null;
+        footprintItemPo.setUserId(userId); //是否需要赋值？
+        footprintItemPo.setGmtCreate(LocalDateTime.now()); //
+        if(footprintItemPo.getId() != null) {
+            if(oomallFootprintMapper.selectAllById(footprintItemPo.getId()) != null) { //已存在，插入不合法
+                return null;
+            }
+        }
+        if (oomallFootprintMapper.insertSelective(footprintItemPo) > 0)
+            return footprintItemPo;
+        else return null;
     }
 
     /**
