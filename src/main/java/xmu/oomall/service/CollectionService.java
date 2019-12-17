@@ -11,28 +11,11 @@ import java.util.List;
 
 @Service
 public interface CollectionService {
-    /**
-     *
-     * @param userId
-     * @param page
-     * @param limit
-     * @return
-     */
+
     public List<CollectItemPo> getCollectionList(Integer userId, Integer page, Integer limit);
 
-    /**
-     *
-     * @param collectItemPo
-     * @return
-     */
     public CollectItemPo addCollection(CollectItemPo collectItemPo);
 
-    /**
-     *
-     * @param id
-     * @return
-     */
     public boolean deleteCollection (Integer id);
-
 
 }
