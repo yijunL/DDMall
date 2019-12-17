@@ -46,7 +46,7 @@ public class FreightController {
     @PostMapping("/defaultFreightsPo")
     public DefaultFreightPo addDefaultFreight(@RequestBody DefaultFreightPo defaultFreightPo)
     {
-        return null;
+        return freightService.addDefaultFreight(defaultFreightPo);
     }
 
     /**
@@ -57,7 +57,7 @@ public class FreightController {
      */
     @PutMapping("/defaultFreights/{id}")
     public DefaultFreightPo updateDefaultFreight(@PathVariable Integer id,@RequestBody DefaultFreightPo defaultFreightPo){
-        return null;
+        return freightService.updateDefaultFreight(id,defaultFreightPo);
     }
 
     /**
@@ -172,4 +172,6 @@ public class FreightController {
     public boolean deleteSpecialFreights(@PathVariable Integer id){
         return freightService.deleteSpecialFreights(id);
     }
+
+
 }

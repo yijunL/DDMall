@@ -14,12 +14,21 @@ public class SpecialFreightDao {
     OomallSpecialFreightMapper oomallSpecialFreightMapper;
 
     public SpecialFreight getSpecialFreights(Integer id) {
-        return oomallSpecialFreightMapper.findAllById(id);
+        SpecialFreight specialFreight= oomallSpecialFreightMapper.findAllById(id);
+        if(specialFreight.getBeDeleted()==true)
+            return null;
+        else
+            return specialFreight;
     }
 
     public List<SpecialFreight> getAllSpecialFreights(Integer page,Integer limit)
     {
         return (List<SpecialFreight>) PageCut.pageCut(oomallSpecialFreightMapper.findAllByBeDeletedLessThan(1),page,limit);
+    }
+
+    public boolean deleteSpecialFreight(Integer id)
+    {
+        return (oomallSpecialFreightMapper.deleteById(id)==1);
     }
 
 
