@@ -26,8 +26,8 @@ public class CollectionController {
      * @return List<CollectItem>
      */
     @GetMapping("/collections")
-    public Object getCollectionList(@RequestParam Integer userId,@RequestParam Integer page,
-                                           @RequestParam Integer limit) {
+    public List<CollectItem> getCollectionList(@RequestParam Integer userId, @RequestParam Integer page,
+                                               @RequestParam Integer limit) {
         List<CollectItem> collectItemList=collectionService.getCollectionList(userId,page,limit);
         return collectItemList;
     }
@@ -50,8 +50,8 @@ public class CollectionController {
      * @return null
      */
     @DeleteMapping("/collections/{id}")
-    public void deleteCollection (@PathVariable Integer id) {
-        collectionService.deleteCollection(id);
+    public boolean deleteCollection (@PathVariable Integer id) {
+        return collectionService.deleteCollection(id);
     }
 
 }

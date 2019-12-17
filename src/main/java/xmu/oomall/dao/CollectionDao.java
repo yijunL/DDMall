@@ -1,8 +1,15 @@
 package xmu.oomall.dao;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import xmu.oomall.domain.CollectItem;
+import xmu.oomall.domain.CollectItemPo;
 import xmu.oomall.mapper.OomallCollectItemMapper;
+import xmu.oomall.util.Copyer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class CollectionDao {
@@ -11,9 +18,51 @@ public class CollectionDao {
     private OomallCollectItemMapper collectionMapper;
 
 
+    /**
+     * 用户查看收藏列表
+     *
+     * @param userId: Integer
+     * @param page：Integer
+     * @param limit：Integer
+     * @return List<CollectItem>
+     */
+    public List<CollectItem> selectAllColltections(Integer userId,Integer page,Integer limit)
+    {
+        List<CollectItemPo> collectItemPoList= collectionMapper.findAllById(userId);
+        return collectItemList(collectItemPoList);
+    }
 
-    //删除收藏
-    public void deleteCollection(Integer id) {
-        collectionMapper.deleteById(id);
+    /**
+     * 用户删除收藏
+     *
+     * @param id：Integer
+     * @return null
+     */
+    public boolean deleteCollection(Integer id) {
+
+        return collectionMapper.deleteById(id);
+    }
+
+    /**
+     * 将collectItemPo列表转换成collectItem列表
+     *
+     * @return collectItems
+     */
+    private List<CollectItem> collectItemList(List<CollectItemPo> collectItemPos){
+        List<CollectItem> collectItems=new ArrayList<CollectItem>();
+        for(CollectItemPo collectItemPo:collectItemPos){
+            collectItems.add(collectItems(collectItemPo));
+        }
+        return collectItems;
+    }
+
+    /**
+     *将collectItemPo转换成collectItem
+     *
+     * @return collectItems
+     */
+    private CollectItem collectItems(CollectItemPo collectItemPo){
+        CollectItem collectItem = new CollectItem();
+        return Copyer.Copy(collectItemPo,collectItem)?collectItem:null;
     }
 }

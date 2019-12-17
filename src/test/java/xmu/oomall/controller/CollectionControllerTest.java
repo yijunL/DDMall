@@ -1,25 +1,34 @@
 package xmu.oomall.controller;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.exceptions.verification.MoreThanAllowedActualInvocations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import xmu.oomall.OomallApplication;
-import xmu.oomall.domain.DefaultFreight;
+import xmu.oomall.domain.CollectItem;
+import xmu.oomall.domain.CollectItemPo;
 import xmu.oomall.domain.DefaultFreightPo;
-import xmu.oomall.service.FreightService;
+import xmu.oomall.service.CollectionService;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class CollectionControllerTest {
     @Autowired
     private CollectionController collectionController;
 
-    @Test
-    public void CollectionControllerTest()
-    {
-        collectionController.deleteCollection(1);
-    }
+//    @Test
+////    public void deleteCollectionTest()
+////    {
+////
+////        collectionController.deleteCollection(1);
+////    }
+
+//    @Test
+//    public void getAllCollectionTest()
+//    {
+//        List<CollectItem> collectItemList= collectionController.getCollectionList(1,1,1);
+//        assertEquals(collectItemList.get(1).getUserId(),1);
+//    }
+
 }
