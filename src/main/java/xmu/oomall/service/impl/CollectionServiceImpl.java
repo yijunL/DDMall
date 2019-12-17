@@ -13,19 +13,36 @@ public class CollectionServiceImpl implements CollectionService {
     @Autowired
     private CollectionDao collectionDao;
 
+    /**
+     *
+     * @param userId
+     * @param page
+     * @param limit
+     * @return
+     */
     @Override
-    public List<CollectItem> getCollectionList(Integer userId, Integer page, Integer limit){
-      return null;
+    public List<CollectItemPo> getCollectionList(Integer userId, Integer page, Integer limit){
+        return collectionDao.getColltectionList(userId, page, limit);
     };
 
+    /**
+     *
+     * @param collectItemPo
+     * @return
+     */
     @Override
     public CollectItemPo addCollection(CollectItemPo collectItemPo){
         return null;
     };
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
-    public void deleteCollection (Integer id){
-        collectionDao.deleteCollection(id);
+    public boolean deleteCollection (Integer id){
+        return collectionDao.deleteCollection(id);
     };
 
 
