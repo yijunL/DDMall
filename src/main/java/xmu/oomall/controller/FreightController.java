@@ -10,6 +10,7 @@ import xmu.oomall.util.ResponseUtil;
 
 import javax.print.attribute.standard.Destination;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -231,5 +232,11 @@ public class FreightController {
             return ResponseUtil.updatedDataFailed();
     }
 
-
+    @GetMapping("/freightPrice")
+    public BigDecimal getFreightPrice(@RequestBody Order order)
+    {
+        if(order==null)
+            return null;
+        return null;
+    }
 }
