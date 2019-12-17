@@ -41,7 +41,7 @@ public class CommentController {
                                   @RequestParam Integer page,
                                   @RequestParam Integer limit)
     {
-        if(id==null){
+        if(id==null||page==null||limit==null){
             //401
             return ResponseUtil.badArgument();
         } else{
@@ -50,7 +50,8 @@ public class CommentController {
                 //402
                 return ResponseUtil.badArgumentValue();
             } else{
-                return ResponseUtil.ok(commentPoList);//后续可以调用其他模块的时候要封装成List<Commnet>
+                //后续可以调用其他模块的时候要封装成List<Commnet>
+                return ResponseUtil.ok(commentPoList);
             }
         }
        /* User user=userService.getUserById(commentPoList.get(0).getUserId());
@@ -68,12 +69,15 @@ public class CommentController {
      * @return 0:失败 1：成功
      */
     @PostMapping("/product/{id}/comments")//id是否需要？
-    public Object addComment(@RequestBody CommentPo commentPo){
+    public Object addComment(@RequestParam Integer id,@RequestBody CommentPo commentPo){
         if(commentPo==null){
             return ResponseUtil.badArgument();
         } else{
-            commentService.addComment(commentPo);
-            return ResponseUtil.ok(commentPo);
+            if(commentService.addComment(commentPo)==null){
+                return ResponseUtil.badArgumentValue();
+            } else{
+                return ResponseUtil.ok(commentPo);
+            }
         }
     }
 
@@ -96,5 +100,35 @@ public class CommentController {
         }
     }
 
-
+    /**
+     * 管理员根据条件获取评论
+     *
+     * @param userId
+     * @param productId
+     * @param limit
+     * @param page
+     * @return List<Comment>
+     */
+    @GetMapping("/admin/comments")
+    public Object getCommentByIdForAdmin(@RequestParam Integer userId,
+                                         @RequestParam Integer productId,
+                                         @RequestParam Integer limit,
+                                         @RequestParam Integer page){
+        if(limit==null||page==null){
+            return ResponseUtil.badArgument();
+        } else{
+            List<Comment> commentList;
+            if(userId==null&&productId==null){
+                 commentList=commentService.getAllComments(limit,page);
+            } else{
+                commentList =commentService.getCommentsByIdForAdmin(userId,productId,limit,page);
+            }
+            if(commentList==null){
+                return ResponseUtil.badArgumentValue();
+            } else{
+                //记得封装成List<Comment>
+                return ResponseUtil.ok(commentList);
+            }
+        }
+    }
 }

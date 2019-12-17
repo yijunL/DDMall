@@ -1,5 +1,6 @@
 package xmu.oomall.dao;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -46,10 +47,14 @@ public class CommentDao {
      * @param commentPo
      * @return 0：失败 1：成功
      */
-    public int addComment(CommentPo commentPo){
+    public CommentPo addComment(CommentPo commentPo){
         commentPo.setGmtCreate(LocalDateTime.now());
         commentPo.setGmtModified(LocalDateTime.now());
-        return commentMapper.insertSelective(commentPo);
+        if(commentMapper.insertSelective(commentPo)==0){
+            return null;
+        } else{
+            return commentPo;
+        }
     }
 
     /**
@@ -72,6 +77,36 @@ public class CommentDao {
         CommentPo commentPo=commentMapper.selectAllById(id);
         return comments(commentPo);
     }
+
+    /**
+     * 管理员根据条件查看评论
+     *
+     * @param userId
+     * @param productId
+     * @param limit
+     * @param page
+     * @return List<Comment>
+     */
+    public List<Comment> selectByIdForAdmin(Integer userId,Integer productId,Integer limit,Integer page){
+        PageHelper.startPage(limit,page);
+        List<CommentPo> commentPoList=commentMapper.selectAllByUserIdOrProductId(userId,productId);
+        return commentsList(commentPoList);
+    }
+
+    /**
+     * 获取所有评论
+     *
+     * @param limit
+     * @param page
+     * @return List<Comment>
+     */
+    public List<Comment> selectAllComments(Integer limit,Integer page){
+        PageHelper.startPage(limit,page);
+        List<CommentPo> commentPoList=commentMapper.selectALL();
+        return commentsList(commentPoList);
+    }
+
+
 
     public Comment updateComment(CommentPo commentPo,Integer id){
         return null;

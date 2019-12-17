@@ -29,7 +29,7 @@ public interface CommentService {
      * @param commentPo
      * @return 0：失败  1：成功
      */
-    public int addComment (CommentPo commentPo);
+    public CommentPo addComment (CommentPo commentPo);
 
     /**
      * 管理员删除评论
@@ -38,5 +38,10 @@ public interface CommentService {
      * @return 0：失败 1：成功
      */
     public int deleteComment(Integer id);
+
+
+    public List<Comment> getAllComments(Integer limit,Integer page);
+
+    public List<Comment> getCommentsByIdForAdmin(Integer UserId,Integer ProductId,Integer limit,Integer page);
 
 }

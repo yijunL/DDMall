@@ -30,7 +30,7 @@ public class CommentControllerTest {
         commentPo.setStatusCode(0);
         commentPo.setUserId(333);
 
-         commentController.addComment(commentPo);
+         commentController.addComment(1,commentPo);
 
         // System.out.println(commentController.deleteComment(112));
     }

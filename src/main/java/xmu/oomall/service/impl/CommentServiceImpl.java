@@ -44,7 +44,7 @@ public class CommentServiceImpl implements CommentService {
      * @return 0：失败 1：成功
      */
     @Override
-    public int addComment(CommentPo commentPo){
+    public CommentPo addComment(CommentPo commentPo){
         return commentDao.addComment(commentPo);
     }
 
@@ -64,5 +64,17 @@ public class CommentServiceImpl implements CommentService {
             }
         }
         return 0;
+    }
+
+    @Override
+    public List<Comment> getCommentsByIdForAdmin(Integer userId,Integer productId,Integer limit,Integer page){
+        List<Comment> commentList=commentDao.selectByIdForAdmin(userId, productId, limit, page);
+        return commentList;
+    }
+
+    @Override
+    public List<Comment> getAllComments(Integer limit,Integer page){
+        List<Comment> commentList=commentDao.selectAllComments(limit, page);
+        return commentList;
     }
 }
