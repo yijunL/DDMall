@@ -8,6 +8,7 @@ import xmu.oomall.domain.*;
 import xmu.oomall.service.FootprintService;
 import xmu.oomall.util.ResponseUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -84,6 +85,8 @@ public class FootprintController {
     @GetMapping("/admin/footprints")
     public Object listFootprintsByCondition(@RequestParam String userName, @RequestParam String goodsName,
                                             @RequestParam Integer page, @RequestParam Integer limit) {
+        List<FootprintItem> footprintItemList = footprintService.listFootprintsByCondition(userName, goodsName, page, limit);
+        System.out.println(footprintItemList.size());
         return null;
     }
 

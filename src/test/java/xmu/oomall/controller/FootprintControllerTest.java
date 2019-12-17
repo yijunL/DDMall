@@ -30,4 +30,9 @@ public class FootprintControllerTest {
         footprintItemPo.setId(99);
         footprintController.addFootprint(177, footprintItemPo);
     }
+
+    @Test
+    public void selectByConditionTest() { //测试能通过，但并不正确（无法查询到正确的列表)
+        footprintController.listFootprintsByCondition("1", "12", 1,10);
+    }
 }

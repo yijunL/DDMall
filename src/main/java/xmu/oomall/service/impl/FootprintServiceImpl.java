@@ -58,6 +58,10 @@ public class FootprintServiceImpl implements FootprintService {
     @Override
     public List<FootprintItem> listFootprintsByCondition(String userName, String goodsName, Integer page, Integer limit) {
         List<FootprintItem> footprintItems = footprintDao.selectByCondition(userName, goodsName, page, limit);
+        if(footprintItems == null) return null; //
+        for(FootprintItem footprintItem : footprintItems) { //Test
+            System.out.println(footprintItem.getUserId() + " and " + footprintItem.getGoodsId());
+        }
         return footprintItems;
     }
 

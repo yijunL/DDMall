@@ -15,13 +15,11 @@
     id, gmt_create, birth_time, user_id, goods_id
   </sql>
     <select id="selectByCondition" resultType="xmu.oomall.domain.FootprintItemPo">
-        select from oomall_footprint_item
-        <trim>
-            <if test="userId != null || goodsId != null">
-                where
-            </if>
-        </trim>
-        <trim suffixOverrides="and">
+        select
+        <include refid="Base_Column_List"/>
+        from oomall_footprint_item
+        where
+        <trim suffixOverrides = "and">
             <if test="userId != null">
                 `user_id` = #{userId} and
             </if>
