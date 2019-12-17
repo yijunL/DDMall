@@ -19,7 +19,7 @@ public class SpecialFreightDaoTest {
     private SpecialFreightDao specialFreightDao;
 
     @Test
-    public void defaultFreightDaoTest()
+    public void getSpecialFreightsTest()
     {
         SpecialFreight specialFreight=specialFreightDao.getSpecialFreights(1);
         assertEquals(specialFreight.getId(),1);

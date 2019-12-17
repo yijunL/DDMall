@@ -32,7 +32,8 @@ public class CollectionServiceImpl implements CollectionService {
      */
     @Override
     public CollectItemPo addCollection(CollectItemPo collectItemPo){
-        return null;
+
+        return collectionDao.addCollection(collectItemPo);
     };
 
     /**

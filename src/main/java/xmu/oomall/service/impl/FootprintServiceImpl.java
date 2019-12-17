@@ -39,18 +39,25 @@ public class FootprintServiceImpl implements FootprintService {
      * @return Response.ok()
      */
     @Override
-    public Boolean deleteFootprintById (Integer id) {
-        return footprintDao.deleteFootprintById(id);
+    public int deleteFootprintById (Integer id) {
+        if(footprintDao.deleteFootprintById(id) > 0) { //or == 1
+            return 1;
+        }
+        return 0;
     }
 
     /**
      * 管理员查看足迹
      *
+     * @param userName: String
+     * @param goodsName: String
+     * @param page: Integer
+     * @param limit: Integer
      * @return List<FootprintItem>
      */
     @Override
-    public List<FootprintItem> listFootprintsByCondition() {
-        List<FootprintItem> footprintItems = footprintDao.selectByCondition();
+    public List<FootprintItem> listFootprintsByCondition(String userName, String goodsName, Integer page, Integer limit) {
+        List<FootprintItem> footprintItems = footprintDao.selectByCondition(userName, goodsName, page, limit);
         return footprintItems;
     }
 

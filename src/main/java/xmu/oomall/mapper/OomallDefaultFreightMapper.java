@@ -3,12 +3,7 @@ package xmu.oomall.mapper;
 import org.apache.ibatis.annotations.Param;import xmu.oomall.domain.DefaultFreightPo;import java.util.List;
 
 public interface OomallDefaultFreightMapper {
-    /**
-     * 删除
-     * @param id
-     * @return
-     */
-    int deleteDefaultFreight(Integer id);
+
 
     /**
      * 查（测试用）

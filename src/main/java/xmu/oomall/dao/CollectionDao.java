@@ -9,6 +9,7 @@ import xmu.oomall.mapper.OomallCollectItemMapper;
 import xmu.oomall.util.Copyer;
 import xmu.oomall.util.PageCut;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,16 @@ public class CollectionDao {
     public List<CollectItemPo> getColltectionList(Integer userId,Integer page,Integer limit)
     {
         return (List<CollectItemPo>) PageCut.pageCut(oomallCollectItemMapper.findAllById(userId),page,limit);
+    }
+
+    public CollectItemPo addCollection(CollectItemPo collectItemPo)
+    {
+        if(collectItemPo.getId()!=null)
+            return null;
+        collectItemPo.setGmtCreate(LocalDateTime.now());
+        oomallCollectItemMapper.insertSelective(collectItemPo);
+
+        return collectItemPo;
     }
 
     /**

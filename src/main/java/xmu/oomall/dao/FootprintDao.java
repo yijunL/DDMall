@@ -4,9 +4,10 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import xmu.oomall.domain.*;
-import xmu.oomall.mapper.FootprintMapper;
+import xmu.oomall.mapper.OomallFootprintMapper;
 import xmu.oomall.util.Copyer;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
 @Repository
 public class FootprintDao {
     @Autowired
-    private FootprintMapper footprintMapper;
+    private OomallFootprintMapper oomallFootprintMapper;
 
     /**
      * 用户获取足迹列表
@@ -29,7 +30,8 @@ public class FootprintDao {
      */
     public List<FootprintItem> selectByUserId(Integer page, Integer limit) {
         PageHelper.startPage(page, limit); //use page-helper
-        List<FootprintItemPo> footprintItemPos = footprintMapper.select();
+        Integer userId = 1; //从网关获取用户id
+        List<FootprintItemPo> footprintItemPos = oomallFootprintMapper.selectAllByUserId(userId); //
         List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
         return footprintItems;
     }
@@ -38,19 +40,25 @@ public class FootprintDao {
      * 用户删除足迹
      *
      * @param id：Integer
-     * @return Response.ok()
+     * @return 0 or 1
      */
-    public boolean deleteFootprintById (Integer id) {
-        return (footprintMapper.deleteByUserId(id) == 1);
+    public int deleteFootprintById (Integer id) {
+        return oomallFootprintMapper.deleteById(id);
     }
 
     /**
      * 管理员查看足迹
      *
+     * @param userName: String
+     * @param goodsName: String
+     * @param page: Integer
+     * @param limit: Integer
      * @return List<FootprintItem>
      */
-    public List<FootprintItem> selectByCondition() { //need to be updated
-        List<FootprintItemPo> footprintItemPos = footprintMapper.selectByCondition("1", "1");
+    public List<FootprintItem> selectByCondition(String userName, String goodsName, Integer page, Integer limit) { //need to be updated
+        Integer userId = Integer.valueOf(userName), goodsId = Integer.valueOf(goodsName); //调用其他服务，查询获取对应的userId和goodsId
+        PageHelper.startPage(page, limit);
+        List<FootprintItemPo> footprintItemPos = oomallFootprintMapper.selectByCondition(userId, goodsId);
         List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
         return footprintItems;
     }
@@ -63,9 +71,16 @@ public class FootprintDao {
      * @return FootprintItemPo
      */
     public FootprintItemPo addFootprint(Integer userId, FootprintItemPo footprintItemPo) { //需在controller层进行合法性判断
-        footprintItemPo.setUserId(userId);
-        if (footprintMapper.insertSelective(footprintItemPo) > 0) return footprintItemPo;
-        else return  null;
+        footprintItemPo.setUserId(userId); //是否需要赋值？
+        footprintItemPo.setGmtCreate(LocalDateTime.now()); //
+        if(footprintItemPo.getId() != null) {
+            if(oomallFootprintMapper.selectAllById(footprintItemPo.getId()) != null) { //已存在，插入不合法
+                return null;
+            }
+        }
+        if (oomallFootprintMapper.insertSelective(footprintItemPo) > 0)
+            return footprintItemPo;
+        else return null;
     }
 
     /**
