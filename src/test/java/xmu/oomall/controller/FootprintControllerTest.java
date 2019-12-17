@@ -32,7 +32,7 @@ public class FootprintControllerTest {
     }
 
     @Test
-    public void selectByConditionTest() { //测试能通过，但并不正确（无法查询到正确的列表)
-        footprintController.listFootprintsByCondition("1", "12", 1,10);
+    public void selectByConditionTest() { //测试能通过，但并不正确（无法传入null，会报java.lang.NumberFormatException: null异常)
+        footprintController.listFootprintsByCondition("177", null, 1,10);
     }
 }

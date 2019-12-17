@@ -56,7 +56,18 @@ public class FootprintDao {
      * @return List<FootprintItem>
      */
     public List<FootprintItem> selectByCondition(String userName, String goodsName, Integer page, Integer limit) { //need to be updated
-        Integer userId = Integer.valueOf(userName), goodsId = Integer.valueOf(goodsName); //调用其他服务，查询获取对应的userId和goodsId
+        Integer userId, goodsId; //调用其他服务，查询获取对应的userId和goodsId
+        if(userName == null) {
+            userId = null;
+        } else {
+            userId = Integer.valueOf(userName); //
+        }
+        if(goodsName ==null) {
+            goodsId = null;
+        } else {
+            goodsId = Integer.valueOf(goodsName); //
+        }
+        System.out.println("userId: " + userId + " and goodsId: " + goodsId);
         PageHelper.startPage(page, limit);
         List<FootprintItemPo> footprintItemPos = oomallFootprintMapper.selectByCondition(userId, goodsId);
         List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
