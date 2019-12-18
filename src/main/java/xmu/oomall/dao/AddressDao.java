@@ -38,12 +38,12 @@ public class AddressDao {
         return addressPo;
     }
 
-    public Address updateAddress(Integer id,Address address){
-        if(address.getId()!=null)
+    public AddressPo updateAddress(Integer id,AddressPo addressPo){
+        if(addressPo.getId()!=null)
             return null;                        //id不允许有值，即不能修改id
-        address.setGmtModified(LocalDateTime.now());
-        oomallAddressMapper.updateById(address,id);
-        return address;
+        addressPo.setGmtModified(LocalDateTime.now());
+        oomallAddressMapper.updateById(addressPo,id);
+        return addressPo;
     }
 
     public boolean deleteAddress(Integer id) {

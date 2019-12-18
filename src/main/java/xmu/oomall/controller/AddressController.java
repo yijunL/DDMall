@@ -79,7 +79,7 @@ public class AddressController {
             return ResponseUtil.badArgument();
         AddressPo addressPo1=addressService.addAddress(addressPo);
 
-        if(addressPo==null)
+        if(addressPo1==null)
             return ResponseUtil.updatedDataFailed();
         else
             return ResponseUtil.ok(addressPo1);
@@ -88,19 +88,19 @@ public class AddressController {
     /**
      * 用户修改某个地址详情
      * @param id
-     * @param address
+     * @param addressPo
      * @return
      */
     @PutMapping("/addresses/{id}")
-    public Object updateAddress(@PathVariable Integer id,@RequestBody Address address){
+    public Object updateAddress(@PathVariable Integer id,@RequestBody AddressPo addressPo){
 
-        if(id==null || address==null)
+        if(id==null || addressPo==null)
             return ResponseUtil.badArgument();
-        Address address1=addressService.updateAddress(id,address);
-        if(address==null)
+        AddressPo addressPo1=addressService.updateAddress(id,addressPo);
+        if(addressPo1==null)
             return ResponseUtil.updatedDataFailed();
         else
-            return ResponseUtil.ok(address1);
+            return ResponseUtil.ok(addressPo1);
     }
 
     /**

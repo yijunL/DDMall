@@ -20,7 +20,7 @@ public interface AddressService {
 
     public AddressPo addAddress(AddressPo addressPo);
 
-    public Address updateAddress(Integer id,Address address);
+    public AddressPo updateAddress(Integer id,AddressPo addressPo);
 
     public boolean deleteAddress (Integer id);
 

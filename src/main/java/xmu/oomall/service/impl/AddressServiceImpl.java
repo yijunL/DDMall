@@ -29,10 +29,9 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address updateAddress(Integer id,Address address){
-        return addressDao.updateAddress(id,address);
+    public AddressPo updateAddress(Integer id,AddressPo addressPo){
+        return addressDao.updateAddress(id,addressPo);
     }
-
 
     @Override
     public boolean deleteAddress (Integer id){
