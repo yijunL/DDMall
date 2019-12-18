@@ -22,8 +22,8 @@ public interface AfterSaleService {
      * 管理员查询售后服务列表
      *
      * @param orderId: Integer
-     * @param page: Integer
-     * @param limit: Integer
+     * @param page:    Integer
+     * @param limit:   Integer
      * @return List<AfterSaleService>
      */
     public List<xmu.oomall.domain.AfterSaleService> listAfterSalesByCondition(Integer orderId, Integer page, Integer limit);
@@ -39,7 +39,7 @@ public interface AfterSaleService {
     /**
      * 管理员修改某一售后服务信息
      *
-     * @param id: Integer
+     * @param id:               Integer
      * @param afterSaleService: AfterSaleService
      * @return AfterSaleService
      */
@@ -48,7 +48,7 @@ public interface AfterSaleService {
     /**
      * 用户修改某一售后服务的信息
      *
-     * @param id: Integer
+     * @param id:               Integer
      * @param afterSaleService: AfterSaleService
      * @return AfterSaleService
      */
@@ -57,7 +57,7 @@ public interface AfterSaleService {
     /**
      * 查询用户的售后服务列表
      *
-     * @param page: Integer
+     * @param page:  Integer
      * @param limit: Integer
      * @return List<AfterSaleService>
      */

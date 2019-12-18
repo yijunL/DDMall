@@ -50,33 +50,30 @@ public class FreightControllerTest {
 //    }
 
     @Test
-    public void deleteDefaultFreightTest()
-    {
-        Map<String, Object> respon=(Map<String, Object>)freightController.deleteDefaultFreight(1);
-        assertEquals(respon.get("errno"),0);
+    public void deleteDefaultFreightTest() {
+        Map<String, Object> respon = (Map<String, Object>) freightController.deleteDefaultFreight(1);
+        assertEquals(respon.get("errno"), 0);
     }
 
     @Test
-    public void getAllDefaultFreightTest()
-    {
-        Map<String, Object> respon =(Map<String, Object>)freightController.getDefaultFreights(2,2);
+    public void getAllDefaultFreightTest() {
+        Map<String, Object> respon = (Map<String, Object>) freightController.getDefaultFreights(2, 2);
 
-        List<DefaultFreightPo> defaultFreightPoList=(List<DefaultFreightPo>)respon.get("data");
-        assertEquals(defaultFreightPoList.get(0).getId(),3);
-        assertEquals(respon.get("errno"),0);
+        List<DefaultFreightPo> defaultFreightPoList = (List<DefaultFreightPo>) respon.get("data");
+        assertEquals(defaultFreightPoList.get(0).getId(), 3);
+        assertEquals(respon.get("errno"), 0);
     }
 
     @Test
-    public void addDefaultFreightTest()
-    {
-        DefaultFreightPo defaultFreightPo=new DefaultFreightPo();
+    public void addDefaultFreightTest() {
+        DefaultFreightPo defaultFreightPo = new DefaultFreightPo();
         defaultFreightPo.setRequireDays("1-3");
 
         defaultFreightPo.setOver10Price(new BigDecimal("10"));
         defaultFreightPo.setOver50Price(new BigDecimal("100"));
-        Map<String, Object> respon =(Map<String, Object>)freightController.addDefaultFreight(defaultFreightPo);
-        DefaultFreightPo defaultFreightPo1 =(DefaultFreightPo)respon.get("data");
-        assertEquals(defaultFreightPo1.getOver10Price(),new BigDecimal("10"));
+        Map<String, Object> respon = (Map<String, Object>) freightController.addDefaultFreight(defaultFreightPo);
+        DefaultFreightPo defaultFreightPo1 = (DefaultFreightPo) respon.get("data");
+        assertEquals(defaultFreightPo1.getOver10Price(), new BigDecimal("10"));
     }
 
 }
