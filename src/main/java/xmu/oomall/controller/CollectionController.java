@@ -52,7 +52,7 @@ public class CollectionController {
         if (limit == null || limit < 0) {
             return ResponseUtil.badArgumentValue();
         }
-        List<CollectItem> collectItemList=collectionService.getCollectionList(userId,page, limit);
+        List<CollectItem> collectItemList=collectionService.getCollectionList(userId, page, limit);
         return ResponseUtil.ok(collectItemList);
     }
 
@@ -63,9 +63,15 @@ public class CollectionController {
      * @return collectItemPo
      */
     @PostMapping("/collections")
-    public CollectItemPo addCollection(@RequestBody CollectItemPo collectItemPo) {
+    public Object addCollection(@RequestBody CollectItemPo collectItemPo) {
 
-        return collectionService.addCollection(collectItemPo);
+        if(collectItemPo==null)
+            return ResponseUtil.badArgument();
+        CollectItemPo collectItemPo1 = collectionService.addCollection(collectItemPo);
+        if(collectItemPo1==null)
+            return ResponseUtil.updatedDataFailed();
+        else
+            return ResponseUtil.ok(collectItemPo1);
     }
 
     /**
@@ -75,8 +81,13 @@ public class CollectionController {
      * @return null
      */
     @DeleteMapping("/collections/{id}")
-    public boolean deleteCollection (@PathVariable Integer id) {
-        return collectionService.deleteCollection(id);
+    public Object deleteCollection (@PathVariable Integer id) {
+        if(id==null)
+            return ResponseUtil.badArgument();
+        if(collectionService.deleteCollection(id))
+            return ResponseUtil.ok();
+        else
+            return ResponseUtil.updatedDataFailed();
     }
 
 }
