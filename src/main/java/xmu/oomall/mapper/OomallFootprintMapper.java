@@ -3,6 +3,7 @@ package xmu.oomall.mapper;
 import org.apache.ibatis.annotations.Param;import xmu.oomall.domain.FootprintItemPo;import java.util.List;
 
 public interface OomallFootprintMapper {
+
     /**
      * 用户获取足迹列表
      *

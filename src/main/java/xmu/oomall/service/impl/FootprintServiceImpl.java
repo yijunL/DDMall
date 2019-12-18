@@ -22,13 +22,14 @@ public class FootprintServiceImpl implements FootprintService {
     /**
      * 用户获取足迹列表
      *
+     * @param userId: Integer
      * @param page：Integer
      * @param limit：Integer
      * @return List<FootprintItem>
      */
     @Override
-    public List<FootprintItem> listFootprintsByUserId(Integer page, Integer limit) {
-        List<FootprintItem> footprintItems = footprintDao.selectByUserId(page, limit);
+    public List<FootprintItem> listFootprintsByUserId(Integer userId, Integer page, Integer limit) {
+        List<FootprintItem> footprintItems = footprintDao.selectByUserId(userId, page, limit);
         return footprintItems;
     }
 
@@ -59,21 +60,20 @@ public class FootprintServiceImpl implements FootprintService {
     public List<FootprintItem> listFootprintsByCondition(Integer userId, Integer goodsId, Integer page, Integer limit) {
         List<FootprintItem> footprintItems = footprintDao.selectByCondition(userId, goodsId, page, limit);
         //查询无结果，返回空列表而非null
-        for(FootprintItem footprintItem : footprintItems) { //!!Test
-            System.out.println(footprintItem.getUserId() + " and " + footprintItem.getGoodsId());
-        }
+//        for(FootprintItem footprintItem : footprintItems) { //!!Test
+//            System.out.println(footprintItem.getUserId() + " and " + footprintItem.getGoodsId());
+//        }
         return footprintItems;
     }
 
     /**
      * 内部接口：提供给Goods模块，增加用户足迹
      *
-     * @param userId: Integer
      * @param footprintItemPo: FootprintItemPo
      * @return FootprintItemPo
      */
     @Override
-    public FootprintItemPo addFootprint(Integer userId, FootprintItemPo footprintItemPo) {
-        return footprintDao.addFootprint(userId, footprintItemPo);
+    public FootprintItemPo addFootprint(FootprintItemPo footprintItemPo) {
+        return footprintDao.addFootprint(footprintItemPo);
     }
 }

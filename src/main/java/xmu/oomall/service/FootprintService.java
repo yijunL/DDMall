@@ -24,11 +24,12 @@ public interface FootprintService {
     /**
      * 用户获取足迹列表
      *
+     * @param userId: Integer
      * @param page：Integer
      * @param limit：Integer
      * @return List<FootprintItem>
      */
-    public List<FootprintItem> listFootprintsByUserId(Integer page, Integer limit);
+    public List<FootprintItem> listFootprintsByUserId(Integer userId, Integer page, Integer limit);
 
     /**
      * 用户删除足迹（弃用）
@@ -52,9 +53,8 @@ public interface FootprintService {
     /**
      * 内部接口：提供给Goods模块，增加用户足迹
      *
-     * @param userId: Integer
      * @param footprintItemPo: FootprintItemPo
      * @return FootprintItemPo
      */
-    public FootprintItemPo addFootprint(Integer userId, FootprintItemPo footprintItemPo);
+    public FootprintItemPo addFootprint(FootprintItemPo footprintItemPo);
 }
