@@ -41,7 +41,7 @@ public class CommentController {
                                   @RequestParam Integer page,
                                   @RequestParam Integer limit)
     {
-        if(id==null||page==null||limit==null){
+        if(id==null||page==null||limit==null||page<0||limit<0){
             //401
             return ResponseUtil.badArgument();
         } else{
@@ -114,7 +114,7 @@ public class CommentController {
                                          @RequestParam Integer productId,
                                          @RequestParam Integer limit,
                                          @RequestParam Integer page){
-        if(limit==null||page==null){
+        if(limit==null||page==null||limit<0||page<0){
             return ResponseUtil.badArgument();
         } else{
             List<Comment> commentList;
