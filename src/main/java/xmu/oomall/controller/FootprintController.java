@@ -8,6 +8,7 @@ import xmu.oomall.domain.*;
 import xmu.oomall.service.FootprintService;
 import xmu.oomall.util.ResponseUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,20 @@ public class FootprintController {
     private static final Logger logger = LoggerFactory.getLogger(FootprintController.class);
 
     @Autowired
-    private FootprintService footprintService;
+    private  FootprintService footprintService;
+
+    /**
+     * 解析请求
+     * @param request
+     * @return userId
+     */
+    private Integer getUserId(HttpServletRequest request) {
+        String userIdStr = request.getHeader("userId");
+        if (userIdStr == null) {
+            return null;
+        }
+        return Integer.valueOf(userIdStr);
+    }
 
     /**
      * 用户获取足迹列表
@@ -33,13 +47,19 @@ public class FootprintController {
      * @return List<FootprintItem>
      */
     @GetMapping("/footprints")
-    public Object listFootprintsByUserId(@RequestParam Integer page,
+    public Object listFootprintsByUserId(HttpServletRequest request,
+                                         @RequestParam Integer page,
                                          @RequestParam Integer limit) {
-        Integer userId = 1; //从网关获取用户id
+        Integer userId = getUserId(request); //从网关获取用户id
         if (userId == null) { //可能不需要该判断
-            return ResponseUtil.badArgument();
-        } else {
-            List<FootprintItem> footprintItems = footprintService.listFootprintsByUserId(page, limit);
+            return ResponseUtil.unlogin();
+        }
+        if (page == null || limit == null
+            || page < 0 || limit < 0) {
+            return ResponseUtil.badArgumentValue();
+        }
+        else {
+            List<FootprintItem> footprintItems = footprintService.listFootprintsByUserId(userId, page, limit);
 //            if(footprintItems.size() == 0) { //未查询到任何结果
 //                return ResponseUtil.badArgumentValue();
 //            } else {
@@ -47,12 +67,6 @@ public class FootprintController {
 //            }
             return ResponseUtil.ok(footprintItems);
         }
-        /* User user=userService.getUserById(commentPoList.get(0).getUserId()); //判断用户等
-        ProductPo productPo=productService.getProductPoById(id);
-        List<Comment> commentList = new ArrayList<Comment>();
-        Comment comment;
-        for(int i=0;i<commentPoList.size();i++){
-            comment= new Comment(user,productPo,commentPoList.get(i)); */
     }
 
     /**
@@ -62,13 +76,13 @@ public class FootprintController {
      * @return Response.ok()
      */
     @DeleteMapping("/footprints/{id}")
-    public Object deleteFootprintById(@PathVariable Integer id) {
-        if (id == null) {
+    public Object deleteFootprintById (@PathVariable Integer id) {
+        if(id == null) {
             return ResponseUtil.badArgument();
         } else {
-            if (footprintService.deleteFootprintById(id) == 0) {
+            if(footprintService.deleteFootprintById(id) == 0){
                 return ResponseUtil.badArgumentValue();
-            } else {
+            } else{
                 return ResponseUtil.ok();
             }
         }
@@ -77,38 +91,38 @@ public class FootprintController {
     /**
      * 管理员查看足迹
      *
-     * @param userId:  Integer
+     * @param userId: Integer
      * @param goodsId: Integer
-     * @param page:    Integer
-     * @param limit:   Integer
+     * @param page: Integer
+     * @param limit: Integer
      * @return List<FootprintItem>
      */
     @GetMapping("/admin/footprints")
     public Object listFootprintsByCondition(@RequestParam Integer userId, @RequestParam Integer goodsId,
                                             @RequestParam Integer page, @RequestParam Integer limit) {
-        if (page == null || limit == null) {
+        if(page == null || limit == null
+            || page < 0 || limit < 0) {
             return ResponseUtil.badArgument();
         } else {
             List<FootprintItem> footprintItemList = footprintService.listFootprintsByCondition(userId, goodsId, page, limit);
             //是否判断返回值是否为0？
-            System.out.println(footprintItemList.size()); //!!Test
+            //System.out.println(footprintItemList.size()); //!!Test
+            return ResponseUtil.ok(footprintItemList);
         }
-        return null;
     }
 
     /**
      * 内部接口：提供给Goods模块，增加足迹
      *
-     * @param userId:          Integer
      * @param footprintItemPo: FootprintItemPo
      * @return FootprintItemPo
      */
     @PostMapping("/footprints")
-    public Object addFootprint(@PathVariable Integer userId, @RequestBody FootprintItemPo footprintItemPo) {
-        if (userId == null || footprintItemPo == null) {
+    public Object addFootprint(@RequestBody FootprintItemPo footprintItemPo) {
+        if(footprintItemPo == null) {
             return ResponseUtil.badArgument(); //返回响应值
         } else { //是否需要进一步判断userId?
-            footprintService.addFootprint(userId, footprintItemPo);
+            footprintService.addFootprint(footprintItemPo);
             return ResponseUtil.ok(footprintItemPo);
         }
     }

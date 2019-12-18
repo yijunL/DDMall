@@ -19,16 +19,11 @@ public class FootprintControllerTest {
     private FootprintController footprintController;
 
     @Test
-    public void footprintControllerTest() {
-        footprintController.deleteFootprintById(99);
-    }
-
-    @Test
     public void addFootprintTest() {
         FootprintItemPo footprintItemPo = new FootprintItemPo();
         footprintItemPo.setGoodsId(12);
-        footprintItemPo.setId(99);
-        footprintController.addFootprint(177, footprintItemPo);
+        footprintItemPo.setUserId(177);
+        footprintController.addFootprint(footprintItemPo);
     }
 
     @Test
