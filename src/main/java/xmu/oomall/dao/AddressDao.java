@@ -1,16 +1,14 @@
 package xmu.oomall.dao;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import xmu.oomall.domain.*;
+import xmu.oomall.domain.Address;
+import xmu.oomall.domain.AddressPo;
 import xmu.oomall.mapper.OomallAddressMapper;
-import xmu.oomall.mapper.OomallCollectItemMapper;
 import xmu.oomall.util.Copyer;
 import xmu.oomall.util.PageCut;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository

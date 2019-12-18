@@ -3,7 +3,8 @@ package xmu.oomall.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xmu.oomall.dao.AddressDao;
-import xmu.oomall.domain.*;
+import xmu.oomall.domain.Address;
+import xmu.oomall.domain.AddressPo;
 import xmu.oomall.service.AddressService;
 
 import java.util.List;

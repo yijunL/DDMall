@@ -10,10 +10,4 @@ public interface OomallAddressMapper {
     List<AddressPo> findAllByBeDeletedLessThan(@Param("maxBeDeleted") Integer maxBeDeleted);
     AddressPo findAllById(@Param("id") Integer id);
 
-
-
-
-
-
-
 }
