@@ -18,8 +18,8 @@ public interface AddressService {
 
     public Address addAddress(Address address);
 
-//    public CollectItemPo addCollection(CollectItemPo collectItemPo);
+    //    public CollectItemPo addCollection(CollectItemPo collectItemPo);
 //
-    public boolean deleteAddress (Integer id);
+    public boolean deleteAddress(Integer id);
 
 }

@@ -38,9 +38,8 @@ public class AddressControllerTest {
 //    }
 
     @Test
-    public void addAddress()
-    {
-        Address address=new Address();
+    public void addAddress() {
+        Address address = new Address();
         address.setCity("成都");
         address.setCounty("中国");
         address.setProvince("四川");

@@ -21,6 +21,7 @@ public class AddressController {
 
     /**
      * 用户查询地址信息
+     *
      * @param page
      * @param limit
      * @return
@@ -32,13 +33,12 @@ public class AddressController {
 
 
     @PostMapping("/addresses")
-    public Object addAddress(@RequestBody Address address)
-    {
-        if(address==null)
+    public Object addAddress(@RequestBody Address address) {
+        if (address == null)
             return ResponseUtil.badArgument();
-        Address address1=addressService.addAddress(address);
+        Address address1 = addressService.addAddress(address);
 
-        if(address==null)
+        if (address == null)
             return ResponseUtil.updatedDataFailed();
         else
             return ResponseUtil.ok(address1);
@@ -46,14 +46,15 @@ public class AddressController {
 
     /**
      * 用户删除某个地址详情
+     *
      * @param id
      * @return
      */
     @DeleteMapping("/addresses/{id}")
-    public Object deleteAddress(@PathVariable Integer id){
-        if(id==null)
+    public Object deleteAddress(@PathVariable Integer id) {
+        if (id == null)
             return ResponseUtil.badArgument();
-        if(addressService.deleteAddress(id))
+        if (addressService.deleteAddress(id))
             return ResponseUtil.ok();
         else
             return ResponseUtil.updatedDataFailed();

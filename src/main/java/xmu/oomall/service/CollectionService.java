@@ -16,6 +16,6 @@ public interface CollectionService {
 
     public CollectItemPo addCollection(CollectItemPo collectItemPo);
 
-    public boolean deleteCollection (Integer id);
+    public boolean deleteCollection(Integer id);
 
 }

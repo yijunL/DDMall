@@ -36,15 +36,15 @@ public interface FootprintService {
      * @param id：Integer
      * @return Response.ok()
      */
-    public int deleteFootprintById (Integer id);
+    public int deleteFootprintById(Integer id);
 
     /**
      * 管理员查看足迹
      *
-     * @param userId: Integer
+     * @param userId:  Integer
      * @param goodsId: Integer
-     * @param page: Integer
-     * @param limit: Integer
+     * @param page:    Integer
+     * @param limit:   Integer
      * @return List<FootprintItem>
      */
     public List<FootprintItem> listFootprintsByCondition(Integer userId, Integer goodsId, Integer page, Integer limit);
@@ -52,7 +52,7 @@ public interface FootprintService {
     /**
      * 内部接口：提供给Goods模块，增加用户足迹
      *
-     * @param userId: Integer
+     * @param userId:          Integer
      * @param footprintItemPo: FootprintItemPo
      * @return FootprintItemPo
      */

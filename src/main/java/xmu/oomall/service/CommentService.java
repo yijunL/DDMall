@@ -16,12 +16,12 @@ import java.util.List;
 public interface CommentService {
 
     /**
-     *用户获取产品下评论列表
+     * 用户获取产品下评论列表
      *
      * @param id
      * @return List<Comment>
      */
-    public List<Comment> getCommentsById(Integer limit,Integer page,Integer id);
+    public List<Comment> getCommentsById(Integer limit, Integer page, Integer id);
 
     /**
      * 用户在产品下发表评论
@@ -29,7 +29,7 @@ public interface CommentService {
      * @param commentPo
      * @return 0：失败  1：成功
      */
-    public CommentPo addComment (CommentPo commentPo);
+    public CommentPo addComment(CommentPo commentPo);
 
     /**
      * 管理员删除评论
@@ -46,7 +46,7 @@ public interface CommentService {
      * @param page
      * @return List<Comment>
      */
-    public List<Comment> getAllComments(Integer limit,Integer page);
+    public List<Comment> getAllComments(Integer limit, Integer page);
 
     /**
      * 管理员根据条件获取评论
@@ -57,8 +57,8 @@ public interface CommentService {
      * @param page
      * @return List<Comment>
      */
-    public List<Comment> getCommentsByIdForAdmin(Integer UserId,Integer ProductId,
-                                                 Integer limit,Integer page);
+    public List<Comment> getCommentsByIdForAdmin(Integer UserId, Integer ProductId,
+                                                 Integer limit, Integer page);
 
     /**
      * 管理员审核单条评论
@@ -67,7 +67,7 @@ public interface CommentService {
      * @param commentPo
      * @return CommentPo
      */
-    public CommentPo updateCommentById(Integer id,CommentPo commentPo);
+    public CommentPo updateCommentById(Integer id, CommentPo commentPo);
 
 
 }

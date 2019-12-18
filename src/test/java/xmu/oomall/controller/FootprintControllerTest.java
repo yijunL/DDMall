@@ -33,6 +33,6 @@ public class FootprintControllerTest {
 
     @Test
     public void selectByConditionTest() {
-        footprintController.listFootprintsByCondition(177, null, 1,10);
+        footprintController.listFootprintsByCondition(177, null, 1, 10);
     }
 }

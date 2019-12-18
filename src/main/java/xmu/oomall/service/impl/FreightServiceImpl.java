@@ -21,7 +21,7 @@ public class FreightServiceImpl implements FreightService {
 
     @Override
     public List<DefaultFreightPo> getDefaultFreights(Integer page, Integer limit) {
-        return defaultFreightDao.getDefaultFreights(page,limit);
+        return defaultFreightDao.getDefaultFreights(page, limit);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class FreightServiceImpl implements FreightService {
 
     @Override
     public DefaultFreightPo updateDefaultFreight(Integer id, DefaultFreightPo DefaultFreightPo) {
-        return defaultFreightDao.updateDefaultFreight(id,DefaultFreightPo);
+        return defaultFreightDao.updateDefaultFreight(id, DefaultFreightPo);
     }
 
 
@@ -69,7 +69,7 @@ public class FreightServiceImpl implements FreightService {
 
     @Override
     public List<SpecialFreight> getAllSpecialFreight(Integer page, Integer limit) {
-        return specialFreightDao.getAllSpecialFreights(page,limit);
+        return specialFreightDao.getAllSpecialFreights(page, limit);
     }
 
     @Override
@@ -78,9 +78,8 @@ public class FreightServiceImpl implements FreightService {
     }
 
     @Override
-    public SpecialFreight updateSpecialFreights(Integer id, SpecialFreight specialFreight)
-    {
-        return specialFreightDao.updateSpecialFreight(specialFreight,id);
+    public SpecialFreight updateSpecialFreights(Integer id, SpecialFreight specialFreight) {
+        return specialFreightDao.updateSpecialFreight(specialFreight, id);
     }
 
     @Override

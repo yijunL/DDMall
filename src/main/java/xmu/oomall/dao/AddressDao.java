@@ -20,14 +20,12 @@ public class AddressDao {
     private OomallAddressMapper oomallAddressMapper;
 
 
-
-    public List<AddressPo> getAddressList( Integer page, Integer limit)
-    {
-        return (List<AddressPo>) PageCut.pageCut(oomallAddressMapper.findAllById(1),page,limit);
+    public List<AddressPo> getAddressList(Integer page, Integer limit) {
+        return (List<AddressPo>) PageCut.pageCut(oomallAddressMapper.findAllById(1), page, limit);
     }
 
-    public Address addAddress(Address address){
-        if(address.getId()!=null)    //插入的po不能有id
+    public Address addAddress(Address address) {
+        if (address.getId() != null)    //插入的po不能有id
             return null;
         address.setGmtCreate(LocalDateTime.now());
         oomallAddressMapper.insertSelective(address);
@@ -37,10 +35,10 @@ public class AddressDao {
 
     public boolean deleteAddress(Integer id) {
 
-        AddressPo addressPo=new AddressPo();
+        AddressPo addressPo = new AddressPo();
         addressPo.setGmtModified(LocalDateTime.now());
         addressPo.setBeDeleted(true);
-        if(oomallAddressMapper.updateById(addressPo,id)==0)  //没有更新任何元素
+        if (oomallAddressMapper.updateById(addressPo, id) == 0)  //没有更新任何元素
             return false;
         else
             return true;

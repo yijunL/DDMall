@@ -16,12 +16,14 @@ public class AddressServiceImpl implements AddressService {
     private AddressDao addressDao;
 
     @Override
-    public List<AddressPo> getAddressList(Integer page, Integer limit){
+    public List<AddressPo> getAddressList(Integer page, Integer limit) {
         return addressDao.getAddressList(page, limit);
-    };
+    }
+
+    ;
 
     @Override
-    public Address addAddress(Address address){
+    public Address addAddress(Address address) {
         return addressDao.addAddress(address);
     }
 
@@ -33,10 +35,11 @@ public class AddressServiceImpl implements AddressService {
 
 
     @Override
-    public boolean deleteAddress (Integer id){
+    public boolean deleteAddress(Integer id) {
         return addressDao.deleteAddress(id);
-    };
+    }
 
+    ;
 
 
 }

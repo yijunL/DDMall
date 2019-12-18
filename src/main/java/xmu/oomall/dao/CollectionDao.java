@@ -23,19 +23,17 @@ public class CollectionDao {
     /**
      * 用户查看收藏列表
      *
-     * @param userId: Integer
+     * @param userId:       Integer
      * @param page：Integer
      * @param limit：Integer
      * @return List<CollectItem>
      */
-    public List<CollectItemPo> getColltectionList(Integer userId,Integer page,Integer limit)
-    {
-        return (List<CollectItemPo>) PageCut.pageCut(oomallCollectItemMapper.findAllById(userId),page,limit);
+    public List<CollectItemPo> getColltectionList(Integer userId, Integer page, Integer limit) {
+        return (List<CollectItemPo>) PageCut.pageCut(oomallCollectItemMapper.findAllById(userId), page, limit);
     }
 
-    public CollectItemPo addCollection(CollectItemPo collectItemPo)
-    {
-        if(collectItemPo.getId()!=null)
+    public CollectItemPo addCollection(CollectItemPo collectItemPo) {
+        if (collectItemPo.getId() != null)
             return null;
         collectItemPo.setGmtCreate(LocalDateTime.now());
         oomallCollectItemMapper.insertSelective(collectItemPo);
@@ -59,21 +57,21 @@ public class CollectionDao {
      *
      * @return collectItems
      */
-    private List<CollectItem> collectItemList(List<CollectItemPo> collectItemPos){
-        List<CollectItem> collectItems=new ArrayList<CollectItem>();
-        for(CollectItemPo collectItemPo:collectItemPos){
+    private List<CollectItem> collectItemList(List<CollectItemPo> collectItemPos) {
+        List<CollectItem> collectItems = new ArrayList<CollectItem>();
+        for (CollectItemPo collectItemPo : collectItemPos) {
             collectItems.add(collectItems(collectItemPo));
         }
         return collectItems;
     }
 
     /**
-     *将collectItemPo转换成collectItem
+     * 将collectItemPo转换成collectItem
      *
      * @return collectItems
      */
-    private CollectItem collectItems(CollectItemPo collectItemPo){
+    private CollectItem collectItems(CollectItemPo collectItemPo) {
         CollectItem collectItem = new CollectItem();
-        return Copyer.Copy(collectItemPo,collectItem)?collectItem:null;
+        return Copyer.Copy(collectItemPo, collectItem) ? collectItem : null;
     }
 }

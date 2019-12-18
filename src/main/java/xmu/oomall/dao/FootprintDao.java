@@ -42,17 +42,17 @@ public class FootprintDao {
      * @param id：Integer
      * @return 0 or 1
      */
-    public int deleteFootprintById (Integer id) {
+    public int deleteFootprintById(Integer id) {
         return oomallFootprintMapper.deleteById(id);
     }
 
     /**
      * 管理员查看足迹
      *
-     * @param userId: Integer
+     * @param userId:  Integer
      * @param goodsId: Integer
-     * @param page: Integer
-     * @param limit: Integer
+     * @param page:    Integer
+     * @param limit:   Integer
      * @return List<FootprintItem>
      */
     public List<FootprintItem> selectByCondition(Integer userId, Integer goodsId, Integer page, Integer limit) { //need to be updated
@@ -67,15 +67,15 @@ public class FootprintDao {
     /**
      * 内部接口：提供给Goods模块，增加用户足迹
      *
-     * @param userId: Integer
+     * @param userId:          Integer
      * @param footprintItemPo: FootprintItemPo
      * @return FootprintItemPo
      */
     public FootprintItemPo addFootprint(Integer userId, FootprintItemPo footprintItemPo) { //需在controller层进行合法性判断
         footprintItemPo.setUserId(userId); //是否需要赋值？
         footprintItemPo.setGmtCreate(LocalDateTime.now()); //
-        if(footprintItemPo.getId() != null) {
-            if(oomallFootprintMapper.selectAllById(footprintItemPo.getId()) != null) { //已存在，插入不合法
+        if (footprintItemPo.getId() != null) {
+            if (oomallFootprintMapper.selectAllById(footprintItemPo.getId()) != null) { //已存在，插入不合法
                 return null;
             }
         }
@@ -102,11 +102,11 @@ public class FootprintDao {
      * @return FootprintItem
      */
     private List<FootprintItem> footprintItemList(List<FootprintItemPo> footprintItemPoList) {
-        if(footprintItemPoList == null){
+        if (footprintItemPoList == null) {
             return null;
         }
         List<FootprintItem> footprintItemList = new ArrayList<>();
-        for(FootprintItemPo footprintItemPo : footprintItemPoList) {
+        for (FootprintItemPo footprintItemPo : footprintItemPoList) {
             footprintItemList.add(footprintItem(footprintItemPo));
         }
         return footprintItemList;

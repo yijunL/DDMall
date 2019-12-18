@@ -23,7 +23,7 @@ public class FootprintController {
     private static final Logger logger = LoggerFactory.getLogger(FootprintController.class);
 
     @Autowired
-    private  FootprintService footprintService;
+    private FootprintService footprintService;
 
     /**
      * 用户获取足迹列表
@@ -36,7 +36,7 @@ public class FootprintController {
     public Object listFootprintsByUserId(@RequestParam Integer page,
                                          @RequestParam Integer limit) {
         Integer userId = 1; //从网关获取用户id
-        if(userId == null) { //可能不需要该判断
+        if (userId == null) { //可能不需要该判断
             return ResponseUtil.badArgument();
         } else {
             List<FootprintItem> footprintItems = footprintService.listFootprintsByUserId(page, limit);
@@ -62,13 +62,13 @@ public class FootprintController {
      * @return Response.ok()
      */
     @DeleteMapping("/footprints/{id}")
-    public Object deleteFootprintById (@PathVariable Integer id) {
-        if(id == null) {
+    public Object deleteFootprintById(@PathVariable Integer id) {
+        if (id == null) {
             return ResponseUtil.badArgument();
         } else {
-            if(footprintService.deleteFootprintById(id) == 0){
+            if (footprintService.deleteFootprintById(id) == 0) {
                 return ResponseUtil.badArgumentValue();
-            } else{
+            } else {
                 return ResponseUtil.ok();
             }
         }
@@ -77,16 +77,16 @@ public class FootprintController {
     /**
      * 管理员查看足迹
      *
-     * @param userId: Integer
+     * @param userId:  Integer
      * @param goodsId: Integer
-     * @param page: Integer
-     * @param limit: Integer
+     * @param page:    Integer
+     * @param limit:   Integer
      * @return List<FootprintItem>
      */
     @GetMapping("/admin/footprints")
     public Object listFootprintsByCondition(@RequestParam Integer userId, @RequestParam Integer goodsId,
                                             @RequestParam Integer page, @RequestParam Integer limit) {
-        if(page == null || limit == null) {
+        if (page == null || limit == null) {
             return ResponseUtil.badArgument();
         } else {
             List<FootprintItem> footprintItemList = footprintService.listFootprintsByCondition(userId, goodsId, page, limit);
@@ -99,13 +99,13 @@ public class FootprintController {
     /**
      * 内部接口：提供给Goods模块，增加足迹
      *
-     * @param userId: Integer
+     * @param userId:          Integer
      * @param footprintItemPo: FootprintItemPo
      * @return FootprintItemPo
      */
     @PostMapping("/footprints")
     public Object addFootprint(@PathVariable Integer userId, @RequestBody FootprintItemPo footprintItemPo) {
-        if(userId == null || footprintItemPo == null) {
+        if (userId == null || footprintItemPo == null) {
             return ResponseUtil.badArgument(); //返回响应值
         } else { //是否需要进一步判断userId?
             footprintService.addFootprint(userId, footprintItemPo);

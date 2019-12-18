@@ -39,17 +39,16 @@ public class CommentController {
     @GetMapping("/product/{id}/comments")
     public Object getCommentsById(@RequestParam Integer id,
                                   @RequestParam Integer page,
-                                  @RequestParam Integer limit)
-    {
-        if(id==null||page==null||limit==null){
+                                  @RequestParam Integer limit) {
+        if (id == null || page == null || limit == null) {
             //401
             return ResponseUtil.badArgument();
-        } else{
-            List<Comment> commentPoList=commentService.getCommentsById(limit,page,id);
-            if(commentPoList==null){
+        } else {
+            List<Comment> commentPoList = commentService.getCommentsById(limit, page, id);
+            if (commentPoList == null) {
                 //402
                 return ResponseUtil.badArgumentValue();
-            } else{
+            } else {
                 //后续可以调用其他模块的时候要封装成List<Commnet>
                 return ResponseUtil.ok(commentPoList);
             }
@@ -69,13 +68,13 @@ public class CommentController {
      * @return 0:失败 1：成功
      */
     @PostMapping("/product/{id}/comments")//id是否需要？
-    public Object addComment(@RequestParam Integer id,@RequestBody CommentPo commentPo){
-        if(commentPo==null){
+    public Object addComment(@RequestParam Integer id, @RequestBody CommentPo commentPo) {
+        if (commentPo == null) {
             return ResponseUtil.badArgument();
-        } else{
-            if(commentService.addComment(commentPo)==null){
+        } else {
+            if (commentService.addComment(commentPo) == null) {
                 return ResponseUtil.badArgumentValue();
-            } else{
+            } else {
                 return ResponseUtil.ok(commentPo);
             }
         }
@@ -88,13 +87,13 @@ public class CommentController {
      * @return ResponseUtil.ok()
      */
     @DeleteMapping("/comments/{id}")
-    public Object deleteComment(@RequestParam Integer id){
-        if(id==null){
+    public Object deleteComment(@RequestParam Integer id) {
+        if (id == null) {
             return ResponseUtil.badArgument();
-        } else{
-            if(commentService.deleteComment(id)==0){
+        } else {
+            if (commentService.deleteComment(id) == 0) {
                 return ResponseUtil.badArgumentValue();
-            } else{
+            } else {
                 return ResponseUtil.ok();
             }
         }
@@ -113,19 +112,19 @@ public class CommentController {
     public Object getCommentByIdForAdmin(@RequestParam Integer userId,
                                          @RequestParam Integer productId,
                                          @RequestParam Integer limit,
-                                         @RequestParam Integer page){
-        if(limit==null||page==null){
+                                         @RequestParam Integer page) {
+        if (limit == null || page == null) {
             return ResponseUtil.badArgument();
-        } else{
+        } else {
             List<Comment> commentList;
-            if(userId==null&&productId==null){
-                 commentList=commentService.getAllComments(limit,page);
-            } else{
-                commentList =commentService.getCommentsByIdForAdmin(userId,productId,limit,page);
+            if (userId == null && productId == null) {
+                commentList = commentService.getAllComments(limit, page);
+            } else {
+                commentList = commentService.getCommentsByIdForAdmin(userId, productId, limit, page);
             }
-            if(commentList==null){
+            if (commentList == null) {
                 return ResponseUtil.badArgumentValue();
-            } else{
+            } else {
                 //记得封装成List<Comment>
                 return ResponseUtil.ok(commentList);
             }
@@ -140,14 +139,14 @@ public class CommentController {
      * @return CommentPo
      */
     @PutMapping("/admin/comments/{id}")
-    public Object updateCommentById(@RequestParam Integer id,@RequestBody CommentPo commentPo){
-        if(id==null||commentPo.getStatusCode()!=0||commentPo.getBeDeleted()){
+    public Object updateCommentById(@RequestParam Integer id, @RequestBody CommentPo commentPo) {
+        if (id == null || commentPo.getStatusCode() != 0 || commentPo.getBeDeleted()) {
             return ResponseUtil.badArgument();
-        } else{
-            CommentPo commentPo1=commentService.updateCommentById(id, commentPo);
-            if(commentPo1==null){
+        } else {
+            CommentPo commentPo1 = commentService.updateCommentById(id, commentPo);
+            if (commentPo1 == null) {
                 return ResponseUtil.badArgumentValue();
-            } else{
+            } else {
                 return ResponseUtil.ok(commentPo1);
             }
         }

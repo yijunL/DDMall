@@ -25,20 +25,18 @@ public class CollectionControllerTest {
 ////    }
 
     @Test
-    public void getAllCollectionTest()
-    {
-        List<CollectItemPo> collectItemList= collectionController.getCollectionList(1,1,1);
-        assertEquals(collectItemList.get(0).getUserId(),1);
+    public void getAllCollectionTest() {
+        List<CollectItemPo> collectItemList = collectionController.getCollectionList(1, 1, 1);
+        assertEquals(collectItemList.get(0).getUserId(), 1);
     }
 
     @Test
-    public void addCollectionTest()
-    {
-        CollectItemPo collectItemPo=new CollectItemPo();
+    public void addCollectionTest() {
+        CollectItemPo collectItemPo = new CollectItemPo();
         collectItemPo.setUserId(2);
         collectItemPo.setGoodsId(2);
-        collectItemPo=collectionController.addCollection(collectItemPo);
-        assertEquals(collectItemPo.getUserId(),2);
+        collectItemPo = collectionController.addCollection(collectItemPo);
+        assertEquals(collectItemPo.getUserId(), 2);
     }
 
 }
