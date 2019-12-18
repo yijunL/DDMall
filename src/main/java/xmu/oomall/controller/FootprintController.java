@@ -40,11 +40,12 @@ public class FootprintController {
             return ResponseUtil.badArgument();
         } else {
             List<FootprintItem> footprintItems = footprintService.listFootprintsByUserId(page, limit);
-            if(footprintItems == null) {
-                return ResponseUtil.badArgumentValue();
-            } else {
-                return ResponseUtil.ok(footprintItems);
-            }
+//            if(footprintItems.size() == 0) { //未查询到任何结果
+//                return ResponseUtil.badArgumentValue();
+//            } else {
+//                return ResponseUtil.ok(footprintItems);
+//            }
+            return ResponseUtil.ok(footprintItems);
         }
         /* User user=userService.getUserById(commentPoList.get(0).getUserId()); //判断用户等
         ProductPo productPo=productService.getProductPoById(id);
@@ -55,7 +56,7 @@ public class FootprintController {
     }
 
     /**
-     * 用户删除足迹
+     * 用户删除足迹（弃用）
      *
      * @param id：Integer
      * @return Response.ok()
@@ -76,17 +77,22 @@ public class FootprintController {
     /**
      * 管理员查看足迹
      *
-     * @param userName: String
-     * @param goodsName: String
+     * @param userId: Integer
+     * @param goodsId: Integer
      * @param page: Integer
      * @param limit: Integer
      * @return List<FootprintItem>
      */
     @GetMapping("/admin/footprints")
-    public Object listFootprintsByCondition(@RequestParam String userName, @RequestParam String goodsName,
+    public Object listFootprintsByCondition(@RequestParam Integer userId, @RequestParam Integer goodsId,
                                             @RequestParam Integer page, @RequestParam Integer limit) {
-        List<FootprintItem> footprintItemList = footprintService.listFootprintsByCondition(userName, goodsName, page, limit);
-        System.out.println(footprintItemList.size());
+        if(page == null || limit == null) {
+            return ResponseUtil.badArgument();
+        } else {
+            List<FootprintItem> footprintItemList = footprintService.listFootprintsByCondition(userId, goodsId, page, limit);
+            //是否判断返回值是否为0？
+            System.out.println(footprintItemList.size()); //!!Test
+        }
         return null;
     }
 

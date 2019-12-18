@@ -33,7 +33,7 @@ public class FootprintServiceImpl implements FootprintService {
     }
 
     /**
-     * 用户删除足迹
+     * 用户删除足迹（弃用）
      *
      * @param id：Integer
      * @return Response.ok()
@@ -49,17 +49,17 @@ public class FootprintServiceImpl implements FootprintService {
     /**
      * 管理员查看足迹
      *
-     * @param userName: String
-     * @param goodsName: String
+     * @param userId: Integer
+     * @param goodsId: Integer
      * @param page: Integer
      * @param limit: Integer
      * @return List<FootprintItem>
      */
     @Override
-    public List<FootprintItem> listFootprintsByCondition(String userName, String goodsName, Integer page, Integer limit) {
-        List<FootprintItem> footprintItems = footprintDao.selectByCondition(userName, goodsName, page, limit);
+    public List<FootprintItem> listFootprintsByCondition(Integer userId, Integer goodsId, Integer page, Integer limit) {
+        List<FootprintItem> footprintItems = footprintDao.selectByCondition(userId, goodsId, page, limit);
         //查询无结果，返回空列表而非null
-        for(FootprintItem footprintItem : footprintItems) { //Test
+        for(FootprintItem footprintItem : footprintItems) { //!!Test
             System.out.println(footprintItem.getUserId() + " and " + footprintItem.getGoodsId());
         }
         return footprintItems;

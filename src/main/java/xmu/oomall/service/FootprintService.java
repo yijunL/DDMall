@@ -31,7 +31,7 @@ public interface FootprintService {
     public List<FootprintItem> listFootprintsByUserId(Integer page, Integer limit);
 
     /**
-     * 用户删除足迹
+     * 用户删除足迹（弃用）
      *
      * @param id：Integer
      * @return Response.ok()
@@ -41,13 +41,13 @@ public interface FootprintService {
     /**
      * 管理员查看足迹
      *
-     * @param userName: String
-     * @param goodsName: String
+     * @param userId: Integer
+     * @param goodsId: Integer
      * @param page: Integer
      * @param limit: Integer
      * @return List<FootprintItem>
      */
-    public List<FootprintItem> listFootprintsByCondition(String userName, String goodsName, Integer page, Integer limit);
+    public List<FootprintItem> listFootprintsByCondition(Integer userId, Integer goodsId, Integer page, Integer limit);
 
     /**
      * 内部接口：提供给Goods模块，增加用户足迹
