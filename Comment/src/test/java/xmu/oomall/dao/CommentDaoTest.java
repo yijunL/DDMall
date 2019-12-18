@@ -34,6 +34,8 @@ class CommentDaoTest {
 
     @Test
     void deleteComment() {
+
+        commentDao.deleteComment(3);
     }
 
     @Test
