@@ -19,6 +19,7 @@ import java.util.List;
 
 @Service
 public class CommentServiceImpl implements CommentService {
+
     @Autowired
     CommentDao commentDao;
 
@@ -66,15 +67,45 @@ public class CommentServiceImpl implements CommentService {
         return 0;
     }
 
+
+    /**
+     * 管理员根据条件获取评论
+     *
+     * @param userId
+     * @param productId
+     * @param limit
+     * @param page
+     * @return List<Comment>
+     */
     @Override
     public List<Comment> getCommentsByIdForAdmin(Integer userId,Integer productId,Integer limit,Integer page){
         List<Comment> commentList=commentDao.selectByIdForAdmin(userId, productId, limit, page);
         return commentList;
     }
 
+    /**
+     * 管理员获取所有评论
+     *
+     * @param limit
+     * @param page
+     * @return List<Comment>
+     */
     @Override
     public List<Comment> getAllComments(Integer limit,Integer page){
         List<Comment> commentList=commentDao.selectAllComments(limit, page);
         return commentList;
+    }
+
+
+    /**
+     * 管理员审核单条评论
+     *
+     * @param id
+     * @param commentPo
+     * @return CommentPo
+     */
+    @Override
+    public  CommentPo updateCommentById(Integer id,CommentPo commentPo){
+        return commentDao.updateComment(id,commentPo);
     }
 }

@@ -101,7 +101,7 @@ public class CommentController {
     }
 
     /**
-     * 管理员根据条件获取评论
+     * 管理员根据条件获取评论(或者获取所有评论)
      *
      * @param userId
      * @param productId
@@ -128,6 +128,27 @@ public class CommentController {
             } else{
                 //记得封装成List<Comment>
                 return ResponseUtil.ok(commentList);
+            }
+        }
+    }
+
+    /**
+     * 管理员审核单条评论
+     *
+     * @param id
+     * @param commentPo
+     * @return CommentPo
+     */
+    @PutMapping("/admin/comments/{id}")
+    public Object updateCommentById(@RequestParam Integer id,@RequestBody CommentPo commentPo){
+        if(id==null||commentPo.getStatusCode()!=0||commentPo.getBeDeleted()){
+            return ResponseUtil.badArgument();
+        } else{
+            CommentPo commentPo1=commentService.updateCommentById(id, commentPo);
+            if(commentPo1==null){
+                return ResponseUtil.badArgumentValue();
+            } else{
+                return ResponseUtil.ok(commentPo1);
             }
         }
     }

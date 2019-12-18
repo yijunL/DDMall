@@ -39,9 +39,35 @@ public interface CommentService {
      */
     public int deleteComment(Integer id);
 
-
+    /**
+     * 管理员获取所有评论
+     *
+     * @param limit
+     * @param page
+     * @return List<Comment>
+     */
     public List<Comment> getAllComments(Integer limit,Integer page);
 
-    public List<Comment> getCommentsByIdForAdmin(Integer UserId,Integer ProductId,Integer limit,Integer page);
+    /**
+     * 管理员根据条件获取评论
+     *
+     * @param UserId
+     * @param ProductId
+     * @param limit
+     * @param page
+     * @return List<Comment>
+     */
+    public List<Comment> getCommentsByIdForAdmin(Integer UserId,Integer ProductId,
+                                                 Integer limit,Integer page);
+
+    /**
+     * 管理员审核单条评论
+     *
+     * @param id
+     * @param commentPo
+     * @return CommentPo
+     */
+    public CommentPo updateCommentById(Integer id,CommentPo commentPo);
+
 
 }
