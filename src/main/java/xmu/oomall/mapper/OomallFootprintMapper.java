@@ -1,6 +1,9 @@
 package xmu.oomall.mapper;
 
-import org.apache.ibatis.annotations.Param;import xmu.oomall.domain.FootprintItemPo;import java.util.List;
+import org.apache.ibatis.annotations.Param;
+import xmu.oomall.domain.FootprintItemPo;
+
+import java.util.List;
 
 public interface OomallFootprintMapper {
     /**
@@ -33,7 +36,7 @@ public interface OomallFootprintMapper {
      * @param id: Integer
      * @return FootprintItemPo
      */
-    FootprintItemPo selectAllById(@Param("id")Integer id);
+    FootprintItemPo selectAllById(@Param("id") Integer id);
 
     /**
      * 内部接口：提供给Goods模块，增加用户足迹

@@ -39,8 +39,8 @@ public class FootprintServiceImpl implements FootprintService {
      * @return Response.ok()
      */
     @Override
-    public int deleteFootprintById (Integer id) {
-        if(footprintDao.deleteFootprintById(id) > 0) { //or == 1
+    public int deleteFootprintById(Integer id) {
+        if (footprintDao.deleteFootprintById(id) > 0) { //or == 1
             return 1;
         }
         return 0;
@@ -49,17 +49,17 @@ public class FootprintServiceImpl implements FootprintService {
     /**
      * 管理员查看足迹
      *
-     * @param userId: Integer
+     * @param userId:  Integer
      * @param goodsId: Integer
-     * @param page: Integer
-     * @param limit: Integer
+     * @param page:    Integer
+     * @param limit:   Integer
      * @return List<FootprintItem>
      */
     @Override
     public List<FootprintItem> listFootprintsByCondition(Integer userId, Integer goodsId, Integer page, Integer limit) {
         List<FootprintItem> footprintItems = footprintDao.selectByCondition(userId, goodsId, page, limit);
         //查询无结果，返回空列表而非null
-        for(FootprintItem footprintItem : footprintItems) { //!!Test
+        for (FootprintItem footprintItem : footprintItems) { //!!Test
             System.out.println(footprintItem.getUserId() + " and " + footprintItem.getGoodsId());
         }
         return footprintItems;
@@ -68,7 +68,7 @@ public class FootprintServiceImpl implements FootprintService {
     /**
      * 内部接口：提供给Goods模块，增加用户足迹
      *
-     * @param userId: Integer
+     * @param userId:          Integer
      * @param footprintItemPo: FootprintItemPo
      * @return FootprintItemPo
      */

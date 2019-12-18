@@ -1,7 +1,12 @@
 package xmu.oomall.mapper;
+
 import java.time.LocalDateTime;
 
-import org.apache.ibatis.annotations.Mapper;import org.apache.ibatis.annotations.Param;import xmu.oomall.domain.CommentPo;import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import xmu.oomall.domain.CommentPo;
+
+import java.util.List;
 
 @Mapper
 public interface OomallCommentMapper {
@@ -44,14 +49,14 @@ public interface OomallCommentMapper {
      * @param id
      * @return CommentPo
      */
-    CommentPo selectAllById(@Param("id")Integer id);
+    CommentPo selectAllById(@Param("id") Integer id);
 
     /**
      * 获取所有评论
      *
      * @return List<CommentPo>
      */
-   List<CommentPo> selectALL();
+    List<CommentPo> selectALL();
 
     /**
      * 根据条件获取评论
@@ -60,9 +65,7 @@ public interface OomallCommentMapper {
      * @param productId
      * @return List<CommentPo>
      */
-	List<CommentPo> selectAllByUserIdOrProductId(@Param("userId")Integer userId,@Param("productId")Integer productId);
-
-
+    List<CommentPo> selectAllByUserIdOrProductId(@Param("userId") Integer userId, @Param("productId") Integer productId);
 
 
 }

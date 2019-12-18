@@ -21,14 +21,14 @@ public class CollectionController {
     /**
      * 用户查看收藏列表
      *
-     * @param userId: Integer
+     * @param userId:       Integer
      * @param page：Integer
      * @param limit：Integer
      * @return List<CollectItem>
      */
     @GetMapping("/collections")
     public List<CollectItemPo> getCollectionList(@RequestParam Integer userId, @RequestParam Integer page,
-                                               @RequestParam Integer limit) {
+                                                 @RequestParam Integer limit) {
         return collectionService.getCollectionList(userId, page, limit);
     }
 
@@ -51,7 +51,7 @@ public class CollectionController {
      * @return null
      */
     @DeleteMapping("/collections/{id}")
-    public boolean deleteCollection (@PathVariable Integer id) {
+    public boolean deleteCollection(@PathVariable Integer id) {
         return collectionService.deleteCollection(id);
     }
 

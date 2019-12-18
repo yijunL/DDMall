@@ -14,14 +14,12 @@ import java.util.List;
 @Service
 public interface AddressService {
 
-    public List<Address> getAddressList(Integer page, Integer limit);
+    public List<AddressPo> getAddressList(Integer page, Integer limit);
 
-    public Address getAddress(Integer id);
+    public Address addAddress(Address address);
 
-    public AddressPo addAddress(AddressPo addressPo);
-
-    public Address updateAddress(Integer id,Address address);
-
-    public boolean deleteAddress (Integer id);
+    //    public CollectItemPo addCollection(CollectItemPo collectItemPo);
+//
+    public boolean deleteAddress(Integer id);
 
 }
