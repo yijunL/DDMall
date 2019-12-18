@@ -48,12 +48,16 @@ public class CommentDao {
      * @return 0：失败 1：成功
      */
     public CommentPo addComment(CommentPo commentPo){
-        commentPo.setGmtCreate(LocalDateTime.now());
-        commentPo.setGmtModified(LocalDateTime.now());
-        if(commentMapper.insertSelective(commentPo)==0){
+        if(isArgsInvalid(commentPo)){
             return null;
-        } else{
-            return commentPo;
+        }else{
+            commentPo.setGmtCreate(LocalDateTime.now());
+            commentPo.setGmtModified(LocalDateTime.now());
+            if(commentMapper.insertSelective(commentPo)==0){
+                return null;
+            } else{
+                return commentPo;
+            }
         }
     }
 
@@ -108,8 +112,29 @@ public class CommentDao {
 
 
 
-    public Comment updateComment(CommentPo commentPo,Integer id){
-        return null;
+    public CommentPo updateComment(Integer id,CommentPo commentPo){
+        if(isArgsInvalid(commentPo)){
+            return null;
+        } else{
+            commentPo.setGmtModified(LocalDateTime.now());
+            if(commentMapper.updateById(commentPo,id)>1){
+                return commentPo;
+            } else{
+                return null;
+            }
+        }
+    }
+
+
+    private boolean isArgsInvalid(CommentPo commentPo)
+    {
+        if(commentPo.getStar()<0||commentPo.getStar()>5){
+            return true;
+        }
+        if(commentPo.getStatusCode()<0||commentPo.getStatusCode()>2){
+            return true;
+        }
+        return false;
     }
 
 

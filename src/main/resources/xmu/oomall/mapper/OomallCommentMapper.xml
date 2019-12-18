@@ -80,32 +80,11 @@
   <update id="updateById">
         update oomall_comment
         <set>
-            <if test="updated.id != null">
-                id = #{updated.id},
-            </if>
-            <if test="updated.userId != null">
-                user_id = #{updated.userId},
-            </if>
-            <if test="updated.content != null">
-                content = #{updated.content},
-            </if>
             <if test="updated.statusCode != null">
                 status = #{updated.statusCode},
             </if>
-            <if test="updated.star != null">
-                star = #{updated.star},
-            </if>
-            <if test="updated.productId != null">
-                product_id = #{updated.productId},
-            </if>
-            <if test="updated.gmtCreate != null">
-                gmt_create = #{updated.gmtCreate},
-            </if>
             <if test="updated.gmtModified != null">
                 gmt_modified = #{updated.gmtModified},
-            </if>
-            <if test="updated.beDeleted != null">
-                is_deleted = #{updated.beDeleted},
             </if>
         </set>
         where id=#{id}

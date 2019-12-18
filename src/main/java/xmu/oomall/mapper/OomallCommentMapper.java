@@ -46,8 +46,20 @@ public interface OomallCommentMapper {
      */
     CommentPo selectAllById(@Param("id")Integer id);
 
+    /**
+     * 获取所有评论
+     *
+     * @return List<CommentPo>
+     */
    List<CommentPo> selectALL();
 
+    /**
+     * 根据条件获取评论
+     *
+     * @param userId
+     * @param productId
+     * @return List<CommentPo>
+     */
 	List<CommentPo> selectAllByUserIdOrProductId(@Param("userId")Integer userId,@Param("productId")Integer productId);
 
 
