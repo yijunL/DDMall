@@ -1,6 +1,0 @@
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://123.56.10.101:3306/oomall?serverTimezone=GMT
-    username: root
-    password: 123456
