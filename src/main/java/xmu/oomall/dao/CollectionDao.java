@@ -28,9 +28,9 @@ public class CollectionDao {
      * @param limit：Integer
      * @return List<CollectItem>
      */
-    public List<CollectItemPo> getColltectionList(Integer userId,Integer page,Integer limit)
+    public List<CollectItem> getColltectionList(Integer userId,Integer page,Integer limit)
     {
-        return (List<CollectItemPo>) PageCut.pageCut(oomallCollectItemMapper.findAllById(userId),page,limit);
+        return (List<CollectItem>) PageCut.pageCut(oomallCollectItemMapper.findAllById(userId),page,limit);
     }
 
     public CollectItemPo addCollection(CollectItemPo collectItemPo)

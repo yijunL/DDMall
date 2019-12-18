@@ -5,8 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xmu.oomall.domain.*;
 import xmu.oomall.service.CollectionService;
+import xmu.oomall.util.ResponseUtil;
 
-
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -17,17 +18,42 @@ public class CollectionController {
     private CollectionService collectionService;
 
     /**
+     * 解析请求
+     * @param request
+     * @return
+     */
+    private Integer getUserId(HttpServletRequest request) {
+        String userIdStr = request.getHeader("userId");
+        if (userIdStr == null) {
+            return null;
+        }
+        return Integer.valueOf(userIdStr);
+    }
+
+    /**
      * 用户查看收藏列表
      *
-     * @param userId: Integer
+     * @param request: HttpServletRequest
      * @param page：Integer
      * @param limit：Integer
      * @return List<CollectItem>
      */
     @GetMapping("/collections")
-    public List<CollectItemPo> getCollectionList(@RequestParam Integer userId, @RequestParam Integer page,
-                                               @RequestParam Integer limit) {
-        return collectionService.getCollectionList(userId, page, limit);
+    public Object getCollectionList(HttpServletRequest request, @RequestParam Integer page,
+                                                 @RequestParam Integer limit) {
+        Integer userId=getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        // 参数校验
+        if (page == null || page < 0) {
+            return ResponseUtil.badArgumentValue();
+        }
+        if (limit == null || limit < 0) {
+            return ResponseUtil.badArgumentValue();
+        }
+        List<CollectItem> collectItemList=collectionService.getCollectionList(userId,page, limit);
+        return ResponseUtil.ok(collectItemList);
     }
 
     /**

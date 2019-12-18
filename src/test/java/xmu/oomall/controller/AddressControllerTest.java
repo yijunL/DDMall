@@ -25,20 +25,9 @@ public class AddressControllerTest {
     public void deleteAddressTest()
     {
         addressController.deleteAddress(1);
-        AddressPo addressPo=addressDao.getAddressList(1,1).get(0);
+        AddressPo addressPo=addressDao.getAddress(1);
         assertEquals(addressPo.getBeDeleted(),true);
     }
-
-//
-//    @Test
-//    public void getAllAddressTest()
-//    {
-//        HttpServletRequest request;
-//
-//        List<AddressPo> addressPoList= addressController.getAddressList(1,1);
-//        assertEquals(addressPoList.get(0).getUserId(),1);
-//    }
-
 
 
 

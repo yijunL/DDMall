@@ -24,12 +24,6 @@ public class CollectionControllerTest {
 ////        collectionController.deleteCollection(1);
 ////    }
 
-    @Test
-    public void getAllCollectionTest()
-    {
-        List<CollectItemPo> collectItemList= collectionController.getCollectionList(1,1,1);
-        assertEquals(collectItemList.get(0).getUserId(),1);
-    }
 
     @Test
     public void addCollectionTest()

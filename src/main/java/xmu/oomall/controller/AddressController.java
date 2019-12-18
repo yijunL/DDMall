@@ -49,7 +49,7 @@ public class AddressController {
         if (limit == null || limit < 0) {
             return ResponseUtil.badArgumentValue();
         }
-        List<Address> addressList=addressService.getAddressList(page, limit);
+        List<Address> addressList=addressService.getAddressList(userId,page, limit);
         return ResponseUtil.ok(addressList);
     }
 
