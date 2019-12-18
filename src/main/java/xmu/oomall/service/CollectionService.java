@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public interface CollectionService {
 
-    public List<CollectItemPo> getCollectionList(Integer userId, Integer page, Integer limit);
+    public List<CollectItem> getCollectionList(Integer userId, Integer page, Integer limit);
 
     public CollectItemPo addCollection(CollectItemPo collectItemPo);
 
