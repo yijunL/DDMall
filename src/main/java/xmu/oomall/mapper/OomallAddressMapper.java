@@ -1,13 +1,18 @@
 package xmu.oomall.mapper;
+import java.time.LocalDateTime;
 import org.apache.ibatis.annotations.Param;
+import xmu.oomall.domain.Address;
 import xmu.oomall.domain.AddressPo;
 
 import java.util.List;
 
 public interface OomallAddressMapper {
-    List<AddressPo> findAllById(@Param("id")Integer id);
     int updateById(@Param("updated")AddressPo updated,@Param("id")Integer id);
     int insertSelective(AddressPo addressPo);
+    List<AddressPo> findAllByBeDeletedLessThan(@Param("maxBeDeleted") Integer maxBeDeleted);
+    AddressPo findAllById(@Param("id")Integer id);
+
+
 
 
 

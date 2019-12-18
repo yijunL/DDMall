@@ -20,20 +20,31 @@ public class AddressDao {
     private OomallAddressMapper oomallAddressMapper;
 
 
-
-    public List<AddressPo> getAddressList( Integer page, Integer limit)
+    public List<Address> getAddressList( Integer page, Integer limit)
     {
-        return (List<AddressPo>) PageCut.pageCut(oomallAddressMapper.findAllById(1),page,limit);
+        return (List<Address>) PageCut.pageCut(oomallAddressMapper.findAllByBeDeletedLessThan(1),page,limit);
     }
 
-    public Address addAddress(Address address){
-        if(address.getId()!=null)    //插入的po不能有id
+    public Address getAddress(Integer id){
+        AddressPo addressPo=oomallAddressMapper.findAllById(id);
+        return addresses(addressPo);
+    }
+
+    public AddressPo addAddress(AddressPo addressPo){
+        if(addressPo.getId()!=null)    //插入的po不能有id
             return null;
-        address.setGmtCreate(LocalDateTime.now());
-        oomallAddressMapper.insertSelective(address);
+        addressPo.setGmtCreate(LocalDateTime.now());
+        oomallAddressMapper.insertSelective(addressPo);
+        return addressPo;
+    }
+
+    public Address updateAddress(Integer id,Address address){
+        if(address.getId()!=null)
+            return null;                        //id不允许有值，即不能修改id
+        address.setGmtModified(LocalDateTime.now());
+        oomallAddressMapper.updateById(address,id);
         return address;
     }
-
 
     public boolean deleteAddress(Integer id) {
 
@@ -46,26 +57,9 @@ public class AddressDao {
             return true;
     }
 
-    /**
-     * 将collectItemPo列表转换成collectItem列表
-     *
-     * @return collectItems
-     */
-//    private List<CollectItem> collectItemList(List<CollectItemPo> collectItemPos){
-//        List<CollectItem> collectItems=new ArrayList<CollectItem>();
-//        for(CollectItemPo collectItemPo:collectItemPos){
-//            collectItems.add(collectItems(collectItemPo));
-//        }
-//        return collectItems;
-//    }
+    private Address addresses(AddressPo addressPo){
+        Address address1 = new Address();
+        return Copyer.Copy(addressPo,address1)?address1:null;
+    }
 
-    /**
-     *将collectItemPo转换成collectItem
-     *
-     * @return collectItems
-     */
-//    private CollectItem collectItems(CollectItemPo collectItemPo){
-//        CollectItem collectItem = new CollectItem();
-//        return Copyer.Copy(collectItemPo,collectItem)?collectItem:null;
-//    }
 }
