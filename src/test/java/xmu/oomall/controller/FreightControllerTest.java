@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 import xmu.oomall.dao.DefaultFreightDao;
+import xmu.oomall.domain.DefaultFreight;
 import xmu.oomall.domain.DefaultFreightPo;
 import xmu.oomall.domain.SpecialFreight;
 import xmu.oomall.util.ResponseUtil;
@@ -48,31 +49,34 @@ public class FreightControllerTest {
 //        assertEquals(specialFreight.getId(),1);
 //    }
 
-//    @Test
-//    public void deleteDefaultFreightTest()
-//    {
-//        freightController.deleteDefaultFreight(1);
-//        assertEquals(defaultFreightDao.getById(1).getBeDeleted(),true);
-//    }
+    @Test
+    public void deleteDefaultFreightTest()
+    {
+        Map<String, Object> respon=(Map<String, Object>)freightController.deleteDefaultFreight(1);
+        assertEquals(respon.get("errno"),0);
+    }
 
     @Test
     public void getAllDefaultFreightTest()
     {
-        Object obj  =freightController.getDefaultFreights(2,2);
-        System.out.println(obj);
-    }
-//    @Test
+        Map<String, Object> respon =(Map<String, Object>)freightController.getDefaultFreights(2,2);
 
-//    @Test
-//    public void addDefaultFreightTest()
-//    {
-//        DefaultFreightPo defaultFreightPo=new DefaultFreightPo();
-//        defaultFreightPo.setRequireDays("1-3");
-//
-//        defaultFreightPo.setOver10Price(new BigDecimal(10));
-//        defaultFreightPo.setOver50Price(new BigDecimal(100));
-//        defaultFreightPo=freightController.addDefaultFreight(defaultFreightPo);
-//        assertEquals(defaultFreightPo.getId(),36);
-//    }
+        List<DefaultFreightPo> defaultFreightPoList=(List<DefaultFreightPo>)respon.get("data");
+        assertEquals(defaultFreightPoList.get(0).getId(),3);
+        assertEquals(respon.get("errno"),0);
+    }
+
+    @Test
+    public void addDefaultFreightTest()
+    {
+        DefaultFreightPo defaultFreightPo=new DefaultFreightPo();
+        defaultFreightPo.setRequireDays("1-3");
+
+        defaultFreightPo.setOver10Price(new BigDecimal("10"));
+        defaultFreightPo.setOver50Price(new BigDecimal("100"));
+        Map<String, Object> respon =(Map<String, Object>)freightController.addDefaultFreight(defaultFreightPo);
+        DefaultFreightPo defaultFreightPo1 =(DefaultFreightPo)respon.get("data");
+        assertEquals(defaultFreightPo1.getOver10Price(),new BigDecimal("10"));
+    }
 
 }
