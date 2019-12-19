@@ -12,8 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class CommentDaoTest {
 
-    @Autowired
-    CommentDao commentDao;
+    @Autowired CommentDao commentDao;
 
     @Test
     void selectByProductId() {
@@ -25,7 +24,7 @@ class CommentDaoTest {
 
         /*commentDao.selectAllComments(1,20).forEach(comment -> System.out.println(comment.getId()));*/
 
-        commentDao.selectByIdForAdmin(null, 333, 1, 20).
+        commentDao.selectByIdForAdmin(null,333,1,20).
                 forEach(comment -> System.out.println(comment.getId()));
     }
 

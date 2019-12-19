@@ -1,4 +1,5 @@
 package xmu.oomall.mapper;
+import java.time.LocalDateTime;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -30,7 +31,7 @@ public interface OomallCommentMapper {
      * @param id
      * @return 0:失败 1：成功
      */
-    int deleteById(@Param("id") Integer id);
+    int deleteById(@Param("updatedGmtModified")LocalDateTime updatedGmtModified,@Param("id") Integer id);
 
     /**
      * 管理员审核单条评论
@@ -64,8 +65,6 @@ public interface OomallCommentMapper {
      * @return List<CommentPo>
      */
 	List<CommentPo> selectAllByUserIdOrProductId(@Param("userId") Integer userId, @Param("productId") Integer productId);
-
-
 
 
 }

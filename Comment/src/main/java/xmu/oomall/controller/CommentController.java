@@ -39,17 +39,11 @@ public class CommentController {
                                   @RequestParam Integer limit)
     {
         if(id==null||page==null||limit==null||page<0||limit<0){
-            //401
-            return ResponseUtil.badArgument();
+            return ResponseUtil.fail(902,"获取评论失败");
         } else{
-            List<Comment> commentPoList=commentService.getCommentsById(limit,page,id);
-            if(commentPoList==null){
-                //402
-                return ResponseUtil.badArgumentValue();
-            } else{
+            List<Comment> commentList=commentService.getCommentsById(limit,page,id);
                 //后续可以调用其他模块的时候要封装成List<Commnet>
-                return ResponseUtil.ok(commentPoList);
-            }
+                return ResponseUtil.ok(commentList);
         }
        /* User user=userService.getUserById(commentPoList.get(0).getUserId());
         ProductPo productPo=productService.getProductPoById(id);
@@ -68,10 +62,10 @@ public class CommentController {
     @PostMapping("/product/{id}/comments")//id是否需要？
     public Object addComment(@RequestParam Integer id,@RequestBody CommentPo commentPo){
         if(commentPo==null){
-            return ResponseUtil.badArgument();
+            return ResponseUtil.fail(903,"创建评论失败");
         } else{
             if(commentService.addComment(commentPo)==null){
-                return ResponseUtil.badArgumentValue();
+                return ResponseUtil.fail(903,"创建评论失败");
             } else{
                 return ResponseUtil.ok(commentPo);
             }
@@ -87,10 +81,10 @@ public class CommentController {
     @DeleteMapping("/comments/{id}")
     public Object deleteComment(@RequestParam Integer id){
         if(id==null){
-            return ResponseUtil.badArgument();
+            return ResponseUtil.fail(905,"删除评论失败");
         } else{
             if(commentService.deleteComment(id)==0){
-                return ResponseUtil.badArgumentValue();
+                return ResponseUtil.fail(905,"删除评论失败");
             } else{
                 return ResponseUtil.ok();
             }
@@ -112,7 +106,7 @@ public class CommentController {
                                          @RequestParam Integer limit,
                                          @RequestParam Integer page){
         if(limit==null||page==null||limit<0||page<0){
-            return ResponseUtil.badArgument();
+            return ResponseUtil.fail(902,"获取评论失败");
         } else{
             List<Comment> commentList;
             if(userId==null&&productId==null){
@@ -120,12 +114,8 @@ public class CommentController {
             } else{
                 commentList =commentService.getCommentsByIdForAdmin(userId,productId,limit,page);
             }
-            if(commentList==null){
-                return ResponseUtil.badArgumentValue();
-            } else{
                 //记得封装成List<Comment>
-                return ResponseUtil.ok(commentList);
-            }
+            return ResponseUtil.ok(commentList);
         }
     }
 
@@ -139,11 +129,11 @@ public class CommentController {
     @PutMapping("/admin/comments/{id}")
     public Object updateCommentById(@RequestParam Integer id,@RequestBody CommentPo commentPo){
         if(id==null||commentPo.getStatusCode()!=0||commentPo.getBeDeleted()){
-            return ResponseUtil.badArgument();
+            return ResponseUtil.fail(904,"修改评论失败");
         } else{
             CommentPo commentPo1=commentService.updateCommentById(id, commentPo);
             if(commentPo1==null){
-                return ResponseUtil.badArgumentValue();
+                return ResponseUtil.fail(904,"修改评论失败");
             } else{
                 return ResponseUtil.ok(commentPo1);
             }

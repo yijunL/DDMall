@@ -1,14 +1,16 @@
 package xmu.oomall.dao;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import xmu.oomall.domain.Address;
-import xmu.oomall.domain.AddressPo;
+import xmu.oomall.domain.*;
 import xmu.oomall.mapper.OomallAddressMapper;
+import xmu.oomall.mapper.OomallCollectItemMapper;
 import xmu.oomall.util.Copyer;
 import xmu.oomall.util.PageCut;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -18,9 +20,9 @@ public class AddressDao {
     private OomallAddressMapper oomallAddressMapper;
 
 
-    public List<Address> getAddressList(Integer userId,Integer page, Integer limit)
+    public List<Address> getAddressList( Integer page, Integer limit)
     {
-        return (List<Address>) PageCut.pageCut(oomallAddressMapper.findAllByBeDeletedLessThan(userId),page,limit);
+        return (List<Address>) PageCut.pageCut(oomallAddressMapper.findAllByBeDeletedLessThan(1),page,limit);
     }
 
     public Address getAddress(Integer id){
@@ -36,12 +38,12 @@ public class AddressDao {
         return addressPo;
     }
 
-    public AddressPo updateAddress(Integer id,AddressPo addressPo){
-        if(addressPo.getId()!=null)
+    public Address updateAddress(Integer id,Address address){
+        if(address.getId()!=null)
             return null;                        //id不允许有值，即不能修改id
-        addressPo.setGmtModified(LocalDateTime.now());
-        oomallAddressMapper.updateById(addressPo,id);
-        return addressPo;
+        address.setGmtModified(LocalDateTime.now());
+        oomallAddressMapper.updateById(address,id);
+        return address;
     }
 
     public boolean deleteAddress(Integer id) {

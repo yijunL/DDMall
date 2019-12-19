@@ -3,8 +3,7 @@ package xmu.oomall.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xmu.oomall.dao.AddressDao;
-import xmu.oomall.domain.Address;
-import xmu.oomall.domain.AddressPo;
+import xmu.oomall.domain.*;
 import xmu.oomall.service.AddressService;
 
 import java.util.List;
@@ -15,8 +14,8 @@ public class AddressServiceImpl implements AddressService {
     private AddressDao addressDao;
 
     @Override
-    public List<Address> getAddressList(Integer userId,Integer page, Integer limit){
-        return addressDao.getAddressList(userId,page, limit);
+    public List<Address> getAddressList(Integer page, Integer limit){
+        return addressDao.getAddressList(page, limit);
     };
 
     @Override
@@ -30,9 +29,10 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public AddressPo updateAddress(Integer id,AddressPo addressPo){
-        return addressDao.updateAddress(id,addressPo);
+    public Address updateAddress(Integer id,Address address){
+        return addressDao.updateAddress(id,address);
     }
+
 
     @Override
     public boolean deleteAddress (Integer id){

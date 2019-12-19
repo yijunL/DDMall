@@ -67,7 +67,7 @@ public class CommentDao {
      * @return true:删除成功  false:删除失败
      */
     public boolean deleteComment(Integer id){
-        return commentMapper.deleteById(id)==1;
+        return commentMapper.deleteById(LocalDateTime.now(),id)==2;
     }
 
     /**
@@ -116,7 +116,7 @@ public class CommentDao {
             return null;
         } else{
             commentPo.setGmtModified(LocalDateTime.now());
-            if(commentMapper.updateById(commentPo,id)>1){
+            if(commentMapper.updateById(commentPo,id)==2){
                 return commentPo;
             } else{
                 return null;

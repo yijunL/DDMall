@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class LogisticsControllerTest {
     @Autowired
     LogisticsController logisticsController;
-
     @Test
-    public void LogisticsTest() {
+    public void LogisticsTest()
+    {
         System.out.println(logisticsController.getLogistics());
     }
 }

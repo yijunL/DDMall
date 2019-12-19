@@ -21,8 +21,8 @@ public class AfterSaleDao {
      * 管理员根据orderId查询售后服务列表
      *
      * @param orderId: Integer
-     * @param page:    Integer
-     * @param limit:   Integer
+     * @param page: Integer
+     * @param limit: Integer
      * @return List<AfterSaleService>
      */
     public List<AfterSaleService> selectAfterSalesByOrderId(Integer orderId, Integer page, Integer limit) {
@@ -42,7 +42,7 @@ public class AfterSaleDao {
     /**
      * 管理员根据id修改某一售后服务信息
      *
-     * @param id:               Integer
+     * @param id: Integer
      * @param afterSaleService: AfterSaleService
      * @return AfterSaleService
      */
@@ -53,7 +53,7 @@ public class AfterSaleDao {
     /**
      * 用户根据id修改某一售后服务的信息
      *
-     * @param id:               Integer
+     * @param id: Integer
      * @param afterSaleService: AfterSaleService
      * @return AfterSaleService
      */
@@ -64,7 +64,7 @@ public class AfterSaleDao {
     /**
      * 查询用户的售后服务列表
      *
-     * @param page:  Integer
+     * @param page: Integer
      * @param limit: Integer
      * @return List<AfterSaleService>
      */

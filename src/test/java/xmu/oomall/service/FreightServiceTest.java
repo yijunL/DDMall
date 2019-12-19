@@ -25,39 +25,38 @@ public class FreightServiceTest {
     private FreightService freightService;
 
     @Test
-    public void deleteDefaultFreightTest() {
+    public void deleteDefaultFreightTest()
+    {
         freightService.deleteDefaultFreight(1);
     }
-
     @Test
-    public void updateSpecialFreightTest() {
-        SpecialFreight specialFreight = new SpecialFreight();
+    public void updateSpecialFreightTest(){
+        SpecialFreight specialFreight=new SpecialFreight();
         specialFreight.setFirstNumPiece(3);
-        specialFreight = freightService.updateSpecialFreights(1, specialFreight);
-        assertEquals(specialFreight.getFirstNumPiece(), 3);
-        assertEquals(specialFreight.getId(), 1);
+        specialFreight= freightService.updateSpecialFreights(1,specialFreight);
+        assertEquals(specialFreight.getFirstNumPiece(),3);
+        assertEquals(specialFreight.getId(),1);
 
-        SpecialFreight specialFreight1 = new SpecialFreight();
+        SpecialFreight specialFreight1=new SpecialFreight();
         specialFreight.setContinueNumPiece(2);
-        specialFreight1 = freightService.updateSpecialFreights(2, specialFreight1);
-        assertEquals(specialFreight1, null);
+        specialFreight1=freightService.updateSpecialFreights(2,specialFreight1);
+        assertEquals(specialFreight1,null);
 
     }
-
     @Test
-    public void addSpecialFreightTest() {
-        SpecialFreight specialFreight = new SpecialFreight();
+    public void addSpecialFreightTest(){
+        SpecialFreight specialFreight=new SpecialFreight();
         specialFreight.setFirstNumPiece(3);
         specialFreight.setContinueNumPiecePrice(new BigDecimal("40"));
-        specialFreight = freightService.addSpecialFreight(specialFreight);
-        assertEquals(specialFreight.getFirstNumPiece(), 3);
-        assertEquals(specialFreight.getContinueNumPiecePrice(), new BigDecimal("40"));
+        specialFreight= freightService.addSpecialFreight(specialFreight);
+        assertEquals(specialFreight.getFirstNumPiece(),3);
+        assertEquals(specialFreight.getContinueNumPiecePrice(),new BigDecimal("40"));
         //assertEquals(specialFreight.getId(),2);
     }
 
     @Test
-    public void getSpecialFreightTest() {
-        List<SpecialFreight> specialFreights = freightService.getAllSpecialFreight(2, 2);
-        assertEquals(specialFreights.get(0).getId(), 4);
+    public void getSpecialFreightTest(){
+        List<SpecialFreight> specialFreights=freightService.getAllSpecialFreight(2,2);
+        assertEquals(specialFreights.get(0).getId(),4);
     }
 }

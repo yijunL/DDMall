@@ -49,7 +49,7 @@ public class AddressController {
         if (limit == null || limit < 0) {
             return ResponseUtil.badArgumentValue();
         }
-        List<Address> addressList=addressService.getAddressList(userId,page, limit);
+        List<Address> addressList=addressService.getAddressList(page, limit);
         return ResponseUtil.ok(addressList);
     }
 
@@ -79,7 +79,7 @@ public class AddressController {
             return ResponseUtil.badArgument();
         AddressPo addressPo1=addressService.addAddress(addressPo);
 
-        if(addressPo1==null)
+        if(addressPo==null)
             return ResponseUtil.updatedDataFailed();
         else
             return ResponseUtil.ok(addressPo1);
@@ -88,19 +88,19 @@ public class AddressController {
     /**
      * 用户修改某个地址详情
      * @param id
-     * @param addressPo
+     * @param address
      * @return
      */
     @PutMapping("/addresses/{id}")
-    public Object updateAddress(@PathVariable Integer id,@RequestBody AddressPo addressPo){
+    public Object updateAddress(@PathVariable Integer id,@RequestBody Address address){
 
-        if(id==null || addressPo==null)
+        if(id==null || address==null)
             return ResponseUtil.badArgument();
-        AddressPo addressPo1=addressService.updateAddress(id,addressPo);
-        if(addressPo1==null)
+        Address address1=addressService.updateAddress(id,address);
+        if(address==null)
             return ResponseUtil.updatedDataFailed();
         else
-            return ResponseUtil.ok(addressPo1);
+            return ResponseUtil.ok(address1);
     }
 
     /**
