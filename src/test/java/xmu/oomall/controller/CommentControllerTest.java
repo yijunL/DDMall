@@ -15,13 +15,12 @@ public class CommentControllerTest {
     private CommentController commentController;
 
     @Test
-    public void commentControllerTest(){
-
+    public void commentControllerTest() {
 
 
         //commentController.getCommentsById(1);
         //44,55,"yukeyishishabi",0,4,77,null,null,0
-        CommentPo commentPo= new CommentPo();
+        CommentPo commentPo = new CommentPo();
         commentPo.setBeDeleted(false);
         commentPo.setContent("yukeyishishabi");
         commentPo.setId(11);
@@ -30,7 +29,7 @@ public class CommentControllerTest {
         commentPo.setStatusCode(0);
         commentPo.setUserId(333);
 
-         commentController.addComment(1,commentPo);
+        commentController.addComment(1, commentPo);
 
         // System.out.println(commentController.deleteComment(112));
     }

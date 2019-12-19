@@ -14,13 +14,13 @@ import java.util.List;
 @Service
 public interface AddressService {
 
-    public List<Address> getAddressList(Integer page, Integer limit);
+    public List<Address> getAddressList(Integer userId,Integer page, Integer limit);
 
     public Address getAddress(Integer id);
 
     public AddressPo addAddress(AddressPo addressPo);
 
-    public Address updateAddress(Integer id,Address address);
+    public AddressPo updateAddress(Integer id,AddressPo addressPo);
 
     public boolean deleteAddress (Integer id);
 
