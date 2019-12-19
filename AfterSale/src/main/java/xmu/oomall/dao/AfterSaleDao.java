@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 import xmu.oomall.domain.AfterSaleService;
 import xmu.oomall.mapper.OomallAfterSaleMapper;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 /**
@@ -97,7 +99,11 @@ public class AfterSaleDao {
      * @return Response.ok()
      */
     public int deleteAfterSaleById(Integer id) {
-        return 0;
+        if(oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id) == 2) { //应更新2行
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
 

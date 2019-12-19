@@ -3,6 +3,7 @@ package xmu.oomall.mapper;
 import org.apache.ibatis.annotations.Param;
 import xmu.oomall.domain.AfterSaleService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface OomallAfterSaleMapper {
@@ -11,5 +12,6 @@ public interface OomallAfterSaleMapper {
 
     AfterSaleService selectAllById(@Param("id")Integer id);
 
+    int deleteById(@Param("updatedGmtModified") LocalDateTime updatedGmtModified, @Param("id")Integer id);
 
 }

@@ -101,6 +101,11 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      */
     @Override
     public int deleteAfterSaleById(Integer id) {
+        xmu.oomall.domain.AfterSaleService afterSaleService = afterSaleDao.selectAfterSaleById(id);
+        if(afterSaleService != null && !afterSaleService.getBeDeleted()) {
+            return afterSaleDao.deleteAfterSaleById(id);
+        }
+        System.out.println("删除失败"); //!!
         return 0;
     }
 

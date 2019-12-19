@@ -22,4 +22,9 @@ public class AfterSaleControllerTest {
     public void selectAfterSale() {
         afterSaleController.getAfterSaleById(1);
     }
+
+    @Test
+    public void deleteAfterSale() {
+        afterSaleController.deleteAfterSaleById(1);
+    }
 }

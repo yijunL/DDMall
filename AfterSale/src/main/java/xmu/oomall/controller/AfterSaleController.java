@@ -42,11 +42,11 @@ public class AfterSaleController {
     @GetMapping("/afterSaleServices/{id}")
     public Object getAfterSaleById(@PathVariable Integer id) {
         if(id == null) {
-            return ResponseUtil.badArgument();
+            return ResponseUtil.fail(691, "获取售后服务失败");
         } else {
             AfterSaleService afterSaleService1 = afterSaleService.getAfterSaleById(id);
             if(afterSaleService1 == null) {
-                return ResponseUtil.badArgumentValue(); //
+                return ResponseUtil.fail(691, "获取售后服务失败"); //
             } else {
                 System.out.println("ok"); //
                 return ResponseUtil.ok(afterSaleService1);
@@ -99,14 +99,14 @@ public class AfterSaleController {
     @PostMapping("/afterSaleServices")
     public Object addAfterSale(@RequestBody AfterSaleService afterSaleService1) {
         if(afterSaleService1 == null) {
-            return ResponseUtil.badArgument();
+            return ResponseUtil.fail(692, "申请售后服务失败"); //
         } else {
             AfterSaleService afterSaleService2 = afterSaleService.addAfterSale(afterSaleService1);
             if(afterSaleService2 != null) {
                 return ResponseUtil.ok(afterSaleService2);
             } else {
-                System.out.println("bad!");
-                return ResponseUtil.badArgumentValue();
+                System.out.println("bad!"); //!!
+                return ResponseUtil.fail(692, "申请售后服务失败");
             }
         }
     }
@@ -119,7 +119,11 @@ public class AfterSaleController {
      */
     @DeleteMapping("/afterSaleServices/{id}")
     public Object deleteAfterSaleById(@PathVariable Integer id) {
-        return null;
+        if (id == null || afterSaleService.deleteAfterSaleById(id) == 0) {
+            return ResponseUtil.fail(694, "删除售后服务失败");
+        } else {
+            return ResponseUtil.ok();
+        }
     }
 
     /* 重复的方法——用户 */
