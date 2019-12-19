@@ -38,29 +38,32 @@ public class FreightServiceImpl implements FreightService {
 
 
     @Override
-    public boolean deleteDefaultFreight(Integer id) {
+    public Boolean deleteDefaultFreight(Integer id) {
 
         return defaultFreightDao.deleteDefaultFreight(id);
     }
 
     @Override
-    public DefaultPieceFreightPo getDefaultPieceFreight(Integer page, Integer limit) {
-        return null;
+    public List<DefaultPieceFreightPo> getDefaultPieceFreightsList(Integer page, Integer limit) {
+
+        return defaultPieceFreightDao.getDefaultPieceFreight(page,limit);
     }
 
     @Override
     public DefaultPieceFreightPo addDefaultPieceFreight(DefaultPieceFreightPo defaultPieceFreightPo) {
-        return null;
+
+        return defaultPieceFreightDao.addDefaultPieceFreight(defaultPieceFreightPo);
     }
 
     @Override
     public DefaultPieceFreightPo updateDefaultPieceFreight(Integer id, DefaultPieceFreightPo defaultPieceFreightPo) {
-        return null;
+        return updateDefaultPieceFreight(id,defaultPieceFreightPo);
     }
 
     @Override
-    public boolean deleteDefaultPieceFreight(Integer id) {
-        return false;
+    public Boolean deleteDefaultPieceFreight(Integer id) {
+
+        return defaultPieceFreightDao.deleteDefaultPieceFreight(id);
     }
 
     @Override
@@ -85,7 +88,7 @@ public class FreightServiceImpl implements FreightService {
     }
 
     @Override
-    public boolean deleteSpecialFreights(Integer id) {
+    public Boolean deleteSpecialFreights(Integer id) {
         return specialFreightDao.deleteSpecialFreight(id);
     }
 

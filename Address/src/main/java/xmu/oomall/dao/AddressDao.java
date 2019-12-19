@@ -18,9 +18,9 @@ public class AddressDao {
     private OomallAddressMapper oomallAddressMapper;
 
 
-    public List<Address> getAddressList(Integer userId,Integer page, Integer limit)
+    public List<Address> getAddressList(Integer page, Integer limit)
     {
-        return (List<Address>) PageCut.pageCut(oomallAddressMapper.findAllByBeDeletedLessThan(userId),page,limit);
+        return (List<Address>) PageCut.pageCut(oomallAddressMapper.findAllByBeDeletedLessThan(1),page,limit);
     }
 
     public Address getAddress(Integer id){
@@ -31,7 +31,8 @@ public class AddressDao {
     public AddressPo addAddress(AddressPo addressPo){
         if(addressPo.getId()!=null)    //插入的po不能有id
             return null;
-        addressPo.setGmtCreate(LocalDateTime.now());
+        if(addressPo.getGmtCreate()==null)
+            addressPo.setGmtCreate(LocalDateTime.now());
         oomallAddressMapper.insertSelective(addressPo);
         return addressPo;
     }

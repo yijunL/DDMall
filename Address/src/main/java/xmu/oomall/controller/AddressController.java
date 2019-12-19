@@ -50,7 +50,7 @@ public class AddressController {
         if (limit == null || limit < 0) {
             return ResponseUtil.badArgumentValue();
         }
-        List<Address> addressList=addressService.getAddressList(userId,page, limit);
+        List<Address> addressList=addressService.getAddressList(page, limit);
         return ResponseUtil.ok(addressList);
     }
 
@@ -60,9 +60,14 @@ public class AddressController {
      * @return
      */
     @GetMapping("/addresses/{id}")
-    public Object getAddress(@PathVariable Integer id) {
-        if (id == null) {
-            return ResponseUtil.badArgument();
+    public Object getAddress(HttpServletRequest request, @PathVariable Integer id) {
+        Integer userId = getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        // 参数校验
+        if (id == null || id < 0) {
+            return ResponseUtil.badArgumentValue();
         }
        Address address = addressService.getAddress(id);
         return ResponseUtil.ok(address);
@@ -74,12 +79,19 @@ public class AddressController {
      * @return
      */
     @PostMapping("/addresses")
-    public Object addAddress(@RequestBody AddressPo addressPo)
+    public Object addAddress(HttpServletRequest request, @RequestBody AddressPo addressPo)
     {
-        if(addressPo==null)
+        Integer userId = getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        //参数校验
+        if((addressPo.getCountyId()==null)||(addressPo.getProvinceId()==null)||(addressPo.getCityId()==null)||
+                (addressPo.getAddressDetail()==null)||(addressPo.getPostalCode()==null)||
+                (addressPo.getConsignee()==null)||(addressPo.getMobile()==null)||(addressPo.getUserId()==null)) {
             return ResponseUtil.badArgument();
+        }
         AddressPo addressPo1=addressService.addAddress(addressPo);
-
         if(addressPo1==null)
             return ResponseUtil.updatedDataFailed();
         else
@@ -93,10 +105,21 @@ public class AddressController {
      * @return
      */
     @PutMapping("/addresses/{id}")
-    public Object updateAddress(@PathVariable Integer id,@RequestBody AddressPo addressPo){
+    public Object updateAddress(HttpServletRequest request, @PathVariable Integer id,@RequestBody AddressPo addressPo){
 
-        if(id==null || addressPo==null)
+        Integer userId = getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        //参数校验
+        if((addressPo.getCountyId()==null)||(addressPo.getProvinceId()==null)||(addressPo.getCityId()==null)||
+                (addressPo.getAddressDetail()==null)||(addressPo.getPostalCode()==null)||
+                (addressPo.getConsignee()==null)||(addressPo.getMobile()==null)||(addressPo.getUserId()==null)) {
             return ResponseUtil.badArgument();
+        }
+        if(id==null || id < 0){
+            return ResponseUtil.badArgument();
+        }
         AddressPo addressPo1=addressService.updateAddress(id,addressPo);
         if(addressPo1==null)
             return ResponseUtil.updatedDataFailed();
@@ -110,9 +133,16 @@ public class AddressController {
      * @return
      */
     @DeleteMapping("/addresses/{id}")
-    public Object deleteAddress(@PathVariable Integer id){
-        if(id==null)
+    public Object deleteAddress(HttpServletRequest request, @PathVariable Integer id){
+        Integer userId = getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+
+        // 参数校验
+        if (id == null || id < 0) {
             return ResponseUtil.badArgument();
+        }
         if(addressService.deleteAddress(id))
             return ResponseUtil.ok();
         else
