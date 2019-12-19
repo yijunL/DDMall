@@ -17,21 +17,21 @@ public class AddressDaoTest {
     @Autowired
     private AddressDao addressDao;
 
-//    @Test
-//    public void getAddressListTest()
-//    {
-//        List<Address> addressList= addressDao.getAddressList(1,1,1);
-//        AddressPo addressPo = addressList.get(0);
-//        assertEquals(addressPo.getId(),1);
-//    }
+    @Test
+    public void getAddressListTest()
+    {
+        List<Address> addressList= addressDao.getAddressList(1,1);
+        AddressPo addressPo = addressList.get(0);
+        assertEquals(addressPo.getId(),1);
+    }
 
-//    @Test
-//    public void updateAddressTest(){
-//        AddressPo addressPo=new AddressPo();
-//        addressPo.setMobile("000");
-//        addressPo=addressDao.updateAddress(1,addressPo);
-//        assertEquals(addressPo.getMobile(),"000");
-//    }
+    @Test
+    public void updateAddressTest(){
+        AddressPo addressPo=new AddressPo();
+        addressPo.setMobile("000");
+        addressPo=addressDao.updateAddress(1,addressPo);
+        assertEquals(addressPo.getMobile(),"000");
+    }
 
     @Test
     public void addAddressTest()
@@ -45,8 +45,16 @@ public class AddressDaoTest {
         addressPo.setPostalCode("123");
         addressPo.setConsignee("123");
         addressPo.setMobile("123");
-        addressPo.setUserId(2);
+        addressPo.setUserId(3);
         addressPo=addressDao.addAddress(addressPo);
-        assertEquals(addressPo.getUserId(),2);
+        assertEquals(addressPo.getUserId(),3);
+    }
+
+    @Test
+    public void deleteAddressTest()
+    {
+        addressDao.deleteAddress(1);
+        AddressPo addressPo=addressDao.getAddress(1);
+        assertEquals(addressPo.getBeDeleted(),true);
     }
 }

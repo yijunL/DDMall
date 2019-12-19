@@ -2,13 +2,11 @@ package xmu.oomall.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import xmu.oomall.domain.DefaultFreightPo;
-import xmu.oomall.domain.DefaultPieceFreightPo;
-import xmu.oomall.domain.Order;
-import xmu.oomall.domain.SpecialFreight;
+import xmu.oomall.domain.*;
 import xmu.oomall.service.FreightService;
 import xmu.oomall.util.ResponseUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -24,6 +22,120 @@ import java.util.List;
 public class FreightController {
     @Autowired
     private FreightService freightService;
+
+    /**
+     * 解析请求
+     * @param request
+     * @return
+     */
+    private Integer getUserId(HttpServletRequest request) {
+        String userIdStr = request.getHeader("userId");
+        if (userIdStr == null) {
+            return null;
+        }
+        return Integer.valueOf(userIdStr);
+    }
+
+    /**
+     * 获取默认运费规则（按件计）
+     * @param request
+     * @param page
+     * @param limit
+     * @return
+     */
+    @GetMapping("/defaultPieceFreights")
+    public Object getDefaultPieceFreightsList(HttpServletRequest request,@RequestParam Integer page, @RequestParam Integer limit) {
+        Integer userId=getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        // 参数校验
+        if (page == null || page < 0) {
+            return ResponseUtil.badArgumentValue();
+        }
+        if (limit == null || limit < 0) {
+            return ResponseUtil.badArgumentValue();
+        }
+        List<DefaultPieceFreightPo> defaultPieceFreightPoList=freightService.getDefaultPieceFreightsList(page, limit);
+        return ResponseUtil.ok(defaultPieceFreightPoList);
+    }
+
+    /**
+     * 新增默认运费规则（按件计）
+     * @param request
+     * @param defaultPieceFreightPo
+     * @return
+     */
+    @PostMapping("/defaultPieceFreights")
+    public Object addDefaultPieceFreight(HttpServletRequest request, @RequestBody DefaultPieceFreightPo defaultPieceFreightPo)
+    {
+        Integer userId = getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        //参数校验
+        if((defaultPieceFreightPo.getDestination()==null)||(defaultPieceFreightPo.getUnitRate()==null)||
+                (defaultPieceFreightPo.getRequireDays()==null)) {
+            return ResponseUtil.badArgument();
+        }
+        DefaultPieceFreightPo defaultPieceFreightPo1=freightService.addDefaultPieceFreight(defaultPieceFreightPo);
+        if(defaultPieceFreightPo1==null)
+            return ResponseUtil.updatedDataFailed();
+        else
+            return ResponseUtil.ok(defaultPieceFreightPo1);
+    }
+
+    /**
+     * 管理员获取商品的产品信息
+     * @param request
+     * @param id
+     * @param defaultPieceFreightPo
+     * @return
+     */
+    @PutMapping("/defaultPieceFreights/{id}")
+    public Object updateDefaultPieceFreight(HttpServletRequest request, @PathVariable Integer id,
+                                            @RequestBody DefaultPieceFreightPo defaultPieceFreightPo){
+
+        Integer userId = getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        //参数校验
+        if((defaultPieceFreightPo.getDestination()==null)||(defaultPieceFreightPo.getUnitRate()==null)||
+                (defaultPieceFreightPo.getRequireDays()==null)) {
+            return ResponseUtil.badArgument();
+        }
+        if(id==null || id < 0){
+            return ResponseUtil.badArgument();
+        }
+        DefaultPieceFreightPo defaultPieceFreightPo1 = freightService.updateDefaultPieceFreight(id,defaultPieceFreightPo);
+        if(defaultPieceFreightPo1==null)
+            return ResponseUtil.updatedDataFailed();
+        else
+            return ResponseUtil.ok(defaultPieceFreightPo1);
+    }
+
+    /**
+     * 删除默认运费规则（按件计）
+     * @param request
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/defaultPieceFreights/{id}")
+    public Object deleteDefaultPieceFreight(HttpServletRequest request, @PathVariable Integer id){
+        Integer userId = getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        // 参数校验
+        if (id == null || id < 0) {
+            return ResponseUtil.badArgument();
+        }
+        if(freightService.deleteDefaultPieceFreight(id))
+            return ResponseUtil.ok();
+        else
+            return ResponseUtil.updatedDataFailed();
+    }
 
     /**
      * @param limit

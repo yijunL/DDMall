@@ -16,15 +16,15 @@ public interface FreightService {
 
     public DefaultFreightPo updateDefaultFreight(Integer id, DefaultFreightPo DefaultFreightPo);
 
-    public boolean deleteDefaultFreight(Integer id);
+    public Boolean deleteDefaultFreight(Integer id);
 
-    public DefaultPieceFreightPo getDefaultPieceFreight(Integer page, Integer limit);
+    public List<DefaultPieceFreightPo> getDefaultPieceFreightsList(Integer page, Integer limit);
 
     public DefaultPieceFreightPo addDefaultPieceFreight(DefaultPieceFreightPo defaultPieceFreightPo);
 
     public DefaultPieceFreightPo updateDefaultPieceFreight(Integer id, DefaultPieceFreightPo defaultPieceFreightPo);
 
-    public boolean deleteDefaultPieceFreight(Integer id);
+    public Boolean deleteDefaultPieceFreight(Integer id);
 
     public SpecialFreight getSpecialFreights(Integer id);
 
@@ -34,5 +34,5 @@ public interface FreightService {
 
     public SpecialFreight updateSpecialFreights(Integer id, SpecialFreight specialFreight);
 
-    public boolean deleteSpecialFreights(Integer id);
+    public Boolean deleteSpecialFreights(Integer id);
 }

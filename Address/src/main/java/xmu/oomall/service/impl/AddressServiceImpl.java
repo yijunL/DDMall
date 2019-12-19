@@ -15,8 +15,8 @@ public class AddressServiceImpl implements AddressService {
     private AddressDao addressDao;
 
     @Override
-    public List<Address> getAddressList(Integer userId,Integer page, Integer limit){
-        return addressDao.getAddressList(userId,page, limit);
+    public List<Address> getAddressList(Integer page, Integer limit){
+        return addressDao.getAddressList(page, limit);
     };
 
     @Override
