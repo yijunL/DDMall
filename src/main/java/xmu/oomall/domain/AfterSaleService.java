@@ -31,7 +31,7 @@ public class AfterSaleService {
      */
     private String applyReason;
     /**
-     * 售后完成时间
+     *售后完成时间
      */
     private LocalDateTime endTime;
     /**

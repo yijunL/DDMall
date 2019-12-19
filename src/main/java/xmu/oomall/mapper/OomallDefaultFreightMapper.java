@@ -1,16 +1,12 @@
 package xmu.oomall.mapper;
 
-import org.apache.ibatis.annotations.Param;
-import xmu.oomall.domain.DefaultFreightPo;
-
-import java.util.List;
+import org.apache.ibatis.annotations.Param;import xmu.oomall.domain.DefaultFreightPo;import java.util.List;
 
 public interface OomallDefaultFreightMapper {
 
 
     /**
      * 查（测试用）
-     *
      * @param id
      * @return
      */
@@ -18,7 +14,6 @@ public interface OomallDefaultFreightMapper {
 
     /**
      * 增
-     *
      * @param defaultFreightPo
      * @return
      */
@@ -26,7 +21,6 @@ public interface OomallDefaultFreightMapper {
 
     /**
      * 查
-     *
      * @param maxBeDeleted
      * @return
      */
@@ -34,11 +28,10 @@ public interface OomallDefaultFreightMapper {
 
     /**
      * 改
-     *
      * @param updated
      * @param id
      * @return
      */
-    int updateById(@Param("updated") DefaultFreightPo updated, @Param("id") Integer id);
+    int updateById(@Param("updated")DefaultFreightPo updated,@Param("id")Integer id);
 
 }

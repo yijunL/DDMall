@@ -33,8 +33,8 @@ public class CommentServiceImpl implements CommentService {
      * @return
      */
     @Override
-    public List<Comment> getCommentsById(Integer limit, Integer page, Integer id) {
-        List<Comment> commentsOfProduct = commentDao.selectByProductId(limit, page, id);
+    public List<Comment> getCommentsById(Integer limit,Integer page,Integer id) {
+        List<Comment> commentsOfProduct = commentDao.selectByProductId(limit,page,id);
         return commentsOfProduct;
     }
 
@@ -45,7 +45,7 @@ public class CommentServiceImpl implements CommentService {
      * @return 0：失败 1：成功
      */
     @Override
-    public CommentPo addComment(CommentPo commentPo) {
+    public CommentPo addComment(CommentPo commentPo){
         return commentDao.addComment(commentPo);
     }
 
@@ -56,11 +56,11 @@ public class CommentServiceImpl implements CommentService {
      * @return 0：失败 1：成功
      */
     @Override
-    public int deleteComment(Integer id) {
-        Comment comment = commentDao.selectComment(id);
+    public int deleteComment(Integer id){
+        Comment comment=commentDao.selectComment(id);
         //数据库有此comment并且还未被删除
-        if (comment != null && !comment.getBeDeleted()) {
-            if (commentDao.deleteComment(id)) {
+        if(comment!=null&&!comment.getBeDeleted()){
+            if(commentDao.deleteComment(id)){
                 return 1;
             }
         }
@@ -78,8 +78,8 @@ public class CommentServiceImpl implements CommentService {
      * @return List<Comment>
      */
     @Override
-    public List<Comment> getCommentsByIdForAdmin(Integer userId, Integer productId, Integer limit, Integer page) {
-        List<Comment> commentList = commentDao.selectByIdForAdmin(userId, productId, limit, page);
+    public List<Comment> getCommentsByIdForAdmin(Integer userId,Integer productId,Integer limit,Integer page){
+        List<Comment> commentList=commentDao.selectByIdForAdmin(userId, productId, limit, page);
         return commentList;
     }
 
@@ -91,8 +91,8 @@ public class CommentServiceImpl implements CommentService {
      * @return List<Comment>
      */
     @Override
-    public List<Comment> getAllComments(Integer limit, Integer page) {
-        List<Comment> commentList = commentDao.selectAllComments(limit, page);
+    public List<Comment> getAllComments(Integer limit,Integer page){
+        List<Comment> commentList=commentDao.selectAllComments(limit, page);
         return commentList;
     }
 
@@ -105,7 +105,7 @@ public class CommentServiceImpl implements CommentService {
      * @return CommentPo
      */
     @Override
-    public CommentPo updateCommentById(Integer id, CommentPo commentPo) {
-        return commentDao.updateComment(id, commentPo);
+    public  CommentPo updateCommentById(Integer id,CommentPo commentPo){
+        return commentDao.updateComment(id,commentPo);
     }
 }

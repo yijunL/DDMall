@@ -1,5 +1,4 @@
 package xmu.oomall.domain;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,15 +19,15 @@ import java.time.LocalDateTime;
 public class BrandPo {
     private Integer id;
     /**
-     * 品牌名称
-     */
+    *品牌名称
+    */
     private String name;
     /**
-     * 品牌描述
-     */
+    *品牌描述
+    */
     private String description;
     /**
-     * 品牌图片链接
+    *品牌图片链接
      */
     private String picUrl;
 

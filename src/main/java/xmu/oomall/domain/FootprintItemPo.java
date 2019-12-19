@@ -20,16 +20,16 @@ public class FootprintItemPo {
     private Integer id;
 
     /**
-     * 创建时间
-     */
+    *创建时间
+    */
     private LocalDateTime birthTime;
     /**
-     * 用户id
-     */
+    *用户id
+    */
     private Integer userId;
     /**
-     * 商品id
-     */
+    *商品id
+    */
     private Integer goodsId;
     private LocalDateTime gmtCreate;
 }

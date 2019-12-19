@@ -19,26 +19,29 @@ public class DefaultFreightDaoTest {
     private DefaultFreightDao defaultFreightDao;
 
     @Test
-    public void deleteTest() {
+    public void deleteTest()
+    {
         defaultFreightDao.deleteDefaultFreight(1);
-        assertEquals(defaultFreightDao.getById(1).getBeDeleted(), true);
+        assertEquals(defaultFreightDao.getById(1).getBeDeleted(),true);
     }
 
     @Test
-    public void findAllTest() {
-        List<DefaultFreightPo> defaultFreightPoList = defaultFreightDao.getDefaultFreights(2, 2);
-        assertEquals(defaultFreightPoList.get(0).getId(), 4);
+    public void findAllTest()
+    {
+        List<DefaultFreightPo> defaultFreightPoList=defaultFreightDao.getDefaultFreights(2,2);
+        assertEquals(defaultFreightPoList.get(0).getId(),4);
     }
 
     @Test
-    public void updateTest() {
-        DefaultFreightPo defaultFreightPo = new DefaultFreightPo();
+    public void updateTest()
+    {
+        DefaultFreightPo defaultFreightPo=new DefaultFreightPo();
         defaultFreightPo.setRequireDays("1-3");
-        BigDecimal testdec = new BigDecimal("88.00");
+        BigDecimal testdec =new BigDecimal("88.00");
         defaultFreightPo.setOver10Price(new BigDecimal("8.00"));
         defaultFreightPo.setOver50Price(testdec);
-        DefaultFreightPo defaultFreightPo1 = defaultFreightDao.updateDefaultFreight(1, defaultFreightPo);
-        assertEquals(defaultFreightPo1.getOver50Price(), testdec);
+        DefaultFreightPo defaultFreightPo1= defaultFreightDao.updateDefaultFreight(1,defaultFreightPo);
+        assertEquals(defaultFreightPo1.getOver50Price(),testdec);
     }
 
 }

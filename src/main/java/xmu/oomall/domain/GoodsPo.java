@@ -27,7 +27,7 @@ public class GoodsPo {
     /**
      * 商品序列号
      */
-    private String goodsSn;
+     private String goodsSn;
     /**
      * 商品简称
      */

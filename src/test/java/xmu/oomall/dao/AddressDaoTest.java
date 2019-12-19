@@ -19,13 +19,13 @@ public class AddressDaoTest {
     @Autowired
     private AddressDao addressDao;
 
-    @Test
-    public void getAddressListTest()
-    {
-        List<Address> addressList= addressDao.getAddressList(1,1,1);
-        AddressPo addressPo = addressList.get(0);
-        assertEquals(addressPo.getId(),1);
-    }
+//    @Test
+//    public void getAddressListTest()
+//    {
+//        List<Address> addressList= addressDao.getAddressList(1,1,1);
+//        AddressPo addressPo = addressList.get(0);
+//        assertEquals(addressPo.getId(),1);
+//    }
 
 //    @Test
 //    public void updateAddressTest(){
