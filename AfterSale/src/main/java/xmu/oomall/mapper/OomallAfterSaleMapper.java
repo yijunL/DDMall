@@ -8,4 +8,8 @@ import java.util.List;
 public interface OomallAfterSaleMapper {
 
     int insertSelective(AfterSaleService afterSaleService);
+
+    AfterSaleService selectAllById(@Param("id")Integer id);
+
+
 }

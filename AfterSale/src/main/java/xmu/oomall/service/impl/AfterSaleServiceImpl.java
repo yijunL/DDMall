@@ -39,7 +39,11 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      */
     @Override
     public xmu.oomall.domain.AfterSaleService getAfterSaleById(Integer id) {
-        return null;
+        xmu.oomall.domain.AfterSaleService afterSaleService = afterSaleDao.selectAfterSaleById(id);
+        if(afterSaleService != null) {
+            System.out.println(afterSaleService.getGoodsType());//
+        }
+        return afterSaleService;
     }
 
     /**
@@ -86,7 +90,7 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      */
     @Override
     public xmu.oomall.domain.AfterSaleService addAfterSale(xmu.oomall.domain.AfterSaleService afterSaleService) {
-        return null;
+        return afterSaleDao.addAfterSale(afterSaleService);
     }
 
     /**

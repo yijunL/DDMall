@@ -36,7 +36,7 @@ public class AfterSaleDao {
      * @return AfterSaleService
      */
     public AfterSaleService selectAfterSaleById(Integer id) {
-        return null;
+        return oomallAfterSaleMapper.selectAllById(id);
     }
 
     /**
@@ -79,7 +79,15 @@ public class AfterSaleDao {
      * @return AfterSaleService
      */
     public AfterSaleService addAfterSale(AfterSaleService afterSaleService) {
-        return null;
+        if(afterSaleService.getId() != null) {
+            return null;
+        } else {
+            if(oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
+                System.out.println(afterSaleService.getId()); //
+                return afterSaleService;
+            }
+            return null;
+        }
     }
 
     /**

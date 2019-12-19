@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xmu.oomall.domain.AfterSaleService;
+import xmu.oomall.util.ResponseUtil;
 
 /**
  * @Author Bexasusual
@@ -40,8 +41,17 @@ public class AfterSaleController {
      */
     @GetMapping("/afterSaleServices/{id}")
     public Object getAfterSaleById(@PathVariable Integer id) {
-
-        return null;
+        if(id == null) {
+            return ResponseUtil.badArgument();
+        } else {
+            AfterSaleService afterSaleService1 = afterSaleService.getAfterSaleById(id);
+            if(afterSaleService1 == null) {
+                return ResponseUtil.badArgumentValue(); //
+            } else {
+                System.out.println("ok"); //
+                return ResponseUtil.ok(afterSaleService1);
+            }
+        }
     }
 
     /**
@@ -83,12 +93,22 @@ public class AfterSaleController {
     /**
      * 用户申请售后服务
      *
-     * @param afterSaleService: AfterSaleService
+     * @param afterSaleService1: AfterSaleService
      * @return AfterSaleService
      */
     @PostMapping("/afterSaleServices")
-    public Object addAfterSale(@RequestBody AfterSaleService afterSaleService) {
-        return null;
+    public Object addAfterSale(@RequestBody AfterSaleService afterSaleService1) {
+        if(afterSaleService1 == null) {
+            return ResponseUtil.badArgument();
+        } else {
+            AfterSaleService afterSaleService2 = afterSaleService.addAfterSale(afterSaleService1);
+            if(afterSaleService2 != null) {
+                return ResponseUtil.ok(afterSaleService2);
+            } else {
+                System.out.println("bad!");
+                return ResponseUtil.badArgumentValue();
+            }
+        }
     }
 
     /**

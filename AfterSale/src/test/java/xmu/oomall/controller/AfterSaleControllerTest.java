@@ -3,7 +3,7 @@ package xmu.oomall.controller;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import xmu.oomall.domain.AfterSaleService;
+import xmu.oomall.service.AfterSaleService;
 
 @SpringBootTest
 //@Transactional //
@@ -12,7 +12,14 @@ public class AfterSaleControllerTest {
     private AfterSaleController afterSaleController;
 
     @Test
-    public void addAfterSale() {
-        System.out.println(123);
+    public void insertAfterSale() {
+        xmu.oomall.domain.AfterSaleService afterSaleService = new xmu.oomall.domain.AfterSaleService();
+        afterSaleService.setGoodsType(97);
+        afterSaleController.addAfterSale(afterSaleService);
+    }
+
+    @Test
+    public void selectAfterSale() {
+        afterSaleController.getAfterSaleById(1);
     }
 }
