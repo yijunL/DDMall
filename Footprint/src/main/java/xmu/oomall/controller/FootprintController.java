@@ -52,19 +52,14 @@ public class FootprintController {
                                          @RequestParam Integer limit) {
         Integer userId = getUserId(request); //从网关获取用户id
         if (userId == null) { //可能不需要该判断
-            return ResponseUtil.unlogin();
+            return ResponseUtil.unlogin(); //是否返回别的值？
         }
         if (page == null || limit == null
             || page < 0 || limit < 0) {
-            return ResponseUtil.badArgumentValue();
+            return ResponseUtil.fail(742, "足迹查询失败");
         }
         else {
             List<FootprintItem> footprintItems = footprintService.listFootprintsByUserId(userId, page, limit);
-//            if(footprintItems.size() == 0) { //未查询到任何结果
-//                return ResponseUtil.badArgumentValue();
-//            } else {
-//                return ResponseUtil.ok(footprintItems);
-//            }
             return ResponseUtil.ok(footprintItems);
         }
     }
@@ -102,7 +97,7 @@ public class FootprintController {
                                             @RequestParam Integer page, @RequestParam Integer limit) {
         if(page == null || limit == null
             || page < 0 || limit < 0) {
-            return ResponseUtil.badArgument();
+            return ResponseUtil.fail(742, "足迹查询失败");
         } else {
             List<FootprintItem> footprintItemList = footprintService.listFootprintsByCondition(userId, goodsId, page, limit);
             //是否判断返回值是否为0？
@@ -120,10 +115,14 @@ public class FootprintController {
     @PostMapping("/footprints")
     public Object addFootprint(@RequestBody FootprintItemPo footprintItemPo) {
         if(footprintItemPo == null) {
-            return ResponseUtil.badArgument(); //返回响应值
+            return ResponseUtil.fail(741, "足迹添加失败"); //返回响应值
         } else { //是否需要进一步判断userId?
-            footprintService.addFootprint(footprintItemPo);
-            return ResponseUtil.ok(footprintItemPo);
+            FootprintItemPo footprintItemPo1 = footprintService.addFootprint(footprintItemPo);
+            if(footprintItemPo1 == null) {
+                return ResponseUtil.fail(741, "足迹添加失败");
+            } else {
+                return ResponseUtil.ok(footprintItemPo);
+            }
         }
     }
 }
