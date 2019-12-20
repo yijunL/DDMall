@@ -21,14 +21,14 @@ public class AfterSaleServiceImpl implements AfterSaleService {
     /**
      * 管理员查询售后服务列表
      *
-     * @param orderId: Integer
+     * @param userId: Integer
      * @param page: Integer
      * @param limit: Integer
      * @return List<AfterSaleService>
      */
     @Override
-    public List<xmu.oomall.domain.AfterSaleService> listAfterSalesByCondition(Integer orderId, Integer page, Integer limit) {
-        return null;
+    public List<xmu.oomall.domain.AfterSaleService> listAfterSalesByCondition(Integer userId, Integer page, Integer limit) {
+        return afterSaleDao.selectAfterSalesByCondition(userId, page, limit);
     }
 
     /**
@@ -55,11 +55,11 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      */
     @Override
     public xmu.oomall.domain.AfterSaleService updateAfterSaleByIdForAdmin(Integer id, xmu.oomall.domain.AfterSaleService afterSaleService) {
-        return null;
+        return afterSaleDao.updateAfterSaleByIdForAdmin(id, afterSaleService);
     }
 
     /**
-     * 用户修改某一售后服务的信息
+     * 用户修改某一售后服务的信息（多余位暂时忽略，不报错）
      *
      * @param id: Integer
      * @param afterSaleService: AfterSaleService
@@ -67,19 +67,20 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      */
     @Override
     public xmu.oomall.domain.AfterSaleService updateAfterSaleById(Integer id, xmu.oomall.domain.AfterSaleService afterSaleService) {
-        return null;
+        return afterSaleDao.updateAfterSaleById(id, afterSaleService);
     }
 
     /**
      * 查询用户的售后服务列表
      *
+     * @param userId: Integer
      * @param page: Integer
      * @param limit: Integer
      * @return List<AfterSaleService>
      */
     @Override
-    public List<xmu.oomall.domain.AfterSaleService> listAfterSalesByUserId(Integer page, Integer limit) {
-        return null;
+    public List<xmu.oomall.domain.AfterSaleService> listAfterSalesByUserId(Integer userId, Integer page, Integer limit) {
+        return afterSaleDao.selectAfterSalesByUserId(userId, page, limit);
     }
 
     /**

@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import xmu.oomall.domain.AfterSaleService;
 import xmu.oomall.util.ResponseUtil;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
  * @Author Bexasusual
  * @Description: AfterSaleController
@@ -21,20 +24,33 @@ public class AfterSaleController {
     private xmu.oomall.service.AfterSaleService afterSaleService;
 
     /**
+     * 解析请求
+     * @param request
+     * @return userId
+     */
+    private Integer getUserId(HttpServletRequest request) {
+        String userIdStr = request.getHeader("userId");
+        if (userIdStr == null) {
+            return null;
+        }
+        return Integer.valueOf(userIdStr);
+    }
+
+    /**
      * 管理员查询售后服务列表
      *
-     * @param orderId: Integer
+     * @param userId: Integer
      * @param page: Integer
      * @param limit: Integer
      * @return List<AfterSaleService>
      */
     @GetMapping("/admin/afterSaleServices")
-    public Object listAfterSalesByCondition(@RequestParam Integer orderId, @RequestParam Integer page, @RequestParam Integer limit) {
+    public Object listAfterSalesByCondition(@RequestParam Integer userId, @RequestParam Integer page, @RequestParam Integer limit) {
         return null;
     }
 
     /**
-     * 管理员查询某一售后服务具体信息
+     * 管理员查询某一售后服务具体信息（是否可与用户同用？）
      *
      * @param id: Integer
      * @return AfterSaleService
@@ -58,24 +74,42 @@ public class AfterSaleController {
      * 管理员修改某一售后服务信息
      *
      * @param id: Integer
-     * @param afterSaleService: AfterSaleService
+     * @param afterSaleService1: AfterSaleService
      * @return AfterSaleService
      */
     @PutMapping("/admin/afterSaleServices/{id}")
-    public Object updateAfterSaleByIdForAdmin(@PathVariable Integer id, @RequestParam AfterSaleService afterSaleService) {
-        return null;
+    public Object updateAfterSaleByIdForAdmin(@PathVariable Integer id, @RequestParam AfterSaleService afterSaleService1) {
+        if (id == null) {
+            return ResponseUtil.fail(693, "修改售后服务失败");
+        } else {
+            AfterSaleService afterSaleService2 = afterSaleService.updateAfterSaleByIdForAdmin(id, afterSaleService1);
+            if (afterSaleService2 == null) {
+                return ResponseUtil.fail(693, "修改售后服务失败");
+            } else {
+                return ResponseUtil.ok(afterSaleService2);
+            }
+        }
     }
 
     /**
      * 用户修改某一售后服务的信息
      *
      * @param id: Integer
-     * @param afterSaleService: AfterSaleService
+     * @param afterSaleService1: AfterSaleService
      * @return AfterSaleService
      */
     @PutMapping("/afterSaleServices/{id}")
-    public Object updateAfterSaleById(@PathVariable Integer id, @RequestBody AfterSaleService afterSaleService) {
-        return null;
+    public Object updateAfterSaleById(@PathVariable Integer id, @RequestBody AfterSaleService afterSaleService1) {
+        if (id == null) {
+            return ResponseUtil.fail(693, "修改售后服务失败");
+        } else {
+            AfterSaleService afterSaleService2 = afterSaleService.updateAfterSaleById(id, afterSaleService1);
+            if (afterSaleService2 == null) {
+                return ResponseUtil.fail(693, "修改售后服务失败");
+            } else {
+                return ResponseUtil.ok(afterSaleService2);
+            }
+        }
     }
 
     /**
@@ -86,8 +120,20 @@ public class AfterSaleController {
      * @return List<AfterSaleService>
      */
     @GetMapping("/afterSaleServices")
-    public Object listAfterSalesByUserId(@RequestParam Integer page, @RequestParam Integer limit) { //
-        return null;
+    public Object listAfterSalesByUserId(HttpServletRequest request,
+                                         @RequestParam Integer page,
+                                         @RequestParam Integer limit) { //
+        Integer userId = getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.fail(691, "获取售后服务失败");
+        }
+        if (page == null || limit == null
+            || page < 0 || limit < 0) {
+            return ResponseUtil.fail(691, "获取售后服务失败");
+        } else {
+            List<AfterSaleService> afterSaleServices = afterSaleService.listAfterSalesByUserId(userId, page, limit);
+            return ResponseUtil.ok(afterSaleServices);
+        }
     }
 
     /**
