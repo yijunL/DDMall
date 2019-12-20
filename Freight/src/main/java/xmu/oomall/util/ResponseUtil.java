@@ -42,14 +42,14 @@ import java.util.Map;
 public class ResponseUtil {
     public static Object ok() {
         Map<String, Object> obj = new HashMap<String, Object>();
-        obj.put("errno", 0);
+        obj.put("errno", 200);
         obj.put("errmsg", "成功");
         return obj;
     }
 
     public static Object ok(Object data) {
         Map<String, Object> obj = new HashMap<String, Object>();
-        obj.put("errno", 0);
+        obj.put("errno", 200);
         obj.put("errmsg", "成功");
         obj.put("data", data);
         return obj;
@@ -100,5 +100,22 @@ public class ResponseUtil {
     public static Object unauthz() {
         return fail(506, "无操作权限");
     }
+
+    public static Object defaultFreightUseless(){return  fail(630,"该默认运费规则是无效运费规则（不在数据库里的或者逻辑删除） ");}
+    public static Object defaultFreightUpdatedDataFailed(){return fail(631,"默认运费规则更新失败 ");}
+    public static Object defaultFreightAddFailed(){return fail(632,"默认运费规则添加失败 ");}
+    public static Object defaultFreightDeleteFailed(){return fail(633,"默认运费规则删除失败 ");}
+
+    public static Object defaultPieceFreightUseless(){return  fail(634,"该默认计件运费规则是无效运费规则（不在数据库里的或者逻辑删除） ");}
+    public static Object defaultPieceFreightUpdatedDataFailed(){return fail(635,"默认计件运费规则更新失败 ");}
+    public static Object defaultPieceFreightAddFailed(){return fail(636,"默认计件运费规则添加失败 ");}
+    public static Object defaultPieceFreightDeleteFailed(){return fail(637,"默认计件运费规则删除失败 ");}
+
+    public static Object specialFreightUseless(){return  fail(638,"该特殊运费规则是无效运费规则（不在数据库里的或者逻辑删除） ");}
+    public static Object specialFreightUpdatedDataFailed(){return fail(639,"特殊运费规则更新失败 ");}
+    public static Object specialFreightAddFailed(){return fail(640,"特殊运费规则添加失败 ");}
+    public static Object specialFreightDeleteFailed(){return fail(641,"特殊运费规则删除失败 ");}
+
+
 }
 

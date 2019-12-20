@@ -4,14 +4,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.http.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 import xmu.oomall.dao.DefaultFreightDao;
 import xmu.oomall.domain.DefaultFreightPo;
+import xmu.oomall.util.JacksonUtil;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.net.URI;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,19 +25,34 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FreightControllerTest {
     @Autowired
     private FreightController freightController;
-    @Autowired
-    private DefaultFreightDao defaultFreightDao;
-    @Autowired
-    private MockMvc mockMvc;
 
-//    public void getSpecialFreightByIdTest()
-//    {
-//        MvcResult mvcResult= mockMvc.perform(MockMvcRequestBuilders.get("/specialFreights/1")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .andExpect(MockMvcResultMatchers.status().isOk())      //判断状态码是否正确
-//                .andExpect(MockMvcResultMatchers.content().)
-//
-//    }
+
+    @Value("http://localhost:8081/defaultFreights")
+    String url;
+    @Autowired
+    private TestRestTemplate testRestTemplate;
+
+    @Test
+    public void getAllDefaultFreightTest()throws Exception {
+
+        URI uri=new URI(url);
+        HttpHeaders httpHeaders = testRestTemplate.headForHeaders(uri);
+
+        HttpEntity httpEntity = new HttpEntity(httpHeaders);
+
+        ResponseEntity<String> response = testRestTemplate.exchange(uri, HttpMethod.GET, httpEntity, String.class);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+
+        /*取得响应体*/
+        String body = response.getBody();
+
+        Integer errno = JacksonUtil.parseInteger(body, "errno");
+        assertEquals(200, errno);
+
+        /*assert判断*/
+        List<DefaultFreightPo> defaultFreightPoList = JacksonUtil.parseObject(body, "data", List.class);
+        assertEquals(defaultFreightPoList.get(0).getId(), 3);
+    }
 
 
 //    public void getSpecialFreightByIdTest()
@@ -48,14 +67,14 @@ public class FreightControllerTest {
         assertEquals(respon.get("errno"), 0);
     }
 
-    @Test
-    public void getAllDefaultFreightTest() {
-        Map<String, Object> respon = (Map<String, Object>) freightController.getDefaultFreights(2, 2);
-
-        List<DefaultFreightPo> defaultFreightPoList = (List<DefaultFreightPo>) respon.get("data");
-        assertEquals(defaultFreightPoList.get(0).getId(), 3);
-        assertEquals(respon.get("errno"), 0);
-    }
+//    @Test
+//    public void getAllDefaultFreightTest() {
+//        Map<String, Object> respon = (Map<String, Object>) freightController.getDefaultFreights(2, 2);
+//
+//        List<DefaultFreightPo> defaultFreightPoList = (List<DefaultFreightPo>) respon.get("data");
+//        assertEquals(defaultFreightPoList.get(0).getId(), 3);
+//        assertEquals(respon.get("errno"), 0);
+//    }
 
     @Test
     public void addDefaultFreightTest() {

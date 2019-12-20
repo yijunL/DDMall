@@ -161,7 +161,7 @@ public class FreightController {
      * @return DefaultFreightPo
      * @Description: 添加一个运费模板
      */
-    @PostMapping("/defaultFreightsPo")
+    @PostMapping("/defaultFreights")
     public Object addDefaultFreight(@RequestBody DefaultFreightPo defaultFreightPo) {
         if (defaultFreightPo == null)
             return ResponseUtil.badArgument();
