@@ -18,7 +18,6 @@ import java.util.List;
 @RestController
 @RequestMapping("afterSaleServices") //!!
 public class AfterSaleController {
-    private static final Logger logger = LoggerFactory.getLogger(AfterSaleController.class);
 
     @Autowired
     private xmu.oomall.service.AfterSaleService afterSaleService;
@@ -45,7 +44,7 @@ public class AfterSaleController {
      * @return List<AfterSaleService>
      */
     @GetMapping("/admin/afterSaleServices")
-    public Object listAfterSalesByCondition(@RequestParam Integer userId, @RequestParam Integer page, @RequestParam Integer limit) {
+    public Object listAfterSalesByCondition(HttpServletRequest request, @RequestParam Integer userId, @RequestParam Integer page, @RequestParam Integer limit) {
         return null;
     }
 
@@ -56,7 +55,7 @@ public class AfterSaleController {
      * @return AfterSaleService
      */
     @GetMapping("/afterSaleServices/{id}")
-    public Object getAfterSaleById(@PathVariable Integer id) {
+    public Object getAfterSaleById(HttpServletRequest request, @PathVariable Integer id) {
         if(id == null) {
             return ResponseUtil.fail(691, "获取售后服务失败");
         } else {
@@ -78,7 +77,7 @@ public class AfterSaleController {
      * @return AfterSaleService
      */
     @PutMapping("/admin/afterSaleServices/{id}")
-    public Object updateAfterSaleByIdForAdmin(@PathVariable Integer id, @RequestParam AfterSaleService afterSaleService1) {
+    public Object updateAfterSaleByIdForAdmin(HttpServletRequest request, @PathVariable Integer id, @RequestParam AfterSaleService afterSaleService1) {
         if (id == null) {
             return ResponseUtil.fail(693, "修改售后服务失败");
         } else {
@@ -99,7 +98,7 @@ public class AfterSaleController {
      * @return AfterSaleService
      */
     @PutMapping("/afterSaleServices/{id}")
-    public Object updateAfterSaleById(@PathVariable Integer id, @RequestBody AfterSaleService afterSaleService1) {
+    public Object updateAfterSaleById(HttpServletRequest request, @PathVariable Integer id, @RequestBody AfterSaleService afterSaleService1) {
         if (id == null) {
             return ResponseUtil.fail(693, "修改售后服务失败");
         } else {
@@ -143,7 +142,7 @@ public class AfterSaleController {
      * @return AfterSaleService
      */
     @PostMapping("/afterSaleServices")
-    public Object addAfterSale(@RequestBody AfterSaleService afterSaleService1) {
+    public Object addAfterSale(HttpServletRequest request, @RequestBody AfterSaleService afterSaleService1) {
         if(afterSaleService1 == null) {
             return ResponseUtil.fail(692, "申请售后服务失败"); //
         } else {
@@ -164,7 +163,7 @@ public class AfterSaleController {
      * @return Response.ok()
      */
     @DeleteMapping("/afterSaleServices/{id}")
-    public Object deleteAfterSaleById(@PathVariable Integer id) {
+    public Object deleteAfterSaleById(HttpServletRequest request, @PathVariable Integer id) {
         if (id == null || afterSaleService.deleteAfterSaleById(id) == 0) {
             return ResponseUtil.fail(694, "删除售后服务失败");
         } else {
