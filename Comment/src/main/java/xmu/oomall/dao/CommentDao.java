@@ -32,7 +32,7 @@ public class CommentDao {
      * @return
      */
     public List<Comment> selectByProductId(Integer limit,Integer page,Integer id){
-        PageHelper.startPage(limit,page);
+        PageHelper.startPage(page,limit);
         List<CommentPo> commentsOfProduct = commentMapper.findAllByProductId(id);
         return commentsList(commentsOfProduct);
     }
@@ -52,6 +52,7 @@ public class CommentDao {
         }else{
             commentPo.setGmtCreate(LocalDateTime.now());
             commentPo.setGmtModified(LocalDateTime.now());
+            commentPo.setBeDeleted(false);
             if(commentMapper.insertSelective(commentPo)==0){
                 return null;
             } else{
@@ -91,7 +92,7 @@ public class CommentDao {
      * @return List<Comment>
      */
     public List<Comment> selectByIdForAdmin(Integer userId,Integer productId,Integer limit,Integer page){
-        PageHelper.startPage(limit,page);
+        PageHelper.startPage(page,limit);
         List<CommentPo> commentPoList=commentMapper.selectAllByUserIdOrProductId(userId,productId);
         return commentsList(commentPoList);
     }
@@ -104,7 +105,7 @@ public class CommentDao {
      * @return List<Comment>
      */
     public List<Comment> selectAllComments(Integer limit,Integer page){
-        PageHelper.startPage(limit,page);
+        PageHelper.startPage(page,limit);
         List<CommentPo> commentPoList=commentMapper.selectALL();
         return commentsList(commentPoList);
     }
@@ -117,7 +118,7 @@ public class CommentDao {
         } else{
             commentPo.setGmtModified(LocalDateTime.now());
             if(commentMapper.updateById(commentPo,id)==2){
-                return commentPo;
+                return commentMapper.selectAllById(id);
             } else{
                 return null;
             }

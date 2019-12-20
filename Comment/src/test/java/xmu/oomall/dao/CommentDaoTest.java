@@ -16,26 +16,31 @@ class CommentDaoTest {
 
     @Test
     void selectByProductId() {
-    /*    commentDao.selectByProductId(2,2,222).
-                forEach(comment -> System.out.println(comment.getId()));*/
+        commentDao.selectByProductId(20,1,222).
+                forEach(comment -> System.out.println(comment.getId()));
 
        /* commentDao.selectByIdForAdmin(null,null,1,5).
                 forEach(comment -> System.out.println(comment.getId()));*/
 
         /*commentDao.selectAllComments(1,20).forEach(comment -> System.out.println(comment.getId()));*/
 
-        commentDao.selectByIdForAdmin(null,333,1,20).
-                forEach(comment -> System.out.println(comment.getId()));
+      /* commentDao.selectByIdForAdmin(null,333,1,20).
+                forEach(comment -> System.out.println(comment.getId()));*/
+
+     /* System.out.println(commentDao.selectComment(2).getId());*/
     }
 
     @Test
     void addComment() {
+
+
+
     }
 
     @Test
     void deleteComment() {
 
-        commentDao.deleteComment(3);
+        //commentDao.deleteComment(3);
     }
 
     @Test
