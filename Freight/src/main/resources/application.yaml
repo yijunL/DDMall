@@ -6,6 +6,10 @@ spring:
     name: oomall
   profiles:
     active: dev
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8006/eureka/
 
 management:
   endpoint:
