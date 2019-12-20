@@ -2,6 +2,7 @@ package xmu.oomall.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xmu.oomall.domain.AddressPo;
 import xmu.oomall.domain.CollectItem;
 import xmu.oomall.domain.CollectItemPo;
 import xmu.oomall.service.CollectionService;
@@ -43,14 +44,14 @@ public class CollectionController {
                                                  @RequestParam Integer limit) {
         Integer userId=getUserId(request);
         if (userId == null) {
-            return ResponseUtil.unlogin();
+            return ResponseUtil.fail(660,"用户未登录");
         }
         // 参数校验
-        if (page == null || page < 0) {
-            return ResponseUtil.badArgumentValue();
+        if (page == null || page <= 0) {
+            return ResponseUtil.fail(763,"收藏不存在");
         }
-        if (limit == null || limit < 0) {
-            return ResponseUtil.badArgumentValue();
+        if (limit == null || limit <= 0) {
+            return ResponseUtil.fail(763,"收藏不存在");
         }
         List<CollectItem> collectItemList=collectionService.getCollectionList(userId, page, limit);
         return ResponseUtil.ok(collectItemList);
@@ -63,15 +64,21 @@ public class CollectionController {
      * @return collectItemPo
      */
     @PostMapping("/collections")
-    public Object addCollection(@RequestBody CollectItemPo collectItemPo) {
+    public Object addCollection(HttpServletRequest request, @RequestBody CollectItemPo collectItemPo) {
 
+        Integer userId = getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.fail(660,"用户未登录");
+        }
+        //参数校验
+        if((collectItemPo.getId()!=null)||(collectItemPo.getGoodsId()==null)||collectItemPo.getUserId()==null) {
+            return ResponseUtil.fail(761,"收藏新增失败");
+        }
+        collectItemPo = collectionService.addCollection(collectItemPo);
         if(collectItemPo==null)
-            return ResponseUtil.badArgument();
-        CollectItemPo collectItemPo1 = collectionService.addCollection(collectItemPo);
-        if(collectItemPo1==null)
-            return ResponseUtil.updatedDataFailed();
+            return ResponseUtil.fail(761,"收藏新增失败");
         else
-            return ResponseUtil.ok(collectItemPo1);
+            return ResponseUtil.ok(collectItemPo);
     }
 
     /**
@@ -81,13 +88,20 @@ public class CollectionController {
      * @return null
      */
     @DeleteMapping("/collections/{id}")
-    public Object deleteCollection (@PathVariable Integer id) {
-        if(id==null)
-            return ResponseUtil.badArgument();
+    public Object deleteCollection (HttpServletRequest request, @PathVariable Integer id) {
+        Integer userId = getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.fail(660,"用户未登录");
+        }
+
+        // 参数校验
+        if (id == null || id < 0) {
+            return ResponseUtil.fail(762,"收藏删除失败");
+        }
         if(collectionService.deleteCollection(id))
             return ResponseUtil.ok();
         else
-            return ResponseUtil.updatedDataFailed();
+            return ResponseUtil.fail(762,"收藏删除失败");
     }
 
 }

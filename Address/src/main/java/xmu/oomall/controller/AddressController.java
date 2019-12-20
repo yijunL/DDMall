@@ -32,23 +32,23 @@ public class AddressController {
 
     /**
      * 用户查询所有地址信息
-     * @param request
+//     * @param request
      * @param page
      * @param limit
      * @return
      */
     @GetMapping("/addresses")
-    public Object getAddressList(HttpServletRequest request,@RequestParam Integer page, @RequestParam Integer limit) {
-        Integer userId=getUserId(request);
-        if (userId == null) {
-            return ResponseUtil.unlogin();
-        }
+    public Object getAddressList(@RequestParam Integer page, @RequestParam Integer limit) {
+//        Integer userId=getUserId(request);
+//        if (userId == null) {
+//            return ResponseUtil.fail(660,"用户未登录");
+//        }
         // 参数校验
-        if (page == null || page < 0) {
-            return ResponseUtil.badArgumentValue();
+        if (page == null || page <= 0) {
+            return ResponseUtil.fail(744,"该地址是无效地址");
         }
-        if (limit == null || limit < 0) {
-            return ResponseUtil.badArgumentValue();
+        if (limit == null || limit <= 0) {
+            return ResponseUtil.fail(744,"该地址是无效地址");
         }
         List<Address> addressList=addressService.getAddressList(page, limit);
         return ResponseUtil.ok(addressList);
@@ -63,11 +63,11 @@ public class AddressController {
     public Object getAddress(HttpServletRequest request, @PathVariable Integer id) {
         Integer userId = getUserId(request);
         if (userId == null) {
-            return ResponseUtil.unlogin();
+            return ResponseUtil.fail(660,"用户未登录");
         }
         // 参数校验
         if (id == null || id < 0) {
-            return ResponseUtil.badArgumentValue();
+            return ResponseUtil.fail(744,"该地址是无效地址");
         }
        Address address = addressService.getAddress(id);
         return ResponseUtil.ok(address);
@@ -83,17 +83,17 @@ public class AddressController {
     {
         Integer userId = getUserId(request);
         if (userId == null) {
-            return ResponseUtil.unlogin();
+            return ResponseUtil.fail(660,"用户未登录");
         }
         //参数校验
         if((addressPo.getCountyId()==null)||(addressPo.getProvinceId()==null)||(addressPo.getCityId()==null)||
                 (addressPo.getAddressDetail()==null)||(addressPo.getPostalCode()==null)||
                 (addressPo.getConsignee()==null)||(addressPo.getMobile()==null)||(addressPo.getUserId()==null)) {
-            return ResponseUtil.badArgument();
+            return ResponseUtil.fail(751,"地址新增失败");
         }
         AddressPo addressPo1=addressService.addAddress(addressPo);
         if(addressPo1==null)
-            return ResponseUtil.updatedDataFailed();
+            return ResponseUtil.fail(751,"地址新增失败");
         else
             return ResponseUtil.ok(addressPo1);
     }
@@ -109,20 +109,20 @@ public class AddressController {
 
         Integer userId = getUserId(request);
         if (userId == null) {
-            return ResponseUtil.unlogin();
+            return ResponseUtil.fail(660,"用户未登录");
         }
         //参数校验
         if((addressPo.getCountyId()==null)||(addressPo.getProvinceId()==null)||(addressPo.getCityId()==null)||
                 (addressPo.getAddressDetail()==null)||(addressPo.getPostalCode()==null)||
                 (addressPo.getConsignee()==null)||(addressPo.getMobile()==null)||(addressPo.getUserId()==null)) {
-            return ResponseUtil.badArgument();
+            return ResponseUtil.fail(752,"地址修改失败");
         }
         if(id==null || id < 0){
-            return ResponseUtil.badArgument();
+            return ResponseUtil.fail(752,"地址修改失败");
         }
         AddressPo addressPo1=addressService.updateAddress(id,addressPo);
         if(addressPo1==null)
-            return ResponseUtil.updatedDataFailed();
+            return ResponseUtil.fail(752,"地址修改失败");
         else
             return ResponseUtil.ok(addressPo1);
     }
@@ -136,16 +136,16 @@ public class AddressController {
     public Object deleteAddress(HttpServletRequest request, @PathVariable Integer id){
         Integer userId = getUserId(request);
         if (userId == null) {
-            return ResponseUtil.unlogin();
+            return ResponseUtil.fail(660,"用户未登录");
         }
 
         // 参数校验
         if (id == null || id < 0) {
-            return ResponseUtil.badArgument();
+            return ResponseUtil.fail(743,"地址删除失败");
         }
         if(addressService.deleteAddress(id))
             return ResponseUtil.ok();
         else
-            return ResponseUtil.updatedDataFailed();
+            return ResponseUtil.fail(743,"地址删除失败");
     }
 }
