@@ -1,9 +1,9 @@
 server:
-  port: 8091
+  port: 8092
 
 spring:
   application:
-    name: oomall
+    name: aftersalesService
   profiles:
     active: dev
 

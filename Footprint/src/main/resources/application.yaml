@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: oomall
+    name: footprint
   profiles:
     active: dev
 
@@ -15,6 +15,11 @@ management:
     web:
       exposure:
         include: health, info
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8006/eureka/
 
 mybatis:
   #domain对象的包
