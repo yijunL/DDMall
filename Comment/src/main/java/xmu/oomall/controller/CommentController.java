@@ -39,10 +39,15 @@ public class CommentController {
                                   @RequestParam Integer limit)
     {
         if(id==null||page==null||limit==null||page<0||limit<0){
+            System.out.println("111");
             return ResponseUtil.fail(902,"获取评论失败");
         } else{
             List<Comment> commentList=commentService.getCommentsById(limit,page,id);
+            if(commentList.isEmpty())
+                System.out.println("333");
+            commentList .forEach(comment -> System.out.println(comment.getId()));
                 //后续可以调用其他模块的时候要封装成List<Commnet>
+
                 return ResponseUtil.ok(commentList);
         }
        /* User user=userService.getUserById(commentPoList.get(0).getUserId());
@@ -103,8 +108,8 @@ public class CommentController {
     @GetMapping("/admin/comments")
     public Object getCommentByIdForAdmin(@RequestParam Integer userId,
                                          @RequestParam Integer productId,
-                                         @RequestParam Integer limit,
-                                         @RequestParam Integer page){
+                                         @RequestParam Integer page,
+                                         @RequestParam Integer limit){
         if(limit==null||page==null||limit<0||page<0){
             return ResponseUtil.fail(902,"获取评论失败");
         } else{

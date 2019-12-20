@@ -17,7 +17,7 @@ public class CommentControllerTest {
     @Test
     public void commentControllerTest(){
 
-
+        commentController.getCommentsById(222,1,20);
 
         //commentController.getCommentsById(1);
         //44,55,"yukeyishishabi",0,4,77,null,null,0
@@ -30,7 +30,7 @@ public class CommentControllerTest {
         commentPo.setStatusCode(0);
         commentPo.setUserId(333);
 
-        commentController.addComment(1,commentPo);
+       // commentController.addComment(1,commentPo);
 
         // System.out.println(commentController.deleteComment(112));
     }
