@@ -54,18 +54,6 @@ public class CollectionDao {
         return oomallCollectItemMapper.deleteById(id);
     }
 
-    /**
-     * 将collectItemPo列表转换成collectItem列表
-     *
-     * @return collectItems
-     */
-    private List<CollectItem> collectItemList(List<CollectItemPo> collectItemPos){
-        List<CollectItem> collectItems=new ArrayList<CollectItem>();
-        for(CollectItemPo collectItemPo:collectItemPos){
-            collectItems.add(collectItems(collectItemPo));
-        }
-        return collectItems;
-    }
 
     /**
      *将collectItemPo转换成collectItem
