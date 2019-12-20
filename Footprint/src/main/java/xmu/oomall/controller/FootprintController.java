@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("footprints") //!!
+@RequestMapping("/footprints") //!!
 public class FootprintController {
 
     @Autowired
