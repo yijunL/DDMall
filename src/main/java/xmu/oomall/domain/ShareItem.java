@@ -19,15 +19,15 @@ import java.time.LocalDateTime;
 public class ShareItem {
     private Integer id;
     /**
-     *分享者ID
+     * 分享者ID
      */
     private Integer userId;
     /**
-     *商品ID
+     * 商品ID
      */
     private Integer goodsId;
     /**
-     *成功件数
+     * 成功件数
      */
     private Integer successNum;
 

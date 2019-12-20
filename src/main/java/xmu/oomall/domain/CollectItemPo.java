@@ -19,12 +19,12 @@ import java.time.LocalDateTime;
 public class CollectItemPo {
     private Integer id;
     /**
-    *商品id
-    */
+     * 商品id
+     */
     private Integer goodsId;
     /**
-    *用户id
-    */
+     * 用户id
+     */
     private Integer userId;
 
     private LocalDateTime gmtCreate;

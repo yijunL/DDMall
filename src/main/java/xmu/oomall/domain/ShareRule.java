@@ -20,11 +20,12 @@ import java.util.List;
 public class ShareRule extends ShareRulePo {
     @Getter
     @Setter
-    public class Strategy{
+    public class Strategy {
         private Integer lowerBound;
         private Integer upperBound;
         private BigDecimal discountRate;
     }
+
     private List<Strategy> strategyList;
     private Integer shareType;
 }

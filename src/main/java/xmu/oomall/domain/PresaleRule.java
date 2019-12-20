@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class PresaleRule {
     private Integer id;
     /**
-     *预售开始时间
+     * 预售开始时间
      */
     private LocalDateTime startTime;
     /**
@@ -32,19 +32,19 @@ public class PresaleRule {
      */
     private LocalDateTime finalStartTime;
     /**
-     *预售结束时间
+     * 预售结束时间
      */
     private LocalDateTime endTime;
     /**
-     *判断预售是否还在进行中
+     * 判断预售是否还在进行中
      */
     private Boolean statusCode;
     /**
-     *预售商品id
+     * 预售商品id
      */
     private Integer goodsId;
     /**
-     *定金
+     * 定金
      */
     private BigDecimal deposit;
     /**

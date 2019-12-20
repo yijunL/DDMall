@@ -20,10 +20,11 @@ import java.util.List;
 public class GrouponRule extends GrouponRulePo {
     @Getter
     @Setter
-    private class Strategy{
+    private class Strategy {
         private Integer lowerBound;
         private Integer upperBound;
         private BigDecimal discountRate;
     }
+
     private List<Strategy> strategyList;
 }

@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 public class Payment {
 
-    
 
     private Integer id;
     /**

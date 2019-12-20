@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
 /**
  * @Author: 数据库与对象模型标准组
  * @Description: 默认重量模板
