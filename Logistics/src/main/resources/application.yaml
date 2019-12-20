@@ -6,6 +6,11 @@ spring:
     name: oomall
   profiles:
     active: dev
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
 
 management:
   endpoint:
@@ -15,16 +20,6 @@ management:
     web:
       exposure:
         include: health, info
-
-mybatis:
-  #domain对象的包
-  type-aliases-package: xmu.oomall.domain
-  #mapper.xml所在的位置
-  mapper-locations: classpath:xmu.oomall.mapper/*.xml
-  configuration:
-    #自动将SQL中查出来的带下划线的字段，转换为驼峰标志，再去匹配类中的属性
-    map-underscore-to-camel-case: true
-
 logging:
   #设置日志打印级别
   level:

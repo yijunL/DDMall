@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-@MapperScan("xmu.oomall.mapper")
 public class OomallApplication {
 
     public static void main(String[] args) {
