@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping("addressService")
+@RequestMapping("/addressService")
 public class AddressController {
 
     @Autowired
