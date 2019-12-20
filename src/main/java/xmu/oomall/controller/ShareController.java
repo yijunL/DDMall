@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/shareService")
 public class ShareController {
     /**
      *

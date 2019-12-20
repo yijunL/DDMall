@@ -22,7 +22,7 @@ public class ShareRuleDao {
 
     public ShareRulePo addShareRule(ShareRulePo sharerulePo) {
 
-        if(sharerulePo.getId()!=null||shareRuleMapper.findByGoodsId(sharerulePo .getGoodsId())!=null)
+        if(shareRuleMapper.findByGoodsId(sharerulePo .getGoodsId())!=null)
             return null;
         else{
         sharerulePo.setGmtCreate(LocalDateTime.now());
@@ -48,7 +48,7 @@ public class ShareRuleDao {
 
     public ShareRulePo updateShareRule(ShareRulePo sharerulePo,Integer id) {
 
-        if(sharerulePo.getId()!=id||shareRuleMapper.findById(id)==null)
+        if(shareRuleMapper.findById(id)==null)
             return null;
         else{
             sharerulePo.setGmtCreate(LocalDateTime.now());

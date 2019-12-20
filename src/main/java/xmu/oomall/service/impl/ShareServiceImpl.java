@@ -25,6 +25,7 @@ public class ShareServiceImpl implements ShareService {
         return shareRuleDao.getShareRuleById(id);
     }
 
+
     @Override
     public Object addShareRule(ShareRulePo sharerulePo) {
         return shareRuleDao.addShareRule(sharerulePo);
