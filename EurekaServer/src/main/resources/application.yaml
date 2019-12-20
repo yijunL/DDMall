@@ -1,17 +1,9 @@
 server:
-  port: 10086
+  port: 8761
 spring:
   application:
     name: eureka-server-center
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:10086/eureka
-
-    ###因为自己是为注册中心，不需要自己注册自己
-
-    register-with-eureka: false
-
-    ###因为自己是为注册中心，不需要检索服务
-
-    fetch-registry: false
+      defaultZone: http://localhost:${server.port}/eureka/
