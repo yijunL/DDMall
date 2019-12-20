@@ -99,15 +99,20 @@ public class AfterSaleDao {
      * @return AfterSaleService
      */
     public AfterSaleService addAfterSale(AfterSaleService afterSaleService) {
-        if(afterSaleService.getId() != null) {
-            return null;
-        } else {
-            if(oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
-                System.out.println(afterSaleService.getId()); //
-                return afterSaleService;
-            }
-            return null;
+//        if(afterSaleService.getId() != null) {
+//            return null;
+//        } else {
+//            if(oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
+//                System.out.println(afterSaleService.getId()); //
+//                return afterSaleService;
+//            }
+//            return null;
+//        }
+        if(oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
+            System.out.println(afterSaleService.getId()); //
+            return afterSaleService;
         }
+        return null;
     }
 
     /**
