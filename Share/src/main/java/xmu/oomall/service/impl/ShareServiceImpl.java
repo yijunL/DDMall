@@ -1,7 +1,11 @@
 package xmu.oomall.service.impl;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xmu.oomall.AddGoods;
+import xmu.oomall.AddUser;
 import xmu.oomall.dao.BeSharedItemDao;
 import xmu.oomall.dao.ShareItemDao;
 import xmu.oomall.dao.ShareRuleDao;
@@ -19,15 +23,40 @@ public class ShareServiceImpl implements ShareService {
     private ShareRuleDao shareRuleDao;
     @Autowired
     private ShareItemDao shareItemDao;
+    @Autowired
+    private AddUser addUser;
 
+    @Autowired
+    private AddGoods addGoods;
 
     @Override
     public ShareRulePo getShareRuleById(Integer id) {
         return shareRuleDao.getShareRuleById(id);
     }
 
+
+    public boolean beValiedShareRule(ShareRulePo shareRulePo)
+    {
+        String strategyLevel=shareRulePo.getShareLevelStrategy();
+        JSONObject jsonObject = JSONObject.fromObject(strategyLevel);
+        int type= jsonObject.getInt("type");
+        JSONArray strategys = jsonObject.getJSONArray("strategy");
+        int[] lowerbound=new int[strategys.size()];
+        int[] upperbound=new int[strategys.size()];
+        double[] rate=new double[strategys.size()];
+        for(int i=0;i<strategys.size();i++)
+        {
+            JSONObject strategy = strategys.getJSONObject(i);
+            lowerbound[i] = strategy.getInt("lowerbound");
+            upperbound[i] = strategy.getInt("upperbound");
+            rate[i]=strategy.getDouble("rate");
+        }
+        return  true;
+    }
+
     @Override
     public Object addShareRule(ShareRulePo sharerulePo) {
+
         return shareRuleDao.addShareRule(sharerulePo);
     }
 
@@ -42,6 +71,7 @@ public class ShareServiceImpl implements ShareService {
 
     @Override
     public Object updateShareRule(ShareRulePo sharerulePo, Integer id) {
+
         return shareRuleDao.updateShareRule(sharerulePo,id);
     }
 
@@ -49,11 +79,17 @@ public class ShareServiceImpl implements ShareService {
     @Override
     public Object addBeSharedItems(BeSharedItem beSharedItem)
     {
-        boolean a=true;//
+        //商品上下架判断
+        boolean a=true;
+        a=addGoods.isOnsale(beSharedItem.getGoodsId());
         if(!a)
             return null;
         //用户合法性判断,分享者和被分享者
-        if(!true||!true)
+        boolean b=true;
+        boolean c=true;
+        b=addUser.beValidate(beSharedItem.getSharerId());
+        c=addUser.beValidate(beSharedItem.getBeSharedUserId());
+        if(!b||!c)
             return null;
         return beSharedItemDao.addBeSharedItems(beSharedItem);
     }
@@ -62,6 +98,7 @@ public class ShareServiceImpl implements ShareService {
     public Integer getRebate(Order order) {
         Integer beSharedUserId=order.getUserId();
 
+
         List<OrderItem> orderItemList=order.getOrderItemList();
         List<BeSharedItem> beSharedItemList= beSharedItemDao.getValidBeShareItem(beSharedUserId,orderItemList);
         if(beSharedItemList==null) return 0;
@@ -69,6 +106,8 @@ public class ShareServiceImpl implements ShareService {
         for(OrderItem orderItem:orderItemList)
         { if(orderItem.getGoodsId()==beSharedItemList.get(0).getGoodsId())
           price=orderItem.getPrice();break; }
+
         return shareItemDao.updateShareItemSuccessNumAndCalculate(beSharedItemList,price);
+
     }
 }
