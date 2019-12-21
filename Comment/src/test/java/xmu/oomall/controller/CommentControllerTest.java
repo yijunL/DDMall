@@ -41,6 +41,6 @@ public class CommentControllerTest {
 
         // System.out.println(commentController.deleteComment(112));
 
-        commentController.updateCommentById(null,9,commentPo);
+        //commentController.updateCommentById(null,9,commentPo);
     }
 }
