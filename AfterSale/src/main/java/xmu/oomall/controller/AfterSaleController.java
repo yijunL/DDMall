@@ -1,11 +1,10 @@
 package xmu.oomall.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xmu.oomall.domain.AftersalesService;
 import xmu.oomall.service.AfterSaleService;
+
 import xmu.oomall.util.ResponseUtil;
 
 import javax.servlet.http.HttpServletRequest;
