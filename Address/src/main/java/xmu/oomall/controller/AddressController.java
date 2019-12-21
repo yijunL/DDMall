@@ -10,7 +10,11 @@ import xmu.oomall.util.RegexUtil;
 import xmu.oomall.util.ResponseUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.TimeZone;
 
 @RestController
 @RequestMapping("/addressService")
@@ -95,6 +99,9 @@ public class AddressController {
         if (error != null) {
             return error;
         }
+        if(addressPo.getGmtCreate() == null){
+            addressPo.setGmtCreate(LocalDateTime.now());
+        }
         if(addressPo.getBeDefault()){
             addressService.resetDefaultAddress(userId);
         }
@@ -119,13 +126,15 @@ public class AddressController {
             return ResponseUtil.fail(660,"用户未登录");
         }
         //参数校验
-        if((addressPo.getCountyId()==null)||(addressPo.getProvinceId()==null)||(addressPo.getCityId()==null)||
-                (addressPo.getAddressDetail()==null)||(addressPo.getPostalCode()==null)||
-                (addressPo.getConsignee()==null)||(addressPo.getMobile()==null)||(addressPo.getUserId()==null)) {
-            return ResponseUtil.fail(752,"地址修改失败");
+        Object error = validate(addressPo);
+        if (error != null) {
+            return error;
         }
         if(id==null || id < 0){
             return ResponseUtil.fail(752,"所修改地址不存在");
+        }
+        if(addressPo.getGmtModified() == null){
+            addressPo.setGmtModified(LocalDateTime.now());
         }
         AddressPo addressPo1=addressService.updateAddress(id,addressPo);
         if(addressPo1==null)
@@ -148,7 +157,7 @@ public class AddressController {
 
         // 参数校验
         if (id == null || id < 0) {
-            return ResponseUtil.fail(743,"地址删除失败");
+            return ResponseUtil.fail(743,"所删除的地址不存在");
         }
         if(addressService.deleteAddress(id))
             return ResponseUtil.ok();
@@ -180,19 +189,18 @@ public class AddressController {
 
         Integer provinceId = addressPo.getProvinceId();
         if (StringUtils.isEmpty(provinceId)) {
-            return ResponseUtil.fail(751,"省份不存在");
+            return ResponseUtil.fail(751,"省份不能为空");
         }
 
         Integer cityId = addressPo.getCityId();
         if (StringUtils.isEmpty(cityId)) {
-            return ResponseUtil.fail(751,"城市不存在");
+            return ResponseUtil.fail(751,"城市不能为空");
         }
 
         Integer countyId = addressPo.getCountyId();
         if (StringUtils.isEmpty(countyId)) {
-            return ResponseUtil.fail(751,"国家不存在");
+            return ResponseUtil.fail(751,"县/镇/区不能为空");
         }
-
 
         String areaCode = addressPo.getPostalCode();
         if (StringUtils.isEmpty(areaCode)) {

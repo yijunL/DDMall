@@ -59,7 +59,7 @@ public class FootprintController {
         }
         else {
             List<FootprintItem> footprintItems = footprintService.listFootprintsByUserId(userId, page, limit);
-            if(footprintItems==null)
+            if (footprintItems==null)
                 return ResponseUtil.fail(742, "足迹查询失败");
             return ResponseUtil.ok(footprintItems);
         }
@@ -73,10 +73,10 @@ public class FootprintController {
      */
     @DeleteMapping("/footprints/{id}")
     public Object deleteFootprintById (HttpServletRequest request, @PathVariable Integer id) {
-        if(id == null) {
+        if (id == null) {
             return ResponseUtil.fail(740,"该足迹是无效足迹（不在数据库里的或者逻辑删除） ");
         } else {
-            if(footprintService.deleteFootprintById(id) == 0){
+            if (footprintService.deleteFootprintById(id) == 0){
                 return ResponseUtil.fail(740,"该足迹是无效足迹（不在数据库里的或者逻辑删除） ");
             } else{
                 return ResponseUtil.ok();
