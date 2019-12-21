@@ -3,9 +3,13 @@ server:
 
 spring:
   application:
-    name: oomall
+    name: collectionService
   profiles:
     active: dev
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8006/eureka/
 
 management:
   endpoint:

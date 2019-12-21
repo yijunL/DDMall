@@ -3,11 +3,18 @@ package xmu.oomall.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xmu.oomall.AddLog;
 import xmu.oomall.domain.Comment;
 import xmu.oomall.domain.CommentPo;
+import xmu.oomall.domain.Log;
 import xmu.oomall.service.CommentService;
 import xmu.oomall.util.ResponseUtil;
 
+import javax.servlet.http.HttpServletRequest;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -23,7 +30,21 @@ public class CommentController {
 
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private AddLog addLog;
 
+    /**
+     * 解析http请求获取该请求者的id
+     * @param request
+     * @return
+     */
+    private Integer getUserId(HttpServletRequest request) {
+        String userIdStr = request.getHeader("userId");
+        if (userIdStr == null) {
+            return null;
+        }
+        return Integer.valueOf(userIdStr);
+    }
     /**
      * 用户获取产品下评论列表
      *
@@ -110,7 +131,9 @@ public class CommentController {
                                          @RequestParam Integer productId,
                                          @RequestParam Integer page,
                                          @RequestParam Integer limit){
+
         if(limit==null||page==null||limit<0||page<0){
+
             return ResponseUtil.fail(902,"获取评论失败");
         } else{
             List<Comment> commentList;
@@ -132,14 +155,33 @@ public class CommentController {
      * @return CommentPo
      */
     @PutMapping("/admin/comments/{id}")
-    public Object updateCommentById(@RequestParam Integer id,@RequestBody CommentPo commentPo){
+    public Object updateCommentById(HttpServletRequest request, @RequestParam Integer id,@RequestBody CommentPo commentPo) throws UnknownHostException {
+        Integer userId=getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.fail(660,"用户未登录");
+        }
+        Log log=new Log();
+        log.setAdminId(userId);
+        log.setActionId(id);
+        log.setActions("审核评论");
+        log.setGmtCreate(LocalDateTime.now());
+        log.setGmtModified(LocalDateTime.now());
+        log.setType(0);
+        log.setIp(InetAddress.getLocalHost().toString());
         if(id==null||commentPo.getStatusCode()!=0||commentPo.getBeDeleted()){
+            log.setStatusCode(0);
+            addLog.addLog(log);
             return ResponseUtil.fail(904,"修改评论失败");
+
         } else{
             CommentPo commentPo1=commentService.updateCommentById(id, commentPo);
             if(commentPo1==null){
+                log.setStatusCode(0);
+                addLog.addLog(log);
                 return ResponseUtil.fail(904,"修改评论失败");
             } else{
+                log.setStatusCode(1);
+                addLog.addLog(log);
                 return ResponseUtil.ok(commentPo1);
             }
         }
