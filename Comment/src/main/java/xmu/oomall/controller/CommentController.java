@@ -38,7 +38,7 @@ public class CommentController {
                                   @RequestParam Integer page,
                                   @RequestParam Integer limit)
     {
-        if(id==null||page==null||limit==null||page<0||limit<0){
+        if(id==null||page==null||limit==null||page<=0||limit<=0){
             System.out.println("111");
             return ResponseUtil.fail(902,"获取评论失败");
         } else{
@@ -110,7 +110,7 @@ public class CommentController {
                                          @RequestParam Integer productId,
                                          @RequestParam Integer page,
                                          @RequestParam Integer limit){
-        if(limit==null||page==null||limit<0||page<0){
+        if(limit==null||page==null||limit<=0||page<=0){
             return ResponseUtil.fail(902,"获取评论失败");
         } else{
             List<Comment> commentList;
