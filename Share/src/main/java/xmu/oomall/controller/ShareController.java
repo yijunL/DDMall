@@ -4,13 +4,18 @@ package xmu.oomall.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xmu.oomall.AddLog;
 import xmu.oomall.domain.BeSharedItem;
+import xmu.oomall.domain.Log;
 import xmu.oomall.domain.ShareRulePo;
 import xmu.oomall.domain.Order;
 import xmu.oomall.service.ShareService;
 import xmu.oomall.util.ResponseUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.time.LocalDateTime;
 
 /**
  * @Author xyt
@@ -26,6 +31,7 @@ public class ShareController {
     @Autowired
     private ShareService shareService;
 
+
     /**
      * 解析请求
      * @param request
@@ -40,15 +46,17 @@ public class ShareController {
     }
 
     @GetMapping("/goods/{id}/shareRules")
-    public Object getShareRuleById(HttpServletRequest request, @PathVariable Integer id)
-    {
+    public Object getShareRuleById(HttpServletRequest request, @PathVariable Integer id) throws UnknownHostException {
 
         Integer userId = getUserId(request);
         if (userId == null) {
             return ResponseUtil.fail(660,"用户未登录");
         }
+
         if(id==null)
+        {
             return ResponseUtil.fail(612,"分享规则查看失败");
+        }
 
 
         ShareRulePo sharerule=shareService.getShareRuleById(id);
