@@ -4,13 +4,18 @@ package xmu.oomall.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xmu.oomall.AddLog;
 import xmu.oomall.domain.BeSharedItem;
+import xmu.oomall.domain.Log;
 import xmu.oomall.domain.ShareRulePo;
 import xmu.oomall.domain.Order;
 import xmu.oomall.service.ShareService;
 import xmu.oomall.util.ResponseUtil;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.time.LocalDateTime;
 
 /**
  * @Author xyt
@@ -25,6 +30,9 @@ public class ShareController {
      */
     @Autowired
     private ShareService shareService;
+
+    @Autowired
+    private AddLog addLog;
 
     /**
      * 解析请求
@@ -46,20 +54,33 @@ public class ShareController {
      * @return ShareRulePo
      */
     @GetMapping("/goods/{id}/shareRules")
-    public Object getShareRuleById(HttpServletRequest request, @PathVariable Integer id)
-    {
+    public Object getShareRuleById(HttpServletRequest request, @PathVariable Integer id) throws UnknownHostException {
 
         Integer userId = getUserId(request);
         if (userId == null) {
             return ResponseUtil.fail(669,"管理员未登录");
         }
+        Log log = new Log();
+        log.setAdminId(userId);
+        log.setActionId(id);
+        log.setActions("查询分享规则");
+        log.setGmtCreate(LocalDateTime.now());
+        log.setGmtModified(LocalDateTime.now());
+        log.setType(0); //操作类型
+        log.setIp(InetAddress.getLocalHost().toString());
         if(id==null)
-            return ResponseUtil.fail(612,"分享规则查看失败");
+        {
+            log.setStatusCode(0);
+            addLog.addLog(log);
+            return ResponseUtil.fail(612,"分享规则查看失败");}
         ShareRulePo sharerule=shareService.getShareRuleById(id);
         if(sharerule==null)
             return ResponseUtil.fail(612,"分享规则查看失败");
-        else
+        else {
+            log.setStatusCode(1);
+            addLog.addLog(log);
             return ResponseUtil.ok(sharerule);
+        }
     }
 
     /**
@@ -69,21 +90,41 @@ public class ShareController {
      * @return ShareRulePo
      */
     @PostMapping("/shareRules")
-    public Object addShareRule(HttpServletRequest request, @PathVariable ShareRulePo sharerulePo){
+    public Object addShareRule(HttpServletRequest request, @PathVariable ShareRulePo sharerulePo) throws UnknownHostException {
 
         Integer userId = getUserId(request);
+
         if (userId == null) {
             return ResponseUtil.fail(669,"管理员未登录");
         }
+
+        Log log = new Log();
+        log.setAdminId(userId);
+        log.setActions("增添分享规则");
+        log.setGmtCreate(LocalDateTime.now());
+        log.setGmtModified(LocalDateTime.now());
+        log.setType(1); //操作类型
+        log.setIp(InetAddress.getLocalHost().toString());
+
         if(sharerulePo==null||sharerulePo.getShareLevelStrategy()==null||sharerulePo.getGoodsId()==null)
+        {
+            log.setStatusCode(0);
+            addLog.addLog(log);
             return ResponseUtil.fail(610,"分享规则创建失败");
+        }
         ShareRulePo sharerulePo1= (ShareRulePo) shareService.addShareRule(sharerulePo);
 
 
-        if(sharerulePo1==null)
-            return ResponseUtil.fail(610,"分享规则创建失败");
-        else
+        if(sharerulePo1==null) {
+            log.setStatusCode(0);
+            addLog.addLog(log);
+            return ResponseUtil.fail(610, "分享规则创建失败");
+        }
+        else {
+            log.setStatusCode(1);
+            addLog.addLog(log);
             return ResponseUtil.ok(sharerulePo1);
+        }
     }
 
 
@@ -94,18 +135,34 @@ public class ShareController {
      * @return
      */
     @DeleteMapping("/shareRules/{id}")
-    public Object deleteShareRuleById(HttpServletRequest request, @PathVariable Integer id) {
+    public Object deleteShareRuleById(HttpServletRequest request, @PathVariable Integer id) throws UnknownHostException {
 
         Integer userId = getUserId(request);
         if (userId == null) {
             return ResponseUtil.fail(669,"管理员未登录");
         }
+        Log log = new Log();
+        log.setAdminId(userId);
+        log.setActionId(id);
+        log.setActions("删除分享规则");
+        log.setGmtCreate(LocalDateTime.now());
+        log.setGmtModified(LocalDateTime.now());
+        log.setType(3); //操作类型
+        log.setIp(InetAddress.getLocalHost().toString());
         if(id==null)
-            return ResponseUtil.fail(611,"分享规则删除失败");
+        {
+            log.setStatusCode(0);
+            addLog.addLog(log);
+            return ResponseUtil.fail(611,"分享规则删除失败");}
         if(shareService.deleteShareRuleById(id))
-            return ResponseUtil.ok();
-        else
-            return ResponseUtil.fail(611,"分享规则删除失败");
+        {
+            log.setStatusCode(1);
+            addLog.addLog(log);
+            return ResponseUtil.ok();}
+        else{
+            log.setStatusCode(0);
+            addLog.addLog(log);
+            return ResponseUtil.fail(611,"分享规则删除失败");}
 
     }
 
@@ -117,19 +174,38 @@ public class ShareController {
      * @return
      */
     @PutMapping("/shareRules/{id}")
-    public Object updateShareRule(HttpServletRequest request, @RequestBody ShareRulePo sharerulePo,@PathVariable Integer id){
+    public Object updateShareRule(HttpServletRequest request, @RequestBody ShareRulePo sharerulePo,@PathVariable Integer id) throws UnknownHostException {
 
         Integer userId = getUserId(request);
         if (userId == null) {
             return ResponseUtil.fail(669,"管理员未登录");
         }
+        Log log = new Log();
+        log.setAdminId(userId);
+        log.setActionId(id);
+        log.setActions("修改分享规则");
+        log.setGmtCreate(LocalDateTime.now());
+        log.setGmtModified(LocalDateTime.now());
+        log.setType(2); //操作类型
+        log.setIp(InetAddress.getLocalHost().toString());
         if(id==null || sharerulePo.getGoodsId()==null||sharerulePo.getShareLevelStrategy()==null)
+        {
+            log.setStatusCode(0);
+            addLog.addLog(log);
             return ResponseUtil.fail(613,"分享规则修改失败");
+        }
         ShareRulePo sharerulePo1= (ShareRulePo) shareService.updateShareRule(sharerulePo,id);
         if(sharerulePo1==null)
-            return ResponseUtil.fail(613,"分享规则修改失败");
+        {
+            log.setStatusCode(0);
+            addLog.addLog(log);
+            return ResponseUtil.fail(613,"分享规则修改失败");}
         else
+        {
+            log.setStatusCode(1);
+            addLog.addLog(log);
             return ResponseUtil.ok(sharerulePo1);
+        }
     }
 
 
@@ -141,19 +217,38 @@ public class ShareController {
      */
 
     @PostMapping("/beSharedItems")
-    public Object addBeSharedItems(HttpServletRequest request, @RequestBody BeSharedItem beSharedItem) {
+    public Object addBeSharedItems(HttpServletRequest request, @RequestBody BeSharedItem beSharedItem) throws UnknownHostException {
         Integer userId = getUserId(request);
         if (userId == null) {
             return ResponseUtil.fail(669,"管理员未登录");
         }
+        Log log = new Log();
+        log.setAdminId(userId);
+        log.setActions("增添分享规则");
+        log.setGmtCreate(LocalDateTime.now());
+        log.setGmtModified(LocalDateTime.now());
+        log.setType(1); //操作类型
+        log.setIp(InetAddress.getLocalHost().toString());
         if(beSharedItem==null||beSharedItem.getBeSharedUserId()==null||beSharedItem.getGoodsId()==null||
         beSharedItem.getSharerId()==null)
+        {
+            log.setStatusCode(0);
+            addLog.addLog(log);
             return ResponseUtil.fail(614,"增加分享项失败");
+        }
         BeSharedItem beSharedItem1= (BeSharedItem) shareService.addBeSharedItems(beSharedItem);
         if(beSharedItem1==null)
+        {
+            log.setStatusCode(0);
+            addLog.addLog(log);
             return ResponseUtil.fail(614,"增加分享项失败");
+        }
         else
+        {
+            log.setStatusCode(1);
+            addLog.addLog(log);
             return ResponseUtil.ok(beSharedItem1);
+        }
     }
 
     /**
