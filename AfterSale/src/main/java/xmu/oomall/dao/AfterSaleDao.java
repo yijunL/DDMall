@@ -3,6 +3,7 @@ package xmu.oomall.dao;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import xmu.oomall.UserValidate;
 import xmu.oomall.domain.AftersalesService;
 import xmu.oomall.mapper.OomallAfterSaleMapper;
 
@@ -99,16 +100,12 @@ public class AfterSaleDao {
      * @return AftersalesService
      */
     public AftersalesService addAfterSale(AftersalesService afterSaleService) {
-//        if(afterSaleService.getId() != null) {
-//            return null;
-//        } else {
-//            if(oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
-//                System.out.println(afterSaleService.getId()); //
-//                return afterSaleService;
-//            }
-//            return null;
-//        }
-        if(oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
+        //检查is_applied, orderItemId, number等
+        if (!afterSaleService.getBeApplied()) { //申请无效？
+            return null;
+        }
+        afterSaleService.setGmtCreate(LocalDateTime.now()); //
+        if (oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
             System.out.println(afterSaleService.getId()); //
             return afterSaleService;
         }
