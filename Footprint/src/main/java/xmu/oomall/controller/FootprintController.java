@@ -19,9 +19,8 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("footprints") //!!
+@RequestMapping("/footprints") //!!
 public class FootprintController {
-    private static final Logger logger = LoggerFactory.getLogger(FootprintController.class);
 
     @Autowired
     private  FootprintService footprintService;
@@ -71,7 +70,7 @@ public class FootprintController {
      * @return Response.ok()
      */
     @DeleteMapping("/footprints/{id}")
-    public Object deleteFootprintById (@PathVariable Integer id) {
+    public Object deleteFootprintById (HttpServletRequest request, @PathVariable Integer id) {
         if(id == null) {
             return ResponseUtil.badArgument();
         } else {
@@ -93,7 +92,7 @@ public class FootprintController {
      * @return List<FootprintItem>
      */
     @GetMapping("/admin/footprints")
-    public Object listFootprintsByCondition(@RequestParam Integer userId, @RequestParam Integer goodsId,
+    public Object listFootprintsByCondition(HttpServletRequest request, @RequestParam Integer userId, @RequestParam Integer goodsId,
                                             @RequestParam Integer page, @RequestParam Integer limit) {
         if(page == null || limit == null
             || page < 0 || limit < 0) {
@@ -113,7 +112,7 @@ public class FootprintController {
      * @return FootprintItemPo
      */
     @PostMapping("/footprints")
-    public Object addFootprint(@RequestBody FootprintItemPo footprintItemPo) {
+    public Object addFootprint(HttpServletRequest request, @RequestBody FootprintItemPo footprintItemPo) {
         if(footprintItemPo == null) {
             return ResponseUtil.fail(741, "足迹添加失败"); //返回响应值
         } else { //是否需要进一步判断userId?

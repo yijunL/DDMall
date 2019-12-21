@@ -3,7 +3,10 @@ package xmu.oomall.controller;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import xmu.oomall.domain.AftersalesService;
 import xmu.oomall.service.AfterSaleService;
+
+import javax.servlet.http.HttpServletRequest;
 
 @SpringBootTest
 //@Transactional //
@@ -13,18 +16,21 @@ public class AfterSaleControllerTest {
 
     @Test
     public void insertAfterSale() {
-        xmu.oomall.domain.AfterSaleService afterSaleService = new xmu.oomall.domain.AfterSaleService();
+        AftersalesService afterSaleService = new AftersalesService();
         afterSaleService.setGoodsType(97);
-        afterSaleController.addAfterSale(afterSaleService);
+        HttpServletRequest request = null;
+        afterSaleController.addAfterSale(request, afterSaleService);
     }
 
     @Test
     public void selectAfterSale() {
-        afterSaleController.getAfterSaleById(1);
+        HttpServletRequest request = null;
+        afterSaleController.getAfterSaleById(request,1);
     }
 
     @Test
     public void deleteAfterSale() {
-        afterSaleController.deleteAfterSaleById(1);
+        HttpServletRequest request = null;
+        afterSaleController.deleteAfterSaleById(request,1);
     }
 }

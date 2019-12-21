@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class AfterSaleService {
+public class AftersalesService {
     private Integer id;
     /**
      * 下单时对应商品类型，只有两种：（1）预售商品，取值为1（2）其他商品，取值为0

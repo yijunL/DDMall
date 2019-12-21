@@ -1,5 +1,6 @@
 package xmu.oomall.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PageCut {
@@ -9,7 +10,7 @@ public class PageCut {
         int begin=(page-1)*limit;
         int end=begin+limit;
         if(begin>=list.size())
-            return null;
+            return new ArrayList<>();
         else if(list.size()<end)      //处于最后一页时
             return list.subList(begin,list.size());
         else

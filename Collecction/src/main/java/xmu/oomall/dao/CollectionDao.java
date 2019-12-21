@@ -3,6 +3,7 @@ package xmu.oomall.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import xmu.oomall.UserValidate;
 import xmu.oomall.domain.CollectItem;
 import xmu.oomall.domain.CollectItemPo;
 import xmu.oomall.mapper.OomallCollectItemMapper;
@@ -18,6 +19,8 @@ public class CollectionDao {
 
     @Autowired
     private OomallCollectItemMapper oomallCollectItemMapper;
+    @Autowired
+    private UserValidate userValidate;
 
 
     /**
@@ -30,16 +33,19 @@ public class CollectionDao {
      */
     public List<CollectItem> getColltectionList(Integer userId,Integer page,Integer limit)
     {
+        if(!userValidate.validate(userId))
+            return null;
         return (List<CollectItem>) PageCut.pageCut(oomallCollectItemMapper.findAllById(userId),page,limit);
     }
 
     public CollectItemPo addCollection(CollectItemPo collectItemPo)
     {
-        if(collectItemPo.getId()!=null)
-            return null;
-        collectItemPo.setGmtCreate(LocalDateTime.now());
-        oomallCollectItemMapper.insertSelective(collectItemPo);
+        if(collectItemPo.getGmtCreate()==null)
+            collectItemPo.setGmtCreate(LocalDateTime.now());
+        if(collectItemPo.getGmtModified()==null)
+            collectItemPo.setGmtModified(LocalDateTime.now());
 
+        oomallCollectItemMapper.insertSelective(collectItemPo);
         return collectItemPo;
     }
 
@@ -54,26 +60,14 @@ public class CollectionDao {
         return oomallCollectItemMapper.deleteById(id);
     }
 
-    /**
-     * 将collectItemPo列表转换成collectItem列表
-     *
-     * @return collectItems
-     */
-    private List<CollectItem> collectItemList(List<CollectItemPo> collectItemPos){
-        List<CollectItem> collectItems=new ArrayList<CollectItem>();
-        for(CollectItemPo collectItemPo:collectItemPos){
-            collectItems.add(collectItems(collectItemPo));
-        }
-        return collectItems;
-    }
 
     /**
      *将collectItemPo转换成collectItem
      *
      * @return collectItems
      */
-    private CollectItem collectItems(CollectItemPo collectItemPo){
-        CollectItem collectItem = new CollectItem();
-        return Copyer.Copy(collectItemPo,collectItem)?collectItem:null;
-    }
+//    private CollectItem collectItems(CollectItemPo collectItemPo){
+//        CollectItem collectItem = new CollectItem();
+//        return Copyer.Copy(collectItemPo,collectItem)?collectItem:null;
+//    }
 }
