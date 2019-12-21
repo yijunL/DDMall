@@ -10,6 +10,8 @@ import xmu.oomall.domain.CommentPo;
 import java.net.UnknownHostException;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 public class CommentControllerTest {
     @Autowired
@@ -17,6 +19,8 @@ public class CommentControllerTest {
 
     @Test
     public void commentControllerTest() throws UnknownHostException {
+
+        //assertEquals(commentController.getCommentsById(null,0,1,20),null);
 
         //commentController.getCommentsById(null,222,1,20);
 

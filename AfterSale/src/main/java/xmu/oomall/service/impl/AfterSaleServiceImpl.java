@@ -129,10 +129,27 @@ public class AfterSaleServiceImpl implements AfterSaleService {
         if (!userValidate.validate(userId)) {
             return null;
         }
-        int goodsType = orderItemValidate.validate(afterSaleService.getOrderItemId()); //商品类型
+        if (afterSaleService.getUserId() != userId) { //!!申请者与传参不符
+            return null;
+        }
+        if (afterSaleService.getOrderItemId() == null) {
+            return null;
+        }
+        Integer goodsType = orderItemValidate.validate(afterSaleService.getOrderItemId()); //商品类型
         if (goodsType != 0 && goodsType != 1) { //如何表示该orderItem不存在？
             return null;
         }
+        afterSaleService.setGoodsType(goodsType); //
+        Integer type = afterSaleService.getType();
+        if (type != null && type != 0 && type != 1) { //如果type有值(是否必须？)则必须取0或1
+            return null;
+        }
+        afterSaleService.setType(type);
+        Integer number = afterSaleService.getNumber();
+        if (number != null && number <= 0) { //如果number有值(是否必须？)则必须大于0件
+            return null;
+        }
+        afterSaleService.setNumber(number);
         return afterSaleDao.addAfterSale(afterSaleService);
     }
 
@@ -155,8 +172,5 @@ public class AfterSaleServiceImpl implements AfterSaleService {
         System.out.println("删除失败"); //!!
         return 0;
     }
-
-    /* 重复的方法——用户 */
-//    public Object getAfterSaleById(Integer id);
 
 }
