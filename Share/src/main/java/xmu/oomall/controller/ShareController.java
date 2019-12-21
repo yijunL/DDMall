@@ -72,10 +72,10 @@ public class ShareController {
         {
             log.setStatusCode(0);
             addLog.addLog(log);
-            return ResponseUtil.fail(612,"分享规则查看失败");}
+            return ResponseUtil.fail(612,"分享规则查看失败，参数缺少");}
         ShareRulePo sharerule=shareService.getShareRuleById(id);
         if(sharerule==null)
-            return ResponseUtil.fail(612,"分享规则查看失败");
+            return ResponseUtil.fail(612,"分享规则查看失败，参数错误");
         else {
             log.setStatusCode(1);
             addLog.addLog(log);
@@ -110,7 +110,7 @@ public class ShareController {
         {
             log.setStatusCode(0);
             addLog.addLog(log);
-            return ResponseUtil.fail(610,"分享规则创建失败");
+            return ResponseUtil.fail(610,"分享规则创建失败，参数缺少");
         }
         ShareRulePo sharerulePo1= (ShareRulePo) shareService.addShareRule(sharerulePo);
 
@@ -118,7 +118,7 @@ public class ShareController {
         if(sharerulePo1==null) {
             log.setStatusCode(0);
             addLog.addLog(log);
-            return ResponseUtil.fail(610, "分享规则创建失败");
+            return ResponseUtil.fail(610, "分享规则创建失败，参数错误");
         }
         else {
             log.setStatusCode(1);
@@ -153,7 +153,7 @@ public class ShareController {
         {
             log.setStatusCode(0);
             addLog.addLog(log);
-            return ResponseUtil.fail(611,"分享规则删除失败");}
+            return ResponseUtil.fail(611,"分享规则删除失败，参数缺少");}
         if(shareService.deleteShareRuleById(id))
         {
             log.setStatusCode(1);
@@ -162,7 +162,7 @@ public class ShareController {
         else{
             log.setStatusCode(0);
             addLog.addLog(log);
-            return ResponseUtil.fail(611,"分享规则删除失败");}
+            return ResponseUtil.fail(611,"分享规则删除失败，参数错误");}
 
     }
 
@@ -192,14 +192,14 @@ public class ShareController {
         {
             log.setStatusCode(0);
             addLog.addLog(log);
-            return ResponseUtil.fail(613,"分享规则修改失败");
+            return ResponseUtil.fail(613,"分享规则修改失败，参数缺少");
         }
         ShareRulePo sharerulePo1= (ShareRulePo) shareService.updateShareRule(sharerulePo,id);
         if(sharerulePo1==null)
         {
             log.setStatusCode(0);
             addLog.addLog(log);
-            return ResponseUtil.fail(613,"分享规则修改失败");}
+            return ResponseUtil.fail(613,"分享规则修改失败，参数错误");}
         else
         {
             log.setStatusCode(1);
@@ -234,14 +234,14 @@ public class ShareController {
         {
             log.setStatusCode(0);
             addLog.addLog(log);
-            return ResponseUtil.fail(614,"增加分享项失败");
+            return ResponseUtil.fail(614,"增加分享项失败,参数缺少");
         }
         BeSharedItem beSharedItem1= (BeSharedItem) shareService.addBeSharedItems(beSharedItem);
         if(beSharedItem1==null)
         {
             log.setStatusCode(0);
             addLog.addLog(log);
-            return ResponseUtil.fail(614,"增加分享项失败");
+            return ResponseUtil.fail(614,"增加分享项失败，参数错误");
         }
         else
         {
