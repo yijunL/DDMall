@@ -78,6 +78,9 @@ public class FootprintDao {
         if (footprintItemPo.getBirthTime() == null) {
             footprintItemPo.setBirthTime(LocalDateTime.now());
         }
+        if(footprintItemPo.getGoodsId()==null||footprintItemPo.getUserId()==null){
+            return null;
+        }
         if (oomallFootprintMapper.insertSelective(footprintItemPo) > 0) {
             //System.out.println("footprintItemPo-id: " + footprintItemPo.getId());
             return footprintItemPo;
