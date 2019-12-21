@@ -32,7 +32,6 @@ public class CollectionDao {
      */
     public List<CollectItem> getColltectionList(Integer userId,Integer page,Integer limit)
     {
-
         return (List<CollectItem>) PageCut.pageCut(oomallCollectItemMapper.findAllById(userId),page,limit);
     }
 

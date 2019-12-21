@@ -90,7 +90,7 @@ public class ShareController {
      * @return ShareRulePo
      */
     @PostMapping("/shareRules")
-    public Object addShareRule(HttpServletRequest request, @PathVariable ShareRulePo sharerulePo) throws UnknownHostException {
+    public Object addShareRule(HttpServletRequest request, @PathVariable ShareRulePo sharerulePo) throws Exception {
 
         Integer userId = getUserId(request);
 
@@ -174,7 +174,7 @@ public class ShareController {
      * @return
      */
     @PutMapping("/shareRules/{id}")
-    public Object updateShareRule(HttpServletRequest request, @RequestBody ShareRulePo sharerulePo,@PathVariable Integer id) throws UnknownHostException {
+    public Object updateShareRule(HttpServletRequest request, @RequestBody ShareRulePo sharerulePo,@PathVariable Integer id) throws Exception {
 
         Integer userId = getUserId(request);
         if (userId == null) {
