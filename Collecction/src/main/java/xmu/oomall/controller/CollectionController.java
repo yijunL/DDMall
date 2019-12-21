@@ -54,6 +54,10 @@ public class CollectionController {
             return ResponseUtil.fail(763,"收藏不存在");
         }
         List<CollectItem> collectItemList=collectionService.getCollectionList(userId, page, limit);
+        if(collectItemList==null)
+        {
+            return ResponseUtil.fail(763,"收藏不存在");
+        }
         return ResponseUtil.ok(collectItemList);
     }
 
