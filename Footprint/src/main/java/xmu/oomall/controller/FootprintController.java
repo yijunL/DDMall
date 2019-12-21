@@ -51,7 +51,7 @@ public class FootprintController {
                                          @RequestParam Integer limit) {
         Integer userId = getUserId(request); //从网关获取用户id
         if (userId == null) { //可能不需要该判断
-            return ResponseUtil.unlogin(); //是否返回别的值？
+            return ResponseUtil.fail(660,"用户未登录"); //是否返回别的值？
         }
         if (page == null || limit == null
             || page <= 0 || limit <= 0) {
@@ -96,6 +96,9 @@ public class FootprintController {
     @GetMapping("/admin/footprints")
     public Object listFootprintsByCondition(HttpServletRequest request, @RequestParam Integer userId, @RequestParam Integer goodsId,
                                                  @RequestParam Integer page, @RequestParam Integer limit) {
+        Integer adminId=getUserId(request);
+        if(adminId==null)
+            return ResponseUtil.fail(669,"管理员");
         if(page == null || limit == null
                 || page <= 0 || limit <= 0) {
             return ResponseUtil.fail(742, "足迹查询失败");

@@ -130,7 +130,6 @@ public class ShareController {
             return ResponseUtil.fail(613,"分享规则修改失败");
         else
             return ResponseUtil.ok(sharerulePo1);
-
     }
 
 

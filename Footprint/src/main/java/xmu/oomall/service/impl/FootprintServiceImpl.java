@@ -82,6 +82,8 @@ public class FootprintServiceImpl implements FootprintService {
      */
     @Override
     public FootprintItemPo addFootprint(FootprintItemPo footprintItemPo) {
+        if(footprintItemPo.getUserId()==null||footprintItemPo.getGoodsId()==null)
+            return null;
         return footprintDao.addFootprint(footprintItemPo);
     }
 }
