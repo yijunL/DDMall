@@ -55,15 +55,21 @@ public class CommentController {
      */
     //记得判断productid是否合法(Userid可能也要)
     @GetMapping("/product/{id}/comments")
-    public Object getCommentsById(@RequestParam Integer id,
+    public Object getCommentsById(HttpServletRequest request,@RequestParam Integer id,
                                   @RequestParam Integer page,
                                   @RequestParam Integer limit)
     {
+        Integer userId=getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.fail(660,"用户未登录");
+        }
+
         if(id==null||page==null||limit==null||page<0||limit<0){
             System.out.println("111");
             return ResponseUtil.fail(902,"获取评论失败");
         } else{
             List<Comment> commentList=commentService.getCommentsById(limit,page,id);
+
             if(commentList.isEmpty())
                 System.out.println("333");
             commentList .forEach(comment -> System.out.println(comment.getId()));

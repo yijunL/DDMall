@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-@Transactional
+
 public class CollectionDaoTest {
     @Autowired
     private CollectionDao collectionDao;
