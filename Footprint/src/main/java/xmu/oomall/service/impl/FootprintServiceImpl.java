@@ -33,8 +33,9 @@ public class FootprintServiceImpl implements FootprintService {
      */
     @Override
     public List<FootprintItem> listFootprintsByUserId(Integer userId, Integer page, Integer limit) {
-        if(!userValidate.validate(userId))
+        if (!userValidate.validate(userId)) {
             return null;
+        }
         List<FootprintItem> footprintItems = footprintDao.selectByUserId(userId, page, limit);
         return footprintItems;
     }
@@ -47,7 +48,7 @@ public class FootprintServiceImpl implements FootprintService {
      */
     @Override
     public int deleteFootprintById (Integer id) {
-        if(footprintDao.deleteFootprintById(id) > 0) { //or == 1
+        if (footprintDao.deleteFootprintById(id) > 0) { //or == 1
             return 1;
         }
         return 0;
@@ -64,8 +65,9 @@ public class FootprintServiceImpl implements FootprintService {
      */
     @Override
     public List<FootprintItem> listFootprintsByCondition(Integer userId, Integer goodsId, Integer page, Integer limit) {
-        if(!userValidate.validate(userId))
+        if (!userValidate.validate(userId)) {
             return null;
+        }
         List<FootprintItem> footprintItems = footprintDao.selectByCondition(userId, goodsId, page, limit);
         //查询无结果，返回空列表而非null
 //        for(FootprintItem footprintItem : footprintItems) { //!!Test
@@ -82,6 +84,10 @@ public class FootprintServiceImpl implements FootprintService {
      */
     @Override
     public FootprintItemPo addFootprint(FootprintItemPo footprintItemPo) {
+        if (footprintItemPo.getUserId() == null
+            || footprintItemPo.getGoodsId() == null) {
+            return null;
+        }
         return footprintDao.addFootprint(footprintItemPo);
     }
 }

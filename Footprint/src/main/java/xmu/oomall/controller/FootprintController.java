@@ -51,7 +51,7 @@ public class FootprintController {
                                          @RequestParam Integer limit) {
         Integer userId = getUserId(request); //从网关获取用户id
         if (userId == null) { //可能不需要该判断
-            return ResponseUtil.unlogin(); //是否返回别的值？
+            return ResponseUtil.fail(660,"用户未登录"); //是否返回别的值？
         }
         if (page == null || limit == null
             || page <= 0 || limit <= 0) {
@@ -59,7 +59,7 @@ public class FootprintController {
         }
         else {
             List<FootprintItem> footprintItems = footprintService.listFootprintsByUserId(userId, page, limit);
-            if(footprintItems==null)
+            if (footprintItems==null)
                 return ResponseUtil.fail(742, "足迹查询失败");
             return ResponseUtil.ok(footprintItems);
         }
@@ -73,10 +73,10 @@ public class FootprintController {
      */
     @DeleteMapping("/footprints/{id}")
     public Object deleteFootprintById (HttpServletRequest request, @PathVariable Integer id) {
-        if(id == null) {
+        if (id == null) {
             return ResponseUtil.fail(740,"该足迹是无效足迹（不在数据库里的或者逻辑删除） ");
         } else {
-            if(footprintService.deleteFootprintById(id) == 0){
+            if (footprintService.deleteFootprintById(id) == 0){
                 return ResponseUtil.fail(740,"该足迹是无效足迹（不在数据库里的或者逻辑删除） ");
             } else{
                 return ResponseUtil.ok();
@@ -95,9 +95,12 @@ public class FootprintController {
      */
     @GetMapping("/admin/footprints")
     public Object listFootprintsByCondition(HttpServletRequest request, @RequestParam Integer userId, @RequestParam Integer goodsId,
-                                            @RequestParam Integer page, @RequestParam Integer limit) {
+                                                 @RequestParam Integer page, @RequestParam Integer limit) {
+        Integer adminId=getUserId(request);
+        if(adminId==null)
+            return ResponseUtil.fail(669,"管理员");
         if(page == null || limit == null
-            || page <= 0 || limit <= 0) {
+                || page <= 0 || limit <= 0) {
             return ResponseUtil.fail(742, "足迹查询失败");
         } else {
             List<FootprintItem> footprintItemList = footprintService.listFootprintsByCondition(userId, goodsId, page, limit);

@@ -8,8 +8,10 @@ public interface OomallAddressMapper {
     int updateById(@Param("updated") AddressPo updated, @Param("id") Integer id);
     int insertSelective(AddressPo addressPo);
     List<AddressPo> findAllByUserIdAndBeDeletedLessThan(@Param("userId")Integer userId,@Param("maxBeDeleted")int maxBeDeleted);
-
-
     AddressPo findAllById(@Param("id") Integer id);
+
+    int updateBeDefaultByUserId(@Param("updatedBeDefault")Boolean updatedBeDefault,@Param("userId")Integer userId);
+
+
 
 }

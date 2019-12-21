@@ -8,6 +8,7 @@ import xmu.oomall.domain.Address;
 import xmu.oomall.domain.AddressPo;
 import xmu.oomall.service.AddressService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -19,8 +20,8 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public List<Address> getAddressList(Integer userId, Integer page, Integer limit){
-        if(!userValidate.validate(userId))
-            return null;
+//        if(!userValidate.validate(userId))
+//            return null;
         return addressDao.getAddressList(userId, page, limit);
     };
 
@@ -44,6 +45,18 @@ public class AddressServiceImpl implements AddressService {
         return addressDao.deleteAddress(id);
     };
 
+    @Override
+    public void resetDefaultAddress(Integer userId){
+        addressDao.resetDefaultAddress(userId);
+    }
 
+//    public void resetDefaultAddress(Integer userId) {
+//        Address address = new Address();
+//        address.setBeDefault(false);
+//        address.setGmtModified(LocalDateTime.now());
+//        LitemallAddressExample example = new LitemallAddressExample();
+//        example.or().andUserIdEqualTo(userId).andDeletedEqualTo(false);
+//        addressMapper.updateByExampleSelective(address, example);
+//    }
 
 }
