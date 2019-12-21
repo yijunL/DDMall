@@ -35,29 +35,53 @@ public class ShareServiceImpl implements ShareService {
     }
 
 
-    public boolean beValiedShareRule(ShareRulePo shareRulePo)
+    public boolean beValiedShareRule(ShareRulePo shareRulePo)throws Exception
     {
-        String strategyLevel=shareRulePo.getShareLevelStrategy();
-        JSONObject jsonObject = JSONObject.fromObject(strategyLevel);
-        int type= jsonObject.getInt("type");
-        JSONArray strategys = jsonObject.getJSONArray("strategy");
-        int[] lowerbound=new int[strategys.size()];
-        int[] upperbound=new int[strategys.size()];
-        double[] rate=new double[strategys.size()];
-        for(int i=0;i<strategys.size();i++)
+        int type =0;
+        int[] lowerbound;
+        int[] upperbound;
+        double[] rate;
+        try {
+            String strategyLevel = shareRulePo.getShareLevelStrategy();
+            JSONObject jsonObject = JSONObject.fromObject(strategyLevel);
+            type = jsonObject.getInt("type");
+            JSONArray strategys = jsonObject.getJSONArray("strategy");
+            lowerbound = new int[strategys.size()];
+            upperbound = new int[strategys.size()];
+            rate = new double[strategys.size()];
+            for (int i = 0; i < strategys.size(); i++) {
+                JSONObject strategy = strategys.getJSONObject(i);
+                lowerbound[i] = strategy.getInt("lowerbound");
+                upperbound[i] = strategy.getInt("upperbound");
+                if(lowerbound[i]>upperbound[i])
+                    return false;
+                if(i>=1)
+                    if(lowerbound[i]<=upperbound[i-1]||upperbound[i]<=upperbound[i-1])
+                        return false;
+                rate[i] = strategy.getDouble("rate");
+                if(rate[i]<0)
+                    return false;
+                if(i>=1)
+                    if(rate[i]<rate[i-1])
+                        return false;
+            }
+            if(type!=0&&type!=1)
+                return  false;
+
+
+        }catch (Exception e)
         {
-            JSONObject strategy = strategys.getJSONObject(i);
-            lowerbound[i] = strategy.getInt("lowerbound");
-            upperbound[i] = strategy.getInt("upperbound");
-            rate[i]=strategy.getDouble("rate");
+            return false;
         }
-        return  true;
+        return true;
     }
 
     @Override
-    public Object addShareRule(ShareRulePo sharerulePo) {
+    public Object addShareRule(ShareRulePo sharerulePo) throws Exception {
 
+        if(beValiedShareRule(sharerulePo))
         return shareRuleDao.addShareRule(sharerulePo);
+        else return null;
     }
 
 
@@ -70,9 +94,12 @@ public class ShareServiceImpl implements ShareService {
     }
 
     @Override
-    public Object updateShareRule(ShareRulePo sharerulePo, Integer id) {
+    public Object updateShareRule(ShareRulePo sharerulePo, Integer id) throws Exception {
 
+        boolean b=beValiedShareRule(sharerulePo);
+        if(b)
         return shareRuleDao.updateShareRule(sharerulePo,id);
+        else return false;
     }
 
 

@@ -9,11 +9,11 @@ import xmu.oomall.domain.ShareRulePo;
 public interface ShareService {
     ShareRulePo getShareRuleById(Integer id);
 
-    Object addShareRule(ShareRulePo sharerulePo);
+    Object addShareRule(ShareRulePo sharerulePo) throws Exception;
 
     boolean deleteShareRuleById(Integer id);
 
-    Object updateShareRule(ShareRulePo sharerulePo, Integer id);
+    Object updateShareRule(ShareRulePo sharerulePo, Integer id) throws Exception;
 
     Object addBeSharedItems(BeSharedItem beSharedItem);
 
