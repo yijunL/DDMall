@@ -3,6 +3,7 @@ package xmu.oomall.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import xmu.oomall.UserValidate;
 import xmu.oomall.domain.CollectItem;
 import xmu.oomall.domain.CollectItemPo;
 import xmu.oomall.mapper.OomallCollectItemMapper;
@@ -18,6 +19,8 @@ public class CollectionDao {
 
     @Autowired
     private OomallCollectItemMapper oomallCollectItemMapper;
+    @Autowired
+    private UserValidate userValidate;
 
 
     /**
@@ -30,6 +33,8 @@ public class CollectionDao {
      */
     public List<CollectItem> getColltectionList(Integer userId,Integer page,Integer limit)
     {
+        if(!userValidate.validate(userId))
+            return null;
         return (List<CollectItem>) PageCut.pageCut(oomallCollectItemMapper.findAllById(userId),page,limit);
     }
 
@@ -61,8 +66,8 @@ public class CollectionDao {
      *
      * @return collectItems
      */
-    private CollectItem collectItems(CollectItemPo collectItemPo){
-        CollectItem collectItem = new CollectItem();
-        return Copyer.Copy(collectItemPo,collectItem)?collectItem:null;
-    }
+//    private CollectItem collectItems(CollectItemPo collectItemPo){
+//        CollectItem collectItem = new CollectItem();
+//        return Copyer.Copy(collectItemPo,collectItem)?collectItem:null;
+//    }
 }
