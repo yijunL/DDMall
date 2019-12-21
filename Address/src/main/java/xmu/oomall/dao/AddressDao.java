@@ -61,4 +61,8 @@ public class AddressDao {
         return Copyer.Copy(addressPo,address1)?address1:null;
     }
 
+    public void resetDefaultAddress(Integer userId){
+        oomallAddressMapper.updateBeDefaultByUserId(false,userId);
+    }
+
 }
