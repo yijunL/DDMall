@@ -38,11 +38,11 @@ public class AddressController {
      * @return
      */
     @GetMapping("/addresses")
-    public Object getAddressList(@RequestParam Integer page, @RequestParam Integer limit) {
-//        Integer userId=getUserId(request);
-//        if (userId == null) {
-//            return ResponseUtil.fail(660,"用户未登录");
-//        }
+    public Object getAddressList(HttpServletRequest request, @RequestParam Integer page, @RequestParam Integer limit) {
+        Integer userId=getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.fail(660,"用户未登录");
+        }
         // 参数校验
         if (page == null || page <= 0) {
             return ResponseUtil.fail(744,"该地址是无效地址");
@@ -50,7 +50,7 @@ public class AddressController {
         if (limit == null || limit <= 0) {
             return ResponseUtil.fail(744,"该地址是无效地址");
         }
-        List<Address> addressList=addressService.getAddressList(page, limit);
+        List<Address> addressList=addressService.getAddressList(userId, page, limit);
         return ResponseUtil.ok(addressList);
     }
 
