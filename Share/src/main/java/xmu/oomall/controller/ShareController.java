@@ -75,7 +75,7 @@ public class ShareController {
             return ResponseUtil.fail(612,"分享规则查看失败，参数缺少");}
         ShareRulePo sharerule=shareService.getShareRuleById(id);
         if(sharerule==null)
-            return ResponseUtil.fail(612,"分享规则查看失败，参数错误");
+            return ResponseUtil.fail(612,"分享规则查看失败,参数错误");
         else {
             log.setStatusCode(1);
             addLog.addLog(log);

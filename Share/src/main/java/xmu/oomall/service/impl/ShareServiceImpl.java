@@ -96,7 +96,8 @@ public class ShareServiceImpl implements ShareService {
     @Override
     public Object updateShareRule(ShareRulePo sharerulePo, Integer id) throws Exception {
 
-        if(beValiedShareRule(sharerulePo))
+        boolean b=beValiedShareRule(sharerulePo);
+        if(b)
         return shareRuleDao.updateShareRule(sharerulePo,id);
         else return false;
     }
