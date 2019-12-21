@@ -75,8 +75,14 @@ public class CollectionController {
             return ResponseUtil.fail(660,"用户未登录");
         }
         //参数校验
-        if((collectItemPo.getId()!=null)||(collectItemPo.getGoodsId()==null)||collectItemPo.getUserId()==null) {
-            return ResponseUtil.fail(761,"收藏新增失败");
+        if(collectItemPo.getId()!=null) {
+            return ResponseUtil.fail(761,"用户没有权利插入收藏Id");
+        }
+        if(collectItemPo.getGoodsId()==null) {
+            return ResponseUtil.fail(761,"收藏商品Id不能为空");
+        }
+        if(collectItemPo.getUserId()==null) {
+            return ResponseUtil.fail(761,"用户Id不能为空");
         }
         collectItemPo = collectionService.addCollection(collectItemPo);
         if(collectItemPo==null)
@@ -100,7 +106,7 @@ public class CollectionController {
 
         // 参数校验
         if (id == null || id < 0) {
-            return ResponseUtil.fail(762,"收藏删除失败");
+            return ResponseUtil.fail(762,"所删除的收藏不存在");
         }
         if(collectionService.deleteCollection(id))
             return ResponseUtil.ok();
