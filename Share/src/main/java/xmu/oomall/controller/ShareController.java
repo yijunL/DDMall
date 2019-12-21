@@ -217,36 +217,27 @@ public class ShareController {
      */
 
     @PostMapping("/beSharedItems")
-    public Object addBeSharedItems(HttpServletRequest request, @RequestBody BeSharedItem beSharedItem) throws UnknownHostException {
+    public Object addBeSharedItems(HttpServletRequest request, @RequestBody BeSharedItem beSharedItem)  {
         Integer userId = getUserId(request);
         if (userId == null) {
-            return ResponseUtil.fail(669,"管理员未登录");
+            return ResponseUtil.fail(660,"管理员未登录");
         }
-        Log log = new Log();
-        log.setAdminId(userId);
-        log.setActions("增添分享规则");
-        log.setGmtCreate(LocalDateTime.now());
-        log.setGmtModified(LocalDateTime.now());
-        log.setType(1); //操作类型
-        log.setIp(InetAddress.getLocalHost().toString());
+
         if(beSharedItem==null||beSharedItem.getBeSharedUserId()==null||beSharedItem.getGoodsId()==null||
         beSharedItem.getSharerId()==null)
         {
-            log.setStatusCode(0);
-            addLog.addLog(log);
+
             return ResponseUtil.fail(614,"增加分享项失败,参数缺少");
         }
         BeSharedItem beSharedItem1= (BeSharedItem) shareService.addBeSharedItems(beSharedItem);
         if(beSharedItem1==null)
         {
-            log.setStatusCode(0);
-            addLog.addLog(log);
+
             return ResponseUtil.fail(614,"增加分享项失败，参数错误");
         }
         else
         {
-            log.setStatusCode(1);
-            addLog.addLog(log);
+
             return ResponseUtil.ok(beSharedItem1);
         }
     }
