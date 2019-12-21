@@ -153,13 +153,10 @@ public class ShareController {
     }
 
     @GetMapping("/rebate")
-    public Integer getRebate(HttpServletRequest request, @RequestBody Order order) {
+    public Object getRebate(HttpServletRequest request, @RequestBody Order order) {
 
 
         Integer rebate=shareService.getRebate(order);
-        if(rebate==null)
-            return (Integer) ResponseUtil.badArgument();
-        else
-            return (Integer) ResponseUtil.ok(rebate);
+        return  ResponseUtil.ok(rebate);
     }
 }
