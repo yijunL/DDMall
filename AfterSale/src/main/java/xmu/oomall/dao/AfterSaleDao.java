@@ -53,7 +53,7 @@ public class AfterSaleDao {
      * @return AftersalesService
      */
     public AftersalesService updateAfterSaleByIdForAdmin(Integer id, AftersalesService afterSaleService) {
-        if (oomallAfterSaleMapper.updateByIdForAdmin(LocalDateTime.now(), id, afterSaleService) > 0) { //
+        if (oomallAfterSaleMapper.updateByIdForAdmin(LocalDateTime.now(), id, afterSaleService) > 0) { //还是>1（==3）？
             AftersalesService afterSaleService1 = oomallAfterSaleMapper.selectAllById(id);
             return afterSaleService1;
         }
@@ -104,7 +104,8 @@ public class AfterSaleDao {
         if (!afterSaleService.getBeApplied()) { //申请无效？
             return null;
         }
-        afterSaleService.setGmtCreate(LocalDateTime.now()); //
+        //afterSaleService.setGmtCreate(LocalDateTime.now()); //是否现在赋值？
+        afterSaleService.setApplyTime(LocalDateTime.now()); //
         if (oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
             System.out.println(afterSaleService.getId()); //
             return afterSaleService;
