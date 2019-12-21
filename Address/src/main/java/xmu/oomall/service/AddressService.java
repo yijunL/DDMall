@@ -20,4 +20,6 @@ public interface AddressService {
 
     public boolean deleteAddress(Integer id);
 
+    public void resetDefaultAddress(Integer userId);
+
 }
