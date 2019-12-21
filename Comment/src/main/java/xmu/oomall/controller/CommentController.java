@@ -4,9 +4,8 @@ package xmu.oomall.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xmu.oomall.AddLog;
-import xmu.oomall.domain.Comment;
-import xmu.oomall.domain.CommentPo;
-import xmu.oomall.domain.Log;
+import xmu.oomall.ProductValidate;
+import xmu.oomall.domain.*;
 import xmu.oomall.service.CommentService;
 import xmu.oomall.util.ResponseUtil;
 
@@ -33,6 +32,9 @@ public class CommentController {
     @Autowired
     private AddLog addLog;
 
+    @Autowired
+    private ProductValidate productValidate;
+
     /**
      * 解析http请求获取该请求者的id
      * @param request
@@ -45,6 +47,7 @@ public class CommentController {
         }
         return Integer.valueOf(userIdStr);
     }
+
     /**
      * 用户获取产品下评论列表
      *
@@ -53,36 +56,27 @@ public class CommentController {
      * @param limit
      * @return List<Comment>
      */
-    //记得判断productid是否合法(Userid可能也要)
     @GetMapping("/product/{id}/comments")
     public Object getCommentsById(HttpServletRequest request,@RequestParam Integer id,
                                   @RequestParam Integer page,
                                   @RequestParam Integer limit)
     {
-        Integer userId=getUserId(request);
+/*        Integer userId=getUserId(request);
         if (userId == null) {
             return ResponseUtil.fail(660,"用户未登录");
-        }
+        }*/
+
+/*        if(productValidate.validate(id)==null){
+            return ResponseUtil.fail(902,"获取评论失败");
+        }*/
 
         if(id==null||page==null||limit==null||page<0||limit<0){
-            System.out.println("111");
             return ResponseUtil.fail(902,"获取评论失败");
         } else{
             List<Comment> commentList=commentService.getCommentsById(limit,page,id);
-
-            if(commentList.isEmpty())
-                System.out.println("333");
-            commentList .forEach(comment -> System.out.println(comment.getId()));
                 //后续可以调用其他模块的时候要封装成List<Commnet>
-
                 return ResponseUtil.ok(commentList);
         }
-       /* User user=userService.getUserById(commentPoList.get(0).getUserId());
-        ProductPo productPo=productService.getProductPoById(id);
-        List<Comment> commentList = new ArrayList<Comment>();
-        Comment comment;
-        for(int i=0;i<commentPoList.size();i++){
-            comment= new Comment(user,productPo,commentPoList.get(i));*/
     }
 
     /**
@@ -93,7 +87,11 @@ public class CommentController {
      */
     @PostMapping("/product/{id}/comments")//id是否需要？
     public Object addComment(@RequestParam Integer id,@RequestBody CommentPo commentPo){
-        if(commentPo==null){
+/*        if(productValidate.validate(id)==null){
+            return ResponseUtil.fail(902,"获取评论失败");
+        }*/
+        if(commentPo==null||commentPo.getContent()==null||
+                (commentPo.getBeDeleted()!=null&&commentPo.getBeDeleted()==true)){
             return ResponseUtil.fail(903,"创建评论失败");
         } else{
             if(commentService.addComment(commentPo)==null){
@@ -136,19 +134,26 @@ public class CommentController {
     public Object getCommentByIdForAdmin(@RequestParam Integer userId,
                                          @RequestParam Integer productId,
                                          @RequestParam Integer page,
-                                         @RequestParam Integer limit){
+                                         @RequestParam Integer limit) {
 
-        if(limit==null||page==null||limit<0||page<0){
+        if (limit == null || page == null || limit <= 0 || page <= 0) {
+            return ResponseUtil.fail(902, "获取评论失败");
+        } else {
+/*            if (productId != null && productValidate.validate(productId) == null) {
+                return ResponseUtil.fail(902, "获取评论失败");
+            }*/
 
-            return ResponseUtil.fail(902,"获取评论失败");
-        } else{
             List<Comment> commentList;
-            if(userId==null&&productId==null){
-                 commentList=commentService.getAllComments(limit,page);
-            } else{
-                commentList =commentService.getCommentsByIdForAdmin(userId,productId,limit,page);
+            if (userId == null && productId == null) {
+                commentList = commentService.getAllComments(limit, page);
+            } else {
+                commentList = commentService.getCommentsByIdForAdmin(userId, productId, limit, page);
             }
-                //记得封装成List<Comment>
+            commentList .forEach(comment -> System.out.println(comment.getId()));
+
+/*            ProductPo productPo = productValidate.validate(productId);
+            commentList.forEach(comment -> comment.setProductPo(productPo));*/
+            //记得封装成List<Comment>
             return ResponseUtil.ok(commentList);
         }
     }
@@ -161,33 +166,34 @@ public class CommentController {
      * @return CommentPo
      */
     @PutMapping("/admin/comments/{id}")
-    public Object updateCommentById(HttpServletRequest request, @RequestParam Integer id,@RequestBody CommentPo commentPo) throws UnknownHostException {
-        Integer userId=getUserId(request);
+    public Object updateCommentById(HttpServletRequest request, @RequestParam Integer id,
+                                    @RequestBody CommentPo commentPo) throws UnknownHostException {
+/*        Integer userId=getUserId(request);
         if (userId == null) {
             return ResponseUtil.fail(660,"用户未登录");
-        }
+        }*/
         Log log=new Log();
-        log.setAdminId(userId);
+     //   log.setAdminId(userId);
         log.setActionId(id);
         log.setActions("审核评论");
         log.setGmtCreate(LocalDateTime.now());
         log.setGmtModified(LocalDateTime.now());
         log.setType(0);
         log.setIp(InetAddress.getLocalHost().toString());
-        if(id==null||commentPo.getStatusCode()!=0||commentPo.getBeDeleted()){
+        if(id==null||commentPo.getStatusCode()==null||commentPo.getStatusCode()==0||(commentPo.getBeDeleted()!=null&&commentPo.getBeDeleted()==true)){
             log.setStatusCode(0);
-            addLog.addLog(log);
+//            addLog.addLog(log);
             return ResponseUtil.fail(904,"修改评论失败");
 
         } else{
             CommentPo commentPo1=commentService.updateCommentById(id, commentPo);
             if(commentPo1==null){
                 log.setStatusCode(0);
-                addLog.addLog(log);
+//                addLog.addLog(log);
                 return ResponseUtil.fail(904,"修改评论失败");
             } else{
                 log.setStatusCode(1);
-                addLog.addLog(log);
+  //              addLog.addLog(log);
                 return ResponseUtil.ok(commentPo1);
             }
         }
