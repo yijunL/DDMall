@@ -76,7 +76,6 @@
                 is_deleted=1,
                 gmt_modified=#{updatedGmtModified,jdbcType=TIMESTAMP}
             </set>
-
         where id=#{id} and is_deleted=0
     </update>
 

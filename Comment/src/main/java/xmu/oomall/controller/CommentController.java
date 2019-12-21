@@ -70,7 +70,7 @@ public class CommentController {
             return ResponseUtil.fail(902,"获取评论失败");
         }*/
 
-        if(id==null||page==null||limit==null||page<0||limit<0){
+        if(id==null||page==null||limit==null||page<=0||limit<=0){
             return ResponseUtil.fail(902,"获取评论失败");
         } else{
             List<Comment> commentList=commentService.getCommentsById(limit,page,id);
@@ -90,7 +90,7 @@ public class CommentController {
 /*        if(productValidate.validate(id)==null){
             return ResponseUtil.fail(902,"获取评论失败");
         }*/
-        if(commentPo==null||commentPo.getContent()==null||
+        if(commentPo==null||commentPo.getContent()==null||commentPo.getStar()==null||
                 (commentPo.getBeDeleted()!=null&&commentPo.getBeDeleted()==true)){
             return ResponseUtil.fail(903,"创建评论失败");
         } else{
@@ -134,7 +134,12 @@ public class CommentController {
     public Object getCommentByIdForAdmin(@RequestParam Integer userId,
                                          @RequestParam Integer productId,
                                          @RequestParam Integer page,
-                                         @RequestParam Integer limit) {
+                                         @RequestParam Integer limit) throws UnknownHostException {
+
+        /* Integer adminId=getUserId(request);
+        if (adminId == null) {
+            return ResponseUtil.fail(660,"用户未登录");
+        }*/
 
         if (limit == null || page == null || limit <= 0 || page <= 0) {
             return ResponseUtil.fail(902, "获取评论失败");
@@ -142,6 +147,15 @@ public class CommentController {
 /*            if (productId != null && productValidate.validate(productId) == null) {
                 return ResponseUtil.fail(902, "获取评论失败");
             }*/
+
+            Log log=new Log();
+            //   log.setAdminId(adminId);
+            log.setActionId(userId);
+            log.setActions("查看评论");
+            log.setGmtCreate(LocalDateTime.now());
+            log.setGmtModified(LocalDateTime.now());
+            log.setType(0);
+            log.setIp(InetAddress.getLocalHost().toString());
 
             List<Comment> commentList;
             if (userId == null && productId == null) {
@@ -178,8 +192,9 @@ public class CommentController {
         log.setActions("审核评论");
         log.setGmtCreate(LocalDateTime.now());
         log.setGmtModified(LocalDateTime.now());
-        log.setType(0);
+        log.setType(2);
         log.setIp(InetAddress.getLocalHost().toString());
+
         if(id==null||commentPo.getStatusCode()==null||commentPo.getStatusCode()==0||(commentPo.getBeDeleted()!=null&&commentPo.getBeDeleted()==true)){
             log.setStatusCode(0);
 //            addLog.addLog(log);
