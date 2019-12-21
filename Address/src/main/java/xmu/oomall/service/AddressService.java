@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface AddressService {
 
-    public List<Address> getAddressList(Integer page, Integer limit);
+    public List<Address> getAddressList(Integer usrId,Integer page, Integer limit);
 
     public Address getAddress(Integer id);
 
