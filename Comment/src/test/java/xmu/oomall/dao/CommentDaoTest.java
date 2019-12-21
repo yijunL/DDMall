@@ -16,9 +16,9 @@ class CommentDaoTest {
 
     @Test
     void selectByProductId() {
-        commentDao.selectByProductId(20,1,222).
+      /*  commentDao.selectByProductId(20,1,222).
                 forEach(comment -> System.out.println(comment.getId()));
-
+*/
        /* commentDao.selectByIdForAdmin(null,null,1,5).
                 forEach(comment -> System.out.println(comment.getId()));*/
 
@@ -39,7 +39,6 @@ class CommentDaoTest {
 
     @Test
     void deleteComment() {
-
         //commentDao.deleteComment(3);
     }
 

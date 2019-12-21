@@ -25,12 +25,20 @@ public interface AfterSaleService {
     public List<AftersalesService> listAfterSalesByCondition(Integer userId, Integer page, Integer limit);
 
     /**
-     * 管理员查询某一售后服务具体信息
+     * 用户查询某一售后服务具体信息
      *
      * @param id: Integer
      * @return AftersalesService
      */
     public AftersalesService getAfterSaleById(Integer id);
+
+    /**
+     * 管理员查询某一售后服务具体信息
+     *
+     * @param id: Integer
+     * @return AftersalesService
+     */
+    public AftersalesService getAfterSaleByIdForAdmin(Integer id);
 
     /**
      * 管理员修改某一售后服务信息
@@ -44,11 +52,12 @@ public interface AfterSaleService {
     /**
      * 用户修改某一售后服务的信息
      *
+     * @param userId: Integer
      * @param id: Integer
      * @param afterSaleService: AftersalesService
      * @return AftersalesService
      */
-    public AftersalesService updateAfterSaleById(Integer id, AftersalesService afterSaleService);
+    public AftersalesService updateAfterSaleById(Integer userId, Integer id, AftersalesService afterSaleService);
 
     /**
      * 查询用户的售后服务列表
@@ -63,19 +72,19 @@ public interface AfterSaleService {
     /**
      * 用户申请售后服务
      *
+     * @param userId: Integer
      * @param afterSaleService: AftersalesService
      * @return AftersalesService
      */
-    public AftersalesService addAfterSale(AftersalesService afterSaleService);
+    public AftersalesService addAfterSale(Integer userId, AftersalesService afterSaleService);
 
     /**
      * 用户逻辑删除某一个售后服务的信息
      *
+     * @param userId: Integer
      * @param id: Integer
      * @return Response.ok()
      */
-    public int deleteAfterSaleById(Integer id);
+    public int deleteAfterSaleById(Integer userId, Integer id);
 
-    /* 重复的方法——用户 */
-//    public Object getAfterSaleById(Integer id);
 }

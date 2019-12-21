@@ -72,10 +72,11 @@ public class FootprintDao {
      * @return FootprintItemPo
      */
     public FootprintItemPo addFootprint(FootprintItemPo footprintItemPo) { //需在controller层进行合法性判断
-        footprintItemPo.setGmtCreate(LocalDateTime.now()); //
-//        if(footprintItemPo.getId() != null) { //插入时id不应有值
-//            return null;
-//        }
+
+        if(footprintItemPo.getGmtCreate()==null)
+            footprintItemPo.setGmtCreate(LocalDateTime.now());
+        if(footprintItemPo.getBirthTime()==null)
+            footprintItemPo.setBirthTime(LocalDateTime.now());
         if (oomallFootprintMapper.insertSelective(footprintItemPo) > 0) {
             //System.out.println("footprintItemPo-id: " + footprintItemPo.getId());
             return footprintItemPo;
