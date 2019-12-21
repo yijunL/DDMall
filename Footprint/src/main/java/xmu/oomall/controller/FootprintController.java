@@ -95,9 +95,9 @@ public class FootprintController {
      */
     @GetMapping("/admin/footprints")
     public Object listFootprintsByCondition(HttpServletRequest request, @RequestParam Integer userId, @RequestParam Integer goodsId,
-                                            @RequestParam Integer page, @RequestParam Integer limit) {
+                                                 @RequestParam Integer page, @RequestParam Integer limit) {
         if(page == null || limit == null
-            || page <= 0 || limit <= 0) {
+                || page <= 0 || limit <= 0) {
             return ResponseUtil.fail(742, "足迹查询失败");
         } else {
             List<FootprintItem> footprintItemList = footprintService.listFootprintsByCondition(userId, goodsId, page, limit);
