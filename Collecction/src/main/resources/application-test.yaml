@@ -4,7 +4,7 @@ spring:
     #JDBC驱动的名称
     driver-class-name: com.mysql.jdbc.Driver
     #数据库的JDBC url
-    url: jdbc:mysql://123.56.10.101:3306/oomall?serverTimezone=GMT
+    url: jdbc:mysql://123.56.10.101:3306/oomall?serverTimezone=GMT%2B8
     #数据库用户名
     data-username: root
     #数据库密码

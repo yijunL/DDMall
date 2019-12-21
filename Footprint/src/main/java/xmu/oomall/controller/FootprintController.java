@@ -120,6 +120,11 @@ public class FootprintController {
      */
     @PostMapping("/footprints")
     public Object addFootprint(HttpServletRequest request, @RequestBody FootprintItemPo footprintItemPo) {
+
+        Integer adminId=getUserId(request);
+        if(adminId==null)
+            return ResponseUtil.fail(669,"管理员");
+
         if(footprintItemPo == null) {
             return ResponseUtil.fail(741, "足迹添加失败"); //返回响应值
         } else { //是否需要进一步判断userId?
