@@ -41,7 +41,7 @@ import java.util.Map;
 public class ResponseUtil {
     public static Object ok() {
         Map<String, Object> obj = new HashMap<String, Object>();
-        obj.put("errno", 200);
+        obj.put("errno", 0);
         obj.put("errmsg", "成功");
         return obj;
     }

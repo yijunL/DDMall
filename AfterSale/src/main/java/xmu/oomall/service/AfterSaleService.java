@@ -1,6 +1,7 @@
 package xmu.oomall.service;
 
 import org.springframework.stereotype.Service;
+import xmu.oomall.domain.AftersalesService;
 
 import java.util.List;
 
@@ -19,35 +20,35 @@ public interface AfterSaleService {
      * @param userId: Integer
      * @param page: Integer
      * @param limit: Integer
-     * @return List<AfterSaleService>
+     * @return List<AftersalesService>
      */
-    public List<xmu.oomall.domain.AfterSaleService> listAfterSalesByCondition(Integer userId, Integer page, Integer limit);
+    public List<AftersalesService> listAfterSalesByCondition(Integer userId, Integer page, Integer limit);
 
     /**
      * 管理员查询某一售后服务具体信息
      *
      * @param id: Integer
-     * @return AfterSaleService
+     * @return AftersalesService
      */
-    public xmu.oomall.domain.AfterSaleService getAfterSaleById(Integer id);
+    public AftersalesService getAfterSaleById(Integer id);
 
     /**
      * 管理员修改某一售后服务信息
      *
      * @param id: Integer
-     * @param afterSaleService: AfterSaleService
-     * @return AfterSaleService
+     * @param afterSaleService: AftersalesService
+     * @return AftersalesService
      */
-    public xmu.oomall.domain.AfterSaleService updateAfterSaleByIdForAdmin(Integer id, xmu.oomall.domain.AfterSaleService afterSaleService);
+    public AftersalesService updateAfterSaleByIdForAdmin(Integer id, AftersalesService afterSaleService);
 
     /**
      * 用户修改某一售后服务的信息
      *
      * @param id: Integer
-     * @param afterSaleService: AfterSaleService
-     * @return AfterSaleService
+     * @param afterSaleService: AftersalesService
+     * @return AftersalesService
      */
-    public xmu.oomall.domain.AfterSaleService updateAfterSaleById(Integer id, xmu.oomall.domain.AfterSaleService afterSaleService);
+    public AftersalesService updateAfterSaleById(Integer id, AftersalesService afterSaleService);
 
     /**
      * 查询用户的售后服务列表
@@ -55,17 +56,17 @@ public interface AfterSaleService {
      * @param userId: Integer
      * @param page: Integer
      * @param limit: Integer
-     * @return List<AfterSaleService>
+     * @return List<AftersalesService>
      */
-    public List<xmu.oomall.domain.AfterSaleService> listAfterSalesByUserId(Integer userId, Integer page, Integer limit);
+    public List<AftersalesService> listAfterSalesByUserId(Integer userId, Integer page, Integer limit);
 
     /**
      * 用户申请售后服务
      *
-     * @param afterSaleService: AfterSaleService
-     * @return AfterSaleService
+     * @param afterSaleService: AftersalesService
+     * @return AftersalesService
      */
-    public xmu.oomall.domain.AfterSaleService addAfterSale(xmu.oomall.domain.AfterSaleService afterSaleService);
+    public AftersalesService addAfterSale(AftersalesService afterSaleService);
 
     /**
      * 用户逻辑删除某一个售后服务的信息

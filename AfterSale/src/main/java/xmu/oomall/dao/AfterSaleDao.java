@@ -3,7 +3,7 @@ package xmu.oomall.dao;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import xmu.oomall.domain.AfterSaleService;
+import xmu.oomall.domain.AftersalesService;
 import xmu.oomall.mapper.OomallAfterSaleMapper;
 
 import java.time.LocalDateTime;
@@ -26,11 +26,11 @@ public class AfterSaleDao {
      * @param userId: Integer
      * @param page: Integer
      * @param limit: Integer
-     * @return List<AfterSaleService>
+     * @return List<AftersalesService>
      */
-    public List<AfterSaleService> selectAfterSalesByCondition(Integer userId, Integer page, Integer limit) {
+    public List<AftersalesService> selectAfterSalesByCondition(Integer userId, Integer page, Integer limit) {
         PageHelper.startPage(limit,page);
-        List<AfterSaleService> afterSaleServiceList = oomallAfterSaleMapper.selectAllByUserId(userId);
+        List<AftersalesService> afterSaleServiceList = oomallAfterSaleMapper.selectAllByUserId(userId);
         return afterSaleServiceList;
     }
 
@@ -38,9 +38,9 @@ public class AfterSaleDao {
      * 管理员根据id查询某一售后服务具体信息
      *
      * @param id: Integer
-     * @return AfterSaleService
+     * @return AftersalesService
      */
-    public AfterSaleService selectAfterSaleById(Integer id) {
+    public AftersalesService selectAfterSaleById(Integer id) {
         return oomallAfterSaleMapper.selectAllById(id);
     }
 
@@ -48,12 +48,12 @@ public class AfterSaleDao {
      * 管理员根据id修改某一售后服务信息
      *
      * @param id: Integer
-     * @param afterSaleService: AfterSaleService
-     * @return AfterSaleService
+     * @param afterSaleService: AftersalesService
+     * @return AftersalesService
      */
-    public AfterSaleService updateAfterSaleByIdForAdmin(Integer id, AfterSaleService afterSaleService) {
+    public AftersalesService updateAfterSaleByIdForAdmin(Integer id, AftersalesService afterSaleService) {
         if (oomallAfterSaleMapper.updateByIdForAdmin(LocalDateTime.now(), id, afterSaleService) > 0) { //
-            AfterSaleService afterSaleService1 = oomallAfterSaleMapper.selectAllById(id);
+            AftersalesService afterSaleService1 = oomallAfterSaleMapper.selectAllById(id);
             return afterSaleService1;
         }
         return null;
@@ -63,16 +63,16 @@ public class AfterSaleDao {
      * 用户根据id修改某一售后服务的信息
      *
      * @param id: Integer
-     * @param afterSaleService: AfterSaleService
-     * @return AfterSaleService
+     * @param afterSaleService: AftersalesService
+     * @return AftersalesService
      */
-    public AfterSaleService updateAfterSaleById(Integer id, AfterSaleService afterSaleService) {
-        AfterSaleService afterSaleService1 = oomallAfterSaleMapper.selectAllById(id);
+    public AftersalesService updateAfterSaleById(Integer id, AftersalesService afterSaleService) {
+        AftersalesService afterSaleService1 = oomallAfterSaleMapper.selectAllById(id);
         if (afterSaleService1.getStatusCode() != 0) { //不可修改
             return null;
         }
         if (oomallAfterSaleMapper.updateById(LocalDateTime.now(), id, afterSaleService) > 0) { //
-            AfterSaleService afterSaleService2 = oomallAfterSaleMapper.selectAllById(id);
+            AftersalesService afterSaleService2 = oomallAfterSaleMapper.selectAllById(id);
             return afterSaleService2;
         }
         return null;
@@ -84,30 +84,35 @@ public class AfterSaleDao {
      * @param userId: Integer
      * @param page: Integer
      * @param limit: Integer
-     * @return List<AfterSaleService>
+     * @return List<AftersalesService>
      */
-    public List<AfterSaleService> selectAfterSalesByUserId(Integer userId, Integer page, Integer limit) {
+    public List<AftersalesService> selectAfterSalesByUserId(Integer userId, Integer page, Integer limit) {
         PageHelper.startPage(limit,page);
-        List<AfterSaleService> afterSaleServiceList = oomallAfterSaleMapper.selectAllByUserId(userId);
+        List<AftersalesService> afterSaleServiceList = oomallAfterSaleMapper.selectAllByUserId(userId);
         return afterSaleServiceList;
     }
 
     /**
      * 用户申请售后服务
      *
-     * @param afterSaleService: AfterSaleService
-     * @return AfterSaleService
+     * @param afterSaleService: AftersalesService
+     * @return AftersalesService
      */
-    public AfterSaleService addAfterSale(AfterSaleService afterSaleService) {
-        if(afterSaleService.getId() != null) {
-            return null;
-        } else {
-            if(oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
-                System.out.println(afterSaleService.getId()); //
-                return afterSaleService;
-            }
-            return null;
+    public AftersalesService addAfterSale(AftersalesService afterSaleService) {
+//        if(afterSaleService.getId() != null) {
+//            return null;
+//        } else {
+//            if(oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
+//                System.out.println(afterSaleService.getId()); //
+//                return afterSaleService;
+//            }
+//            return null;
+//        }
+        if(oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
+            System.out.println(afterSaleService.getId()); //
+            return afterSaleService;
         }
+        return null;
     }
 
     /**
