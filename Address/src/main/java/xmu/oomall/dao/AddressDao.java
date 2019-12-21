@@ -18,9 +18,9 @@ public class AddressDao {
     private OomallAddressMapper oomallAddressMapper;
 
 
-    public List<Address> getAddressList(Integer page, Integer limit)
+    public List<Address> getAddressList(Integer userId, Integer page, Integer limit)
     {
-        return (List<Address>) PageCut.pageCut(oomallAddressMapper.findAllByBeDeletedLessThan(1),page,limit);
+        return (List<Address>) PageCut.pageCut(oomallAddressMapper.findAllByUserIdAndBeDeletedLessThan(userId,1),page,limit);
     }
 
     public Address getAddress(Integer id){

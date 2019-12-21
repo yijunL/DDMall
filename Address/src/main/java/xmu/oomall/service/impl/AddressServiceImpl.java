@@ -2,6 +2,7 @@ package xmu.oomall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xmu.oomall.UserValidate;
 import xmu.oomall.dao.AddressDao;
 import xmu.oomall.domain.Address;
 import xmu.oomall.domain.AddressPo;
@@ -13,10 +14,14 @@ import java.util.List;
 public class AddressServiceImpl implements AddressService {
     @Autowired
     private AddressDao addressDao;
+    @Autowired
+    private UserValidate userValidate;
 
     @Override
-    public List<Address> getAddressList(Integer page, Integer limit){
-        return addressDao.getAddressList(page, limit);
+    public List<Address> getAddressList(Integer userId, Integer page, Integer limit){
+        if(!userValidate.validate(userId))
+            return null;
+        return addressDao.getAddressList(userId, page, limit);
     };
 
     @Override
