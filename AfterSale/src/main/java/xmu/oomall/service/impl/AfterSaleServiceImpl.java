@@ -3,6 +3,7 @@ package xmu.oomall.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xmu.oomall.dao.AfterSaleDao;
+import xmu.oomall.domain.AftersalesService;
 import xmu.oomall.service.AfterSaleService;
 
 import java.util.List;
@@ -24,10 +25,10 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      * @param userId: Integer
      * @param page: Integer
      * @param limit: Integer
-     * @return List<AfterSaleService>
+     * @return List<AftersalesService>
      */
     @Override
-    public List<xmu.oomall.domain.AfterSaleService> listAfterSalesByCondition(Integer userId, Integer page, Integer limit) {
+    public List<AftersalesService> listAfterSalesByCondition(Integer userId, Integer page, Integer limit) {
         return afterSaleDao.selectAfterSalesByCondition(userId, page, limit);
     }
 
@@ -35,11 +36,11 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      * 管理员查询某一售后服务具体信息
      *
      * @param id: Integer
-     * @return AfterSaleService
+     * @return AftersalesService
      */
     @Override
-    public xmu.oomall.domain.AfterSaleService getAfterSaleById(Integer id) {
-        xmu.oomall.domain.AfterSaleService afterSaleService = afterSaleDao.selectAfterSaleById(id);
+    public AftersalesService getAfterSaleById(Integer id) {
+        AftersalesService afterSaleService = afterSaleDao.selectAfterSaleById(id);
         if(afterSaleService != null) {
             System.out.println(afterSaleService.getGoodsType());//
         }
@@ -50,11 +51,11 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      * 管理员修改某一售后服务信息
      *
      * @param id: Integer
-     * @param afterSaleService: AfterSaleService
-     * @return AfterSaleService
+     * @param afterSaleService: AftersalesService
+     * @return AftersalesService
      */
     @Override
-    public xmu.oomall.domain.AfterSaleService updateAfterSaleByIdForAdmin(Integer id, xmu.oomall.domain.AfterSaleService afterSaleService) {
+    public AftersalesService updateAfterSaleByIdForAdmin(Integer id, AftersalesService afterSaleService) {
         return afterSaleDao.updateAfterSaleByIdForAdmin(id, afterSaleService);
     }
 
@@ -62,11 +63,11 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      * 用户修改某一售后服务的信息（多余位暂时忽略，不报错）
      *
      * @param id: Integer
-     * @param afterSaleService: AfterSaleService
-     * @return AfterSaleService
+     * @param afterSaleService: AftersalesService
+     * @return AftersalesService
      */
     @Override
-    public xmu.oomall.domain.AfterSaleService updateAfterSaleById(Integer id, xmu.oomall.domain.AfterSaleService afterSaleService) {
+    public AftersalesService updateAfterSaleById(Integer id, AftersalesService afterSaleService) {
         return afterSaleDao.updateAfterSaleById(id, afterSaleService);
     }
 
@@ -76,21 +77,21 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      * @param userId: Integer
      * @param page: Integer
      * @param limit: Integer
-     * @return List<AfterSaleService>
+     * @return List<AftersalesService>
      */
     @Override
-    public List<xmu.oomall.domain.AfterSaleService> listAfterSalesByUserId(Integer userId, Integer page, Integer limit) {
+    public List<AftersalesService> listAfterSalesByUserId(Integer userId, Integer page, Integer limit) {
         return afterSaleDao.selectAfterSalesByUserId(userId, page, limit);
     }
 
     /**
      * 用户申请售后服务
      *
-     * @param afterSaleService: AfterSaleService
-     * @return AfterSaleService
+     * @param afterSaleService: AftersalesService
+     * @return AftersalesService
      */
     @Override
-    public xmu.oomall.domain.AfterSaleService addAfterSale(xmu.oomall.domain.AfterSaleService afterSaleService) {
+    public AftersalesService addAfterSale(AftersalesService afterSaleService) {
         return afterSaleDao.addAfterSale(afterSaleService);
     }
 
@@ -102,7 +103,7 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      */
     @Override
     public int deleteAfterSaleById(Integer id) {
-        xmu.oomall.domain.AfterSaleService afterSaleService = afterSaleDao.selectAfterSaleById(id);
+        AftersalesService afterSaleService = afterSaleDao.selectAfterSaleById(id);
         if(afterSaleService != null && !afterSaleService.getBeDeleted()) {
             return afterSaleDao.deleteAfterSaleById(id);
         }

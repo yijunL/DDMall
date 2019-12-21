@@ -3,6 +3,7 @@ package xmu.oomall.controller;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import xmu.oomall.domain.AftersalesService;
 import xmu.oomall.service.AfterSaleService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ public class AfterSaleControllerTest {
 
     @Test
     public void insertAfterSale() {
-        xmu.oomall.domain.AfterSaleService afterSaleService = new xmu.oomall.domain.AfterSaleService();
+        AftersalesService afterSaleService = new AftersalesService();
         afterSaleService.setGoodsType(97);
         HttpServletRequest request = null;
         afterSaleController.addAfterSale(request, afterSaleService);
