@@ -106,7 +106,7 @@ public class AfterSaleController {
      * @param id: Integer
      * @return AftersalesService
      */
-    @GetMapping("/afterSaleServices/{id}")
+    @GetMapping("/admin/afterSaleServices/{id}")
     public Object getAfterSaleByIdForAdmin(HttpServletRequest request, @PathVariable Integer id) throws UnknownHostException {
         Integer adminId = getAdminId(request);
         if(adminId == null) {
