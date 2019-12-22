@@ -97,7 +97,7 @@ public class CommentController {
     public Object addComment(HttpServletRequest request,@RequestParam Integer id,@RequestBody CommentPo commentPo){
         Integer userId=getUserId(request);
         if (userId == null) {
-            return ResponseUtil.fail(669,"用户未登录");
+            return ResponseUtil.fail(660,"用户未登录");
         }
 
         if(productValidate.validate(id)==null){
