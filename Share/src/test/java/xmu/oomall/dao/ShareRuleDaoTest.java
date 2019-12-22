@@ -24,7 +24,7 @@ class ShareRuleDaoTest {
     @Test
     void addShareRule() {
         ShareRulePo shareRulePo=new ShareRulePo();
-        shareRulePo.setGoodsId(444);
+        shareRulePo.setGoodsId(44);
         shareRulePo.setBeDeleted(false);
         shareRulePo.setShareLevelStrategy(" {\"strategy\": [{\"lowerbound\":10, \"upperbound\":19, \"rate\":0.8},{\"lowerbound\":20, \"upperbound\":29, \"rate\":0.9}], \"type\": 0}");
         ShareRulePo shareRulePo1=shareRuleDao.addShareRule(shareRulePo);
