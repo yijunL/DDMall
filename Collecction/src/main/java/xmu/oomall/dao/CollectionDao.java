@@ -37,9 +37,7 @@ public class CollectionDao {
 
     public CollectItemPo addCollection(CollectItemPo collectItemPo)
     {
-        if(collectItemPo.getGmtCreate()==null)
             collectItemPo.setGmtCreate(LocalDateTime.now());
-        if(collectItemPo.getGmtModified()==null)
             collectItemPo.setGmtModified(LocalDateTime.now());
 
         oomallCollectItemMapper.insertSelective(collectItemPo);
