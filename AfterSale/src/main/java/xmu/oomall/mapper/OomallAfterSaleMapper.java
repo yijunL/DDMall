@@ -20,4 +20,6 @@ public interface OomallAfterSaleMapper {
 
     List<AftersalesService> selectAllByUserId(@Param("userId")Integer userId); //用户查询自己售后列表与管理员按条件(userId)查询售后服务共用该方法
 
+    List<AftersalesService> selectAllByCondition(@Param("userId")Integer userId);
+
 }

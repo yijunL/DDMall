@@ -31,7 +31,7 @@ public class AfterSaleDao {
      */
     public List<AftersalesService> selectAfterSalesByCondition(Integer userId, Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
-        List<AftersalesService> afterSaleServiceList = oomallAfterSaleMapper.selectAllByUserId(userId);
+        List<AftersalesService> afterSaleServiceList = oomallAfterSaleMapper.selectAllByCondition(userId);
         return afterSaleServiceList;
     }
 
