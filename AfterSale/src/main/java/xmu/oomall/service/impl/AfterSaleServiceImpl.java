@@ -180,7 +180,7 @@ public class AfterSaleServiceImpl implements AfterSaleService {
         if (afterSaleService.getUserId() != userId) { //!!申请者与传参不符
             return null;
         }
-        if (afterSaleService.getOrderItemId() == null) {
+        if (afterSaleService.getOrderItemId() == null) { //!!申请售后的订单项不能为空
             return null;
         }
         Integer goodsType = orderItemValidate.validate(afterSaleService.getOrderItemId()); //商品类型
@@ -203,12 +203,7 @@ public class AfterSaleServiceImpl implements AfterSaleService {
         if (!userValidate.validate(userId)) {
             return 0;
         }
-        AftersalesService afterSaleService = afterSaleDao.selectAfterSaleById(id);
-        if(afterSaleService != null && !afterSaleService.getBeDeleted()) {
-            return afterSaleDao.deleteAfterSaleById(id);
-        }
-        System.out.println("删除失败"); //!!
-        return 0;
+        return afterSaleDao.deleteAfterSaleById(id);
     }
 
 }
