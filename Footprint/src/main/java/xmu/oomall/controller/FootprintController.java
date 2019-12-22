@@ -24,7 +24,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/footprints") //!!
+@RequestMapping("/footprintService") //!!
 public class FootprintController {
 
     @Autowired

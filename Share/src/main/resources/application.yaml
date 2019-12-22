@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: Share
+    name: shareService
   profiles:
     active: dev
 eureka:

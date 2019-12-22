@@ -16,7 +16,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
-@Transactional
+//@Transactional
 class BeSharedItemDaoTest {
     @Autowired
     private BeSharedItemDao beSharedItemDao;
@@ -24,16 +24,16 @@ class BeSharedItemDaoTest {
     @Test
     void addBeSharedItems() {
         BeSharedItem beSharedItem=new BeSharedItem();
-        beSharedItem.setBeDeleted(false);
+    //    beSharedItem.setBeDeleted(false);
         beSharedItem .setBeSharedUserId(1);
         beSharedItem.setGoodsId(1);
-        beSharedItem.setStatusCode(0);
+      //  beSharedItem.setStatusCode(0);
         beSharedItem.setSharerId(2);
         System.out.println("1"+beSharedItem.getGoodsId());
         BeSharedItem beSharedItem1=(BeSharedItem)beSharedItemDao.addBeSharedItems(beSharedItem);
 
-        System.out.println("1"+beSharedItem1.getGoodsId());
-        assertEquals(beSharedItem1.getGoodsId(),1);
+        System.out.println(beSharedItem1);
+
     }
 
     @Test

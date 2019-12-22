@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: footprint
+    name: footprintService
   profiles:
     active: dev
 

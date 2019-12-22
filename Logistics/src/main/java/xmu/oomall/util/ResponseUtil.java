@@ -36,7 +36,6 @@ import java.util.Map;
  * <li> 7xx，管理后台后端业务错误码，
  * 具体见litemall-wx-api模块的WxResponseCode。
  * </ul>
- *
  * @author Ke
  */
 public class ResponseUtil {
@@ -48,11 +47,11 @@ public class ResponseUtil {
     }
 
     public static Object ok(Object data) {
-        Map<String, Object> obj = new HashMap<String, Object>();
-        obj.put("errno", 0);
-        obj.put("errmsg", "成功");
-        obj.put("data", data);
-        return obj;
+            Map<String, Object> obj = new HashMap<String, Object>();
+            obj.put("errno", 0);
+            obj.put("errmsg", "成功");
+            obj.put("data", data);
+            return obj;
     }
 
     public static Object fail() {
