@@ -102,7 +102,7 @@ public class AfterSaleDaoTest {
     @Test
     public void updateByIdForAdmin() {
         AftersalesService aftersalesService = new AftersalesService();
-        aftersalesService.setStatusCode(4); //
+        aftersalesService.setStatusCode(2); //
         aftersalesService.setApplyReason("aaaaaaa");
         AftersalesService aftersalesService1 = afterSaleDao.updateAfterSaleByIdForAdmin(8, aftersalesService);
         if(aftersalesService1 == null){
