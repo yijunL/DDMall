@@ -23,9 +23,7 @@ public class BeSharedItemDao {
         if(beSharedItem1!=null)
             return null;
         else{
-            if(beSharedItem.getGmtCreate()==null)
                 beSharedItem.setGmtCreate(LocalDateTime.now());
-            if(beSharedItem.getGmtModified()==null)
                 beSharedItem.setGmtModified(LocalDateTime.now());
 
             beSharedItemMapper.insertSelective(beSharedItem);
