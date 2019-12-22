@@ -33,6 +33,8 @@ public class AddressDao {
             return null;
         if(addressPo.getGmtCreate()==null)
             addressPo.setGmtCreate(LocalDateTime.now());
+        if(addressPo.getGmtModified() == null)
+            addressPo.setGmtModified(LocalDateTime.now());
         oomallAddressMapper.insertSelective(addressPo);
         return addressPo;
     }

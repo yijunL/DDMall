@@ -45,9 +45,9 @@ public class CommentServiceImpl implements CommentService {
      * @return 0：失败 1：成功
      */
     @Override
-    public CommentPo addComment(CommentPo commentPo){
-        return commentDao.addComment(commentPo);
-    }
+        public CommentPo addComment(CommentPo commentPo){
+            return commentDao.addComment(commentPo);
+        }
 
     /**
      * 管理员删除评论

@@ -111,7 +111,13 @@ public class CommentDao {
     }
 
 
-
+    /**
+     * 管理员审核单条评论
+     *
+     * @param id
+     * @param commentPo
+     * @return CommentPo
+     */
     public CommentPo updateComment(Integer id,CommentPo commentPo){
         if(isArgsInvalid(commentPo)){
             return null;

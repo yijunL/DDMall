@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/shareService")
-public class ShareController {
+public abstract class ShareController implements ShareService {
     /**
      *
      */
@@ -48,7 +48,7 @@ public class ShareController {
     }
 
     /**
-     * 通过id获取分享规则
+     * 通过goodsid获取分享规则
      * @param request
      * @param id
      * @return ShareRulePo

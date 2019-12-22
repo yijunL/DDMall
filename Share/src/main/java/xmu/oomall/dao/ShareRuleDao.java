@@ -15,11 +15,20 @@ public class ShareRuleDao {
     @Autowired
     private OomallShareRuleMapper shareRuleMapper;
 
+
+    /**
+     * 获取分享规则，通过goodsID
+
+     */
     public ShareRulePo getShareRuleById(Integer id) {
         ShareRulePo sharerulepo = shareRuleMapper.findByGoodsId(id) ;
         return sharerulepo;
     }
 
+    /**
+     * 增添分享规则
+
+     */
     public ShareRulePo addShareRule(ShareRulePo sharerulePo) {
 
         ShareRulePo shareRule=shareRuleMapper.findByGoodsId(sharerulePo .getGoodsId());
@@ -44,6 +53,10 @@ public class ShareRuleDao {
         }
     }
 
+    /**
+     * 删除分享规则
+
+     */
 
     public boolean deleteShareRuleById(Integer id) {
 
@@ -59,6 +72,10 @@ public class ShareRuleDao {
         }
 
     }
+    /**
+     * 修改分享规则
+
+     */
 
     public ShareRulePo updateShareRule(ShareRulePo sharerulePo,Integer id) {
 
