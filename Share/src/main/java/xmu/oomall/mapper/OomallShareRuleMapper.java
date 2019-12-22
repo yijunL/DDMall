@@ -14,6 +14,8 @@ public interface OomallShareRuleMapper {
 
     int insertSelective(ShareRulePo shareRulePo);
 
+
+
     int updateById(@Param("updated") ShareRulePo updated, @Param("id") Integer id);
 
 

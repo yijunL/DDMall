@@ -8,6 +8,7 @@ public interface OomallShareItemMapper {
 
     int insertSelective(ShareItem shareItem);
 
+
     int updateById(@Param("updated") ShareItem updated, @Param("id") Integer id);
 
     int deleteById(@Param("id") Integer id, @Param("updated") ShareItem updated);

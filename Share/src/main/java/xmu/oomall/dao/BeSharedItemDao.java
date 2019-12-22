@@ -16,6 +16,7 @@ import java.util.List;
 public class BeSharedItemDao {
     @Autowired
     private OomallBeSharedItemMapper beSharedItemMapper;
+
     public BeSharedItem addBeSharedItems(BeSharedItem beSharedItem) {
 
         BeSharedItem  beSharedItem1=beSharedItemMapper.findByGoodsIdAndBeSharedUserIdAndSharerId(beSharedItem.getGoodsId(),

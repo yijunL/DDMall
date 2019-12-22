@@ -26,11 +26,11 @@ class BeSharedItemDaoTest {
         BeSharedItem beSharedItem=new BeSharedItem();
     //    beSharedItem.setBeDeleted(false);
         beSharedItem .setBeSharedUserId(1);
-        beSharedItem.setGoodsId(1);
+        beSharedItem.setGoodsId(10);
       //  beSharedItem.setStatusCode(0);
         beSharedItem.setSharerId(2);
         System.out.println("1"+beSharedItem.getGoodsId());
-        BeSharedItem beSharedItem1=(BeSharedItem)beSharedItemDao.addBeSharedItems(beSharedItem);
+        BeSharedItem beSharedItem1=beSharedItemDao.addBeSharedItems(beSharedItem);
 
         System.out.println(beSharedItem1);
 

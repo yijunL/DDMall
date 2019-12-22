@@ -1,6 +1,7 @@
 package xmu.oomall.mapper;
 import java.util.List;
 
+import com.mysql.cj.xdevapi.InsertStatement;
 import org.apache.ibatis.annotations.Param;
 import xmu.oomall.domain.BeSharedItem;
 
