@@ -94,7 +94,12 @@ public class CommentController {
      * @return 0:失败 1：成功
      */
     @PostMapping("/product/{id}/comments")
-    public Object addComment(@RequestParam Integer id,@RequestBody CommentPo commentPo){
+    public Object addComment(HttpServletRequest request,@RequestParam Integer id,@RequestBody CommentPo commentPo){
+        Integer userId=getUserId(request);
+        if (userId == null) {
+            return ResponseUtil.fail(660,"用户未登录");
+        }
+
         if(productValidate.validate(id)==null){
             return ResponseUtil.fail(902,"获取评论失败");
         }
@@ -117,13 +122,33 @@ public class CommentController {
      * @return ResponseUtil.ok()
      */
     @DeleteMapping("/comments/{id}")
-    public Object deleteComment(@RequestParam Integer id){
+    public Object deleteComment(HttpServletRequest request,@RequestParam Integer id) throws UnknownHostException {
+        Integer adminId=getUserId(request);
+        if (adminId == null) {
+            return ResponseUtil.fail(669,"管理员未登录");
+        }
+
+        Log log=new Log();
+        log.setAdminId(adminId);
+        log.setActionId(id);
+        log.setActions("查看评论");
+        log.setGmtCreate(LocalDateTime.now());
+        log.setGmtModified(LocalDateTime.now());
+        log.setType(3);
+        log.setIp(InetAddress.getLocalHost().toString());
+
         if(id==null){
+            log.setStatusCode(0);
+            addLog.addLog(log);
             return ResponseUtil.fail(905,"删除评论失败");
         } else{
             if(commentService.deleteComment(id)==0){
+                log.setStatusCode(0);
+                addLog.addLog(log);
                 return ResponseUtil.fail(905,"删除评论失败");
             } else{
+                log.setStatusCode(1);
+                addLog.addLog(log);
                 return ResponseUtil.ok();
             }
         }
@@ -147,9 +172,8 @@ public class CommentController {
 
          Integer adminId=getUserId(request);
         if (adminId == null) {
-            return ResponseUtil.fail(660,"用户未登录");
+            return ResponseUtil.fail(669,"管理员未登录");
         }
-
         if (limit == null || page == null || limit <= 0 || page <= 0) {
             return ResponseUtil.fail(902, "获取评论失败");
         } else {
@@ -193,12 +217,12 @@ public class CommentController {
     @PutMapping("/admin/comments/{id}")
     public Object updateCommentById(HttpServletRequest request, @RequestParam Integer id,
                                     @RequestBody CommentPo commentPo) throws UnknownHostException {
-        Integer userId=getUserId(request);
-        if (userId == null) {
-            return ResponseUtil.fail(660,"用户未登录");
+        Integer adminId=getUserId(request);
+        if (adminId == null) {
+            return ResponseUtil.fail(669,"管理员未登录");
         }
         Log log=new Log();
-        log.setAdminId(userId);
+        log.setAdminId(adminId);
         log.setActionId(id);
         log.setActions("审核评论");
         log.setGmtCreate(LocalDateTime.now());
