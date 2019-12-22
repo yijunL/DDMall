@@ -30,7 +30,7 @@ public class AfterSaleDao {
      * @return List<AftersalesService>
      */
     public List<AftersalesService> selectAfterSalesByCondition(Integer userId, Integer page, Integer limit) {
-        PageHelper.startPage(limit,page);
+        PageHelper.startPage(page, limit);
         List<AftersalesService> afterSaleServiceList = oomallAfterSaleMapper.selectAllByUserId(userId);
         return afterSaleServiceList;
     }
@@ -68,10 +68,6 @@ public class AfterSaleDao {
      * @return AftersalesService
      */
     public AftersalesService updateAfterSaleById(Integer id, AftersalesService afterSaleService) {
-        AftersalesService afterSaleService1 = oomallAfterSaleMapper.selectAllById(id);
-        if (afterSaleService1.getStatusCode() != 0) { //不可修改
-            return null;
-        }
         if (oomallAfterSaleMapper.updateById(LocalDateTime.now(), id, afterSaleService) > 0) { //
             AftersalesService afterSaleService2 = oomallAfterSaleMapper.selectAllById(id);
             return afterSaleService2;
@@ -88,7 +84,7 @@ public class AfterSaleDao {
      * @return List<AftersalesService>
      */
     public List<AftersalesService> selectAfterSalesByUserId(Integer userId, Integer page, Integer limit) {
-        PageHelper.startPage(limit,page);
+        PageHelper.startPage(page, limit);
         List<AftersalesService> afterSaleServiceList = oomallAfterSaleMapper.selectAllByUserId(userId);
         return afterSaleServiceList;
     }
@@ -100,12 +96,10 @@ public class AfterSaleDao {
      * @return AftersalesService
      */
     public AftersalesService addAfterSale(AftersalesService afterSaleService) {
-        //检查is_applied, orderItemId, number等
-        if (!afterSaleService.getBeApplied()) { //申请无效？
-            return null;
-        }
-        //afterSaleService.setGmtCreate(LocalDateTime.now()); //是否现在赋值？
-        afterSaleService.setApplyTime(LocalDateTime.now()); //
+        LocalDateTime time = LocalDateTime.now();
+        afterSaleService.setGmtCreate(time); //是否现在赋值？
+        afterSaleService.setGmtModified(time);
+        afterSaleService.setApplyTime(time); //
         if (oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
             System.out.println(afterSaleService.getId()); //
             return afterSaleService;
@@ -120,11 +114,10 @@ public class AfterSaleDao {
      * @return Response.ok()
      */
     public int deleteAfterSaleById(Integer id) {
-        if(oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id) == 2) { //应更新2行
+        if (oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id) == 2) { //应更新2行
             return 1;
-        } else {
-            return 0;
         }
+        return 0;
     }
 }
 
