@@ -96,8 +96,10 @@ public class AfterSaleDao {
      * @return AftersalesService
      */
     public AftersalesService addAfterSale(AftersalesService afterSaleService) {
-        //afterSaleService.setGmtCreate(LocalDateTime.now()); //是否现在赋值？
-        afterSaleService.setApplyTime(LocalDateTime.now()); //
+        LocalDateTime time = LocalDateTime.now();
+        afterSaleService.setGmtCreate(time); //是否现在赋值？
+        afterSaleService.setGmtModified(time);
+        afterSaleService.setApplyTime(time); //
         if (oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
             System.out.println(afterSaleService.getId()); //
             return afterSaleService;
@@ -112,18 +114,10 @@ public class AfterSaleDao {
      * @return Response.ok()
      */
     public int deleteAfterSaleById(Integer id) {
-        AftersalesService aftersalesService = oomallAfterSaleMapper.selectAllById(id);
-        if (aftersalesService != null && aftersalesService.getGmtModified() == null) { //未赋值的不计入更新行数
-            if (oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id) > 0) { //应更新2行
-                return 1;
-            }
-            return 0;
-        } else {
-            if (oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id) == 2) {
-                return 1;
-            }
-            return 0;
+        if (oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id) == 2) { //应更新2行
+            return 1;
         }
+        return 0;
     }
 }
 
