@@ -20,9 +20,10 @@ public class BeSharedItemDao {
 
         BeSharedItem  beSharedItem1=beSharedItemMapper.findByGoodsIdAndBeSharedUserIdAndSharerId(beSharedItem.getGoodsId(),
                 beSharedItem.getBeSharedUserId(),beSharedItem.getSharerId());
-        if(beSharedItem1!=null)
+        if(beSharedItem1!=null&&beSharedItem1.getBeDeleted()!=false)
             return null;
         else{
+               beSharedItem.setBirthTime(LocalDateTime.now());
                 beSharedItem.setGmtCreate(LocalDateTime.now());
                 beSharedItem.setGmtModified(LocalDateTime.now());
 
