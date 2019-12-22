@@ -82,6 +82,13 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      */
     @Override
     public AftersalesService updateAfterSaleByIdForAdmin(Integer id, AftersalesService afterSaleService) {
+        if (afterSaleService == null) {
+            return null;
+        }
+        Integer statusCode = afterSaleService.getStatusCode();
+        if(statusCode == null && (statusCode != 0 && statusCode != 1 && statusCode != 2)) {
+            return null;
+        }
         return afterSaleDao.updateAfterSaleByIdForAdmin(id, afterSaleService);
     }
 
@@ -95,6 +102,21 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      */
     @Override
     public AftersalesService updateAfterSaleById(Integer userId, Integer id, AftersalesService afterSaleService) {
+        if (afterSaleService == null) {
+            return null;
+        }
+        Integer statusCode = afterSaleService.getStatusCode();
+        if (statusCode != null && statusCode != 0) { //不可修改
+            return null;
+        }
+        Integer type = afterSaleService.getType();
+        if (type != null && (type != 0 && type != 1)) { //忽略不合法更新数值
+            afterSaleService.setType(null);
+        }
+        Integer number = afterSaleService.getNumber();
+        if (number != null && number <= 0) {
+            afterSaleService.setNumber(null);
+        }
         if (!userValidate.validate(userId)) {
             return null;
         }
@@ -126,6 +148,32 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      */
     @Override
     public AftersalesService addAfterSale(Integer userId, AftersalesService afterSaleService) {
+        /* 先判断不需要调用其他服务的部分，可能节约时间 */
+        if (afterSaleService == null) { //传值错误
+            return null;
+        }
+        /* 检查is_applied, orderItemId, number等 */
+        Boolean beDeleted = afterSaleService.getBeDeleted();
+        if (beDeleted != null && beDeleted == true) {
+            return null;
+        }
+        //是否插入beDeleted？
+        Boolean beApplied = afterSaleService.getBeApplied();
+        if (beApplied != null && beApplied == false) { //申请无效？
+            return null;
+        }
+        //是否插入beApplied？
+        Integer type = afterSaleService.getType();
+        if (type != null && type != 0 && type != 1) { //如果type有值(是否必须？)则必须取0或1
+            return null;
+        }
+        afterSaleService.setType(type);
+        Integer number = afterSaleService.getNumber();
+        if (number != null && number <= 0) { //如果number有值(是否必须？)则必须大于0件
+            return null;
+        }
+        afterSaleService.setNumber(number);
+        /* !! */
         if (!userValidate.validate(userId)) {
             return null;
         }
@@ -140,16 +188,6 @@ public class AfterSaleServiceImpl implements AfterSaleService {
             return null;
         }
         afterSaleService.setGoodsType(goodsType); //
-        Integer type = afterSaleService.getType();
-        if (type != null && type != 0 && type != 1) { //如果type有值(是否必须？)则必须取0或1
-            return null;
-        }
-        afterSaleService.setType(type);
-        Integer number = afterSaleService.getNumber();
-        if (number != null && number <= 0) { //如果number有值(是否必须？)则必须大于0件
-            return null;
-        }
-        afterSaleService.setNumber(number);
         return afterSaleDao.addAfterSale(afterSaleService);
     }
 
