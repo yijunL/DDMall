@@ -45,9 +45,9 @@ public class AddressDaoTest {
         addressPo.setPostalCode("123");
         addressPo.setConsignee("123");
         addressPo.setMobile("123");
-        addressPo.setUserId(3);
+        addressPo.setUserId(2);
         addressPo=addressDao.addAddress(addressPo);
-        assertEquals(addressPo.getUserId(),3);
+        assertEquals(addressPo.getUserId(),2);
     }
 
     @Test
