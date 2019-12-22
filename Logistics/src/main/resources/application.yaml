@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: logisticsService
+    name: 1-2LOGISTICS
   profiles:
     active: dev
 eureka:

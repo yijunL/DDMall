@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: collectionService
+    name: 1-2COLLECTION
   profiles:
     active: dev
 eureka:
