@@ -18,16 +18,16 @@ public class BeSharedItemDao {
     private OomallBeSharedItemMapper beSharedItemMapper;
     public BeSharedItem addBeSharedItems(BeSharedItem beSharedItem) {
 
-        if(beSharedItem.getId()!=null)
-            return null;
         BeSharedItem  beSharedItem1=beSharedItemMapper.findByGoodsIdAndBeSharedUserIdAndSharerId(beSharedItem.getGoodsId(),
                 beSharedItem.getBeSharedUserId(),beSharedItem.getSharerId());
         if(beSharedItem1!=null)
             return null;
         else{
-            beSharedItem.setGmtCreate(LocalDateTime.now());
-            beSharedItem.setGmtModified(LocalDateTime.now());
-            beSharedItem.setBirthTime(LocalDateTime.now());
+            if(beSharedItem.getGmtCreate()==null)
+                beSharedItem.setGmtCreate(LocalDateTime.now());
+            if(beSharedItem.getGmtModified()==null)
+                beSharedItem.setGmtModified(LocalDateTime.now());
+
             beSharedItemMapper.insertSelective(beSharedItem);
             return beSharedItem;
         }
