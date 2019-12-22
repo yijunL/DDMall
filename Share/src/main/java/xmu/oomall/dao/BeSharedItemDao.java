@@ -16,19 +16,33 @@ import java.util.List;
 public class BeSharedItemDao {
     @Autowired
     private OomallBeSharedItemMapper beSharedItemMapper;
+
     public BeSharedItem addBeSharedItems(BeSharedItem beSharedItem) {
 
         BeSharedItem  beSharedItem1=beSharedItemMapper.findByGoodsIdAndBeSharedUserIdAndSharerId(beSharedItem.getGoodsId(),
                 beSharedItem.getBeSharedUserId(),beSharedItem.getSharerId());
-        if(beSharedItem1!=null&&beSharedItem1.getBeDeleted()!=false)
-            return null;
-        else{
-               beSharedItem.setBirthTime(LocalDateTime.now());
-                beSharedItem.setGmtCreate(LocalDateTime.now());
-                beSharedItem.setGmtModified(LocalDateTime.now());
-
+        if(beSharedItem1==null)
+        {
+            beSharedItem.setBirthTime(LocalDateTime.now());
+            beSharedItem.setGmtCreate(LocalDateTime.now());
+            beSharedItem.setGmtModified(LocalDateTime.now());
+            beSharedItem.setStatusCode(0);
+            beSharedItem.setBeDeleted(false);
             beSharedItemMapper.insertSelective(beSharedItem);
             return beSharedItem;
+        }
+        else
+        {
+            if(beSharedItem1.getBeDeleted()==true)
+            {
+                beSharedItem1.setBeDeleted(false);
+                beSharedItemMapper.updateById(beSharedItem1,beSharedItem1.getId());
+                return beSharedItem1;
+            }
+            else
+            {
+                return null;
+            }
         }
 
     }
@@ -40,8 +54,6 @@ public class BeSharedItemDao {
 
         for(OrderItem orderItem:orderItemList) {
              beSharedItem = beSharedItemMapper.findByGoodsIdAndBeSharedUserId(orderItem.getGoodsId(),beSharedUserId);
-            System.out.println( beSharedItem);
-            System.out.println(1);
              if(beSharedItem!=null)
                  if(beSharedItem.getStatusCode()==0)
                    if((beSharedItem.getGmtCreate().plusDays(7)).isAfter(orderItem.getGmtCreate()))
@@ -49,7 +61,6 @@ public class BeSharedItemDao {
                  beSharedItem.setGmtModified(LocalDateTime.now());
                  beSharedItem.setStatusCode(1);
                  beSharedItemMapper.updateById(beSharedItem,beSharedItem.getId());
-                 System.out.println("111");
                  list.add(beSharedItem);
 
              }

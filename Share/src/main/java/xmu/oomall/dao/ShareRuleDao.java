@@ -22,25 +22,41 @@ public class ShareRuleDao {
 
     public ShareRulePo addShareRule(ShareRulePo sharerulePo) {
 
-        if(shareRuleMapper.findByGoodsId(sharerulePo .getGoodsId())!=null)
+        ShareRulePo shareRule=shareRuleMapper.findByGoodsId(sharerulePo .getGoodsId());
+        if(shareRule==null)
+        {
+            sharerulePo.setGmtCreate(LocalDateTime.now());
+            sharerulePo.setGmtModified((LocalDateTime.now()));
+            shareRuleMapper.insertSelective(sharerulePo);
+            return sharerulePo;
+        }
+        else if (shareRule.getBeDeleted()==true)
+        {
+            sharerulePo.setGmtCreate(LocalDateTime.now());
+            sharerulePo.setGmtModified(LocalDateTime.now());
+            shareRule.setBeDeleted(false);
+            shareRuleMapper.updateById(sharerulePo, shareRule.getId());
+            return sharerulePo;
+        }
+        else
+        {
             return null;
-        else{
-                sharerulePo.setGmtCreate(LocalDateTime.now());
-                sharerulePo.setGmtModified((LocalDateTime.now()));
-        shareRuleMapper.insertSelective(sharerulePo);
-        return sharerulePo;
         }
     }
 
 
     public boolean deleteShareRuleById(Integer id) {
 
-        if(shareRuleMapper.findById(id)==null)
+        ShareRulePo shareRulePo=shareRuleMapper.findById(id);
+        if(shareRulePo==null)
             return false;
        else
-        {if(shareRuleMapper.deleteById(id))
-           return true;
-        else return false;}
+        {
+            if(shareRulePo.getBeDeleted()==false)
+                return shareRuleMapper.deleteById(id);
+            else
+                return false;
+        }
 
     }
 
