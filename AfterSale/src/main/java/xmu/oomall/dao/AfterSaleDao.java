@@ -36,13 +36,24 @@ public class AfterSaleDao {
     }
 
     /**
+     * 用户根据id查询某一售后服务具体信息
+     *
+     * @param id: Integer
+     * @param userId: Integer
+     * @return AftersalesService
+     */
+    public AftersalesService selectAfterSaleById(Integer id, Integer userId) {
+        return oomallAfterSaleMapper.selectAllById(id, userId);
+    }
+
+    /**
      * 管理员根据id查询某一售后服务具体信息
      *
      * @param id: Integer
      * @return AftersalesService
      */
-    public AftersalesService selectAfterSaleById(Integer id) {
-        return oomallAfterSaleMapper.selectAllById(id);
+    public AftersalesService selectAfterSaleByIdForAdmin(Integer id) {
+        return oomallAfterSaleMapper.selectAllByIdForAdmin(id);
     }
 
     /**
@@ -54,7 +65,7 @@ public class AfterSaleDao {
      */
     public AftersalesService updateAfterSaleByIdForAdmin(Integer id, AftersalesService afterSaleService) {
         if (oomallAfterSaleMapper.updateByIdForAdmin(LocalDateTime.now(), id, afterSaleService) > 0) { //还是>1（==3）？
-            AftersalesService afterSaleService1 = oomallAfterSaleMapper.selectAllById(id);
+            AftersalesService afterSaleService1 = oomallAfterSaleMapper.selectAllByIdForAdmin(id);
             return afterSaleService1;
         }
         return null;
@@ -64,12 +75,13 @@ public class AfterSaleDao {
      * 用户根据id修改某一售后服务的信息
      *
      * @param id: Integer
+     * @param userId: Integer
      * @param afterSaleService: AftersalesService
      * @return AftersalesService
      */
-    public AftersalesService updateAfterSaleById(Integer id, AftersalesService afterSaleService) {
-        if (oomallAfterSaleMapper.updateById(LocalDateTime.now(), id, afterSaleService) > 0) { //
-            AftersalesService afterSaleService2 = oomallAfterSaleMapper.selectAllById(id);
+    public AftersalesService updateAfterSaleById(Integer id, Integer userId, AftersalesService afterSaleService) {
+        if (oomallAfterSaleMapper.updateById(LocalDateTime.now(), id, userId, afterSaleService) > 0) { //
+            AftersalesService afterSaleService2 = oomallAfterSaleMapper.selectAllById(id, userId);
             return afterSaleService2;
         }
         return null;
@@ -108,13 +120,14 @@ public class AfterSaleDao {
     }
 
     /**
-     * 用户逻辑删除某一个售后服务的信息
+     * 用户逻辑删除某一个售后服务的信息（需要判断userId是否相符）
      *
      * @param id: Integer
+     * @param userId: Integer
      * @return Response.ok()
      */
-    public int deleteAfterSaleById(Integer id) {
-        if (oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id) == 2) { //应更新2行
+    public int deleteAfterSaleById(Integer id, Integer userId) {
+        if (oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id, userId) >= 2) { //应更新2行
             return 1;
         }
         return 0;

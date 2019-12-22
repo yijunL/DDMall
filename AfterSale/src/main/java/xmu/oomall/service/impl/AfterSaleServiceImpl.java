@@ -47,11 +47,12 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      * 用户查询某一售后服务具体信息
      *
      * @param id: Integer
+     * @param userId: Integer
      * @return AftersalesService
      */
     @Override
-    public AftersalesService getAfterSaleById(Integer id) {
-        AftersalesService afterSaleService = afterSaleDao.selectAfterSaleById(id);
+    public AftersalesService getAfterSaleById(Integer id, Integer userId) {
+        AftersalesService afterSaleService = afterSaleDao.selectAfterSaleById(id, userId);
         if(afterSaleService != null) {
             System.out.println(afterSaleService.getGoodsType());//
         }
@@ -66,7 +67,7 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      */
     @Override
     public AftersalesService getAfterSaleByIdForAdmin(Integer id) {
-        AftersalesService afterSaleService = afterSaleDao.selectAfterSaleById(id);
+        AftersalesService afterSaleService = afterSaleDao.selectAfterSaleByIdForAdmin(id);
         if(afterSaleService != null) {
             System.out.println(afterSaleService.getGoodsType());//
         }
@@ -86,7 +87,7 @@ public class AfterSaleServiceImpl implements AfterSaleService {
             return null;
         }
         Integer statusCode = afterSaleService.getStatusCode();
-        if(statusCode == null && (statusCode != 0 && statusCode != 1 && statusCode != 2)) {
+        if (statusCode == null || (statusCode != 0 && statusCode != 1 && statusCode != 2)) {
             return null;
         }
         return afterSaleDao.updateAfterSaleByIdForAdmin(id, afterSaleService);
@@ -128,7 +129,7 @@ public class AfterSaleServiceImpl implements AfterSaleService {
         if (!userValidate.validate(userId)) {
             return null;
         }
-        return afterSaleDao.updateAfterSaleById(id, afterSaleService);
+        return afterSaleDao.updateAfterSaleById(id, userId, afterSaleService);
     }
 
     /**
@@ -212,7 +213,7 @@ public class AfterSaleServiceImpl implements AfterSaleService {
         if (!userValidate.validate(userId)) {
             return 0;
         }
-        return afterSaleDao.deleteAfterSaleById(id);
+        return afterSaleDao.deleteAfterSaleById(id, userId);
     }
 
 }
