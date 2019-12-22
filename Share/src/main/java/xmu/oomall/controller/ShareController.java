@@ -220,8 +220,9 @@ public class ShareController {
     public Object addBeSharedItems(HttpServletRequest request, @RequestBody BeSharedItem beSharedItem)  {
         Integer userId = getUserId(request);
         if (userId == null) {
-            return ResponseUtil.fail(660,"管理员未登录");
+            return ResponseUtil.fail(660,"用户未登录");
         }
+
 
         if(beSharedItem==null||beSharedItem.getBeSharedUserId()==null||beSharedItem.getGoodsId()==null||
         beSharedItem.getSharerId()==null)
