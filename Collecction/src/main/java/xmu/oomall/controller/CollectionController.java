@@ -108,10 +108,11 @@ public class CollectionController {
         if (id == null || id < 0) {
             return ResponseUtil.fail(762,"所删除的收藏不存在");
         }
-        if(collectionService.deleteCollection(id))
+        if(collectionService.deleteCollection(id)) {
             return ResponseUtil.ok();
-        else
+        } else {
             return ResponseUtil.fail(762,"收藏删除失败");
+        }
     }
 
 }
