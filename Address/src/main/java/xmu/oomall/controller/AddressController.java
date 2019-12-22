@@ -99,9 +99,6 @@ public class AddressController {
         if (error != null) {
             return error;
         }
-        if(addressPo.getGmtCreate() == null){
-            addressPo.setGmtCreate(LocalDateTime.now());
-        }
         if(addressPo.getBeDefault()){
             addressService.resetDefaultAddress(userId);
         }
@@ -133,14 +130,13 @@ public class AddressController {
         if(id==null || id < 0){
             return ResponseUtil.fail(752,"所修改地址不存在");
         }
-        if(addressPo.getGmtModified() == null){
-            addressPo.setGmtModified(LocalDateTime.now());
-        }
         AddressPo addressPo1=addressService.updateAddress(id,addressPo);
         if(addressPo1==null)
             return ResponseUtil.fail(752,"地址修改失败");
-        else
+        else {
+            addressPo1.setGmtModified(LocalDateTime.now());
             return ResponseUtil.ok(addressPo1);
+        }
     }
 
     /**
