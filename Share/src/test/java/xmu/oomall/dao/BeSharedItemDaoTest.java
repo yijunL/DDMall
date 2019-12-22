@@ -26,7 +26,7 @@ class BeSharedItemDaoTest {
         BeSharedItem beSharedItem=new BeSharedItem();
     //    beSharedItem.setBeDeleted(false);
         beSharedItem .setBeSharedUserId(1);
-        beSharedItem.setGoodsId(10);
+        beSharedItem.setGoodsId(11);
       //  beSharedItem.setStatusCode(0);
         beSharedItem.setSharerId(2);
         System.out.println("1"+beSharedItem.getGoodsId());

@@ -27,8 +27,11 @@ public class ShareRuleDao {
         else{
                 sharerulePo.setGmtCreate(LocalDateTime.now());
                 sharerulePo.setGmtModified((LocalDateTime.now()));
-        shareRuleMapper.insertSelective(sharerulePo);
-        return sharerulePo;
+        int ok=shareRuleMapper.insertSelective(sharerulePo);
+        if(ok==0)
+            return null;
+        else
+            return sharerulePo;
         }
     }
 
@@ -40,7 +43,8 @@ public class ShareRuleDao {
        else
         {if(shareRuleMapper.deleteById(id))
            return true;
-        else return false;}
+        else
+            return false;}
 
     }
 
