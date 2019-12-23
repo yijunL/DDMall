@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 @SpringBootTest
 //@Transactional //
 public class FootprintControllerTest {
-    @Autowired
-    private FootprintController footprintController;
-
-    @Test
-    public void addFootprintTest() {
-
-    }
+//    @Autowired
+//    private FootprintController footprintController;
+//
+//    @Test
+//    public void addFootprintTest() {
+//
+//    }
 
 //    @Test
 //    public void addFootprintTest() {

@@ -32,6 +32,8 @@ class CommentDaoTest {
                 forEach(comment -> System.out.println(comment.getId()));*/
 
      /* System.out.println(commentDao.selectComment(2).getId());*/
+
+       // commentDao.deleteComment(1);
     }
 
     @Test
@@ -43,7 +45,7 @@ class CommentDaoTest {
 
     @Test
     void deleteComment() {
-        commentDao.deleteComment(7);
+        //commentDao.deleteComment(7);
     }
 
     @Test
