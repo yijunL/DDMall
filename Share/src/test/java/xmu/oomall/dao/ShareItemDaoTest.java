@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 class ShareItemDaoTest {
-
+/*
     @Autowired
     private ShareItemDao shareItemDao;
     @Autowired
@@ -58,4 +58,6 @@ class ShareItemDaoTest {
         System.out.println(s);
 
     }
+
+ */
 }

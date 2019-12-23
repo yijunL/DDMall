@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 //@Transactional
 class ShareRuleDaoTest {
 
-    @Autowired
+   /* @Autowired
     private ShareRuleDao shareRuleDao;
 
     @Test
@@ -45,4 +45,6 @@ class ShareRuleDaoTest {
         ShareRulePo shareRulePo1= shareRuleDao.updateShareRule(shareRulePo,2);
         assertEquals(shareRulePo1.getGoodsId(),666);
     }
+
+    */
 }
