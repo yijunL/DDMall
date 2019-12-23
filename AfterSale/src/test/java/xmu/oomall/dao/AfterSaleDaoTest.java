@@ -1,17 +1,17 @@
-//package xmu.oomall.dao;
-//
-//import org.junit.jupiter.api.Test;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.transaction.annotation.Transactional;
-//import xmu.oomall.domain.AftersalesService;
-//
-//import java.time.LocalDateTime;
-//import java.util.List;
-//
-//@SpringBootTest
-//@Transactional //!!
-//public class AfterSaleDaoTest {
+package xmu.oomall.dao;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+import xmu.oomall.domain.AftersalesService;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@SpringBootTest
+@Transactional //!!
+public class AfterSaleDaoTest {
 //    @Autowired
 //    private AfterSaleDao afterSaleDao;
 //
@@ -110,4 +110,4 @@
 //            System.out.println("updateAdminNull");
 //        }
 //    }
-//}
+}

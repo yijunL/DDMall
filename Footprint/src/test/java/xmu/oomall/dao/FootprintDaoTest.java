@@ -1,17 +1,17 @@
-//package xmu.oomall.dao;
-//
-//import org.junit.jupiter.api.Test;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.context.SpringBootTest;
-//import xmu.oomall.dao.FootprintDao;
-//import xmu.oomall.domain.FootprintItem;
-//import xmu.oomall.domain.FootprintItemPo;
-//
-//import java.util.List;
-//
-//@SpringBootTest
-////@Transactional //
-//public class FootprintDaoTest {
+package xmu.oomall.dao;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import xmu.oomall.dao.FootprintDao;
+import xmu.oomall.domain.FootprintItem;
+import xmu.oomall.domain.FootprintItemPo;
+
+import java.util.List;
+
+@SpringBootTest
+//@Transactional //
+public class FootprintDaoTest {
 //    @Autowired
 //    private FootprintDao footprintDao;
 //
@@ -67,4 +67,4 @@
 //            }
 //        }
 //    }
-//}
+}
