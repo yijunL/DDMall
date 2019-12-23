@@ -57,8 +57,6 @@ public class FootprintDao {
      * @return List<FootprintItem>
      */
     public List<FootprintItem> selectByCondition(Integer userId, Integer goodsId, Integer page, Integer limit) { //need to be updated
-        /* 判断userId与goodsId是否合法 */
-        //System.out.println("userId: " + userId + " and goodsId: " + goodsId); //
         PageHelper.startPage(page, limit);
         List<FootprintItemPo> footprintItemPos = oomallFootprintMapper.selectByCondition(userId, goodsId);
         List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
@@ -71,15 +69,15 @@ public class FootprintDao {
      * @param footprintItemPo: FootprintItemPo
      * @return FootprintItemPo
      */
-    public FootprintItemPo addFootprint(FootprintItemPo footprintItemPo) { //需在controller层进行合法性判断
-
-            footprintItemPo.setGmtCreate(LocalDateTime.now());
-            footprintItemPo.setBirthTime(LocalDateTime.now());
-        if(footprintItemPo.getGoodsId()==null||footprintItemPo.getUserId()==null){
+    public FootprintItemPo addFootprint(FootprintItemPo footprintItemPo) {
+        if(footprintItemPo.getGoodsId() == null
+            || footprintItemPo.getUserId() == null) {
             return null;
         }
+        LocalDateTime time = LocalDateTime.now();
+        footprintItemPo.setGmtCreate(time);
+        footprintItemPo.setBirthTime(time);
         if (oomallFootprintMapper.insertSelective(footprintItemPo) > 0) {
-            //System.out.println("footprintItemPo-id: " + footprintItemPo.getId());
             return footprintItemPo;
         } else {
             return null;
@@ -104,7 +102,7 @@ public class FootprintDao {
      * @return FootprintItem
      */
     private List<FootprintItem> footprintItemList(List<FootprintItemPo> footprintItemPoList) {
-        if (footprintItemPoList == null ){
+        if (footprintItemPoList == null ) {
             return null;
         }
         List<FootprintItem> footprintItemList = new ArrayList<>();

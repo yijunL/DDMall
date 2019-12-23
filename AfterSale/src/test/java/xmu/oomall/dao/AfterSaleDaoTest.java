@@ -53,7 +53,7 @@ public class AfterSaleDaoTest {
 
         AftersalesService aftersalesService1 = afterSaleDao.selectAfterSaleById(5, 23);
         if(aftersalesService1 != null) {
-            System.out.println(aftersalesService1.getId() + aftersalesService1.getGoodsType());
+            System.out.println(aftersalesService1.getId() + aftersalesService1.getApplyReason());
         }
     }
 
