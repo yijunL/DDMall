@@ -3,13 +3,14 @@ package xmu.oomall.dao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import xmu.oomall.domain.AftersalesService;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
-//@Transactional //
+@Transactional //
 public class AfterSaleDaoTest {
     @Autowired
     private AfterSaleDao afterSaleDao;
@@ -79,15 +80,15 @@ public class AfterSaleDaoTest {
         }
     }
 
-    @Test
-    public void deleteByIdTest() {
-        if (afterSaleDao.deleteAfterSaleById(11, 23) == 1) {
-            System.out.println(11);
-        }
-        if (afterSaleDao.deleteAfterSaleById(12,23) == 1) {
-            System.out.println(12);
-        }
-    }
+//    @Test
+//    public void deleteByIdTest() {
+//        if (afterSaleDao.deleteAfterSaleById(11, 23) == 1) {
+//            System.out.println(11);
+//        }
+//        if (afterSaleDao.deleteAfterSaleById(12,23) == 1) {
+//            System.out.println(12);
+//        }
+//    }
 
     @Test
     public void updateById() {
