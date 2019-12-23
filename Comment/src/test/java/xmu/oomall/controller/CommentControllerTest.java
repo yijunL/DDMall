@@ -26,14 +26,14 @@ public class CommentControllerTest {
 
         //commentController.getCommentsById(1);
         //44,55,"yukeyishishabi",0,4,77,null,null,0
-        CommentPo commentPo= new CommentPo();
+       // CommentPo commentPo= new CommentPo();
         //commentPo.setBeDeleted(false);
-        commentPo.setContent("yukeyishishabi111");
-        commentPo.setId(11);
-        commentPo.setProductId(222);
-        commentPo.setStar(4);
+        //commentPo.setContent("yukeyishishabi111");
+        //commentPo.setId(11);
+        //commentPo.setProductId(222);
+        //commentPo.setStar(4);
         //commentPo.setStatusCode(5);
-        commentPo.setUserId(333);
+       // commentPo.setUserId(333);
         //commentPo.setBeDeleted(null);
 
         //commentController.addComment(null,1,commentPo);
