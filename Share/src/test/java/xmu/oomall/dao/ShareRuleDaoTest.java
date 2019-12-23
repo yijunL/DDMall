@@ -12,21 +12,28 @@ import static org.junit.jupiter.api.Assertions.*;
 //@Transactional
 class ShareRuleDaoTest {
 
-   /* @Autowired
+   @Autowired
     private ShareRuleDao shareRuleDao;
 
     @Test
     void getShareRuleById() {
-       ShareRulePo shareRulePo= shareRuleDao.getShareRuleById(1);
-        assertEquals(shareRulePo.getId(),5);
+        ShareRulePo shareRulePo = shareRuleDao.getShareRuleById(1006239);
+
+        assertEquals(1001002, shareRulePo.getId());
+        assertEquals("{\"strategy\": [{\"lowerbound\":\"0\", \"upperbound\":\"1\", \"rate\":\"0.5\"}," +
+                        "{\"lowerbound\":\"2\", \"upperbound\":\"10\", \"rate\":\"0.7\"},{\"lowerbound\":\"11\", \"upperbound\":\"30\", \"rate\":\"1\"}," +
+                        "{\"lowerbound\":\"31\", \"upperbound\":\"100\", \"rate\":\"1.5\"}],\"type\":\"0\"}",
+                shareRulePo.getShareLevelStrategy());
     }
 
     @Test
     void addShareRule() {
         ShareRulePo shareRulePo=new ShareRulePo();
-        shareRulePo.setGoodsId(44);
+        shareRulePo.setGoodsId(1006239);
         shareRulePo.setBeDeleted(false);
-        shareRulePo.setShareLevelStrategy(" {\"strategy\": [{\"lowerbound\":10, \"upperbound\":19, \"rate\":0.8},{\"lowerbound\":20, \"upperbound\":29, \"rate\":0.9}], \"type\": 0}");
+        shareRulePo.setShareLevelStrategy("{\"strategy\": [{\"lowerbound\":\"0\", \"upperbound\":\"1\", \"rate\":\"0.5\"}," +
+                "{\"lowerbound\":\"2\", \"upperbound\":\"10\", \"rate\":\"0.7\"},{\"lowerbound\":\"11\", \"upperbound\":\"30\", \"rate\":\"1\"}," +
+                "{\"lowerbound\":\"31\", \"upperbound\":\"100\", \"rate\":\"1.5\"}],\"type\":\"0\"}");
         ShareRulePo shareRulePo1=shareRuleDao.addShareRule(shareRulePo);
 
         System.out.println(shareRulePo1);
@@ -46,5 +53,5 @@ class ShareRuleDaoTest {
         assertEquals(shareRulePo1.getGoodsId(),666);
     }
 
-    */
+
 }

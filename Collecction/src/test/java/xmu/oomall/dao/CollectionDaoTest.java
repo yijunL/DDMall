@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 @Transactional
 public class CollectionDaoTest {
-    @Autowired
+   /* @Autowired
     private CollectionDao collectionDao;
 
     @Test
@@ -38,4 +38,6 @@ public class CollectionDaoTest {
     {
         collectionDao.deleteCollection(1);
     }
+    */
+
 }
