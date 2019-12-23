@@ -14,7 +14,7 @@ import java.util.List;
 public class FootprintDaoTest {
 //    @Autowired
 //    private FootprintDao footprintDao;
-//
+
 //    @Test
 //    public void addFootprintTest() {
 //        FootprintItemPo footprintItemPo = new FootprintItemPo();
@@ -29,7 +29,7 @@ public class FootprintDaoTest {
 //        footprintItemPo1.setGoodsId(24);
 //        footprintDao.addFootprint(footprintItemPo1);
 //    }
-//
+
 //    @Test
 //    public void selectFootprintTest() {
 //        List<FootprintItem> footprintItemList1 = footprintDao.selectByUserId(12, 1, 10),
@@ -46,11 +46,11 @@ public class FootprintDaoTest {
 //            System.out.println(footprintItemList2.size());
 //        }
 //    }
-//
+
 //    @Test
 //    public void selectFootprintByConditionTest() {
-//        List<FootprintItem> footprintItemList1 = footprintDao.selectByCondition(12, 96,1, 10),
-//                footprintItemList2 = footprintDao.selectByCondition(19, 97, 1, 10);
+//        List<FootprintItem> footprintItemList1 = footprintDao.selectByCondition(null, 111,1, 10),
+//                footprintItemList2 = footprintDao.selectByCondition(19, null, 1, 10);
 //        if (footprintItemList1 == null) {
 //            System.out.println("null1");
 //        } else {
