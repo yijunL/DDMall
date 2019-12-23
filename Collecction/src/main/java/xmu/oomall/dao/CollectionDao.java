@@ -55,14 +55,4 @@ public class CollectionDao {
         return oomallCollectItemMapper.deleteById(id);
     }
 
-
-    /**
-     *将collectItemPo转换成collectItem
-     *
-     * @return collectItems
-     */
-//    private CollectItem collectItems(CollectItemPo collectItemPo){
-//        CollectItem collectItem = new CollectItem();
-//        return Copyer.Copy(collectItemPo,collectItem)?collectItem:null;
-//    }
 }

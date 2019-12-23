@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: commentService
+    name: 1-2COMMENT
   profiles:
     active: dev
 

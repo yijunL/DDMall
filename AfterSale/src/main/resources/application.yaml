@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: aftersalesService
+    name: 1-2AFTERSALE
   profiles:
     active: dev
 

@@ -10,11 +10,13 @@ public interface OomallAfterSaleMapper {
 
     int insertSelective(AftersalesService afterSaleService);
 
-    AftersalesService selectAllById(@Param("id")Integer id);
+    AftersalesService selectAllById(@Param("id")Integer id, @Param("userId")Integer userId);
 
-    int deleteById(@Param("updatedGmtModified") LocalDateTime updatedGmtModified, @Param("id")Integer id);
+    AftersalesService selectAllByIdForAdmin(@Param(("id"))Integer id);
 
-    int updateById(@Param("updatedGmtModified") LocalDateTime updatedGmtModified, @Param("id")Integer id, @Param("updated")AftersalesService updated);
+    int deleteById(@Param("updatedGmtModified") LocalDateTime updatedGmtModified, @Param("id")Integer id, @Param("userId")Integer userId);
+
+    int updateById(@Param("updatedGmtModified") LocalDateTime updatedGmtModified, @Param("id")Integer id, @Param("userId")Integer userId, @Param("updated")AftersalesService updated);
 
     int updateByIdForAdmin(@Param("updatedGmtModified") LocalDateTime updatedGmtModified, @Param("id")Integer id, @Param("updated")AftersalesService updated);
 

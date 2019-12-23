@@ -150,8 +150,13 @@ public class AfterSaleController {
     public Object getAfterSaleById(HttpServletRequest request, @PathVariable Integer id) {
         if (id == null) {
             return ResponseUtil.fail(691, "获取售后服务失败");
-        } else {
-            AftersalesService afterSaleService1 = afterSaleService.getAfterSaleById(id);
+        }
+        Integer userId = getUserId(request);
+        if(userId == null) {
+            return null;
+        }
+        else {
+            AftersalesService afterSaleService1 = afterSaleService.getAfterSaleById(id, userId);
             if (afterSaleService1 == null) {
                 return ResponseUtil.fail(691, "获取售后服务失败"); //
             } else {

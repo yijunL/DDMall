@@ -35,6 +35,4 @@ public class CollectionServiceImpl implements CollectionService {
         return collectionDao.deleteCollection(id);
     };
 
-
-
 }
