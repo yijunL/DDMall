@@ -39,6 +39,7 @@ public class FootprintDaoTest {
         } else {
             System.out.println(footprintItemList1.size());
         }
+        System.out.println("Board");
         if (footprintItemList2 == null) {
             System.out.println("null2");
         } else {
@@ -48,7 +49,7 @@ public class FootprintDaoTest {
 
     @Test
     public void selectFootprintByConditionTest() {
-        List<FootprintItem> footprintItemList1 = footprintDao.selectByCondition(12, null,1, 10),
+        List<FootprintItem> footprintItemList1 = footprintDao.selectByCondition(12, 96,1, 10),
                 footprintItemList2 = footprintDao.selectByCondition(19, 97, 1, 10);
         if (footprintItemList1 == null) {
             System.out.println("null1");
@@ -57,6 +58,7 @@ public class FootprintDaoTest {
                 System.out.println(footprintItem.getId());
             }
         }
+        System.out.println("Board");
         if (footprintItemList2 == null) {
             System.out.println("null2");
         } else {
