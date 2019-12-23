@@ -192,7 +192,6 @@ public class CommentController {
             log.setGmtModified(LocalDateTime.now());
             log.setType(0);
             log.setIp(InetAddress.getLocalHost().toString());
-
             List<Comment> commentList;
             if (userId == null && productId == null) {
                 commentList = commentService.getAllComments(limit, page);
