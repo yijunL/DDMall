@@ -15,56 +15,50 @@ public class FootprintDaoTest {
     @Autowired
     private FootprintDao footprintDao;
 
-//    @Test
-//    public void addFootprintTest() {
-//        FootprintItemPo footprintItemPo = new FootprintItemPo();
-//        footprintItemPo.setId(23);
-//        footprintItemPo.setUserId(12);
-//        footprintItemPo.setGoodsId(97);
-//        footprintDao.addFootprint(footprintItemPo);
-//
-//        FootprintItemPo footprintItemPo1 = new FootprintItemPo();
-//        footprintItemPo1.setId(3);
-//        footprintItemPo1.setUserId(19);
-//        footprintItemPo1.setGoodsId(24);
-//        footprintDao.addFootprint(footprintItemPo1);
-//    }
+    @Test
+    public void addFootprintTest() {
+        FootprintItemPo footprintItemPo = new FootprintItemPo();
+        footprintItemPo.setId(23);
+        footprintItemPo.setUserId(12);
+        footprintItemPo.setGoodsId(97);
+        footprintDao.addFootprint(footprintItemPo);
 
-//    @Test
-//    public void selectFootprintTest() {
-//        List<FootprintItem> footprintItemList1 = footprintDao.selectByUserId(12, 1, 10),
-//                footprintItemList2 = footprintDao.selectByUserId(11, 1, 10);
-//        if (footprintItemList1 == null) {
-//            System.out.println("null1");
-//        } else {
-//            System.out.println(footprintItemList1.size());
-//        }
-//        System.out.println("Board");
-//        if (footprintItemList2 == null) {
-//            System.out.println("null2");
-//        } else {
-//            System.out.println(footprintItemList2.size());
-//        }
-//    }
+        FootprintItemPo footprintItemPo1 = new FootprintItemPo();
+        footprintItemPo1.setId(3);
+        footprintItemPo1.setUserId(19);
+        footprintItemPo1.setGoodsId(24);
+        footprintDao.addFootprint(footprintItemPo1);
+    }
 
     @Test
-    public void selectFootprintByConditionTest() {
-        List<FootprintItem> footprintItemList1 = footprintDao.selectByCondition(null, 111,1, 10),
-                footprintItemList2 = footprintDao.selectByCondition(null, null, 1, 1000);
+    public void selectFootprintTest() {
+        List<FootprintItem> footprintItemList1 = footprintDao.selectByUserId(12, 1, 10),
+                footprintItemList2 = footprintDao.selectByUserId(11, 1, 10);
         if (footprintItemList1 == null) {
             System.out.println("null1");
         } else {
-            for (FootprintItem footprintItem : footprintItemList1) {
-                System.out.println(footprintItem.getId());
-            }
+            System.out.println(footprintItemList1.size());
         }
-        System.out.println("Board");
         if (footprintItemList2 == null) {
             System.out.println("null2");
         } else {
-            for (FootprintItem footprintItem : footprintItemList2) {
-                System.out.println(footprintItem.getId());
-            }
+            System.out.println(footprintItemList2.size());
+        }
+    }
+
+    @Test
+    public void selectFootprintByConditionTest() {
+        List<FootprintItem> footprintItemList1 = footprintDao.selectByUserId(12, 1, 10),
+                footprintItemList2 = footprintDao.selectByUserId(11, 1, 10);
+        if (footprintItemList1 == null) {
+            System.out.println("null1");
+        } else {
+            System.out.println(footprintItemList1.size());
+        }
+        if (footprintItemList2 == null) {
+            System.out.println("null2");
+        } else {
+            System.out.println(footprintItemList2.size());
         }
     }
 }
