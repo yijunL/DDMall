@@ -66,7 +66,7 @@ public class AfterSaleController {
      */
     @GetMapping("/admin/afterSaleServices")
     public Object listAfterSalesByCondition(HttpServletRequest request, @RequestParam Integer userId, @RequestParam Integer page, @RequestParam Integer limit) throws UnknownHostException {
-        Integer adminId = getAdminId(request);
+        Integer adminId = getUserId(request);
         if (adminId == null) {
             return ResponseUtil.fail(669, "管理员未登录");
         }
@@ -109,7 +109,7 @@ public class AfterSaleController {
      */
     @GetMapping("/admin/afterSaleServices/{id}")
     public Object getAfterSaleByIdForAdmin(HttpServletRequest request, @PathVariable Integer id) throws UnknownHostException {
-        Integer adminId = getAdminId(request);
+        Integer adminId = getUserId(request);
         if (adminId == null) {
             return ResponseUtil.fail(669, "管理员未登录");
         }
@@ -154,7 +154,7 @@ public class AfterSaleController {
             return ResponseUtil.fail(691, "获取售后服务失败");
         }
         Integer userId = getUserId(request);
-        if(userId == null) {
+        if (userId == null) {
             return ResponseUtil.fail(660, "用户未登录");
         }
         else {
