@@ -30,7 +30,6 @@
             <if test="goodsType!=null">goods_type,</if>
             <if test="applyTime!=null">apply_time,</if>
             <if test="applyReason!=null">apply_reason,</if>
-            <if test="endTime!=null">end_time,</if>
             <if test="type!=null">type,</if>
             <if test="beApplied!=null">is_applied,</if>
             <if test="number!=null">number,</if>
@@ -46,7 +45,6 @@
             <if test="goodsType!=null">#{goodsType,jdbcType=INTEGER},</if>
             <if test="applyTime!=null">#{applyTime,jdbcType=TIMESTAMP},</if>
             <if test="applyReason!=null">#{applyReason,jdbcType=VARCHAR},</if>
-            <if test="endTime!=null">#{endTime,jdbcType=TIMESTAMP},</if>
             <if test="type!=null">#{type,jdbcType=INTEGER},</if>
             <if test="beApplied!=null">#{beApplied,jdbcType=TINYINT},</if>
             <if test="number!=null">#{number,jdbcType=INTEGER},</if>
@@ -137,52 +135,4 @@
         where user_id=#{userId,jdbcType=BIGINT}
     </select>
 
-    <!--    <update id="updateByIdForAdmin">-->
-<!--        update oomall_aftersales_service-->
-<!--        <set>-->
-<!--            <if test="updated.id != null">-->
-<!--                id = #{updated.id,jdbcType=BIGINT},-->
-<!--            </if>-->
-<!--            <if test="updated.userId != null">-->
-<!--                user_id = #{updated.userId,jdbcType=BIGINT},-->
-<!--            </if>-->
-<!--            <if test="updated.gmtCreate != null">-->
-<!--                gmt_create = #{updated.gmtCreate,jdbcType=TIMESTAMP},-->
-<!--            </if>-->
-<!--            <if test="updated.gmtModified != null">-->
-<!--                gmt_modified = #{updated.gmtModified,jdbcType=TIMESTAMP},-->
-<!--            </if>-->
-<!--            <if test="updated.beDeleted != null">-->
-<!--                is_deleted = #{updated.beDeleted,jdbcType=TINYINT},-->
-<!--            </if>-->
-<!--            <if test="updated.goodsType != null">-->
-<!--                goods_type = #{updated.goodsType,jdbcType=INTEGER},-->
-<!--            </if>-->
-<!--            <if test="updated.applyTime != null">-->
-<!--                apply_time = #{updated.applyTime,jdbcType=TIMESTAMP},-->
-<!--            </if>-->
-<!--            <if test="updated.applyReason != null">-->
-<!--                apply_reason = #{updated.applyReason,jdbcType=VARCHAR},-->
-<!--            </if>-->
-<!--            <if test="updated.endTime != null">-->
-<!--                end_time = #{updated.endTime,jdbcType=TIMESTAMP},-->
-<!--            </if>-->
-<!--            <if test="updated.type != null">-->
-<!--                type = #{updated.type,jdbcType=INTEGER},-->
-<!--            </if>-->
-<!--            <if test="updated.beApplied != null">-->
-<!--                is_applied = #{updated.beApplied,jdbcType=TINYINT},-->
-<!--            </if>-->
-<!--            <if test="updated.statusCode != null">-->
-<!--                status = #{updated.statusCode,jdbcType=TINYINT},-->
-<!--            </if>-->
-<!--            <if test="updated.number != null">-->
-<!--                number = #{updated.number,jdbcType=INTEGER},-->
-<!--            </if>-->
-<!--            <if test="updated.orderItemId != null">-->
-<!--                order_item_id = #{updated.orderItemId,jdbcType=BIGINT},-->
-<!--            </if>-->
-<!--        </set>-->
-<!--        where id=#{id,jdbcType=BIGINT}-->
-<!--    </update>-->
 </mapper>

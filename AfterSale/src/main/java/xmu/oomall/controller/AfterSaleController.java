@@ -67,15 +67,16 @@ public class AfterSaleController {
     @GetMapping("/admin/afterSaleServices")
     public Object listAfterSalesByCondition(HttpServletRequest request, @RequestParam Integer userId, @RequestParam Integer page, @RequestParam Integer limit) throws UnknownHostException {
         Integer adminId = getAdminId(request);
-        if(adminId == null) {
+        if (adminId == null) {
             return ResponseUtil.fail(669, "管理员未登录");
         }
         Log log = new Log();
         log.setAdminId(adminId);
         log.setActionId(userId);
         log.setActions("查询售后服务列表");
-        log.setGmtCreate(LocalDateTime.now());
-        log.setGmtModified(LocalDateTime.now());
+        LocalDateTime localDateTime = LocalDateTime.now();
+        log.setGmtCreate(localDateTime);
+        log.setGmtModified(localDateTime);
         log.setType(0); //操作类型
         log.setIp(InetAddress.getLocalHost().toString());
         if (userId == null) {
@@ -109,15 +110,16 @@ public class AfterSaleController {
     @GetMapping("/admin/afterSaleServices/{id}")
     public Object getAfterSaleByIdForAdmin(HttpServletRequest request, @PathVariable Integer id) throws UnknownHostException {
         Integer adminId = getAdminId(request);
-        if(adminId == null) {
+        if (adminId == null) {
             return ResponseUtil.fail(669, "管理员未登录");
         }
         Log log = new Log();
         log.setAdminId(adminId);
         log.setActionId(id);
         log.setActions("查询售后服务");
-        log.setGmtCreate(LocalDateTime.now());
-        log.setGmtModified(LocalDateTime.now());
+        LocalDateTime localDateTime = LocalDateTime.now();
+        log.setGmtCreate(localDateTime);
+        log.setGmtModified(localDateTime);
         log.setType(0); //操作类型
         log.setIp(InetAddress.getLocalHost().toString());
         if (id == null) {
@@ -131,7 +133,7 @@ public class AfterSaleController {
                 addLog.addLog(log);
                 return ResponseUtil.fail(691, "获取售后服务失败"); //
             } else {
-                System.out.println("ok"); //
+                /* System.out.println("ok"); */
                 log.setStatusCode(1);
                 addLog.addLog(log);
                 return ResponseUtil.ok(afterSaleService1);
@@ -141,7 +143,7 @@ public class AfterSaleController {
 
     /* 重复的方法——用户 */
     /**
-     * 用户查询某一售后服务（用户是否必须登录才能浏览售后？）
+     * 用户查询某一（自己的）售后服务
      *
      * @param id: Integer
      * @return AftersalesService
@@ -160,7 +162,7 @@ public class AfterSaleController {
             if (afterSaleService1 == null) {
                 return ResponseUtil.fail(691, "获取售后服务失败"); //
             } else {
-                System.out.println("ok"); //
+                /* System.out.println("ok"); */
                 return ResponseUtil.ok(afterSaleService1);
             }
         }
@@ -176,15 +178,16 @@ public class AfterSaleController {
     @PutMapping("/admin/afterSaleServices/{id}")
     public Object updateAfterSaleByIdForAdmin(HttpServletRequest request, @PathVariable Integer id, @RequestBody AftersalesService afterSaleService1) throws UnknownHostException {
         Integer adminId = getAdminId(request);
-        if(adminId == null) {
-            return ResponseUtil.fail(660, "管理员未登录");
+        if (adminId == null) {
+            return ResponseUtil.fail(669, "管理员未登录");
         }
         Log log = new Log();
         log.setAdminId(adminId);
         log.setActionId(id);
         log.setActions("修改售后服务");
-        log.setGmtCreate(LocalDateTime.now());
-        log.setGmtModified(LocalDateTime.now());
+        LocalDateTime localDateTime = LocalDateTime.now();
+        log.setGmtCreate(localDateTime);
+        log.setGmtModified(localDateTime);
         log.setType(2); //操作类型
         log.setIp(InetAddress.getLocalHost().toString());
         if (id == null) {

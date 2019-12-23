@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 //@Transactional
 class ShareRuleDaoTest {
-
+/*
    @Autowired
     private ShareRuleDao shareRuleDao;
 
@@ -53,5 +53,7 @@ class ShareRuleDaoTest {
         assertEquals(shareRulePo1.getGoodsId(),666);
     }
 
+
+ */
 
 }
