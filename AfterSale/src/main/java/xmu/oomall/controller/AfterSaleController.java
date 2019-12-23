@@ -284,7 +284,7 @@ public class AfterSaleController {
             if(afterSaleService2 != null) {
                 return ResponseUtil.ok(afterSaleService2);
             } else {
-                System.out.println("bad!"); //!!
+                /* System.out.println("bad!"); */
                 return ResponseUtil.fail(692, "申请售后服务失败");
             }
         }
