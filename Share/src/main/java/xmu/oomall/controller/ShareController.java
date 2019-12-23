@@ -24,6 +24,8 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/shareService")
+//,produces = "textml;charset=utf-8"
+
 public abstract class ShareController implements ShareService {
     /**
      *
