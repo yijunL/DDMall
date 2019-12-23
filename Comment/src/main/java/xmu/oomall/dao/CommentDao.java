@@ -134,7 +134,7 @@ public class CommentDao {
 
     private boolean isArgsInvalid(CommentPo commentPo)
     {
-        if(commentPo.getStar()<0||commentPo.getStar()>5){
+        if(commentPo.getStar()<1||commentPo.getStar()>5){
             return true;
         }
         if(commentPo.getStatusCode()<0||commentPo.getStatusCode()>2){

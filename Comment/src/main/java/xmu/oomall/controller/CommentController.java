@@ -75,10 +75,10 @@ public class CommentController {
             return ResponseUtil.fail(902,"获取评论失败");
         } else{
             List<Comment> commentList=commentService.getCommentsById(limit,page,id);
+            commentList.forEach(comment -> System.out.println(comment.getId()));
             User user= new User();
-            String userId1=request.getParameter("userId");
-            if(userId!=null){
-                user.setId(Integer.parseInt(userId1));
+            if(!commentList.isEmpty()){
+                user.setId(commentList.get(0).getUserId());
             }
             ProductPo productPo = productValidate.validate(id);
             commentList.forEach(comment -> {comment.setProductPo(productPo);
@@ -91,7 +91,7 @@ public class CommentController {
      * 用户在产品下发表评论
      *
      * @param commentPo
-     * @return 0:失败 1：成功
+     * @return ResponseUtil.ok()
      */
     @PostMapping("/product/{id}/comments")
     public Object addComment(HttpServletRequest request,@RequestParam Integer id,@RequestBody CommentPo commentPo){
@@ -103,10 +103,13 @@ public class CommentController {
         if(productValidate.validate(id)==null){
             return ResponseUtil.fail(902,"获取评论失败");
         }
-        if(commentPo==null||commentPo.getContent()==null||commentPo.getStar()==null||
-                (commentPo.getBeDeleted()!=null&&commentPo.getBeDeleted()==true)){
+        if(id==null||commentPo==null||commentPo.getContent()==null||commentPo.getStar()==null||
+                (commentPo.getBeDeleted()!=null&&commentPo.getBeDeleted()==true)
+            ||(commentPo.getStatusCode()!=null&&commentPo.getStatusCode()!=0)){
             return ResponseUtil.fail(903,"创建评论失败");
         } else{
+            commentPo.setStatusCode(0);
+            commentPo.setProductId(id);
             if(commentService.addComment(commentPo)==null){
                 return ResponseUtil.fail(903,"创建评论失败");
             } else{
@@ -199,7 +202,9 @@ public class CommentController {
             log.setStatusCode(1);
             addLog.addLog(log);
             User user= new User();
-            user.setId(userId);
+            if(!commentList.isEmpty()){
+                user.setId(commentList.get(0).getUserId());
+            }
             ProductPo productPo = productValidate.validate(productId);
             commentList.forEach(comment -> {comment.setProductPo(productPo);
                                             comment.setUser(user);});

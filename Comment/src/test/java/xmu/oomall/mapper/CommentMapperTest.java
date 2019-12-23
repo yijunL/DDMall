@@ -18,8 +18,8 @@ public class CommentMapperTest {
 
         //System.out.println(commentMapper.deleteById(LocalDateTime.now(),1));
 
-/*        CommentPo commentPo= new CommentPo();
-        commentPo.setContent("i111");
+        CommentPo commentPo= new CommentPo();
+        commentPo.setContent("今天");
         commentPo.setId(11);
         commentPo.setProductId(222);
         commentPo.setStar(4);
@@ -28,6 +28,10 @@ public class CommentMapperTest {
         commentPo.setBeDeleted(null);
         commentPo.setGmtModified(LocalDateTime.now());
 
-        System.out.println(commentMapper.updateById(commentPo,1));*/
+        //System.out.println(commentMapper.updateById(commentPo,1));
+
+        //commentMapper.insertSelective(commentPo);
+
+        //commentMapper.findAllByProductId(123);
     }
 }

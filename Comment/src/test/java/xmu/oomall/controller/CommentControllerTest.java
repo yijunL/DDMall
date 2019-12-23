@@ -22,21 +22,21 @@ public class CommentControllerTest {
 
         //assertEquals(commentController.getCommentsById(null,0,1,20),null);
 
-        //commentController.getCommentsById(null,222,1,20);
+       // commentController.getCommentsById(null,123,1,2);
 
         //commentController.getCommentsById(1);
         //44,55,"yukeyishishabi",0,4,77,null,null,0
-       /* CommentPo commentPo= new CommentPo();
-        commentPo.setBeDeleted(false);
+        CommentPo commentPo= new CommentPo();
+        //commentPo.setBeDeleted(false);
         commentPo.setContent("yukeyishishabi111");
         commentPo.setId(11);
         commentPo.setProductId(222);
         commentPo.setStar(4);
-        commentPo.setStatusCode(5);
+        //commentPo.setStatusCode(5);
         commentPo.setUserId(333);
-        commentPo.setBeDeleted(null);*/
+        //commentPo.setBeDeleted(null);
 
-        //commentController.addComment(1,commentPo);
+        //commentController.addComment(null,1,commentPo);
 
        // commentController.deleteComment(4);
 
