@@ -129,7 +129,7 @@ public class AfterSaleDao {
     public int deleteAfterSaleById(Integer id, Integer userId) {
 //        Integer i = oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id, userId);
 //        System.out.println(id + ": " + i);
-        if (oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id, userId) >= 2) { //应更新2行以上
+        if (oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id, userId) > 0) { //返回值是匹配的行数
             return 1;
         }
         return 0;
