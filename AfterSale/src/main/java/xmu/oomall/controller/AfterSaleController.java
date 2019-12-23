@@ -21,7 +21,7 @@ import java.util.List;
  * @create 2019/12/16 20:49
  */
 @RestController
-@RequestMapping("/afterSaleServices") //!!
+@RequestMapping(value = "") //!!
 public class AfterSaleController {
 
     @Autowired
