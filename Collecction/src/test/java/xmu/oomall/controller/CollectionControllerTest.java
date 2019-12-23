@@ -7,8 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @Transactional
 public class CollectionControllerTest {
-    @Autowired
+  /*  @Autowired
     private CollectionController collectionController;
 
+
+   */
 
 }

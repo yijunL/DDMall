@@ -36,7 +36,7 @@ public class FootprintServiceImpl implements FootprintService {
         if (!userValidate.validate(userId)) {
             return null;
         }
-        List<FootprintItem> footprintItems = footprintDao.selectByUserId(userId, page, limit);
+        List<FootprintItem> footprintItems = footprintDao.selectByUserId(userId, page, limit); /* 至少是空列表 */
         return footprintItems;
     }
 
@@ -69,10 +69,6 @@ public class FootprintServiceImpl implements FootprintService {
             return null;
         }
         List<FootprintItem> footprintItems = footprintDao.selectByCondition(userId, goodsId, page, limit);
-        //查询无结果，返回空列表而非null
-//        for(FootprintItem footprintItem : footprintItems) { //!!Test
-//            System.out.println(footprintItem.getUserId() + " and " + footprintItem.getGoodsId());
-//        }
         return footprintItems;
     }
 

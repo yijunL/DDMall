@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 @SpringBootTest
 @Transactional //
 public class AfterSaleControllerTest {
-    @Autowired
-    private AfterSaleController afterSaleController;
-
-    @Test
-    public void insertAfterSale() {
+//    @Autowired
+//    private AfterSaleController afterSaleController;
+//
+//    @Test
+//    public void insertAfterSale() {
 //        AftersalesService afterSaleService = new AftersalesService();
 //        afterSaleService.setGoodsType(97);
 //        HttpServletRequest request = null;
 //        afterSaleController.addAfterSale(request, afterSaleService);
-    }
+//    }
 
 //    @Test
 //    public void selectAfterSale() {
