@@ -28,9 +28,10 @@ public interface AfterSaleService {
      * 用户查询某一售后服务具体信息
      *
      * @param id: Integer
+     * @param userId: Integer
      * @return AftersalesService
      */
-    public AftersalesService getAfterSaleById(Integer id);
+    public AftersalesService getAfterSaleById(Integer id, Integer userId); //!!
 
     /**
      * 管理员查询某一售后服务具体信息

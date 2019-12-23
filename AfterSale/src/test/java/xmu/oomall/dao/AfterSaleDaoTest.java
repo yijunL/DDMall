@@ -32,7 +32,7 @@ public class AfterSaleDaoTest {
         aftersalesService1.setApplyTime(LocalDateTime.now());
         aftersalesService1.setId(92);
         aftersalesService1.setUserId(25);
-        aftersalesService1.setBeDeleted(true);
+        aftersalesService1.setBeDeleted(false);
         aftersalesService1.setNumber(6);
         aftersalesService1.setType(1);
         aftersalesService1.setApplyReason("Wow");
@@ -43,20 +43,25 @@ public class AfterSaleDaoTest {
 
     @Test
     public void selectByIdTest() {
-        AftersalesService aftersalesService = afterSaleDao.selectAfterSaleById(6);
+        AftersalesService aftersalesService = afterSaleDao.selectAfterSaleById(6, 21);
         if(aftersalesService != null) {
             System.out.println(aftersalesService.getId() + aftersalesService.getApplyReason());
+        } else{
+            System.out.println("null");
         }
 
-        AftersalesService aftersalesService1 = afterSaleDao.selectAfterSaleById(4);
+        AftersalesService aftersalesService1 = afterSaleDao.selectAfterSaleById(5, 23);
         if(aftersalesService1 != null) {
-            System.out.println(aftersalesService1.getId() + aftersalesService.getGoodsType());
+            System.out.println(aftersalesService1.getId() + aftersalesService1.getGoodsType());
         }
     }
 
     @Test
     public void selectByUserIdTest() {
         List<AftersalesService> aftersalesServiceList = afterSaleDao.selectAfterSalesByUserId(23, 1, 10);
+        if(aftersalesServiceList == null) {
+            System.out.println("null3");
+        }
         System.out.println(aftersalesServiceList.size() + "\n");
         for (AftersalesService aftersalesService : aftersalesServiceList) {
             System.out.println(aftersalesService.getId() + " " + aftersalesService.getUserId()
@@ -66,7 +71,7 @@ public class AfterSaleDaoTest {
 
     @Test
     public void selectByUserIdForAdminTest() {
-        List<AftersalesService> aftersalesServiceList = afterSaleDao.selectAfterSalesByCondition(21, 1, 10);
+        List<AftersalesService> aftersalesServiceList = afterSaleDao.selectAfterSalesByCondition(23, 1, 10);
         System.out.println(aftersalesServiceList.size() + "\n");
         for (AftersalesService aftersalesService : aftersalesServiceList) {
             System.out.println(aftersalesService.getId() + " " + aftersalesService.getUserId()
@@ -76,10 +81,10 @@ public class AfterSaleDaoTest {
 
     @Test
     public void deleteByIdTest() {
-        if (afterSaleDao.deleteAfterSaleById(11) == 1) {
+        if (afterSaleDao.deleteAfterSaleById(11, 23) == 1) {
             System.out.println(11);
         }
-        if (afterSaleDao.deleteAfterSaleById(12) == 1) {
+        if (afterSaleDao.deleteAfterSaleById(12,23) == 1) {
             System.out.println(12);
         }
     }
@@ -88,17 +93,20 @@ public class AfterSaleDaoTest {
     public void updateById() {
         AftersalesService aftersalesService = new AftersalesService();
         aftersalesService.setId(9);
-        aftersalesService.setApplyReason("fafdfjk");
+        aftersalesService.setApplyReason("break");
         aftersalesService.setType(0);
         aftersalesService.setNumber(1);
-        afterSaleDao.updateAfterSaleById(6, aftersalesService);
+        afterSaleDao.updateAfterSaleById(7, 23, aftersalesService);
     }
 
     @Test
     public void updateByIdForAdmin() {
         AftersalesService aftersalesService = new AftersalesService();
-        aftersalesService.setStatusCode(4);
+        aftersalesService.setStatusCode(2); //
         aftersalesService.setApplyReason("aaaaaaa");
-        afterSaleDao.updateAfterSaleByIdForAdmin(10, aftersalesService);
+        AftersalesService aftersalesService1 = afterSaleDao.updateAfterSaleByIdForAdmin(8, aftersalesService);
+        if(aftersalesService1 == null){
+            System.out.println("updateAdminNull");
+        }
     }
 }
