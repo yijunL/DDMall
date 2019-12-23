@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
-@Transactional //
+//@Transactional //!!
 public class AfterSaleDaoTest {
     @Autowired
     private AfterSaleDao afterSaleDao;
@@ -80,15 +80,15 @@ public class AfterSaleDaoTest {
         }
     }
 
-//    @Test
-//    public void deleteByIdTest() {
-//        if (afterSaleDao.deleteAfterSaleById(11, 23) == 1) {
-//            System.out.println(11);
-//        }
-//        if (afterSaleDao.deleteAfterSaleById(12,23) == 1) {
-//            System.out.println(12);
-//        }
-//    }
+    @Test
+    public void deleteByIdTest() {
+        if (afterSaleDao.deleteAfterSaleById(7, 23) > 0) {
+            System.out.println(7);
+        }
+        if (afterSaleDao.deleteAfterSaleById(8,23) > 0) {
+            System.out.println(8);
+        }
+    }
 
     @Test
     public void updateById() {
