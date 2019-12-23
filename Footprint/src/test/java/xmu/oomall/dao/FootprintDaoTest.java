@@ -46,7 +46,7 @@ public class FootprintDaoTest {
 //            System.out.println(footprintItemList2.size());
 //        }
 //    }
-
+/*
     @Test
     public void selectFootprintByConditionTest() {
         List<FootprintItem> footprintItemList1 = footprintDao.selectByCondition(null, 111,1, 10),
@@ -67,4 +67,6 @@ public class FootprintDaoTest {
             }
         }
     }
+
+ */
 }

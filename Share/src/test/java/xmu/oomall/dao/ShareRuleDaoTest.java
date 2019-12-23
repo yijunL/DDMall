@@ -19,7 +19,7 @@ class ShareRuleDaoTest {
     void getShareRuleById() {
         ShareRulePo shareRulePo = shareRuleDao.getShareRuleById(1006239);
 
-        assertEquals(1001002, shareRulePo.getId());
+        assertEquals(1001005, shareRulePo.getId());
         assertEquals("{\"strategy\": [{\"lowerbound\":\"0\", \"upperbound\":\"1\", \"rate\":\"0.5\"}," +
                         "{\"lowerbound\":\"2\", \"upperbound\":\"10\", \"rate\":\"0.7\"},{\"lowerbound\":\"11\", \"upperbound\":\"30\", \"rate\":\"1\"}," +
                         "{\"lowerbound\":\"31\", \"upperbound\":\"100\", \"rate\":\"1.5\"}],\"type\":\"0\"}",
@@ -54,6 +54,8 @@ class ShareRuleDaoTest {
     }
 
 
+
  */
+
 
 }
