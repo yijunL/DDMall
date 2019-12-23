@@ -127,7 +127,9 @@ public class AfterSaleDao {
      * @return Response.ok()
      */
     public int deleteAfterSaleById(Integer id, Integer userId) {
-        if (oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id, userId) >= 2) { //应更新2行
+//        Integer i = oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id, userId);
+//        System.out.println(id + ": " + i);
+        if (oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id, userId) >= 2) { //应更新2行以上
             return 1;
         }
         return 0;
