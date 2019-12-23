@@ -155,7 +155,7 @@ public class AfterSaleController {
         }
         Integer userId = getUserId(request);
         if(userId == null) {
-            return null;
+            return ResponseUtil.fail(660, "用户未登录");
         }
         else {
             AftersalesService afterSaleService1 = afterSaleService.getAfterSaleById(id, userId);
@@ -190,6 +190,11 @@ public class AfterSaleController {
         log.setGmtModified(localDateTime);
         log.setType(2); //操作类型
         log.setIp(InetAddress.getLocalHost().toString());
+        if (afterSaleService1 == null) {
+            log.setStatusCode(0);
+            addLog.addLog(log);
+            return ResponseUtil.fail(693, "修改售后服务失败");
+        }
         if (id == null) {
             log.setStatusCode(0);
             addLog.addLog(log);
@@ -220,6 +225,9 @@ public class AfterSaleController {
         Integer userId = getUserId(request);
         if (userId == null) {
             return ResponseUtil.fail(660, "用户未登录");
+        }
+        if (afterSaleService1 == null) {
+            return ResponseUtil.fail(693, "修改售后服务失败");
         }
         if (id == null) {
             return ResponseUtil.fail(693, "修改售后服务失败");
