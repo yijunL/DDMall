@@ -16,7 +16,7 @@ import java.util.Random;
  * @create 2019/12/13 13:30
  */
 @RestController
-@RequestMapping("/logisticsService")//
+@RequestMapping(value = "")
 public class LogisticsController {
 
     /**
