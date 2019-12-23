@@ -82,7 +82,7 @@ public class AfterSaleServiceImpl implements AfterSaleService {
             return null;
         }
         Integer statusCode = afterSaleService.getStatusCode();
-        if (statusCode == null || (statusCode != 0 && statusCode != 1 && statusCode != 2)) {
+        if (statusCode == null || (statusCode != 1 && statusCode != 2)) { //不可改为未审核状态
             return null;
         }
         return afterSaleDao.updateAfterSaleByIdForAdmin(id, afterSaleService);

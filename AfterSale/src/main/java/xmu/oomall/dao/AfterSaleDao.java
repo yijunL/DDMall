@@ -109,11 +109,15 @@ public class AfterSaleDao {
      */
     public AftersalesService addAfterSale(AftersalesService afterSaleService) {
         LocalDateTime time = LocalDateTime.now();
-        afterSaleService.setGmtCreate(time); //是否现在赋值？
+        afterSaleService.setGmtCreate(time);
         afterSaleService.setGmtModified(time);
-        afterSaleService.setApplyTime(time); //
+        afterSaleService.setApplyTime(time); //是否现在赋值？
+        /* 赋初始值 */
+        afterSaleService.setStatusCode(0);
+        afterSaleService.setBeDeleted(false);
+        afterSaleService.setBeApplied(true);
         if (oomallAfterSaleMapper.insertSelective(afterSaleService) > 0) {
-            System.out.println(afterSaleService.getId()); //
+            /* System.out.println(afterSaleService.getId()); */
             return afterSaleService;
         }
         return null;
