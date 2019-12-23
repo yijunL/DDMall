@@ -26,24 +26,6 @@ management:
     web:
       exposure:
         include: health, info
-logging:
-  #设置日志打印级别
-  level:
-    #Spring框架中的日志级别
-    org.springframework.web: info
-    root: error
-    #自己项目包名下的日志级别
-    xmu.oomall.controller: debug
-    xmu.oomall.service: debug
-    xmu.oomall.dao: debug
-    xmu.oomall.mapper: error
-    xmu.oomall.domain: debug
-    xmu.oomall.util: debug
-  #使用logback日志，取代默认的common日志
-  file:
-    path: C:\Users
-  config: classpath:logback-spring.xml
-
 oomall:
   #最大付款时间, 单位分钟
   maxpaytime: 30
