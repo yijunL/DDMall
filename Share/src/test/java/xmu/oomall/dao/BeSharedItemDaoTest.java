@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 //@Transactional
 class BeSharedItemDaoTest {
-    @Autowired
+  /*  @Autowired
     private BeSharedItemDao beSharedItemDao;
 
     @Test
@@ -51,5 +51,5 @@ class BeSharedItemDaoTest {
         Integer beSharedId=1;
         List<BeSharedItem> beSharedItemList=new ArrayList<BeSharedItem>();
         beSharedItemList=beSharedItemDao.getValidBeShareItem(beSharedId,orderItemList);
-    }
+    }*/
 }
