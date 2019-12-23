@@ -17,25 +17,25 @@ public class CollectionDaoTest {
     @Autowired
     private CollectionDao collectionDao;
 
-    @Test
-    public void getAllCollectionTest()
-    {
-        List<CollectItem> collectItemList= collectionDao.getColltectionList(1,1,1);
-        CollectItemPo collectItemPo = collectItemList.get(0);
-        assertEquals(collectItemPo.getUserId(),1);
-    }
-
-    @Test
-    public void addCollectionTest(){
-        CollectItemPo collectItemPo= new CollectItemPo();
-        collectItemPo.setGoodsId(2);
-        collectItemPo = collectionDao.addCollection(collectItemPo);
-        assertEquals(collectItemPo.getGoodsId(),2);
-    }
-
-    @Test
-    public void deleteCollectionTest()
-    {
-        collectionDao.deleteCollection(1);
-    }
+//    @Test
+//    public void getAllCollectionTest()
+//    {
+//        List<CollectItem> collectItemList= collectionDao.getColltectionList(1,1,1);
+//        CollectItemPo collectItemPo = collectItemList.get(0);
+//        assertEquals(collectItemPo.getUserId(),1);
+//    }
+//
+//    @Test
+//    public void addCollectionTest(){
+//        CollectItemPo collectItemPo= new CollectItemPo();
+//        collectItemPo.setGoodsId(2);
+//        collectItemPo = collectionDao.addCollection(collectItemPo);
+//        assertEquals(collectItemPo.getGoodsId(),2);
+//    }
+//
+//    @Test
+//    public void deleteCollectionTest()
+//    {
+//        collectionDao.deleteCollection(1);
+//    }
 }
