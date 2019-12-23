@@ -32,6 +32,13 @@ public interface OomallFootprintMapper {
     List<FootprintItemPo> selectByCondition(@Param("userId") Integer userId, @Param("goodsId") Integer goodsId);
 
     /**
+     * 管理员按条件查询时，若条件均为null则返回全体
+     *
+     * @return List<FootprintItemPo>
+     */
+    List<FootprintItemPo> selectAll();
+
+    /**
      * 根据id查找足迹（可判断是否已存在符合该id的足迹）
      *
      * @param id: Integer

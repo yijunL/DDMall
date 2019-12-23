@@ -30,7 +30,6 @@
             <if test="goodsType!=null">goods_type,</if>
             <if test="applyTime!=null">apply_time,</if>
             <if test="applyReason!=null">apply_reason,</if>
-            <if test="endTime!=null">end_time,</if>
             <if test="type!=null">type,</if>
             <if test="beApplied!=null">is_applied,</if>
             <if test="number!=null">number,</if>
@@ -46,7 +45,6 @@
             <if test="goodsType!=null">#{goodsType,jdbcType=INTEGER},</if>
             <if test="applyTime!=null">#{applyTime,jdbcType=TIMESTAMP},</if>
             <if test="applyReason!=null">#{applyReason,jdbcType=VARCHAR},</if>
-            <if test="endTime!=null">#{endTime,jdbcType=TIMESTAMP},</if>
             <if test="type!=null">#{type,jdbcType=INTEGER},</if>
             <if test="beApplied!=null">#{beApplied,jdbcType=TINYINT},</if>
             <if test="number!=null">#{number,jdbcType=INTEGER},</if>

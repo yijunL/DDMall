@@ -58,9 +58,16 @@ public class FootprintDao {
      */
     public List<FootprintItem> selectByCondition(Integer userId, Integer goodsId, Integer page, Integer limit) { //need to be updated
         PageHelper.startPage(page, limit);
-        List<FootprintItemPo> footprintItemPos = oomallFootprintMapper.selectByCondition(userId, goodsId);
-        List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
-        return footprintItems;
+        if(userId == null && goodsId == null) {
+            List<FootprintItemPo> footprintItemPos = oomallFootprintMapper.selectAll();
+            List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
+            return footprintItems;
+        }
+        else {
+            List<FootprintItemPo> footprintItemPos = oomallFootprintMapper.selectByCondition(userId, goodsId);
+            List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
+            return footprintItems;
+        }
     }
 
     /**

@@ -34,6 +34,7 @@ class CommentDaoTest {
      /* System.out.println(commentDao.selectComment(2).getId());*/
 
        // commentDao.deleteComment(1);
+
     }
 
     @Test
