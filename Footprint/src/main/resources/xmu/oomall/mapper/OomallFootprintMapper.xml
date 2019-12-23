@@ -69,4 +69,10 @@
         where id=#{id,jdbcType=BIGINT}
     </select>
 
+<!--管理员按条件查询时，若两个条件均为null则返回全体-->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from oomall_footprint_item
+    </select>
 </mapper>
