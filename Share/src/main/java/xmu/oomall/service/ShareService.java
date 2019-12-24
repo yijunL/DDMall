@@ -5,32 +5,58 @@ import org.springframework.stereotype.Service;
 import xmu.oomall.domain.BeSharedItem;
 import xmu.oomall.domain.ShareRulePo;
 
+/**
+ * @Author 24320172203121
+ *
+ */
 @Service
 public interface ShareService {
 
     /**
-    获取分享规则通过GoodsID
+     * 通过id获取分享规则
+     * @param id
+     * @return ShareRulePo
      */
     ShareRulePo getShareRuleById(Integer id);
 
     /**
-     增添分享规则
+     * 增加分享规则
+
+     * @param sharerulePo
+     * @return ShareRulePo
+     * @exception Exception JSON 解析错误
+     *
      */
-    Object addShareRule(ShareRulePo sharerulePo) throws Exception;
+    Object addShareRule(ShareRulePo sharerulePo) ;
+
+
     /**
-     删除分享规则
+     * 通过分享规则id删除分享规则
+     * @param id
+     * @return Boolean
      */
     boolean deleteShareRuleById(Integer id);
     /**
-     修改分享规则
+     * 更新分享规则
+     * @param sharerulePo,id
+     * @param id
+     *  @exception net.sf.json.JSONException
+     * @return  Object
      */
-    Object updateShareRule(ShareRulePo sharerulePo, Integer id) throws Exception;
+    Object updateShareRule(ShareRulePo sharerulePo, Integer id);
+
     /**
-     增添被分享表
+     * 增加被分享记录表
+
+     * @param beSharedItem
+     * @return Object
      */
     Object addBeSharedItems(BeSharedItem beSharedItem);
+
     /**
-     获取返点
+     * 根据订单获取返点
+     * @param order
+     * @return Integer
      */
     Integer getRebate(Order order);
 }

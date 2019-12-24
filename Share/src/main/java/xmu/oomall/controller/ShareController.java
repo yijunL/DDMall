@@ -18,13 +18,13 @@ import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 
 /**
- * @Author
- * @create 2019/12/4 13:00
+ * @Author 24320172203121
+ *
  */
 
 @RestController
-@RequestMapping("/shareService")
-public abstract class ShareController implements ShareService {
+@RequestMapping(value="")
+public class ShareController {
     /**
      *
      */
@@ -48,7 +48,7 @@ public abstract class ShareController implements ShareService {
     }
 
     /**
-     * 通过goodsid获取分享规则
+     * 通过id获取分享规则
      * @param request
      * @param id
      * @return ShareRulePo
@@ -58,24 +58,25 @@ public abstract class ShareController implements ShareService {
 
         Integer userId = getUserId(request);
         if (userId == null) {
-            return ResponseUtil.fail(669,"管理员未登录");
+          return ResponseUtil.fail(669,"管理员未登录");
         }
-        Log log = new Log();
+       Log log = new Log();
         log.setAdminId(userId);
         log.setActionId(id);
         log.setActions("查询分享规则");
         log.setGmtCreate(LocalDateTime.now());
         log.setGmtModified(LocalDateTime.now());
-        log.setType(0); //操作类型
+        log.setType(0);
+        //操作类型
         log.setIp(InetAddress.getLocalHost().toString());
         if(id==null)
         {
             log.setStatusCode(0);
-            addLog.addLog(log);
+           addLog.addLog(log);
             return ResponseUtil.fail(612,"分享规则查看失败，参数缺少");}
         ShareRulePo sharerule=shareService.getShareRuleById(id);
         if(sharerule==null)
-            return ResponseUtil.fail(612,"分享规则查看失败,参数错误");
+        { return ResponseUtil.fail(612,"分享规则查看失败,参数错误");}
         else {
             log.setStatusCode(1);
             addLog.addLog(log);
@@ -103,7 +104,8 @@ public abstract class ShareController implements ShareService {
         log.setActions("增添分享规则");
         log.setGmtCreate(LocalDateTime.now());
         log.setGmtModified(LocalDateTime.now());
-        log.setType(1); //操作类型
+        log.setType(1);
+        //操作类型
         log.setIp(InetAddress.getLocalHost().toString());
 
         if(sharerulePo==null||sharerulePo.getShareLevelStrategy()==null||sharerulePo.getGoodsId()==null)
@@ -147,7 +149,8 @@ public abstract class ShareController implements ShareService {
         log.setActions("删除分享规则");
         log.setGmtCreate(LocalDateTime.now());
         log.setGmtModified(LocalDateTime.now());
-        log.setType(3); //操作类型
+        log.setType(3);
+        //操作类型
         log.setIp(InetAddress.getLocalHost().toString());
         if(id==null)
         {
@@ -186,7 +189,8 @@ public abstract class ShareController implements ShareService {
         log.setActions("修改分享规则");
         log.setGmtCreate(LocalDateTime.now());
         log.setGmtModified(LocalDateTime.now());
-        log.setType(2); //操作类型
+        log.setType(2);
+        //操作类型
         log.setIp(InetAddress.getLocalHost().toString());
         if(id==null || sharerulePo.getGoodsId()==null||sharerulePo.getShareLevelStrategy()==null)
         {

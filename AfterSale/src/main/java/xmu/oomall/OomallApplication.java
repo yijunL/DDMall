@@ -11,6 +11,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @MapperScan("xmu.oomall.mapper")
 @EnableDiscoveryClient
 @EnableFeignClients
+
+/**
+ * @Author Bexasusual
+ * @create 2019/12/14 14:20
+ */
 public class OomallApplication {
 
     public static void main(String[] args) {

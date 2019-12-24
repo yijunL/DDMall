@@ -24,7 +24,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/footprintService") //!!
+@RequestMapping(value = "")
 public class FootprintController {
 
     @Autowired
@@ -153,8 +153,8 @@ public class FootprintController {
             return ResponseUtil.fail(660,"用户未登录");
         }
         if (footprintItemPo == null) {
-            return ResponseUtil.fail(741, "足迹添加失败"); //返回响应值
-        } else { //是否需要进一步判断userId?
+            return ResponseUtil.fail(741, "足迹添加失败");
+        } else {
             FootprintItemPo footprintItemPo1 = footprintService.addFootprint(footprintItemPo);
             if(footprintItemPo1 == null) {
                 return ResponseUtil.fail(741, "足迹添加失败");

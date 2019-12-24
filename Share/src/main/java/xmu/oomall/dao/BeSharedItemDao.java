@@ -12,15 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * @Author 24320172203121
+ *
+ */
+
 @Repository
 public class BeSharedItemDao {
     @Autowired
     private OomallBeSharedItemMapper beSharedItemMapper;
-
-    /**
-     * 增添被分享商品表
-
-     */
 
     public BeSharedItem addBeSharedItems(BeSharedItem beSharedItem) {
 
@@ -52,11 +52,6 @@ public class BeSharedItemDao {
 
     }
 
-
-    /**
-     * 获得有效的被分享商品表
-
-     */
     public  List<BeSharedItem> getValidBeShareItem(Integer beSharedUserId, List<OrderItem> orderItemList)
     {
         BeSharedItem beSharedItem=new BeSharedItem();
@@ -64,15 +59,15 @@ public class BeSharedItemDao {
 
         for(OrderItem orderItem:orderItemList) {
              beSharedItem = beSharedItemMapper.findByGoodsIdAndBeSharedUserId(orderItem.getGoodsId(),beSharedUserId);
-             if(beSharedItem!=null)
-                 if(beSharedItem.getStatusCode()==0)
-                   if((beSharedItem.getGmtCreate().plusDays(7)).isAfter(orderItem.getGmtCreate()))
-             {
-                 beSharedItem.setGmtModified(LocalDateTime.now());
-                 beSharedItem.setStatusCode(1);
-                 beSharedItemMapper.updateById(beSharedItem,beSharedItem.getId());
-                 list.add(beSharedItem);
-
+             if(beSharedItem!=null) {
+                 if (beSharedItem.getStatusCode() == 0)
+                 { if ((beSharedItem.getGmtCreate().plusDays(7)).isAfter(orderItem.getGmtCreate())) {
+                     beSharedItem.setGmtModified(LocalDateTime.now());
+                     beSharedItem.setStatusCode(1);
+                     beSharedItemMapper.updateById(beSharedItem, beSharedItem.getId());
+                     list.add(beSharedItem);
+                 }
+                     }
              }
         }
         return list;

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 //@Transactional
 class ShareServiceImplTest {
-
+/*
     @Autowired
     private ShareService shareService;
     @Test
@@ -28,4 +28,6 @@ class ShareServiceImplTest {
     @Test
     void updateShareRule() {
     }
+
+ */
 }

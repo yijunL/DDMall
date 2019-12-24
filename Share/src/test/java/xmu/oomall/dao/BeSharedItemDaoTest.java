@@ -51,5 +51,7 @@ class BeSharedItemDaoTest {
         Integer beSharedId=1;
         List<BeSharedItem> beSharedItemList=new ArrayList<BeSharedItem>();
         beSharedItemList=beSharedItemDao.getValidBeShareItem(beSharedId,orderItemList);
-    }*/
+    }
+
+   */
 }
