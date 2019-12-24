@@ -12,6 +12,11 @@ import java.util.regex.Pattern;
  * https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/constant
  * /RegexConstants.java
  */
+/**
+ * @Author 3204
+ * @Description: RegexUtil
+ * @create 2019/12/16 20:49
+ */
 public class RegexUtil {
 
     /**
@@ -165,7 +170,7 @@ public class RegexUtil {
      * @param input The input.
      * @return {@code true}: yes<br>{@code false}: no
      */
-    public static boolean isIDCard15(final CharSequence input) {
+    public static boolean isIdCard15(final CharSequence input) {
         return isMatch(REGEX_ID_CARD15, input);
     }
 
@@ -175,7 +180,7 @@ public class RegexUtil {
      * @param input The input.
      * @return {@code true}: yes<br>{@code false}: no
      */
-    public static boolean isIDCard18(final CharSequence input) {
+    public static boolean isIdCard18(final CharSequence input) {
         return isMatch(REGEX_ID_CARD18, input);
     }
 
@@ -195,7 +200,7 @@ public class RegexUtil {
      * @param input The input.
      * @return {@code true}: yes<br>{@code false}: no
      */
-    public static boolean isURL(final CharSequence input) {
+    public static boolean isUrl(final CharSequence input) {
         return isMatch(REGEX_URL, input);
     }
 
@@ -238,7 +243,7 @@ public class RegexUtil {
      * @param input The input.
      * @return {@code true}: yes<br>{@code false}: no
      */
-    public static boolean isIP(final CharSequence input) {
+    public static boolean isIp(final CharSequence input) {
         return isMatch(REGEX_IP, input);
     }
 

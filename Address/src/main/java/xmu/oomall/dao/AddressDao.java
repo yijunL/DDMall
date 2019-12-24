@@ -11,6 +11,11 @@ import xmu.oomall.util.PageCut;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * @Author 3204
+ * @Description: AddressDao
+ * @create 2019/12/16 20:49
+ */
 @Repository
 public class AddressDao {
 
@@ -68,7 +73,7 @@ public class AddressDao {
 
     private Address addresses(AddressPo addressPo){
         Address address1 = new Address();
-        return Copyer.Copy(addressPo,address1)?address1:null;
+        return Copyer.copy(addressPo,address1)?address1:null;
     }
 
     public void resetDefaultAddress(Integer userId){

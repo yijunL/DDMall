@@ -16,6 +16,11 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.TimeZone;
 
+/**
+ * @Author 3204
+ * @Description: AddressController
+ * @create 2019/12/16 20:49
+ */
 @RestController
 @RequestMapping(value="")
 public class AddressController {
@@ -166,7 +171,11 @@ public class AddressController {
         }
     }
 
-    //合法性检测
+    /**
+     * 合法性检测
+     * @param addressPo
+     * @return
+     */
     private Object validate(AddressPo addressPo) {
 
         Integer userId = addressPo.getUserId();
