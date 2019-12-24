@@ -7,5 +7,10 @@ package xmu.oomall;
 @FeignClient(value = "logService")
 public interface AddLog {
     @PostMapping("/log")
+    /** 调用Log服务
+     *
+     * @param  log
+     * @return : log
+     */
     Log addLog(Log log);
 }

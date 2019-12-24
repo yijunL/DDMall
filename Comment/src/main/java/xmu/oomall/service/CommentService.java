@@ -19,6 +19,8 @@ public interface CommentService {
      *用户获取产品下评论列表
      *
      * @param id
+     * @param limit
+     * @param page
      * @return List<Comment>
      */
     public List<Comment> getCommentsById(Integer limit, Integer page, Integer id);
@@ -51,13 +53,13 @@ public interface CommentService {
     /**
      * 管理员根据条件获取评论
      *
-     * @param UserId
-     * @param ProductId
+     * @param userId
+     * @param productId
      * @param limit
      * @param page
      * @return List<Comment>
      */
-    public List<Comment> getCommentsByIdForAdmin(Integer UserId, Integer ProductId,
+    public List<Comment> getCommentsByIdForAdmin(Integer userId, Integer productId,
                                                  Integer limit, Integer page);
 
     /**
