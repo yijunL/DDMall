@@ -52,6 +52,7 @@ public class CommentController {
      * @param limit
      * @return List<Comment>
      */
+ //   GetMapping("/product")
     @GetMapping("/product/{id}/comments")
     public Object getCommentsById(HttpServletRequest request,
                                   @RequestParam Integer id,

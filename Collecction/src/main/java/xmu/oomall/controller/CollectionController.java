@@ -15,7 +15,7 @@ import java.util.List;
  * @author Lyj
  */
 @RestController
-@RequestMapping("/collectionService")
+@RequestMapping(value="")
 public class CollectionController {
 
     @Autowired
