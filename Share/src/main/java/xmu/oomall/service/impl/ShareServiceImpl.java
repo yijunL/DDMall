@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xmu.oomall.AddGoods;
 import xmu.oomall.AddUser;
-import xmu.oomall.controller.ShareController;
 import xmu.oomall.dao.BeSharedItemDao;
 import xmu.oomall.dao.ShareItemDao;
 import xmu.oomall.dao.ShareRuleDao;
@@ -17,36 +16,24 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-public class ShareServiceImpl extends ShareController implements ShareService {
-
+public class ShareServiceImpl implements ShareService {
     @Autowired
     private BeSharedItemDao beSharedItemDao;
-
     @Autowired
     private ShareRuleDao shareRuleDao;
-
     @Autowired
     private ShareItemDao shareItemDao;
-  //调用用户微服务
     @Autowired
     private AddUser addUser;
-    //调用商品微服务
+
     @Autowired
     private AddGoods addGoods;
-
-    /**
-     获取分享规则，通过GoodsID
-     */
 
     @Override
     public ShareRulePo getShareRuleById(Integer id) {
         return shareRuleDao.getShareRuleById(id);
     }
 
-
-    /**
-     判断分享规则是否正确，合法性检查，检查strategy是否合法
-     */
 
     public boolean beValiedShareRule(ShareRulePo shareRulePo)throws Exception
     {
@@ -55,7 +42,6 @@ public class ShareServiceImpl extends ShareController implements ShareService {
         int[] upperbound;
         double[] rate;
         try {
-            //JSON格式合法性检查
             String strategyLevel = shareRulePo.getShareLevelStrategy();
             JSONObject jsonObject = JSONObject.fromObject(strategyLevel);
             type = jsonObject.getInt("type");
@@ -67,9 +53,6 @@ public class ShareServiceImpl extends ShareController implements ShareService {
                 JSONObject strategy = strategys.getJSONObject(i);
                 lowerbound[i] = strategy.getInt("lowerbound");
                 upperbound[i] = strategy.getInt("upperbound");
-                //JSON 数值合法性检查
-                if(lowerbound[i]<=0||upperbound[i]<=0)
-                    return false;
                 if(lowerbound[i]>upperbound[i])
                     return false;
                 if(i>=1)
@@ -93,9 +76,6 @@ public class ShareServiceImpl extends ShareController implements ShareService {
         return true;
     }
 
-    /**
-     增添分享规则
-     */
     @Override
     public Object addShareRule(ShareRulePo sharerulePo) throws Exception {
 
@@ -106,18 +86,13 @@ public class ShareServiceImpl extends ShareController implements ShareService {
 
 
 
-    /**
-     删除分享规则
-     */
+
     @Override
     public boolean deleteShareRuleById(Integer id) {
 
         return shareRuleDao.deleteShareRuleById(id);
     }
 
-    /**
-     修改分享规则
-     */
     @Override
     public Object updateShareRule(ShareRulePo sharerulePo, Integer id) throws Exception {
 
@@ -128,9 +103,6 @@ public class ShareServiceImpl extends ShareController implements ShareService {
     }
 
 
-    /**
-     增添被分享表
-     */
     @Override
     public Object addBeSharedItems(BeSharedItem beSharedItem)
     {
@@ -149,28 +121,19 @@ public class ShareServiceImpl extends ShareController implements ShareService {
         return beSharedItemDao.addBeSharedItems(beSharedItem);
     }
 
-
-    /**
-     获取返点
-     */
     @Override
     public Integer getRebate(Order order) {
         Integer beSharedUserId=order.getUserId();
+
+
         List<OrderItem> orderItemList=order.getOrderItemList();
-
-        //获取订单中有效的分享商品
-
         List<BeSharedItem> beSharedItemList= beSharedItemDao.getValidBeShareItem(beSharedUserId,orderItemList);
-
-       //无有效分享商品，返点0
         if(beSharedItemList==null) return 0;
-        //获取商品价格
         BigDecimal price = new BigDecimal(0);
         for(OrderItem orderItem:orderItemList)
         { if(orderItem.getGoodsId()==beSharedItemList.get(0).getGoodsId())
           price=orderItem.getPrice();break; }
 
-        //更新sucessnum和计算返点
         return shareItemDao.updateShareItemSuccessNumAndCalculate(beSharedItemList,price);
 
     }

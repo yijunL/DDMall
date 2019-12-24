@@ -25,12 +25,6 @@ public class ShareItemDao {
     @Autowired
     private OomallShareRuleMapper shareRuleMapper;
 
-
-    /**
-     * 被分享表按时间排序
-
-     */
-
     public static void ListSort2(List<BeSharedItem> list)
     {
         Collections.sort(list, new Comparator<BeSharedItem>() {
@@ -52,11 +46,6 @@ public class ShareItemDao {
         });
     }
 
-    /**
-     * 分享表按时间排序
-
-     */
-
     public static void ListSort(List<ShareItem> list)
     {
         Collections.sort(list, new Comparator<ShareItem>() {
@@ -77,12 +66,6 @@ public class ShareItemDao {
             }
         });
     }
-
-
-    /**
-     * 计算具体返点
-
-     */
 
     public Integer  Calculate(Integer sucessnum, BigDecimal price,Integer validnum,int[] lowerbound,int[] upperbound,double[] rate)
     {
@@ -118,18 +101,9 @@ public class ShareItemDao {
         return 0;
     }
 
-    /**
-     * 更新successnum并计算返点
-
-     */
-
     public Integer updateShareItemSuccessNumAndCalculate(List<BeSharedItem> beSharedItemList,BigDecimal price) {
-
         ListSort2(beSharedItemList);
         Integer rebate = 0;
-
-        //获取分享规则
-
         ShareRulePo shareRulePo=shareRuleMapper.findByGoodsId(beSharedItemList.get(0).getGoodsId());
         String strategyLevel=shareRulePo.getShareLevelStrategy();
         JSONObject jsonObject = JSONObject.fromObject(strategyLevel);
@@ -145,19 +119,18 @@ public class ShareItemDao {
             upperbound[i] = strategy.getInt("upperbound");
             rate[i]=strategy.getDouble("rate");
         }
-
         for(BeSharedItem beSharedItem:beSharedItemList)//同一商品，不同的人
         {
 
             List<ShareItem> shareItemList=shareItemMapper.findByGoodsIdAndUserId(beSharedItem.getGoodsId(),beSharedItem.getSharerId());
             ListSort(shareItemList);
-            if(type==0) {                //返点方法1
+            if(type==0) {
                 ShareItem validShareItem = new ShareItem();
                 for (ShareItem shareItem : shareItemList) {
                     if (shareItem.getBeDeleted() == false)
                     { validShareItem = shareItem;break;}
                 }
-                if (validShareItem == null) {    //生成分享表
+                if (validShareItem == null) {
                     ShareItem shareItem = new ShareItem();
                     shareItem.setGoodsId(beSharedItem.getGoodsId());
                     shareItem.setSuccessNum(1);
@@ -174,7 +147,7 @@ public class ShareItemDao {
 
                 break;
             }
-            else if(type==1){   //返点方法2
+            else if(type==1){
                 ShareItem validShareItem = new ShareItem();
                 Integer validnum=0;
                 if(beSharedItemList.size()>=100)
@@ -185,7 +158,7 @@ public class ShareItemDao {
                     if (shareItem.getBeDeleted() == false)
                     {  validShareItem = shareItem;break; }
                 }
-                if (validShareItem == null) {    //生成分项表
+                if (validShareItem == null) {
                     ShareItem shareItem = new ShareItem();
                     shareItem.setGoodsId(beSharedItem.getGoodsId());
                     shareItem.setSuccessNum(validnum);
