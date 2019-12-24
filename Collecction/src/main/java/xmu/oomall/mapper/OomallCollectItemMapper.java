@@ -10,6 +10,4 @@ public interface OomallCollectItemMapper {
     int insertSelective(CollectItemPo collectItemPo);
 
     boolean deleteById(@Param("id") Integer id);
-
-
 }

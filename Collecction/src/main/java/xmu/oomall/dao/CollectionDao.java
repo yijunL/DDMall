@@ -51,7 +51,9 @@ public class CollectionDao {
      * @return null
      */
     public boolean deleteCollection(Integer id) {
-
+        List<CollectItemPo> collectItemPo=oomallCollectItemMapper.findAllById(id);
+        if(collectItemPo.isEmpty())
+        {return false;}
         return oomallCollectItemMapper.deleteById(id);
     }
 

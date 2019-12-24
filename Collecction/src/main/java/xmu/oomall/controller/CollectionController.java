@@ -75,7 +75,7 @@ public class CollectionController {
             return ResponseUtil.fail(660,"用户未登录");
         }
         //参数校验
-        if(collectItemPo.getId()!=null) {
+        if(!collectItemPo.getId().equals(userId)) {
             return ResponseUtil.fail(761,"用户没有权利插入收藏Id");
         }
         if(collectItemPo.getGoodsId()==null) {
@@ -86,7 +86,7 @@ public class CollectionController {
         }
         collectItemPo = collectionService.addCollection(collectItemPo);
         if(collectItemPo==null)
-            return ResponseUtil.fail(761,"收藏新增失败");
+        {return ResponseUtil.fail(761,"收藏新增失败");}
         else
             return ResponseUtil.ok(collectItemPo);
     }

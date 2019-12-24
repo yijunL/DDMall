@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 @RestController
-@RequestMapping("/addressService")
+@RequestMapping(value = "")
 public class AddressController {
 
     @Autowired
