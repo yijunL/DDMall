@@ -26,7 +26,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     serviceUrl:
-      defaultZone: http://www.clines.club:2222/eureka/
+      defaultZone: http://172.81.212.62:7001/eureka/
 
 mybatis:
   #domain对象的包
