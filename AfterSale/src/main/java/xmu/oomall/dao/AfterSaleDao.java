@@ -64,7 +64,7 @@ public class AfterSaleDao {
      * @return AftersalesService
      */
     public AftersalesService updateAfterSaleByIdForAdmin(Integer id, AftersalesService afterSaleService) {
-        if (oomallAfterSaleMapper.updateByIdForAdmin(LocalDateTime.now(), id, afterSaleService) > 0) { //还是>1（==3）？
+        if (oomallAfterSaleMapper.updateByIdForAdmin(LocalDateTime.now(), id, afterSaleService) > 0) {
             AftersalesService afterSaleService1 = oomallAfterSaleMapper.selectAllByIdForAdmin(id);
             return afterSaleService1;
         }
@@ -80,7 +80,7 @@ public class AfterSaleDao {
      * @return AftersalesService
      */
     public AftersalesService updateAfterSaleById(Integer id, Integer userId, AftersalesService afterSaleService) {
-        if (oomallAfterSaleMapper.updateById(LocalDateTime.now(), id, userId, afterSaleService) > 0) { //
+        if (oomallAfterSaleMapper.updateById(LocalDateTime.now(), id, userId, afterSaleService) > 0) {
             AftersalesService afterSaleService2 = oomallAfterSaleMapper.selectAllById(id, userId);
             return afterSaleService2;
         }
@@ -111,8 +111,7 @@ public class AfterSaleDao {
         LocalDateTime time = LocalDateTime.now();
         afterSaleService.setGmtCreate(time);
         afterSaleService.setGmtModified(time);
-        afterSaleService.setApplyTime(time); //是否现在赋值？
-        /* 赋初始值 */
+        afterSaleService.setApplyTime(time);
         afterSaleService.setStatusCode(0);
         afterSaleService.setBeDeleted(false);
         afterSaleService.setBeApplied(true);
@@ -131,9 +130,7 @@ public class AfterSaleDao {
      * @return Response.ok()
      */
     public int deleteAfterSaleById(Integer id, Integer userId) {
-//        Integer i = oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id, userId);
-//        System.out.println(id + ": " + i);
-        if (oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id, userId) > 0) { //返回值是匹配的行数
+        if (oomallAfterSaleMapper.deleteById(LocalDateTime.now(), id, userId) > 0) {
             return 1;
         }
         return 0;

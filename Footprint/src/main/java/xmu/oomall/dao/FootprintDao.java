@@ -31,8 +31,8 @@ public class FootprintDao {
      * @return List<FootprintItem>
      */
     public List<FootprintItem> selectByUserId(Integer userId, Integer page, Integer limit) {
-        PageHelper.startPage(page, limit); //use page-helper
-        List<FootprintItemPo> footprintItemPos = oomallFootprintMapper.selectAllByUserId(userId); //
+        PageHelper.startPage(page, limit);
+        List<FootprintItemPo> footprintItemPos = oomallFootprintMapper.selectAllByUserId(userId);
         List<FootprintItem> footprintItems = footprintItemList(footprintItemPos);
         return footprintItems;
     }
@@ -99,7 +99,7 @@ public class FootprintDao {
      */
     private FootprintItem footprintItem(FootprintItemPo footprintItemPo) {
         FootprintItem footprintItem = new FootprintItem();
-        return Copyer.Copy(footprintItemPo, footprintItem) ? footprintItem : null;
+        return Copyer.copy(footprintItemPo, footprintItem) ? footprintItem : null;
     }
 
     /**

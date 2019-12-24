@@ -2,6 +2,11 @@ package xmu.oomall.util;
 
 import java.util.List;
 
+/**
+ * @Author yijunL
+ * @Description: PageCut
+ * @create 2019/12/13 14:20
+ */
 public class PageCut {
 
     public static List<? extends Object> pageCut(List<? extends Object> list,Integer page,Integer limit)   //输入总列表，页码，每页限制，返回该页内容（List）

@@ -5,6 +5,11 @@ import xmu.oomall.domain.FootprintItemPo;
 
 import java.util.List;
 
+/**
+ * @Author Bexasusual
+ * @Description: OomallFootprintMapper
+ * @create 2019/12/14 13:30
+ */
 public interface OomallFootprintMapper {
 
     /**
