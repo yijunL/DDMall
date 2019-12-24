@@ -12,27 +12,33 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-//@Transactional
+@Transactional
 public class AddressDaoTest {
     @Autowired
     private AddressDao addressDao;
 
-//    @Test
-//    public void getAddressListTest()
-//    {
-//        List<Address> addressList= addressDao.getAddressList(1,1,1);
-//        AddressPo addressPo = addressList.get(0);
-//        assertEquals(addressPo.getId(),1);
-//    }
-//
-//    @Test
-//    public void updateAddressTest(){
-//        AddressPo addressPo=new AddressPo();
-//        addressPo.setMobile("000");
-//        addressPo=addressDao.updateAddress(1,addressPo);
-//        assertEquals(addressPo.getMobile(),"000");
-//    }
-//
+    @Test
+    public void getAddressListTest()
+    {
+        List<Address> addressList= addressDao.getAddressList(1,1,1);
+        AddressPo addressPo = addressList.get(0);
+        assertEquals(1,addressPo.getId());
+    }
+
+    @Test
+    public void getAddressTest(){
+        Address address = addressDao.getAddress(1);
+        assertEquals(1,address.getUserId());
+    }
+
+    @Test
+    public void updateAddressTest(){
+        AddressPo addressPo=new AddressPo();
+        addressPo.setMobile("000");
+        addressPo=addressDao.updateAddress(1,addressPo);
+        assertEquals("000",addressPo.getMobile());
+    }
+
     @Test
     public void addAddressTest()
     {
@@ -47,14 +53,15 @@ public class AddressDaoTest {
         addressPo.setMobile("123");
         addressPo.setUserId(2);
         addressPo=addressDao.addAddress(addressPo);
-        assertEquals(addressPo.getUserId(),2);
+        assertEquals(2,addressPo.getUserId());
     }
-//
-//    @Test
-//    public void deleteAddressTest()
-//    {
-//        addressDao.deleteAddress(1);
-//        AddressPo addressPo=addressDao.getAddress(1);
-//        assertEquals(addressPo.getBeDeleted(),true);
-//    }
+
+    @Test
+    public void deleteAddressTest()
+    {
+        addressDao.deleteAddress(1);
+        AddressPo addressPo=addressDao.getAddress(1);
+        assertEquals(true,addressPo.getBeDeleted());
+    }
+
 }
