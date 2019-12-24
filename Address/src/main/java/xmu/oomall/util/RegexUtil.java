@@ -12,6 +12,11 @@ import java.util.regex.Pattern;
  * https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/constant
  * /RegexConstants.java
  */
+/**
+ * @Author 3204
+ * @Description: RegexUtil
+ * @create 2019/12/16 20:49
+ */
 public class RegexUtil {
 
     /**
@@ -165,7 +170,7 @@ public class RegexUtil {
      * @param input The input.
      * @return {@code true}: yes<br>{@code false}: no
      */
-    public static boolean isIDCard15(final CharSequence input) {
+    public static boolean isIdCard15(final CharSequence input) {
         return isMatch(REGEX_ID_CARD15, input);
     }
 
@@ -175,7 +180,7 @@ public class RegexUtil {
      * @param input The input.
      * @return {@code true}: yes<br>{@code false}: no
      */
-    public static boolean isIDCard18(final CharSequence input) {
+    public static boolean isIdCard18(final CharSequence input) {
         return isMatch(REGEX_ID_CARD18, input);
     }
 
@@ -195,7 +200,7 @@ public class RegexUtil {
      * @param input The input.
      * @return {@code true}: yes<br>{@code false}: no
      */
-    public static boolean isURL(final CharSequence input) {
+    public static boolean isUrl(final CharSequence input) {
         return isMatch(REGEX_URL, input);
     }
 
@@ -238,7 +243,7 @@ public class RegexUtil {
      * @param input The input.
      * @return {@code true}: yes<br>{@code false}: no
      */
-    public static boolean isIP(final CharSequence input) {
+    public static boolean isIp(final CharSequence input) {
         return isMatch(REGEX_IP, input);
     }
 
@@ -261,8 +266,9 @@ public class RegexUtil {
      * @return the list of input matches the regex
      */
     public static List<String> getMatches(final String regex, final CharSequence input) {
-        if (input == null)
+        if (input == null) {
             return Collections.emptyList();
+        }
         List<String> matches = new ArrayList<>();
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
@@ -280,8 +286,9 @@ public class RegexUtil {
      * @return the array of strings computed by splitting input around matches of regex
      */
     public static String[] getSplits(final String input, final String regex) {
-        if (input == null)
+        if (input == null) {
             return new String[0];
+        }
         return input.split(regex);
     }
 
@@ -299,8 +306,9 @@ public class RegexUtil {
     public static String getReplaceFirst(final String input,
                                          final String regex,
                                          final String replacement) {
-        if (input == null)
+        if (input == null) {
             return "";
+        }
         return Pattern.compile(regex).matcher(input).replaceFirst(replacement);
     }
 
@@ -318,8 +326,9 @@ public class RegexUtil {
     public static String getReplaceAll(final String input,
                                        final String regex,
                                        final String replacement) {
-        if (input == null)
+        if (input == null) {
             return "";
+        }
         return Pattern.compile(regex).matcher(input).replaceAll(replacement);
     }
 }

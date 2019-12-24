@@ -11,6 +11,7 @@ eureka:
     prefer-ip-address: true
     lease-expiration-duration-in-seconds: 10
     lease-renewal-interval-in-seconds: 20
+    ip-address: 123.56.10.101
   client:
     register-with-eureka: true
     fetch-registry: true

@@ -52,6 +52,7 @@ public class CommentController {
      * @param limit
      * @return List<Comment>
      */
+ //   GetMapping("/product")
     @GetMapping("/product/{id}/comments")
     public Object getCommentsById(HttpServletRequest request,
                                   @RequestParam Integer id,
@@ -91,18 +92,21 @@ public class CommentController {
         if (userId == null) {
             return ResponseUtil.fail(660,"用户未登录");
         }
-        if(id==null||commentPo==null||commentPo.getContent()==null||commentPo.getStar()==null||
-                (commentPo.getBeDeleted()!=null&&commentPo.getBeDeleted()==true)
-            ||(commentPo.getStatusCode()!=null&&commentPo.getStatusCode()!=0)){
+        if(id==null||commentPo==null||commentPo.getContent()==null||commentPo.getStar()==null){
+            return ResponseUtil.fail(903,"创建评论失败");
+        }
+        if(commentPo.getBeDeleted()!=null&&commentPo.getBeDeleted()==true){
+            return ResponseUtil.fail(903,"创建评论失败");
+        }
+        if(commentPo.getStatusCode()!=null&&commentPo.getStatusCode()!=0) {
+            return ResponseUtil.fail(903,"创建评论失败");
+        }
+        commentPo.setStatusCode(0);
+        commentPo.setProductId(id);
+        if(commentService.addComment(commentPo)==null){
             return ResponseUtil.fail(903,"创建评论失败");
         } else{
-            commentPo.setStatusCode(0);
-            commentPo.setProductId(id);
-            if(commentService.addComment(commentPo)==null){
-                return ResponseUtil.fail(903,"创建评论失败");
-            } else{
-                return ResponseUtil.ok(commentPo);
-            }
+            return ResponseUtil.ok(commentPo);
         }
     }
 
@@ -219,23 +223,25 @@ public class CommentController {
         log.setType(2);
         log.setIp(InetAddress.getLocalHost().toString());
 
-        if(id==null||commentPo.getStatusCode()==null||commentPo.getStatusCode()==0||
-                (commentPo.getBeDeleted()!=null&&commentPo.getBeDeleted()==true)){
+        if(id==null||commentPo.getStatusCode()==null||commentPo.getStatusCode()==0){
             log.setStatusCode(0);
             addLog.addLog(log);
             return ResponseUtil.fail(904,"修改评论失败");
-
+        }
+        if(commentPo.getBeDeleted()!=null&&commentPo.getBeDeleted()==true){
+            log.setStatusCode(0);
+            addLog.addLog(log);
+            return ResponseUtil.fail(904,"修改评论失败");
+        }
+        CommentPo commentPo1=commentService.updateCommentById(id, commentPo);
+        if(commentPo1==null){
+            log.setStatusCode(0);
+            addLog.addLog(log);
+            return ResponseUtil.fail(904,"修改评论失败");
         } else{
-            CommentPo commentPo1=commentService.updateCommentById(id, commentPo);
-            if(commentPo1==null){
-                log.setStatusCode(0);
-                addLog.addLog(log);
-                return ResponseUtil.fail(904,"修改评论失败");
-            } else{
-                log.setStatusCode(1);
-                addLog.addLog(log);
-                return ResponseUtil.ok(commentPo1);
-            }
+            log.setStatusCode(1);
+            addLog.addLog(log);
+            return ResponseUtil.ok(commentPo1);
         }
     }
 }

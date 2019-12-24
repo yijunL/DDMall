@@ -3,21 +3,21 @@ server:
 
 spring:
   application:
-    name: 1-2-SHARE-SERVICE
+    name: SHARESERVICE
   profiles:
     active: dev
 eureka:
   instance:
     prefer-ip-address: true
-    ip-address: 123.56.10.101
     lease-expiration-duration-in-seconds: 10
     lease-renewal-interval-in-seconds: 20
+    ip-address:  123.56.10.101
 
   client:
     register-with-eureka: true
     fetch-registry: true
     serviceUrl:
-      defaultZone: http://www.clines.club:2222/eureka/
+      defaultZone: http://172.81.212.62:7001/eureka/
 
 management:
   endpoint:

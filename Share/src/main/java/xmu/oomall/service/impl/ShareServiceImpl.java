@@ -1,6 +1,7 @@
 package xmu.oomall.service.impl;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,12 @@ import xmu.oomall.service.ShareService;
 
 import java.math.BigDecimal;
 import java.util.List;
+
+
+/**
+ * @Author 24320172203121
+ *
+ */
 
 @Service
 public class ShareServiceImpl implements ShareService {
@@ -35,7 +42,7 @@ public class ShareServiceImpl implements ShareService {
     }
 
 
-    public boolean beValiedShareRule(ShareRulePo shareRulePo)throws Exception
+    public boolean beValiedShareRule(ShareRulePo shareRulePo)
     {
         int type =0;
         int[] lowerbound;
@@ -54,19 +61,19 @@ public class ShareServiceImpl implements ShareService {
                 lowerbound[i] = strategy.getInt("lowerbound");
                 upperbound[i] = strategy.getInt("upperbound");
                 if(lowerbound[i]>upperbound[i])
-                    return false;
+                {  return false;}
                 if(i>=1)
-                    if(lowerbound[i]<=upperbound[i-1]||upperbound[i]<=upperbound[i-1])
-                        return false;
+                { if(lowerbound[i]<=upperbound[i-1]||upperbound[i]<=upperbound[i-1])
+                    {return false;}}
                 rate[i] = strategy.getDouble("rate");
                 if(rate[i]<0)
-                    return false;
+                {  return false;}
                 if(i>=1)
-                    if(rate[i]<rate[i-1])
-                        return false;
+                {  if(rate[i]<rate[i-1])
+                {  return false;}}
             }
             if(type!=0&&type!=1)
-                return  false;
+            {return  false;}
 
 
         }catch (Exception e)
@@ -77,11 +84,11 @@ public class ShareServiceImpl implements ShareService {
     }
 
     @Override
-    public Object addShareRule(ShareRulePo sharerulePo) throws Exception {
+    public Object addShareRule(ShareRulePo sharerulePo)  {
 
         if(beValiedShareRule(sharerulePo))
-        return shareRuleDao.addShareRule(sharerulePo);
-        else return null;
+        { return shareRuleDao.addShareRule(sharerulePo);}
+        else {return null;}
     }
 
 
@@ -94,30 +101,30 @@ public class ShareServiceImpl implements ShareService {
     }
 
     @Override
-    public Object updateShareRule(ShareRulePo sharerulePo, Integer id) throws Exception {
+    public Object updateShareRule(ShareRulePo sharerulePo, Integer id)throws JSONException {
 
         boolean b=beValiedShareRule(sharerulePo);
         if(b)
-        return shareRuleDao.updateShareRule(sharerulePo,id);
-        else return false;
+        {  return shareRuleDao.updateShareRule(sharerulePo,id);}
+        else {return false;}
     }
 
 
     @Override
-    public Object addBeSharedItems(BeSharedItem beSharedItem)
+    public Object addBeSharedItems(BeSharedItem beSharedItem)throws JSONException
     {
         //商品上下架判断
         boolean a=true;
         a=addGoods.isOnsale(beSharedItem.getGoodsId());
         if(!a)
-            return null;
+        {  return null;}
         //用户合法性判断,分享者和被分享者
         boolean b=true;
         boolean c=true;
         b=addUser.beValidate(beSharedItem.getSharerId());
         c=addUser.beValidate(beSharedItem.getBeSharedUserId());
         if(!b||!c)
-            return null;
+        {  return null;}
         return beSharedItemDao.addBeSharedItems(beSharedItem);
     }
 
@@ -128,11 +135,11 @@ public class ShareServiceImpl implements ShareService {
 
         List<OrderItem> orderItemList=order.getOrderItemList();
         List<BeSharedItem> beSharedItemList= beSharedItemDao.getValidBeShareItem(beSharedUserId,orderItemList);
-        if(beSharedItemList==null) return 0;
+        if(beSharedItemList==null) {return 0;}
         BigDecimal price = new BigDecimal(0);
         for(OrderItem orderItem:orderItemList)
-        { if(orderItem.getGoodsId()==beSharedItemList.get(0).getGoodsId())
-          price=orderItem.getPrice();break; }
+        { if(orderItem.getGoodsId().equals(beSharedItemList.get(0).getGoodsId()))
+        { price=orderItem.getPrice();break;} }
 
         return shareItemDao.updateShareItemSuccessNumAndCalculate(beSharedItemList,price);
 

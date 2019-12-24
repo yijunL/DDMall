@@ -12,7 +12,11 @@ import org.apache.commons.logging.LogFactory;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @Author Ming Qiu
+ * @Description: AddressController
+ * @create 2019/12/16 20:49
+ */
 public class JacksonUtil {
 
     private static final Log logger = LogFactory.getLog(JacksonUtil.class);
