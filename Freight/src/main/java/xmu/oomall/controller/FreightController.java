@@ -22,13 +22,14 @@ import java.util.List;
 public class FreightController {
     @Autowired
     private FreightService freightService;
+    //dfdf
 
     /**
      * 解析请求
      * @param request
      * @return
      */
-    private Integer getUserId(HttpServletRequest request) {
+    private Integer getUserId(HttpServletRequest request) { //fdfdfd
         String userIdStr = request.getHeader("userId");
         if (userIdStr == null) {
             return null;

@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Lyj
+ */
 @Repository
 public class CollectionDao {
 
@@ -51,7 +54,9 @@ public class CollectionDao {
      * @return null
      */
     public boolean deleteCollection(Integer id) {
-
+        List<CollectItemPo> collectItemPo=oomallCollectItemMapper.findAllById(id);
+        if(collectItemPo.isEmpty())
+        {return false;}
         return oomallCollectItemMapper.deleteById(id);
     }
 

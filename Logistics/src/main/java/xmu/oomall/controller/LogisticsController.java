@@ -3,9 +3,11 @@ package xmu.oomall.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import xmu.oomall.util.ResponseUtil;
+
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -14,7 +16,7 @@ import java.util.Random;
  * @create 2019/12/13 13:30
  */
 @RestController
-@RequestMapping("/logisticsService")//
+@RequestMapping(value = "")
 public class LogisticsController {
 
     /**
@@ -25,6 +27,11 @@ public class LogisticsController {
     public Object getLogistics() {
         Random random = new Random();
         Integer a = random.nextInt(10000);
-        return ResponseUtil.ok(LocalDateTime.now().toString() + a.toString());
+        String data=LocalDateTime.now().toString()+a.toString();
+        Map<String, Object> obj = new HashMap<String, Object>();
+        obj.put("errno", 0);
+        obj.put("errmsg", "成功");
+        obj.put("data", data);
+        return obj;
     }
 }

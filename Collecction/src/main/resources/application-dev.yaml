@@ -1,6 +1,6 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.52.88.176:3366/DB2_5?characterEncoding=utf-8
-    username: user2_5
-    password: ooad5
+    url: jdbc:mysql://localhost:3308/oomall?serverTimezone=GMT%2B8
+    username: root
+    password: 123456
