@@ -21,7 +21,7 @@ import java.util.List;
  * @create 2019/12/16 20:49
  */
 @RestController
-@RequestMapping("/afterSaleServices") //!!
+@RequestMapping(value = "") //!!
 public class AfterSaleController {
 
     @Autowired
@@ -66,7 +66,7 @@ public class AfterSaleController {
      */
     @GetMapping("/admin/afterSaleServices")
     public Object listAfterSalesByCondition(HttpServletRequest request, @RequestParam Integer userId, @RequestParam Integer page, @RequestParam Integer limit) throws UnknownHostException {
-        Integer adminId = getAdminId(request);
+        Integer adminId = getUserId(request);
         if (adminId == null) {
             return ResponseUtil.fail(669, "管理员未登录");
         }
@@ -109,7 +109,7 @@ public class AfterSaleController {
      */
     @GetMapping("/admin/afterSaleServices/{id}")
     public Object getAfterSaleByIdForAdmin(HttpServletRequest request, @PathVariable Integer id) throws UnknownHostException {
-        Integer adminId = getAdminId(request);
+        Integer adminId = getUserId(request);
         if (adminId == null) {
             return ResponseUtil.fail(669, "管理员未登录");
         }
@@ -154,8 +154,8 @@ public class AfterSaleController {
             return ResponseUtil.fail(691, "获取售后服务失败");
         }
         Integer userId = getUserId(request);
-        if(userId == null) {
-            return null;
+        if (userId == null) {
+            return ResponseUtil.fail(660, "用户未登录");
         }
         else {
             AftersalesService afterSaleService1 = afterSaleService.getAfterSaleById(id, userId);
@@ -190,6 +190,11 @@ public class AfterSaleController {
         log.setGmtModified(localDateTime);
         log.setType(2); //操作类型
         log.setIp(InetAddress.getLocalHost().toString());
+        if (afterSaleService1 == null) {
+            log.setStatusCode(0);
+            addLog.addLog(log);
+            return ResponseUtil.fail(693, "修改售后服务失败");
+        }
         if (id == null) {
             log.setStatusCode(0);
             addLog.addLog(log);
@@ -220,6 +225,9 @@ public class AfterSaleController {
         Integer userId = getUserId(request);
         if (userId == null) {
             return ResponseUtil.fail(660, "用户未登录");
+        }
+        if (afterSaleService1 == null) {
+            return ResponseUtil.fail(693, "修改售后服务失败");
         }
         if (id == null) {
             return ResponseUtil.fail(693, "修改售后服务失败");
@@ -273,10 +281,10 @@ public class AfterSaleController {
             return ResponseUtil.fail(692, "申请售后服务失败"); //
         } else {
             AftersalesService afterSaleService2 = afterSaleService.addAfterSale(userId, afterSaleService1);
-            if(afterSaleService2 != null) {
+            if (afterSaleService2 != null) {
                 return ResponseUtil.ok(afterSaleService2);
             } else {
-                System.out.println("bad!"); //!!
+                /* System.out.println("bad!"); */
                 return ResponseUtil.fail(692, "申请售后服务失败");
             }
         }

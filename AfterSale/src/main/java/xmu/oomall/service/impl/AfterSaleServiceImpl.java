@@ -78,9 +78,6 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      */
     @Override
     public AftersalesService updateAfterSaleByIdForAdmin(Integer id, AftersalesService afterSaleService) {
-        if (afterSaleService == null) {
-            return null;
-        }
         Integer statusCode = afterSaleService.getStatusCode();
         if (statusCode == null || (statusCode != 1 && statusCode != 2)) { //不可改为未审核状态
             return null;
@@ -98,9 +95,6 @@ public class AfterSaleServiceImpl implements AfterSaleService {
      */
     @Override
     public AftersalesService updateAfterSaleById(Integer userId, Integer id, AftersalesService afterSaleService) {
-        if (afterSaleService == null) {
-            return null;
-        }
         Integer statusCode = afterSaleService.getStatusCode();
         if (statusCode != null && statusCode != 0) { //不可修改
             return null;
@@ -153,9 +147,6 @@ public class AfterSaleServiceImpl implements AfterSaleService {
     @Override
     public AftersalesService addAfterSale(Integer userId, AftersalesService afterSaleService) {
         /* 先判断不需要调用其他服务的部分，可能节约时间 */
-        if (afterSaleService == null) { //传值错误
-            return null;
-        }
         /* 检查is_applied, orderItemId, number等 */
         Boolean beDeleted = afterSaleService.getBeDeleted();
         if (beDeleted != null && beDeleted == true) { //其实不应有值
