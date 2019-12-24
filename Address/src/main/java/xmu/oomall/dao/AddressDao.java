@@ -29,19 +29,25 @@ public class AddressDao {
     }
 
     public AddressPo addAddress(AddressPo addressPo){
-        if(addressPo.getId()!=null)    //插入的po不能有id
+        //插入的po不能有id
+        if(addressPo.getId()!=null) {
             return null;
-        if(addressPo.getGmtCreate()==null)
+        }
+        if(addressPo.getGmtCreate()==null) {
             addressPo.setGmtCreate(LocalDateTime.now());
-        if(addressPo.getGmtModified() == null)
+        }
+        if(addressPo.getGmtModified() == null) {
             addressPo.setGmtModified(LocalDateTime.now());
+        }
         oomallAddressMapper.insertSelective(addressPo);
         return addressPo;
     }
 
     public AddressPo updateAddress(Integer id,AddressPo addressPo){
-        if(addressPo.getId()!=null)
-            return null;                        //id不允许有值，即不能修改id
+        //id不允许有值，即不能修改id
+        if(addressPo.getId()!=null) {
+            return null;
+        }
         addressPo.setGmtModified(LocalDateTime.now());
         oomallAddressMapper.updateById(addressPo,id);
         return addressPo;
@@ -52,10 +58,12 @@ public class AddressDao {
         AddressPo addressPo=new AddressPo();
         addressPo.setGmtModified(LocalDateTime.now());
         addressPo.setBeDeleted(true);
-        if(oomallAddressMapper.updateById(addressPo,id)==0)  //没有更新任何元素
+        if(oomallAddressMapper.updateById(addressPo,id)==0) {
             return false;
-        else
+        }
+        else {
             return true;
+        }
     }
 
     private Address addresses(AddressPo addressPo){

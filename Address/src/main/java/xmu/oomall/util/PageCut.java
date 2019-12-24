@@ -8,11 +8,15 @@ public class PageCut {
     {
         int begin=(page-1)*limit;
         int end=begin+limit;
-        if(begin>=list.size())
+        if(begin>=list.size()) {
             return null;
-        else if(list.size()<end)      //处于最后一页时
-            return list.subList(begin,list.size());
-        else
-            return list.subList(begin,end);
+        }
+        //处于最后一页时
+        else if(list.size()<end) {
+            return list.subList(begin, list.size());
+        }
+        else {
+            return list.subList(begin, end);
+        }
     }
 }

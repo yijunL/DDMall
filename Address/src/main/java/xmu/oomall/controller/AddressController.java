@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 @RestController
-@RequestMapping("/addressService")
+@RequestMapping(value="")
 public class AddressController {
 
     @Autowired
@@ -103,10 +103,12 @@ public class AddressController {
             addressService.resetDefaultAddress(userId);
         }
         AddressPo addressPo1=addressService.addAddress(addressPo);
-        if(addressPo1==null)
-            return ResponseUtil.fail(751,"地址新增失败");
-        else
+        if(addressPo1==null) {
+            return ResponseUtil.fail(751, "地址新增失败");
+        }
+        else {
             return ResponseUtil.ok(addressPo1);
+        }
     }
 
     /**
@@ -131,12 +133,13 @@ public class AddressController {
             return ResponseUtil.fail(752,"所修改地址不存在");
         }
         AddressPo addressPo1=addressService.updateAddress(id,addressPo);
-        if(addressPo1==null)
-            return ResponseUtil.fail(752,"地址修改失败");
-        else {
-            addressPo1.setGmtModified(LocalDateTime.now());
-            return ResponseUtil.ok(addressPo1);
+        if(addressPo1==null) {
+            return ResponseUtil.fail(752, "地址修改失败");
         }
+        else{
+                addressPo1.setGmtModified(LocalDateTime.now());
+                return ResponseUtil.ok(addressPo1);
+            }
     }
 
     /**
@@ -155,10 +158,12 @@ public class AddressController {
         if (id == null || id < 0) {
             return ResponseUtil.fail(743,"所删除的地址不存在");
         }
-        if(addressService.deleteAddress(id))
+        if(addressService.deleteAddress(id)) {
             return ResponseUtil.ok();
-        else
-            return ResponseUtil.fail(743,"地址删除失败");
+        }
+        else {
+            return ResponseUtil.fail(743, "地址删除失败");
+        }
     }
 
     //合法性检测

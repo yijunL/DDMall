@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping("/collectionService")
+@RequestMapping(value="")
 public class CollectionController {
 
     @Autowired

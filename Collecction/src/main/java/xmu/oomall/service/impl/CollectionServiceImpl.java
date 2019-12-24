@@ -19,8 +19,8 @@ public class CollectionServiceImpl implements CollectionService {
 
     @Override
     public List<CollectItem> getCollectionList(Integer userId,Integer page, Integer limit){
-        if(!userValidate.validate(userId))
-            return null;
+//        if(!userValidate.validate(userId))
+//            return null;
         return collectionDao.getColltectionList(userId,page, limit);
     };
 

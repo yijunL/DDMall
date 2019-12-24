@@ -33,22 +33,22 @@ public class AddressDaoTest {
 //        assertEquals(addressPo.getMobile(),"000");
 //    }
 //
-//    @Test
-//    public void addAddressTest()
-//    {
-//        AddressPo addressPo=new AddressPo();
-//        addressPo.setBeDeleted(false);
-//        addressPo.setCityId(123);
-//        addressPo.setCountyId(123);
-//        addressPo.setProvinceId(123);
-//        addressPo.setAddressDetail("思明区思明南路144号");
-//        addressPo.setPostalCode("123");
-//        addressPo.setConsignee("123");
-//        addressPo.setMobile("123");
-//        addressPo.setUserId(2);
-//        addressPo=addressDao.addAddress(addressPo);
-//        assertEquals(addressPo.getUserId(),2);
-//    }
+    @Test
+    public void addAddressTest()
+    {
+        AddressPo addressPo=new AddressPo();
+        addressPo.setBeDeleted(false);
+        addressPo.setCityId(123);
+        addressPo.setCountyId(123);
+        addressPo.setProvinceId(123);
+        addressPo.setAddressDetail("思明区思明南路144号");
+        addressPo.setPostalCode("123");
+        addressPo.setConsignee("123");
+        addressPo.setMobile("123");
+        addressPo.setUserId(2);
+        addressPo=addressDao.addAddress(addressPo);
+        assertEquals(addressPo.getUserId(),2);
+    }
 //
 //    @Test
 //    public void deleteAddressTest()
