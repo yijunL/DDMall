@@ -14,7 +14,7 @@ public interface FreightService {
 
     public DefaultFreightPo addDefaultFreight(DefaultFreightPo defaultFreightPo);
 
-    public DefaultFreightPo updateDefaultFreight(Integer id, DefaultFreightPo DefaultFreightPo);
+    public DefaultFreightPo updateDefaultFreight(Integer id, DefaultFreightPo defaultFreightPo);
 
     public Boolean deleteDefaultFreight(Integer id);
 

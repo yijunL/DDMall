@@ -32,8 +32,8 @@ public class FreightServiceImpl implements FreightService {
     }
 
     @Override
-    public DefaultFreightPo updateDefaultFreight(Integer id, DefaultFreightPo DefaultFreightPo) {
-        return defaultFreightDao.updateDefaultFreight(id, DefaultFreightPo);
+    public DefaultFreightPo updateDefaultFreight(Integer id, DefaultFreightPo defaultFreightPo) {
+        return defaultFreightDao.updateDefaultFreight(id, defaultFreightPo);
     }
 
 
