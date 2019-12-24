@@ -7,6 +7,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
+/**
+ * @author KingKong
+ * @Description: OomallApplication
+ * @create 2019/12/13 23:08
+ */
+
 @SpringBootApplication
 @MapperScan("xmu.oomall.mapper")
 @EnableDiscoveryClient

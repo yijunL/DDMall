@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * @Author 24320172203121
+ *
+ */
+
 @Repository
 public class BeSharedItemDao {
     @Autowired
@@ -54,15 +59,15 @@ public class BeSharedItemDao {
 
         for(OrderItem orderItem:orderItemList) {
              beSharedItem = beSharedItemMapper.findByGoodsIdAndBeSharedUserId(orderItem.getGoodsId(),beSharedUserId);
-             if(beSharedItem!=null)
-                 if(beSharedItem.getStatusCode()==0)
-                   if((beSharedItem.getGmtCreate().plusDays(7)).isAfter(orderItem.getGmtCreate()))
-             {
-                 beSharedItem.setGmtModified(LocalDateTime.now());
-                 beSharedItem.setStatusCode(1);
-                 beSharedItemMapper.updateById(beSharedItem,beSharedItem.getId());
-                 list.add(beSharedItem);
-
+             if(beSharedItem!=null) {
+                 if (beSharedItem.getStatusCode() == 0)
+                 { if ((beSharedItem.getGmtCreate().plusDays(7)).isAfter(orderItem.getGmtCreate())) {
+                     beSharedItem.setGmtModified(LocalDateTime.now());
+                     beSharedItem.setStatusCode(1);
+                     beSharedItemMapper.updateById(beSharedItem, beSharedItem.getId());
+                     list.add(beSharedItem);
+                 }
+                     }
              }
         }
         return list;

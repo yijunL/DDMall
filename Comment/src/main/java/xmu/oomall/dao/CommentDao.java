@@ -106,7 +106,7 @@ public class CommentDao {
      */
     public List<Comment> selectAllComments(Integer limit,Integer page){
         PageHelper.startPage(page,limit);
-        List<CommentPo> commentPoList=commentMapper.selectALL();
+        List<CommentPo> commentPoList=commentMapper.selectAll();
         return commentsList(commentPoList);
     }
 
@@ -134,10 +134,14 @@ public class CommentDao {
 
     private boolean isArgsInvalid(CommentPo commentPo)
     {
-        if(commentPo.getStar()<1||commentPo.getStar()>5){
+        Integer one=new Integer(1);
+        Integer five=new Integer(5);
+        Integer zero=new Integer(0);
+        Integer two=new Integer(2);
+        if(commentPo.getStar()<one||commentPo.getStar()>five){
             return true;
         }
-        if(commentPo.getStatusCode()<0||commentPo.getStatusCode()>2){
+        if(commentPo.getStatusCode()<zero||commentPo.getStatusCode()>two){
             return true;
         }
         return false;
@@ -164,7 +168,7 @@ public class CommentDao {
      */
     private Comment comments(CommentPo commentPo){
         Comment comment = new Comment();
-        return Copyer.Copy(commentPo,comment)?comment:null;
+        return Copyer.copy(commentPo,comment)?comment:null;
     }
 
 

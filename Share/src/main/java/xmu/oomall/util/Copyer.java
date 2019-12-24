@@ -13,7 +13,7 @@ import java.util.List;
  * @date 2016/6/29
  */
 public class Copyer {
-    public static <B, S extends B> boolean Copy(B bo, S so) {
+    public static <B, S extends B> boolean copy(B bo, S so) {
         try {
             if (bo == null) {
                 so = null;
