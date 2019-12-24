@@ -1,7 +1,6 @@
 server:
   port: 8100
 
-
 spring:
   application:
     name: 1-2-SHARE-SERVICE
@@ -10,15 +9,15 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true
+    ip-address: 123.56.10.101
     lease-expiration-duration-in-seconds: 10
     lease-renewal-interval-in-seconds: 20
+
   client:
     register-with-eureka: true
     fetch-registry: true
     serviceUrl:
       defaultZone: http://www.clines.club:2222/eureka/
-
-
 
 management:
   endpoint:

@@ -18,7 +18,7 @@ public class CommentMapperTest {
 
         //System.out.println(commentMapper.deleteById(LocalDateTime.now(),1));
 
-        CommentPo commentPo= new CommentPo();
+ /*       CommentPo commentPo= new CommentPo();
         commentPo.setContent("今天");
         commentPo.setId(11);
         commentPo.setProductId(222);
@@ -26,7 +26,7 @@ public class CommentMapperTest {
         commentPo.setStatusCode(3);
         commentPo.setUserId(333);
         commentPo.setBeDeleted(null);
-        commentPo.setGmtModified(LocalDateTime.now());
+        commentPo.setGmtModified(LocalDateTime.now());*/
 
         //System.out.println(commentMapper.updateById(commentPo,1));
 

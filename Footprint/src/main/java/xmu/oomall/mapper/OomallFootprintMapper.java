@@ -5,6 +5,11 @@ import xmu.oomall.domain.FootprintItemPo;
 
 import java.util.List;
 
+/**
+ * @Author Bexasusual
+ * @Description: OomallFootprintMapper
+ * @create 2019/12/14 13:30
+ */
 public interface OomallFootprintMapper {
 
     /**
@@ -30,6 +35,13 @@ public interface OomallFootprintMapper {
      * @return List<FootprintItemPo>
      */
     List<FootprintItemPo> selectByCondition(@Param("userId") Integer userId, @Param("goodsId") Integer goodsId);
+
+    /**
+     * 管理员按条件查询时，若条件均为null则返回全体
+     *
+     * @return List<FootprintItemPo>
+     */
+    List<FootprintItemPo> selectAll();
 
     /**
      * 根据id查找足迹（可判断是否已存在符合该id的足迹）
