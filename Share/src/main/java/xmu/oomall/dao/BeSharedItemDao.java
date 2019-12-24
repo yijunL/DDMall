@@ -17,11 +17,6 @@ public class BeSharedItemDao {
     @Autowired
     private OomallBeSharedItemMapper beSharedItemMapper;
 
-    /**
-     * 增添被分享商品表
-
-     */
-
     public BeSharedItem addBeSharedItems(BeSharedItem beSharedItem) {
 
         BeSharedItem  beSharedItem1=beSharedItemMapper.findByGoodsIdAndBeSharedUserIdAndSharerId(beSharedItem.getGoodsId(),
@@ -52,11 +47,6 @@ public class BeSharedItemDao {
 
     }
 
-
-    /**
-     * 获得有效的被分享商品表
-
-     */
     public  List<BeSharedItem> getValidBeShareItem(Integer beSharedUserId, List<OrderItem> orderItemList)
     {
         BeSharedItem beSharedItem=new BeSharedItem();

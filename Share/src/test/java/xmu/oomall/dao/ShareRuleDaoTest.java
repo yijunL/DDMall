@@ -11,19 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 //@Transactional
 class ShareRuleDaoTest {
-/*
-   @Autowired
+
+    @Autowired
     private ShareRuleDao shareRuleDao;
 
     @Test
     void getShareRuleById() {
-        ShareRulePo shareRulePo = shareRuleDao.getShareRuleById(1006239);
-
-        assertEquals(1001005, shareRulePo.getId());
-        assertEquals("{\"strategy\": [{\"lowerbound\":\"0\", \"upperbound\":\"1\", \"rate\":\"0.5\"}," +
-                        "{\"lowerbound\":\"2\", \"upperbound\":\"10\", \"rate\":\"0.7\"},{\"lowerbound\":\"11\", \"upperbound\":\"30\", \"rate\":\"1\"}," +
-                        "{\"lowerbound\":\"31\", \"upperbound\":\"100\", \"rate\":\"1.5\"}],\"type\":\"0\"}",
-                shareRulePo.getShareLevelStrategy());
+       ShareRulePo shareRulePo= shareRuleDao.getShareRuleById(1);
+        assertEquals(shareRulePo.getId(),5);
     }
 
     @Test
@@ -42,7 +37,7 @@ class ShareRuleDaoTest {
     @Test
     void deleteShareRuleById() {
         shareRuleDao.deleteShareRuleById(1);
-      //  assertEquals(shareRuleDao.getShareRuleById(1).getBeDeleted(),true);
+        assertEquals(shareRuleDao.getShareRuleById(1).getBeDeleted(),true);
     }
 
     @Test
@@ -52,10 +47,6 @@ class ShareRuleDaoTest {
         ShareRulePo shareRulePo1= shareRuleDao.updateShareRule(shareRulePo,2);
         assertEquals(shareRulePo1.getGoodsId(),666);
     }
-
-
-
- */
 
 
 }

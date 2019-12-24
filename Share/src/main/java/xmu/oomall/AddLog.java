@@ -1,11 +1,18 @@
 package xmu.oomall;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import xmu.oomall.domain.Log;
 
-@FeignClient(value = "logService")
+
+@FeignClient("2-6-LOG-SERVICE")
 public interface AddLog {
-    @PostMapping("/log")
-    Log addLog(Log log);
+
+
+    @RequestMapping(value="/log", method=RequestMethod.POST)
+    Log addLog(@RequestBody Log log);
+
+
+
+
 }
