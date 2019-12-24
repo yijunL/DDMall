@@ -9,6 +9,11 @@ import xmu.oomall.util.Copyer;
 
 import java.time.LocalDateTime;
 
+
+/**
+ * @Author 24320172203121
+ *
+ */
 @Repository
 public class ShareRuleDao {
 
@@ -49,13 +54,13 @@ public class ShareRuleDao {
 
         ShareRulePo shareRulePo=shareRuleMapper.findById(id);
         if(shareRulePo==null)
-            return false;
+        { return false;}
        else
         {
             if(shareRulePo.getBeDeleted()==false)
-                return shareRuleMapper.deleteById(id);
+            { return shareRuleMapper.deleteById(id);}
             else
-                return false;
+            {return false;}
         }
 
     }
@@ -63,7 +68,7 @@ public class ShareRuleDao {
     public ShareRulePo updateShareRule(ShareRulePo sharerulePo,Integer id) {
 
         if(shareRuleMapper.findById(id)==null)
-            return null;
+        {  return null;}
         else{
             sharerulePo.setGmtModified(LocalDateTime.now());
             shareRuleMapper.updateById(sharerulePo,id);
@@ -77,7 +82,7 @@ public class ShareRuleDao {
     public ShareRule changeShareRule(ShareRulePo shareRulePo)
     {
         ShareRule shareRule=new ShareRule();
-        return Copyer.Copy(shareRulePo,shareRule)?shareRule:null;
+        return Copyer.copy(shareRulePo,shareRule)?shareRule:null;
     }
 
 }
