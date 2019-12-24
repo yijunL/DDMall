@@ -21,7 +21,7 @@ import java.util.List;
  * @create 2019/12/16 20:49
  */
 @RestController
-@RequestMapping(value = "") //!!
+@RequestMapping(value = "")
 public class AfterSaleController {
 
     @Autowired
@@ -49,7 +49,7 @@ public class AfterSaleController {
      * @return id
      */
     private Integer getAdminId(HttpServletRequest request) {
-        String adminIdStr = request.getHeader("userId"); //!!不确定
+        String adminIdStr = request.getHeader("userId");
         if (adminIdStr == null) {
             return null;
         }
@@ -77,26 +77,26 @@ public class AfterSaleController {
         LocalDateTime localDateTime = LocalDateTime.now();
         log.setGmtCreate(localDateTime);
         log.setGmtModified(localDateTime);
-        log.setType(0); //操作类型
+        log.setType(0);
         log.setIp(InetAddress.getLocalHost().toString());
         if (userId == null) {
-            log.setStatusCode(0); //操作失败
+            log.setStatusCode(0);
             addLog.addLog(log);
             return ResponseUtil.fail(691, "获取售后服务失败");
         }
         if (page == null || limit == null
             || page <= 0 || limit <= 0) {
-            log.setStatusCode(0); //操作失败
+            log.setStatusCode(0);
             addLog.addLog(log);
             return ResponseUtil.fail(691, "获取售后服务失败");
         }
         List<AftersalesService> aftersalesServiceList = afterSaleService.listAfterSalesByCondition(userId, page, limit);
         if (aftersalesServiceList == null) {
-            log.setStatusCode(0); //操作失败
+            log.setStatusCode(0);
             addLog.addLog(log);
             return ResponseUtil.fail(691, "获取售后服务失败");
         }
-        log.setStatusCode(1); //操作成功
+        log.setStatusCode(1);
         addLog.addLog(log);
         return ResponseUtil.ok(aftersalesServiceList);
     }
@@ -120,7 +120,7 @@ public class AfterSaleController {
         LocalDateTime localDateTime = LocalDateTime.now();
         log.setGmtCreate(localDateTime);
         log.setGmtModified(localDateTime);
-        log.setType(0); //操作类型
+        log.setType(0);
         log.setIp(InetAddress.getLocalHost().toString());
         if (id == null) {
             log.setStatusCode(0);
@@ -131,7 +131,7 @@ public class AfterSaleController {
             if (afterSaleService1 == null) {
                 log.setStatusCode(0);
                 addLog.addLog(log);
-                return ResponseUtil.fail(691, "获取售后服务失败"); //
+                return ResponseUtil.fail(691, "获取售后服务失败");
             } else {
                 /* System.out.println("ok"); */
                 log.setStatusCode(1);
@@ -160,7 +160,7 @@ public class AfterSaleController {
         else {
             AftersalesService afterSaleService1 = afterSaleService.getAfterSaleById(id, userId);
             if (afterSaleService1 == null) {
-                return ResponseUtil.fail(691, "获取售后服务失败"); //
+                return ResponseUtil.fail(691, "获取售后服务失败");
             } else {
                 /* System.out.println("ok"); */
                 return ResponseUtil.ok(afterSaleService1);
@@ -188,7 +188,7 @@ public class AfterSaleController {
         LocalDateTime localDateTime = LocalDateTime.now();
         log.setGmtCreate(localDateTime);
         log.setGmtModified(localDateTime);
-        log.setType(2); //操作类型
+        log.setType(2);
         log.setIp(InetAddress.getLocalHost().toString());
         if (afterSaleService1 == null) {
             log.setStatusCode(0);
@@ -278,7 +278,7 @@ public class AfterSaleController {
             return ResponseUtil.fail(660, "用户未登录");
         }
         if (afterSaleService1 == null) {
-            return ResponseUtil.fail(692, "申请售后服务失败"); //
+            return ResponseUtil.fail(692, "申请售后服务失败");
         } else {
             AftersalesService afterSaleService2 = afterSaleService.addAfterSale(userId, afterSaleService1);
             if (afterSaleService2 != null) {

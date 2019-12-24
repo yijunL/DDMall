@@ -36,7 +36,7 @@ public class FootprintServiceImpl implements FootprintService {
         if (!userValidate.validate(userId)) {
             return null;
         }
-        List<FootprintItem> footprintItems = footprintDao.selectByUserId(userId, page, limit); /* 至少是空列表 */
+        List<FootprintItem> footprintItems = footprintDao.selectByUserId(userId, page, limit);
         return footprintItems;
     }
 
@@ -48,7 +48,7 @@ public class FootprintServiceImpl implements FootprintService {
      */
     @Override
     public int deleteFootprintById (Integer id) {
-        if (footprintDao.deleteFootprintById(id) > 0) { //or == 1
+        if (footprintDao.deleteFootprintById(id) > 0) {
             return 1;
         }
         return 0;

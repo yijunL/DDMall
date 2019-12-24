@@ -6,6 +6,11 @@ import xmu.oomall.domain.AftersalesService;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * @Author Bexasusual
+ * @Description: OomallAfterSaleMapper
+ * @create 2019/12/13 14:20
+ */
 public interface OomallAfterSaleMapper {
 
     int insertSelective(AftersalesService afterSaleService);

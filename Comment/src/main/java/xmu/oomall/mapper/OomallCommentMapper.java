@@ -7,13 +7,19 @@ import xmu.oomall.domain.CommentPo;
 
 import java.util.List;
 
+/**
+ * @author KingKong
+ * @Description: OomallCommentMapper
+ * @create 2019/12/13 23:08
+ */
+
 @Mapper
 public interface OomallCommentMapper {
     /**
      * 用户获取产品下评论列表
      *
      * @param productId
-     * @return
+     * @return List<CommentPo>
      */
     List<CommentPo> findAllByProductId(@Param("productId") Integer productId);
 
@@ -21,7 +27,7 @@ public interface OomallCommentMapper {
      * 用户在产品下发表评论
      *
      * @param commentPo
-     * @return
+     * @return 0：失败  1：成功
      */
     int insertSelective(CommentPo commentPo);
 
@@ -29,6 +35,7 @@ public interface OomallCommentMapper {
      * 管理员删除评论
      *
      * @param id
+     * @param updatedGmtModified
      * @return 0:失败 1：成功
      */
     int deleteById(@Param("updatedGmtModified")LocalDateTime updatedGmtModified,@Param("id") Integer id);
@@ -38,7 +45,7 @@ public interface OomallCommentMapper {
      *
      * @param updated
      * @param id
-     * @return
+     * @return 0:失败
      */
     int updateById(@Param("updated") CommentPo updated, @Param("id") Integer id);
 
@@ -55,7 +62,7 @@ public interface OomallCommentMapper {
      *
      * @return List<CommentPo>
      */
-   List<CommentPo> selectALL();
+   List<CommentPo> selectAll();
 
     /**
      * 根据条件获取评论
