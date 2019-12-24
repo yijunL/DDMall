@@ -16,6 +16,9 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.TimeZone;
 
+/**
+ * @author Lyj
+ */
 @RestController
 @RequestMapping(value = "")
 public class AddressController {
@@ -161,7 +164,11 @@ public class AddressController {
             return ResponseUtil.fail(743,"地址删除失败");
     }
 
-    //合法性检测
+    /**
+     * 合法性检查
+     * @param addressPo
+     * @return
+     */
     private Object validate(AddressPo addressPo) {
 
         Integer userId = addressPo.getUserId();

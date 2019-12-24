@@ -11,6 +11,9 @@ import xmu.oomall.util.ResponseUtil;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * @author Lyj
+ */
 @RestController
 @RequestMapping("/collectionService")
 public class CollectionController {

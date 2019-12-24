@@ -6,6 +6,9 @@ import xmu.oomall.domain.CollectItemPo;
 
 import java.util.List;
 
+/**
+ * @author Lyj
+ */
 @Service
 public interface CollectionService {
     /**

@@ -10,6 +10,9 @@ import xmu.oomall.service.CollectionService;
 
 import java.util.List;
 
+/**
+ * @author Lyj
+ */
 @Service
 public class CollectionServiceImpl implements CollectionService {
     @Autowired
