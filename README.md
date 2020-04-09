@@ -1,4 +1,4 @@
-# DDMall
+# DDMALL
 ## An online shopping mall system！                                
 
 # Project overview            
