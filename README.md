@@ -2,7 +2,7 @@
 ## An online shopping mall system！                                
 
 # Project overview            
-DDmall system is a convenient system for online shopping. This system reproduces the existing litemal system. The reproduced system is developed by using object-oriented system development technology and means, which overcomes the shortcomings of the original system, such as low cohesion, high coupling, low operation efficiency and incomplete functions. Provide a safe, convenient and efficient e-mall system for businesses and customers.  
+DDmall system is a convenient system for online shopping. This system reproduces the existing litemall system. The reproduced system is developed by using object-oriented system development technology and means, which overcomes the shortcomings of the original system, such as low cohesion, high coupling, low operation efficiency and incomplete functions. Provide a safe, convenient and efficient e-mall system for businesses and customers.  
 
 # DDMALL SYSTEM
 This system is divided into 18 modules，jointly developed by several project development teams.
