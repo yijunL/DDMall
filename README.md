@@ -1,5 +1,5 @@
 # DDMall
-## An online shopping mall system！                                --developed by destory_D team  
+## An online shopping mall system！                                
 
 # Project overview            
 DDmall system is a convenient system for online shopping. This system reproduces the existing litemal system. The reproduced system is developed by using object-oriented system development technology and means, which overcomes the shortcomings of the original system, such as low cohesion, high coupling, low operation efficiency and incomplete functions. Provide a safe, convenient and efficient e-mall system for businesses and customers.  
@@ -20,6 +20,15 @@ ZUUL: Provide edge services such as load balancing, reverse proxy, authority aut
 MAVEN: In this project, Maven is used to uniformly manage dependencies.  
 
 ## Design
-![object model]https://github.com/yijunL/DDMall/blob/Division/Object%20model.png
-![Module partition]https://github.com/yijunL/DDMall/blob/Division/1-2Modulepartition_1.Jpeg
+### object model  
+![object model](https://github.com/yijunL/DDMall/blob/Division/Object%20model.png)  
+### Module partition
+![Module partition](https://github.com/yijunL/DDMall/blob/Division/1-2Modulepartition_1.Jpeg)  
 
+## Problems still exist  
+1.The reliability of the software is not enough, and there is no running test in the unfriendly environment.
+2.The security is not enough, and there is no corresponding measure or test for SQL injection, illegal user access, intrusion, deletion / modification of data.  
+3.In the code implementation, redundant verification judgment may be made in the service layer, such as calling the user information module to judge the validity of the current user, which may improve the correctness, but only increase the operation cost under the normal operation of the gateway.  
+
+## Project team
+### The project was developed by Destory_D group, School of information, XMU.
