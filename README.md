@@ -1,3 +1,5 @@
 # DDMall
-create by destory_D team
-主分支，开发版本
+## An online shopping mall system！
+###                                                              --create by destory_D team
+## Master branch, development version
+
