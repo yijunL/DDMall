@@ -26,7 +26,7 @@ MAVEN: In this project, Maven is used to uniformly manage dependencies.
 ![Module partition](https://github.com/yijunL/DDMall/blob/Division/1-2Modulepartition_1.Jpeg)  
 
 ## Problems still exist  
-1.The reliability of the software is not enough, and there is no running test in the unfriendly environment.
+1.The reliability of the software is not enough, and there is no running test in the unfriendly environment.  
 2.The security is not enough, and there is no corresponding measure or test for SQL injection, illegal user access, intrusion, deletion / modification of data.  
 3.In the code implementation, redundant verification judgment may be made in the service layer, such as calling the user information module to judge the validity of the current user, which may improve the correctness, but only increase the operation cost under the normal operation of the gateway.  
 
