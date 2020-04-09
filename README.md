@@ -19,5 +19,7 @@ RIBBON: By abstracting other services into an interface with Feign annotation, c
 ZUUL: Provide edge services such as load balancing, reverse proxy, authority authentication, dynamic routing, monitoring, flexibility, security, etc. In this project, zuul gateway is mainly used for authority authentication and routing.  
 MAVEN: In this project, Maven is used to uniformly manage dependencies.  
 
-Design scheme:
+## Design
+![object model]https://github.com/yijunL/DDMall/blob/Division/Object%20model.png
+![Module partition]https://github.com/yijunL/DDMall/blob/Division/1-2Modulepartition_1.Jpeg
 
